@@ -1,0 +1,282 @@
+\documentclass{article}
+
+\input{/home/ilden/Documents/School/TeX памятка/header.tex}
+
+\begin{document}
+	\tableofcontents
+	\setcounter{tocdepth}{3}
+	\newpage
+	\section{Последовательность.}
+	$f: \mathbb{N} \rightarrow \mathbb{R}$ \\
+	$f(n) =: f_n$ \\
+	\textbf{Опр.} Последовательность называется ограниченной сверху, если $\exists M: |f_n| \leqslant M$. Снизу, если $\exists m:  f_n \geqslant m$. $f_n$~--- ограниченная, если ограничена сверху и снизу. \\
+	\textbf{Опр.} $M_0 = \sup f_n$, если $M_0$~--- верхняя грань и $\forall \varepsilon > 0$ $\exists n_0: f_{n0} > M_0 - \varepsilon$. $m_0 = \inf f_n$, если $m_0$~--- нижняя грань и $\forall \varepsilon > 0$ $\exists n_0: f_{n0} < m_0 + \varepsilon$. \\
+	\textbf{Аксиома вещественных чисел.} Если множество $X$ ограничено сверху, то $\exists sup X$. Если $f_n$ неограничено сверху, то $sup f_n =: + \infty$. Если снизу, то $inf f_n =: - \infty$. \\
+	\textbf{Опр.} $f_n$~--- бесконечно большая (бб), если $\forall \varepsilon > 0$ $\exists N = N(\varepsilon): |f_n| > \frac{1}{\varepsilon}$ $\forall n \geqslant N$. $f_n$~--- не бб, $\exists \varepsilon > 0: \forall N \exists n > N: |f_n| \leqslant \frac{1}{\varepsilon}$. \\
+	\textbf{Опр.} $f_n$~--- бесконечно малая (бм), если $\forall \varepsilon > 0$ $\exists N = N(\varepsilon): |f_n| <\varepsilon$ $\forall n \geqslant N$. \\
+	\textbf{Лемма.} $f_n$~--- бм $\Rightarrow f_n$~--- ограничена. \\
+	Доказательство: \\
+	Пусть $\varepsilon = 1$, тогда $\exists N: |f_n| \leqslant 1$ $\forall n \geqslant N$ \\
+	$M := max{|f_1|, \dots, |f_{N - 1}|, 1}$, тогда $|f_n| \leqslant M$ $\forall n \in N$. \\
+	\textbf{Лемма.} \\
+	\begin{enumerate}[a)]
+		\item $f_n$~--- бб $\Rightarrow \frac{1}{f_n}$~--- бм
+		\item $f_n$~--- бм ($f_n \not= 0$) $\Rightarrow \frac{1}{f_n}$~--- бб
+	\end{enumerate}
+	\textbf{Лемма.} $f_n$~--- неограниченная последовательность, тогда существует бб подпоследовательность $f_{nk}$. \\
+	Доказательство:
+	\begin{quote}
+		$\exists n_1: |f_{n1} > 1|$, \\
+		$\exists n_2 > n_1: |f_{n2} > 2|$, \\
+		$\exists n_3 > n_2: |f_{n3}| > 3$, \\
+		$\vdots$, \\
+		$\exists n_1 < n_2 < \dots < n_k < \dots$ \\
+		$|f_{nk}| > k \Rightarrow f_{nk}$~--- бб.
+	\end{quote}
+	\textbf{Лемма.} \\
+	\begin{enumerate}[a)]
+		\item бм $+$ бм $=$ бм
+		\item бм $\cdot$ C $=$ бм
+		\item бм $\cdot$ бм $=$ бм
+		\item бб $\cdot$ C $=$ бб, $C \not= 0$
+		\item бб $\cdot$ бб $=$ бб
+	\end{enumerate}
+	\subsection{Предел последовательности.}
+	$a_n$~--- последовательность. \\
+	\textbf{Опр.} $a = \lim$ $a_n$, если $\forall \varepsilon > 0$ $\exists N:$ $|a_n - a| < \varepsilon$ $\forall n \geqslant N$. \\
+	\textbf{Опр.} Эпсилон окрестность: $U_{\varepsilon} (a) := (a - \varepsilon; a + \varepsilon)$. Выколотая эпсилон окрестность: $\mathring{U}_{\varepsilon} (a) := U_{\varepsilon}(a) \backslash \{a\}$. \\
+	$\varepsilon_1 < \varepsilon_2 \Rightarrow U_{\varepsilon1}(a) \subset U_{\varepsilon2}(a), a \in \overline{\mathbb{R}}$. \\
+	\textbf{Опр.} $\mathbb{R} \cup \{\pm \infty\} = \overline{\mathbb{R}}$~--- расширенная числовая прямая. \\
+	\textbf{Опр.} $\varepsilon > 0$ $U_{\varepsilon} (+ \infty) = (\frac{1}{\varepsilon}; + \infty)$; $U_{\varepsilon}(- \infty) = (- \infty; -\frac{1}{\varepsilon})$. \\
+	$\lim |a_n| = + \infty \Leftrightarrow \forall \varepsilon > 0$ $\exists N(\varepsilon):$ $|a_n| > \frac{1}{\varepsilon}$. \\
+	Если $a_n$~--- бб $\Leftrightarrow \lim |a_n| = + \infty$. \\
+	Если $a_n$~--- бм $\Leftrightarrow \lim |a_n| = 0$. \\
+	\textbf{Утв.} $\lim a_n = a \Leftrightarrow \exists$ бм последовательность $d_n$, такая что $a_n = a + d_n$. \\
+	\textbf{Утв.} Если предел последовательности существует, то он единственный. \\
+	Доказательство:
+	\begin{quote}
+		$\exists a < b$ и $a = \lim a_n$, $b = \lim a_n$. \\
+		Тогда $\varepsilon := \frac{b - a}{42}:$ \\
+		$\exists N_1:$ $a_n \in U_{\varepsilon} (a) \forall n \geqslant N_1$ \\
+		$\exists N_2:$ $a_n \in U_{\varepsilon} (b) \forall n \geqslant N_2$ \\
+		$\Rightarrow a_n \in (U_{\varepsilon} (a) \cap U_{\varepsilon} (b)) = \emptyset$ $\forall n \geqslant \max\{N_1, N_2\} !?!$.
+	\end{quote}
+	\textbf{Предельный переход в неравенства.} $a_n \leqslant b_n$ $\forall n \geqslant N_{0}$. \\
+	Пусть $\exists$ $\lim a_n = a$; $\lim b_n = b$, $a, b \in \overline{\mathbb{R}}$ \\
+	Тогда $a \leqslant b$. \\
+	Доказательство:
+	\begin{quote}
+		Пусть $a > b$. Тогда $\varepsilon := \frac{a - b}{42}:$ \\
+		$\exists N_1:$ $a_n \in U_{\varepsilon} (a) \forall n \geqslant N_1$ \\
+		$\exists N_2:$ $a_n \in U_{\varepsilon} (b) \forall n \geqslant N_2$ \\
+		$\Rightarrow a_n > b_n$ $\forall n \geqslant \max\{N_1, N_2\} !?!$.
+	\end{quote}
+	\textbf{Лемма о сжатых последовательностях.} Пусть $a_n \leqslant b_n \leqslant c_n$ $\forall n \geqslant N_0$ и $\exists$ $\lim a_n = \lim c_n = a \in \overline{\mathbb{R}}$, тогда $\exists$ $\lim b_n = a$. \\
+	Доказательство:
+	\begin{quote}
+		$\varepsilon > 0:$ \\
+		$\exists$ $a_n \in U_{\varepsilon}$, $n \geqslant N_1$ \\
+		$\exists$ $c_n \in U_{\varepsilon}$, $n \geqslant N_2$ \\
+		$\Rightarrow b_n \in U_{\varepsilon}:$ $\forall n \geqslant \{N_1, N_2, N_0\} =: N \Rightarrow a = \lim b_n$ по определению.
+	\end{quote}
+	\textbf{Лемма об отделимости от нуля.} Пусть $\exists$ $\lim a_n = a > 0$. Тогда $\exists$ $N:$ $a_n > \frac{a}{2} > 0$, $\forall n \geqslant N$. \\
+	Следствие. Если $\lim a_n \not= 0 \Rightarrow \frac{1}{a_n}$ ограничена ($a_n \not= 0$). \\
+	Доказательство:
+	\begin{quote}
+		$\lim a_n = a > 0$ \\
+		$\exists N_1:$ $a_n > \frac{a}{2} \Rightarrow 0 < \frac{1}{a_n} < \frac{2}{a}$ $\forall n \geqslant N_1$ \\
+		$\min\{a_1, \dots, a_{N - 1}, \frac{a}{2}\} \leqslant \frac{1}{a_n} \leqslant \max\{a_1, \dots, a_{N - 1}, \frac{2}{a}\}$
+	\end{quote}
+	\textbf{Теорема. Арифметические свойства предела.} Пусть $\lim a_n = a$, $\lim b_n = b$; $a, b \in \overline{\mathbb{R}}$. Тогда:
+	\begin{enumerate}
+		\item $\lim (a_n + b_n) = a + b$, кроме случаев $+ \infty + (- \infty)$, $- \infty + (+ \infty)$
+		\item $\lim (ka_n) = ka$, кроме случая $0 \cdot (\pm \infty)$
+		\item $\lim (a_n \cdot b_n) = ab$, кроме случая $0 (\pm \infty)$
+		\item $\lim \frac{a_n}{b_n} = \frac{a}{b}$, кроме случаев $\frac{0}{0}$, $\frac{\infty}{\infty}$
+	\end{enumerate}
+	Доказательство:
+	\begin{quote}
+		$a, b \in \mathbb{R}$ \\
+		$a_n = a + \alpha_n$, $b_n = b + \beta_n$; $\alpha_n, \beta_n$~--- бм. 
+		\begin{enumerate}
+			\item
+			$a_n + b_n = (a + b) + (\alpha_n + \beta_n) \Leftrightarrow \lim (a_n + b_n) = a + b$.
+			\item Аналогично.
+			\item $a_nb_n = (a + \alpha_n)(b + \beta_n) = ab + \alpha_nb + \beta_na + \alpha_n + \beta_n$
+			\item Если $b \not= 0$ $\frac{1}{b_n}$~--- ограниченна \\
+			$\frac{a_n}{b_n} - \frac{a}{b} = \frac{a + \alpha_n}{b + \beta_n} - \frac{a}{b} = \frac{\alpha_nb - \beta_na}{b_nb} = \frac{1}{b} \cdot \frac{1}{b_n} \cdot (\alpha_nb - \beta_na)$ \\
+			Если $b = 0 \Rightarrow b_n$ бм $\Rightarrow \frac{1}{b_n}$~--- бб $\Rightarrow a_n \cdot \frac{1}{b_n} =$ ограниченная бб
+		\end{enumerate}
+	\end{quote}
+	\textbf{Опр.} Линейное пространство~--- множество, сумма двух элементов которого лежит в этом множестве и элемент с коэффициентом лежит в этом множестве. \\
+	\textbf{Опр.} Последовательность называется возвратной, если $a_n = \beta_{n - 1} a_{n - 1} + \beta_{n - 2} a_{n - 2} + \dots + \beta_{n - k} a_{n - k}$; $\beta{i}$~--- фиксированные коэффициенты. \\
+	$a_n^{(1)}, a_n^{(2)} \Rightarrow \forall \lambda, \mu \in \mathbb{R}$ $\lambda a_n^{(1)} + \mu a_n^{(2)}$ тоже удовлетворяет $(x)$. \\
+	$a_n := t^n$ \\
+	$t^k = \beta_{n - 1}t^{k - 1} + \dots + \beta_{n - k}$ \\
+	$t_0$~--- простой корень, то $t_0^n$ \\
+	$t_0$~--- корень $(m) \Rightarrow t_0^n; nt_0^n; n^2t_0^n; \dots; n^{m - 1}t_0^n$ \\
+	\textbf{Теорема.}
+	\begin{enumerate}
+		\item Пусть $a_n$ возрастает и ограничена сверху. Тогда $\exists \lim a_n = \sup a_n$
+		\item Пусть $a_n$ убывает и ограничена снизу. Тогда $\exists \lim a_n = \inf a_n$
+	\end{enumerate}
+	Доказательство:
+	\begin{quote}
+		fix $\varepsilon > 0$ \\
+		Так как $a_n$~--- ограничена, то $\exists M  \sup a_n \in \mathbb{R}$; И $\exists N: a_N > M - \varepsilon$. Тогда $\begin{cases}
+			a_n \geqslant M - \varepsilon & \forall n \geqslant N \text{, так как } a_n \uparrow \\
+			a_n \leqslant M < M + \varepsilon
+		\end{cases} \Rightarrow \exists N: |a_n - M| < \varepsilon \forall n \geqslant N \Rightarrow \lim\limits_{n \rightarrow \infty} a_n = M$ по определению.
+	\end{quote}
+	Найти предел последовательности $a_n = (1 + \frac{1}{n})^n$.
+	\begin{quote}
+		$b_n = (1 + \frac{1}{n})^{n + 1}; b_1 = 4, b_2 = 3,...$ $b_n \downarrow$ \\
+		$b_n \geqslant 1$ \\
+		Докажем, что $b_n$ убывает. \\
+		$\frac{b_n}{b_{n + 1}} = \frac{(\frac{n + 1}{n})^{n + 1}}{(\frac{n + 2}{n + 1})^{n + 2}} = \frac{n + 1}{n})^{n + 1} \cdot \frac{n + 1}{n + 2})^{n + 2} = \frac{n + 1}{n + 2} \cdot (\frac{n^2 + 2n + 1}{n^2 + 2n})^{n + 1} = \frac{n + 1}{n + 2} \cdot (1 + \frac{1}{n^2 + 2n})^{n + 1}$ (неравенство Бернули) $> \frac{n + 1}{n + 2} \cdot (1 + \frac{n + 1}{n^2 + 2n}) = \frac{(n + 1)(n^2 + 3n + 1)}{(n + 2)(n^2 + 2n)} = \frac{n^3 + 4n^2 + 4n + 1}{n^3 + 4n^2 + 4n} > 1$. \\
+		$a_n = \frac{b_n}{(1 + \frac{1}{n})}$ \\
+		$\lim\limits_{n \rightarrow \infty} = \lim \frac{b_n}{1 + \frac{1}{n}} = \frac{\lim b_n}{\lim (1 + \frac{1}{n})} = \lim b_n$~--- существует. \\
+		$e := \lim\limits_{n \rightarrow \infty} (1 + \frac{1}{n})^n \approx 2.718281828459045...$
+	\end{quote}
+	\textbf{Теорема Вейерштрасса.} Пусть последовательность $a_n$ ограничена. Тогда существует сходящаяся подпоследовательность. \\
+	Доказательство:
+	\begin{quote}
+		$|a_n| \leqslant M$ \\
+		$[-M = \alpha_1; M = \beta_1]$. $\alpha_2$~--- середина. $a_1 = x_1 \in [\alpha_1; \alpha_2]$. \\
+		$[\alpha_2; \beta_2]$. $\beta_3$~--- середина. $x_2 = a_{\min n} \in [\alpha_2; \beta_3]$. \\
+		И тд. \\
+		${\alpha_k}$ неубывающая и ограниченная сверху. $\exists \lim \alpha_k = \alpha$. ${\beta_k}$ неубывающая и ограниченная сверху. $\exists \lim \beta_k = \beta$. \\
+		$\beta - \alpha = \lim \limits_{k \rightarrow \infty} (\beta_k - \alpha_k) = \lim \limits_{k \rightarrow \infty} \frac{2M}{2^{k - 1}} = 0$. \\
+		По построению $x_k$~--- подпоследовательность и $\alpha_k \leqslant x_k \leqslant \beta_k \Rightarrow \exists \lim x_k$.
+	\end{quote}
+	\textbf{Опр.} Последовательность называется фундаментальной (или последовательностью Коши), если $\forall \varepsilon > 0$ $\exists N(\varepsilon)$: $|a_n - a_k| < \varepsilon$ $\forall n, k \geqslant N$. \\
+	\textbf{Утв.} Пусть $\exists \lim a_n = a \in \mathbb{R}$. Тогда $\{a_n\}$ фундаментальная. \\
+	Доказательство:
+	\begin{quote}
+		fix $\varepsilon > 0 \exists N: |a_n - a| < \frac{\varepsilon}{2} \forall n \geqslant N$. Тогда $\forall n, k \geqslant N$ $|a_n - a_k| = |(a_n - a) + (a - a_k)| \leqslant |a_n - a| + |a_k - a| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$.
+	\end{quote}
+	\textbf{Теорема Коши.} Пусть $\{a_n\}$ фундаментальная последовательность. Тогда $\exists \lim a_n$. \\
+	Доказательство:
+	\begin{quote}
+		\begin{enumerate}[1)]
+			\item $(!) \{a_n\}$ ограничена. \\
+			$\varepsilon = 1$: $\exists N$: $|a_n - a_k| \leqslant \varepsilon$ $\forall n, k \geqslant N \Rightarrow a_k \in [a_{N - 1}; a_{N + 1}] \forall k \geqslant N$ \\
+			$M = max\{|a_1|, |a_2|, \dots, |a_N + 1|\} \Rightarrow |a_n| \leqslant M \forall n$.
+			\item Тогда по теореме Вейерштрасса $\exists a_{n_k}$~--- подпоследовательность; $\lim \limits_{n \rightarrow \infty} a_{n_k} = a$.
+			\item fix $\varepsilon > 0$. $\exists N_1: |a_{n_k} - a| < \frac{\varepsilon}{2}$ $\forall n_k \geqslant N_1$ \\
+			$\exists N_2: |a_m - a_n| < \frac{\varepsilon}{2}$ $\forall m, n \geqslant N_2$ \\
+			Пусть $n \geqslant max\{N_1, N_2\}$ $\exists n_k \geqslant m$. \\
+			$|a_m - a| = |(a_m - a_{n_k}) + (a_{n_k} - a)| \leqslant |a_n - a_{n_k}| + |a_{n_k} - a| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon \Rightarrow a = \lim \limits_{m \rightarrow \infty} a_m$.
+		\end{enumerate}
+	\end{quote}
+	\section{Возведение в вещественную степень.}
+	$n \in \mathbb{N}$; $x^n = x \cdot x \cdot ... \cdot x$, $n$ раз. \\
+	$x^{-n} = \frac{1}{x^n}$, $x \not= 0$ \\
+	$x^0 := 1$ \\
+	$\sqrt[n]{x} = x^{\frac{1}{n}}$ \\
+	$x^p$, $p \in \mathbb{Q}$, $x \geqslant 0$ $(p > 0)$ или $x > 0$ $(p \geqslant 0)$ \\
+	\underline{fix $a > 0$, $x \in \mathbb{R}$} \\
+	$a^x := \lim \limits_{n \rightarrow \infty} a^{x_n}$, где $\{x_n\}$ последовательность, такая что $x_n \in \mathbb{Q}$, $\lim \limits_{n \rightarrow \infty} x_n := x$. \\
+	Корректность определения.
+	\begin{enumerate}
+		\item $x \in \mathbb{Q}$. Докажем, что $a^x$ совпадает со старым определением. \\
+		$x \in \mathbb{Q}$, берем $x_n = x \Rightarrow a^x = a^x$
+		\item Берем произвольную последовательность $\{x_n\}$, $x_n \rightarrow x \Rightarrow x_n$~--- фундаментальная последовательность. \\
+		fix $\varepsilon > 0$ $|a^{x_n} - a^{x_k}| = a^{x_n}|1 - a^{x_k - x_n}|$. Сходится. Значит ограничена. Тогда $a^{x_n}$ ограничена. Тогда $a^{x_n}|1 - a^{x_k - x_n}| \leqslant M \cdot |1 - a^{x_k - x_n}|$. \\
+		$\exists N: |a^{\frac{1}{m}} - 1| < \frac{M}{\varepsilon}$ $\forall m \geqslant N \Rightarrow |a^{\frac{1}{n}} - 1| < \frac{M}{\varepsilon} \Rightarrow \exists N_0: |x_n - x_k| < \frac{1}{N}$ $\forall n, k \geqslant N$ \\
+		$M \cdot |1 - a^{x_k - x_n}| < M \cdot \frac{2}{M}$ $\forall n, k \geqslant N_0 \Rightarrow a^{x_n}$ образует фундаментальную последовательность $\Rightarrow$ (по теореме Коши) $\exists \lim \limits_{n \rightarrow \infty} a^{x_n}$
+		\item $x_n \rightarrow x$, $y_m \rightarrow x$, $x_n, y_m \in \mathbb{Q}$ \\
+		$\exists a = \lim a^{x_n}$; $\alpha = \lim a^{y_m}$ \\
+		$(a - \alpha) = \lim \limits_{n \rightarrow \infty} (a^{x_n} - a^{y_m}) = \lim \limits_{n \rightarrow \infty} a^{x_n} (1 - a^{x_n - y_m}) = 0$ \\
+		$\lim(y_n - x_n) = x - x = 0$
+	\end{enumerate}
+	Свойства:
+	\begin{enumerate}
+		\item $a^x \cdot a^y = a^{x + y}$ \\
+		Пусть $x_n \rightarrow x$, $y_n \rightarrow y$; $x_n, y_n \in \mathbb{Q}$ \\
+		$a^{x_n} \cdot a^{y_n} = a^{x_n + y_n}$ \\
+		$a^x \cdot a^y = \lim a^{x_n} \cdot \lim a^{y_n} = \lim a^{x_n} \cdot a^{y_n} = \lim a^{x_n + y_n} = a^{x + y}$
+		\item $(a^x)^y = a^{xy}$ \\
+		Пусть $x_n \rightarrow x$, $y_m \rightarrow y$; $x_n, y_m \in \mathbb{Q}$ \\
+		$x_ny_n \rightarrow xy$ \\
+		$\lim \limits_{m \rightarrow \infty} (\lim \limits_{n \rightarrow \infty} a^{x_n})^{y_m}$ ? $\lim \limits_{n \rightarrow \infty} a^{x_ny_n}$ \\
+		$\lim \limits_{n \rightarrow \infty} (a^x)^{y_n} = \lim \limits_{n \rightarrow \infty} a^{x_ny_n}$ \\
+		$\lim \limits_{n \rightarrow \infty} |b^{y_n} - a^{x_ny_n}| = 0$, где $b = a^x$ \\
+		$\exists N:$ $|a^{x_n} - b| < \varepsilon$ $\forall n \geqslant N$ \\
+		$b - \varepsilon < a^{x_n} < b + \varepsilon$ \\
+		$1 - \frac{\varepsilon}{b} < \frac{a^{x_n}}{b} < 1 + \frac{\varepsilon}{b}$ $\uparrow ^{y_n}, y_n > 0$, для $< 0$ аналогично \\
+		$(1 - \frac{\varepsilon}{b})^{y_n} < (\frac{a^{x_n}}{b})^{y_n} < (1 + \frac{\varepsilon}{b})^{y_n}$ \\
+		$1 - \frac{y_n \varepsilon}{b} < \frac{a^{x_ny_n}}{b^{y_n}} < 1 + \frac{y_n \varepsilon}{b}$ \\
+		$\Rightarrow |\frac{a^{x_ny_n}}{b^{y_n}} - 1| \leqslant \frac{|y_n|}{b} \varepsilon$ \\
+		$|a^{x_ny_n} - b^{y_n}| < \frac{|y_n|}{b} \cdot b^{y_n} \varepsilon \leqslant M\varepsilon$ $\forall n \geqslant N$ \\
+		$\Rightarrow \lim |b^{y_n} - a^{x_ny_n}| = 0$
+	\end{enumerate}
+	fix $a > 0$, $a \not= 1$ \\
+	$y = a^x$, $x \in \mathbb{R}$ \\
+	\textbf{Опр.} $f(x)$~--- возрастающая на $X$, если $\forall x_1, x_2 \in X$ $x_1 < x_2 \Rightarrow f(x_1) < f(x_2)$. $f(x)$ неубывающая, если $\leqslant$. \\
+	\textbf{Утв.} При $a > 1$ $f(x) = a^x$~--- возрастает на $\mathbb{R}$; При $0 < a,< 1$ $f(x) = a^x$~--- убывает на $\mathbb{R}$.
+	\begin{quote}
+		Пусть $x < \xi$, $x_n \rightarrow x$, $\xi_n \rightarrow \xi$ \\
+		$x < x_0 < \xi_0 < \xi$ и $x_0$ не в окрестности $x$ и аналогично $\xi$. \\
+		$\forall n \geqslant N$ \\
+		$x_n < x_0 < \xi_0 < \xi_0$ \\
+		Тогда $a^{x_n} < a^{x_0} < a^{\xi_0} < a^{\xi_n}$ \\
+		$a^{x} \leqslant a^{x_0} < a^{\xi_0} \leqslant a^{\xi} \Rightarrow a^x < a^{\xi}$ \\
+		$0 < a < 1$ \\
+		$a^x = (\frac{1}{a})^{-x}$; $a^{\xi} = (\frac{1}{a})^{-\xi}$ \\
+		$x < \xi \Rightarrow -x > -\xi$ $(\frac{1}{a})^{-x} > (\frac{1}{a})^{-\xi} \Rightarrow a^x > a^{\xi}$ \\
+	\end{quote}
+	\textbf{Опр.} Передельная точка $x_0$ области $D$~--- такая точка, что $\forall \varepsilon > 0$ $\mathring{U}_{\varepsilon}(x_0) \cap D \not= \emptyset$. Множество предельных точек множества $D$~--- называется замыкание $D$, обозначается $\overline{D}$. \\
+	$f: D \rightarrow \mathbb{R}$; $D \subset \mathbb{R}$. Пусть $x_0$~--- предельная точка $D$. \\
+	\textbf{Опр.  по Гейне.} Если $\forall$ последовательности $x_n \rightarrow x_0$; $x_n \not= x_0$ $\exists \lim \limits_{n \rightarrow \infty} f(x_n) = a$, то говорят, что $\exists \lim \limits_{x \rightarrow x_0} f(x) = a$. \\
+	\textbf{Опр.} $f$ непрерывна в точке $x_0 \in D$, если $\exists \lim \limits_{x \rightarrow x_0} f(x) = f(x_0)$. \\
+	\textbf{Опр. по Коши.} $\lim \limits_{x \rightarrow x_0} f(x) = a$, если $\forall \varepsilon > 0$ $\exists \delta > 0$: $f(x) \subset U_{\varepsilon}(a)$ $\forall x \in \mathring{U}_{\delta}(x_0) \cap D(f)$. \\
+	Равносильность определений по Коши и по Гейне. \\
+	Доказательство Коши $\Rightarrow$ Гейне.
+	\begin{quote}
+		Известно, что $\forall \varepsilon > 0$ $\exists \delta > 0$: $f(x) \in U_{\varepsilon}(a) \forall x \in \mathring{U}_{\delta}(x_0)$. \\
+		Берем произвольную $x_n \rightarrow x_0$: fix $\varepsilon > 0 \Rightarrow \exists \delta$, такое что выполнено $f(x) \in U_{\varepsilon}(a) \forall x \in \mathring{U}_{\delta}(x_0)$ и $\exists N$: $x_n \in U_{\delta}(x_0) \forall n \geqslant N \Rightarrow \exists N$: $\forall n \geqslant N$ $x_n \in \mathring{U}_{\delta}(x_0) \Rightarrow f(x_n) \in U_{\varepsilon}(a)$. \\
+		Те $\forall \varepsilon > 0$ $\exists N$: $\forall n \geqslant N$ $f(x_n) \in U_{\varepsilon}(a)$, те $a = \lim \limits_{n \rightarrow \infty}f(x_n)$
+	\end{quote}
+	Доказательство не Коши $\Rightarrow$ не Гейне.
+	\begin{quote}
+		Нет предела по Коши. fix $a$: $\exists \varepsilon$: $\forall \delta > 0$. $\exists \tilde{x} \in \mathring{U}_{\delta}(x_0)$: $f(\tilde{x}) \not\in U_{\varepsilon}(a) \Rightarrow a$ не является пределом по Гейне? \\
+		От противного. $a = \lim \limits_{x \rightarrow x_0} f(x)$ по Гейне. \\
+		$\delta_n = \frac{1}{n}$ $\exists \tilde{x_n} \in \mathring{U}_{\frac{1}{n}}(x_0)$ и $f(\tilde{x_n}) \not\in U_{\varepsilon}(a) \Rightarrow \tilde{x_n} \rightarrow x_0, \tilde{x_n} \not= x_0$, но $\lim \limits_{n \rightarrow \infty} f(\tilde{x_n}) \not= a$
+	\end{quote}
+	$f(x)$ бесконечно малая в точке $x_0$, если $\lim \limits_{x \rightarrow x_0} f(x) = 0$. \\
+	$f(x)$ бесконечно большая в точке $x_0$, если $\lim \limits_{x \rightarrow x_0} |f(x)| = +\infty$. \\
+	\textbf{Лемма о двух милиционерах.} Пусть $f(x) \leqslant g(x) \leqslant h(x)$ в некоторой окрестности точки $x_0$ (передельная точка $D(f), D(g), D(h)$). Если $\exists \lim \limits_{x \rightarrow x_0} f(x) = \lim \limits_{x \rightarrow x_0} h(x) = a$, то $\exists \lim \limits_{x \rightarrow x_0} g(x) = a$. \\
+	\textbf{Передельный переход в неравенства.} Пусть $f(x) \leqslant g(x)$ в некоторой окрестности точки $x_0$ (передельная точка $D(f), D(g)$). Если $\exists \lim \limits_{x \rightarrow x_0} f(x) = a$; $\exists \lim \limits_{x \rightarrow x_0} g(x) = b$, то $a \leqslant b$. \\
+	\textbf{Лемма об ограниченности.} Если $\exists \lim \limits_{x \rightarrow x_0} f(x) = a \in \mathbb{R}$. Тогда $f$ ограничена в некотром $\mathring{U}(x_0)$. \\
+	Доказательство:
+	\begin{quote}
+		$\varepsilon = 1$: $\exists \delta > 0$: $|f(x) - a| < 1$ $\forall x \in \mathring{U}_{\delta}(x_0) \Rightarrow |f(x)| \leqslant |a| + 1$ $\forall x \in \mathring{U}_{\delta}(x_0)$
+	\end{quote}
+	\textbf{Лемма об отделимости от нуля.} Если $\exists \lim \limits_{x \rightarrow x_0} f(x) = a > 0$. Тогда $\inf f(x) > 0$ в некоторой $\mathring{U}(x_0)$ ($f$ отделима от нуля). \\
+	Доказательство:
+	\begin{quote}
+		$\varepsilon = \frac{a}{42}$: $\exists \delta < \frac{a}{42}$ $\forall x \in \mathring{U}_{\delta}(x_0) \Rightarrow f(x) \geqslant \frac{41}{42}a > 0$ $\forall x \in \mathring{U}_{\delta}(x_0) \Rightarrow \inf f(x) \geqslant \frac{41}{42}a > 0$.
+	\end{quote}
+	\textbf{Следствие.} Если $\lim \limits_{x \rightarrow x_0} f(x) \not= 0$, то $\frac{1}{f(x)}$ ограничена в некоторой $\mathring{U}(x_0)$. \\
+	В следующий раз арифметические свойства предела. Учить что такое фундаментальная последовательность, теорему Коши о сходимости фундаментальной последовательности, определение $a^x$, определение по Коши, по Гейне, отрицания этих определений, определение бм, бб, переформулированные утверждения о последовательностях. \\
+	\textbf{Опр.} $f$ непрерывна в точке $x_0 \in D(f)$, если $\lim \limits_{x \rightarrow x_0} f(x) = f(x_0)$. \\
+	$x^{\alpha}, \alpha \in \mathbb{R}; a^x; \log_ax; \sin, \cos, \tg, \arcsin, \arccos, \arctg$~--- основные элементарные функции. \\
+	\textbf{Опр.} Функция называется элементарной, если она получается арифметическими операциями или композицией конечного числа основных элементарных функций. \\
+	\textbf{Утв.} Любая элементарная функция непрерывна. \\
+	\textbf{Теорема о пределе композиций.} $f: X \rightarrow Y$; $g: Y \rightarrow Z$, $x_0$~--- предельная точка множества $X$, $y_0$~--- предельная точка множества $Y$. $\exists \lim \limits_{x \rightarrow x_0} f(x) = y_0$, $\exists \lim \limits_{y \rightarrow y_0} g(y) = g(y_0) = a$. Тогда $\exists \lim \limits_{x \rightarrow x_0} g(f(x)) = a$. \\
+	Доказательство:
+	\begin{quote}
+		$\forall x \in \mathring{U}_{\delta}(x_0) \Rightarrow g(f(x)) \in U_{\varepsilon} (a)$ \\
+		$a = \lim \limits_{y \rightarrow y_0} g(y) \Rightarrow \exists \varepsilon_1 > 0$: $y \in U_{\varepsilon_1} (y_0) \Rightarrow g(y) \in U_{\varepsilon} (g(y_0))$ \\
+		$\exists \delta > 0$: $x \in \mathring{U}_{\delta} (x_0) \Rightarrow f(x) \in U_{\varepsilon_1} (y_0) \Rightarrow g(f(x)) \subset U_{\varepsilon} (g(y_0))$
+	\end{quote}
+	\textbf{Теорема непрерывности обратной функции.} Пусть $f$ непрерывная биекция на $\langle a; b \rangle$. Тогда $f^{-1}$ тоже непрерывная биекция $Y \rightarrow \langle a; b \rangle$. \\
+	Доказательство:
+	\begin{quote}
+		НУО $f$ строго возрастает на $\langle a; b \rangle$ \\
+		fix $\varepsilon > 0$, тогда $y_1 := f(x_0 - \varepsilon)$; $y_2 := f(x_0 + \varepsilon)$ \\
+		$\delta = \min \{ y_2 - y_0; y_0 - y_1 \}$ \\
+		Тогда $\forall y \in U_{\delta} (y) \Rightarrow f^{-1} (y) \in U_{\epsilon} (f^{-1} (y_0))$ тк $y_1 < y < y_2 \Rightarrow f^{-1} (y_1) < f^{-1} (y) < f^{-1} (y_2)$
+	\end{quote}
+\end{document}
