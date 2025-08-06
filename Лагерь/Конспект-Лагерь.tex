@@ -1,0 +1,37 @@
+\documentclass{article}
+
+\input{C:/Users/ilden/Documents/School/TeX памятка/header.tex}
+
+\begin{document}
+	\tableofcontents
+	\setcounter{tocdepth}{3}
+	\newpage
+	\section{Линейная алгебра.}
+	\textbf{Пример.} $\mathbb{R}^2 = \mathbb{R} \times \mathbb{R}$ \\
+	$A \times B = \{ (a, b) | a \in A, b \in B \}$ \\
+	$F$~--- поле, $2$ операции, обе обратимы. \\
+	\textbf{Векторное пространство} $V$ над $F$: $(V, +, *)$
+	\begin{enumerate}
+		\item $\forall v, u, w \in V$: $(v + u) + w = v + (u + w)$
+		\item $\forall v, u \in V$: $v + u = u + v$
+		\item $\exists v \in V$: $\forall v \in V$: $0 + v = v$
+		\item $\forall v \in V$: $\exists$ "$-v$": $v$ $+$ "$-v$" $= 0$
+		\item $\forall v \in V; \alpha, \beta \in F$: $\alpha * (\beta * v) = (\alpha \beta) * v$
+		\item $\forall v \in V; \alpha, \beta \in F$: $(\alpha + \beta) * v = \alpha * v + \beta * v$
+		\item $\forall v, w \in V; \alpha \in F$: $\alpha * (v + w) = \alpha * v + \alpha * w$
+		\item $\forall v \in V$: $1 * v = v$
+	\end{enumerate}
+	\textbf{Утв.} Если $v, w$~--- векторное пространство над $F$, то и $v \times w$~--- тоже векторное пространство над $F$ \\
+	$V$~--- векторное пространство над $F$. \\
+	\textbf{Опр.} $W \leqslant V$~--- подпространство.
+	\begin{enumerate}
+		\item $\forall w_1, w_2 \in W$: $w_1 + w_2 \in W$
+		\item $\forall w \in W; \alpha \in F$: $\alpha w \in W$
+	\end{enumerate}
+	$V = R \times R$, $W = \{ v \in V | x + y = 0 \}$ \\
+	\textbf{Опр.} Линейное отображение:
+	\begin{enumerate}
+		\item $f(x) + f(y) = f(x + y)$
+		\item $f(\alpha x) = \alpha f(x)$
+	\end{enumerate}
+\end{document}
