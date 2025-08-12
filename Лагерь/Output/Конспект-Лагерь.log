@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.8.6)  6 AUG 2025 10:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.8.6)  12 AUG 2025 10:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -988,7 +988,7 @@ Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
 \every@verbatim=\toks52
 \verbatim@line=\toks53
 \verbatim@in@stream=\read4
-))
+)
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
 Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
 
@@ -1118,6 +1118,36 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip61
 )
+(C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/stmaryrd\stmaryrd.sty
+Package: stmaryrd 1994/03/03 St Mary's Road symbol package
+\symstmry=\mathgroup7
+LaTeX Font Info:    Overwriting symbol font `stmry' in version `bold'
+(Font)                  U/stmry/m/n --> U/stmry/b/n on input line 89.
+)) (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/lkproof\proof.sty
+\inferLineSkip=\dimen304
+\inferLabelSkip=\dimen305
+\@LeftOffset=\dimen306
+\@RightOffset=\dimen307
+\@SavedLeftOffset=\dimen308
+\UpperWidth=\dimen309
+\LowerWidth=\dimen310
+\LowerHeight=\dimen311
+\UpperLeftOffset=\dimen312
+\UpperRightOffset=\dimen313
+\UpperCenter=\dimen314
+\LowerCenter=\dimen315
+\UpperAdjust=\dimen316
+\RuleAdjust=\dimen317
+\LowerAdjust=\dimen318
+\RuleWidth=\dimen319
+\HLabelAdjust=\dimen320
+\VLabelAdjust=\dimen321
+\WidthAdjust=\dimen322
+\@UpperPart=\box78
+\@LowerPart=\box79
+\@LabelPart=\box80
+\ResultBox=\box81
+)
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 tex.def
 File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
@@ -1156,13 +1186,13 @@ LaTeX Info: Redefining \th on input line 5.
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count351
-\scratchdimen=\dimen304
-\scratchbox=\box78
+\scratchdimen=\dimen323
+\scratchbox=\box82
 \nofMPsegments=\count352
 \nofMParguments=\count353
 \everyMPshowfont=\toks54
 \MPscratchCnt=\count354
-\MPscratchDim=\dimen305
+\MPscratchDim=\dimen324
 \MPnumerator=\count355
 \makeMPintoPDFobject=\count356
 \everyMPtoPDFconversion=\toks55
@@ -1228,7 +1258,27 @@ Package hyperref Info: Link coloring ON on input line 5.
 
 
 (C:\Users\ilden\Documents\School\Notes\Р›Р°РіРµСЂСЊ\Output\РљРѕРЅСЃРїРµРєС‚-Р›Р
-°РіРµСЂСЊ.toc)
+°РіРµСЂСЊ.toc
+LaTeX Font Info:    Trying to load font information for U+msa on input line 3.
+
+(C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 3.
+
+(C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for U+wasy on input line 3.
+
+
+(C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/wasysym\uwasy.fd
+File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
+)
+LaTeX Font Info:    Trying to load font information for U+stmry on input line 3
+.
+
+(C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/stmaryrd\ustmry.fd))
 \tf@toc=\write5
 \openout5 = `РљРѕРЅСЃРїРµРєС‚-Р›Р°РіРµСЂСЊ.toc'.
 
@@ -1237,26 +1287,52 @@ Package hyperref Info: Link coloring ON on input line 5.
 [1
 
 {C:/Users/ilden/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 10.
+Overfull \hbox (5.23067pt too wide) in paragraph at lines 67--94
+\T2A/cmr/m/n/10 Возьмем ми-ни-маль-ную (по вклю-че-нию) по-рож-да-ю-щую си-сте-
+му. $\OML/cmm/m/it/10 v[]; [] ; v[]$\T2A/cmr/m/n/10 . Пусть ока-за-лась ли-ней-
+но за-ви-си-мой. $[] \OML/cmm/m/it/10 []v[] \OT1/cmr/m/n/10 =
+ []
 
 
-(C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 10.
+Underfull \hbox (badness 10000) in paragraph at lines 67--94
+
+ []
 
 
-(C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-LaTeX Font Info:    Trying to load font information for U+wasy on input line 10
-.
-
-(C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/wasysym\uwasy.fd
-File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
-)
 
 [2]
+
+[3]
+
+[4]
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 310--324
+
+ []
+
+
+
+[6]
+
+[7]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 375.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lambda' on input line 375.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 375.
+
+
+
+[8]
+
+[9]
 (C:\Users\ilden\Documents\School\Notes\Р›Р°РіРµСЂСЊ\Output\РљРѕРЅСЃРїРµРєС‚-Р›Р
 °РіРµСЂСЊ.aux)
  ***********
@@ -1265,30 +1341,41 @@ L3 programming layer <2025-07-19>
  ***********
 Package rerunfilecheck Info: File `РљРѕРЅСЃРїРµРєС‚-Р›Р°РіРµСЂСЊ.out' has not c
 hanged.
-(rerunfilecheck)             Checksum: 161308B054DF74E86F607C8A583296F7;176.
+(rerunfilecheck)             Checksum: D93B572E2ABB364B5EFE9CCE03004887;1758.
  ) 
 Here is how much of TeX's memory you used:
- 33904 strings out of 468149
- 778040 string characters out of 5431083
- 1267405 words of memory out of 5000000
- 61934 multiletter control sequences out of 15000+600000
- 632420 words of font info for 55 fonts, out of 8000000 for 9000
+ 34353 strings out of 468149
+ 783790 string characters out of 5431083
+ 1287494 words of memory out of 5000000
+ 62294 multiletter control sequences out of 15000+600000
+ 642513 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 89i,5n,94p,1585b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm10
-00.pk> <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\la
-bx1000.pk> <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi60
-0\labx1440.pk><C:/Users/ilden/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-amsfonts/cm/cmmi10.pfb><C:/Users/ilden/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmr10.pfb><C:/Users/ilden/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/ilden/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/ilden/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/ilden/Ap
-pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+ 89i,15n,94p,1585b,781s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/public/wasy/dpi600\wasy
+10.pk> <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\
+tcrm1000.pk> <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi
+600\labx1200.pk> <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a
+/dpi600\larm1000.pk> <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh
+-t2a/dpi600\labx1000.pk> <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/l
+h/lh-t2a/dpi600\labx1440.pk><C:/Users/ilden/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/ilden/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/ilden/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/ilden/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/ilden/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/User
+s/ilden/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+<C:/Users/ilden/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
+r5.pfb><C:/Users/ilden/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
+s/cm/cmr7.pfb><C:/Users/ilden/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmsy10.pfb><C:/Users/ilden/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmsy7.pfb><C:/Users/ilden/AppData/Local/Programs/MiKTeX/fo
+nts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/ilden/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/ilden/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/hoekwater/stmary10.pfb>
 Output written on C:\Users\ilden\Documents\School\Notes\Р›Р°РіРµСЂСЊ\Output\РљР
-ѕРЅСЃРїРµРєС‚-Р›Р°РіРµСЂСЊ.pdf (2 pages, 88616 bytes).
+ѕРЅСЃРїРµРєС‚-Р›Р°РіРµСЂСЊ.pdf (9 pages, 241847 bytes).
 PDF statistics:
- 158 PDF objects out of 1000 (max. 8388607)
- 17 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 446 PDF objects out of 1000 (max. 8388607)
+ 74 named destinations out of 1000 (max. 500000)
+ 77 words of extra memory for PDF output out of 10000 (max. 10000000)
 

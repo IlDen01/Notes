@@ -7,6 +7,7 @@
 	\setcounter{tocdepth}{3}
 	\newpage
 	\section{Линейная алгебра.}
+	\subsection{Введение.}
 	\textbf{Пример.} $\mathbb{R}^2 = \mathbb{R} \times \mathbb{R}$ \\
 	$A \times B = \{ (a, b) | a \in A, b \in B \}$ \\
 	$F$~--- поле, $2$ операции, обе обратимы. \\
@@ -23,7 +24,7 @@
 	\end{enumerate}
 	\textbf{Утв.} Если $v, w$~--- векторное пространство над $F$, то и $v \times w$~--- тоже векторное пространство над $F$ \\
 	$V$~--- векторное пространство над $F$. \\
-	\textbf{Опр.} $W \leqslant V$~--- подпространство.
+	\textbf{Опр.} $W \subseteq V$~--- подпространство.
 	\begin{enumerate}
 		\item $\forall w_1, w_2 \in W$: $w_1 + w_2 \in W$
 		\item $\forall w \in W; \alpha \in F$: $\alpha w \in W$
@@ -34,4 +35,438 @@
 		\item $f(x) + f(y) = f(x + y)$
 		\item $f(\alpha x) = \alpha f(x)$
 	\end{enumerate}
+	\subsection{Фактор-пространства.}
+	\textbf{Опр.} Поле $F$, $W \subseteq V$~--- векторное пространство; $V / W$~--- факторизация. Отношение $\sim$ на $V$: $v \sim u \Leftrightarrow u - v \in W$.
+	\begin{enumerate}
+		\item $u - u = 0 \in W$
+		\item $u - v \in W \Leftrightarrow v - u \in W$
+		\item $(u - v) \in W \wedge (v - w) \in W \Rightarrow (u - v) + (v - w) \in W \Rightarrow u - w \in W$
+	\end{enumerate}
+	$[v]$~--- класс эквивалентности вектора $v$.
+	\begin{enumerate}
+		\item $[v] + [u] = [v + u]$
+		\item $\alpha [v] = [\alpha v]$
+	\end{enumerate}
+	$v_1 \sim v_2 \Rightarrow u + v_1 \sim u + v_2$ \\
+	$v_1 \sim v_2 \Rightarrow \alpha v_1 ~ \alpha v_2$ \\
+	\textbf{Отображение векторного пространства.}
+	\begin{quote}
+		$V, W$~--- векторные пространства над $F$. \\
+		$f: V \rightarrow W$~--- линейная, если
+		\begin{enumerate}
+			\item $\forall v_1, v_2 \in V: f(v_1) + f(v_2) = f(v_1 + v_2)$
+			\item $\forall v \in V, \alpha \in F: \alpha f(v) = f(\alpha v)$
+		\end{enumerate}
+		Если $f$~--- биекция, то $f$~--- изоморфизм, $V$ и $W$~--- изоморфны.
+		\begin{enumerate}
+			\item Рефлективна $f = id$ $V \rightarrow V: v \rightarrow v$
+			\item Симметрична $V \xrightarrow{f} W$ $f^{-1}$~--- обратное отображение: $f^{-1}(x) + f^{-1}(y) = f^{-1}(x + y)$
+			\item $V \xrightarrow{f} W$, $W \xrightarrow{g} U$. $f, g$~--- линейная биекция, $f \circ g$~--- линейная биекция.
+		\end{enumerate}
+	\end{quote}
+	$\mathbb{R}^n = (x_1, x_2, \dots, x_n)$, $\mathbb{R}^m = (y_1, y_2, \dots, y_m)$ \\
+	Табличка $n \times m$: $\left(
+	\begin{smallmatrix}
+		a_{11} & \dots & a_{1n} \\
+		\vdots &  & \vdots \\
+		a_{m1} & \dots & a_{mn}
+	\end{smallmatrix}
+	\right)$ \\
+	Отображение $\mathbb{R}^n \rightarrow \mathbb{R}^m$ (линейное): \\
+	$(x_1, \dots, x_n) \rightarrow \left(
+	\begin{smallmatrix}
+		a_{11}x_1 + \dots + a_{1n}x_n \\
+		a_{21}x_1 + \dots + a_{2n}x_n \\
+		\vdots \\
+		a_{m1}x_1 + \dots + a_{mn}x_n
+	\end{smallmatrix}
+	\right)$ \\
+	\textbf{Опр.} $V$~--- векторное пространство над $F$. Набор $v_1, \dots, v_k$. $\sum \alpha_i v_i, \alpha_i \in F \rightarrow$ конечное число $\alpha_i \not= 0$. Все линейные комбинации образуют векторное подпространство $span(v_1, \dots, v_k, \dots)$. \\
+	\textbf{Опр.} $v_1, \dots, v_k, \dots$~--- линейно независимая $\Leftrightarrow$ $\nexists$ нетривиальных линейных комбинаций (не все коэффициенты равны $0$), те все коэффициенты равны $0$, и других решений нет. Линейно зависимая иначе. \\
+	\textbf{Опр.} $v_1, \dots, v_k, \dots$~--- порождающая система, если $span(v_1, \dots, v_k, \dots) = V$ ($span()$~--- множество всех возможных линейных комбинаций). \\
+	\textbf{Опр.} Базис $=$ линейно независимая $+$ порождающая система. Базис~--- максимальная линейно независимая система векторов в пространстве $V$. \\
+	\textbf{Опр.} $V$~--- конечномерное $\Leftrightarrow$ $\exists$ конечная порождающая система. \\
+	Возьмем минимальную (по включению) порождающую систему. $v_1, \dots, v_e$. Пусть оказалась линейно зависимой. $\sum \alpha_i v_i = 0$. НУО $\alpha_1 \not= 0$. $v_1 = \sum \frac{-d_j}{d_1} v_j$. Тогда можем выкинуть. \\
+	$(!)$ Любой базис одинакового размера. $e_1, \dots, e_k$; $f_1, \dots, f_m$. $m > k$. Хотим $e_i$: $(e_i, f_2, \dots, f_m)$~--- линейно независимая система. Пусть нет. Тогда $\forall i \exists \alpha_1, \dots, \alpha_m: \alpha_1e_i + \alpha_2f_2 + \dots + \alpha_mf_m = 0 \Rightarrow e_i = \sum \beta_{ij} f_j \Rightarrow$ $f_2$ -- $f_m$~--- порождают все ?! Значит $(e_1, f_2, \dots, f_m)$~--- линейно независимая система. $e_1 = \sum \alpha_j f_j \Rightarrow \alpha \not= 0 \Rightarrow f_1 = \frac{1}{\alpha_1}e_1 - \sum\limits_{j \not= 1} \frac{\alpha_j}{\alpha_1} f_j \Rightarrow (e_1, f_2, \dots, f_m)$~--- базис. \\
+	\textbf{Опр.} $\dim V = $ количество элементов базиса. \\
+	$A \xrightarrow{f} B$: $f(A)$~--- векторное подпространство в $B$. \\
+	\textbf{Утв.} Линейное независимые системы не бывают больше, чем базис. \\
+	\begin{quote}
+		$e_1, \dots, e_k$; $f_1, \dots, f_{k + 1}$. Рассмотрим наборы $(e_1, f_2, \dots, f_{k + 1})$; $(e_1, \dots, e_k, f_{k + 1})$~--- линейно независимая система.
+	\end{quote}
+	\textbf{Теорема.} $V$~--- векторное пространство над полем $F \Rightarrow V \cong F^{\dim V}$. \\
+	Доказательство:
+	\begin{quote}
+		fix базис $e_1, \dots, e_n$, где $n = \dim V$. \\
+		\textbf{Лемма.} $\forall v \in V$ $\exists! (\alpha_1, \dots, \alpha_k)$: $V = \sum \alpha_k e_k$. \\
+		Доказательство:
+		\begin{quote}
+			Пусть есть два набора $(\alpha_1, \dots, \alpha_k)$ и $(\beta_1, \dots, \beta_k)$. $0 = V - V = \sum (\alpha_k - \beta_k)e_k \Rightarrow \alpha_k = \beta_k \forall k$.
+		\end{quote}
+		$f: F^n \rightarrow V$ \\
+		$(x_1, \dots, x_n) \rightarrow \sum x_i e_i$ \\
+		$(y_1, \dots, y_n) \rightarrow \sum y_i e_i$ \\
+		$(x_1 + y_1, \dots, x_n + y_n) \rightarrow \sum (x_i + y_i) e_i$ \\
+		$f(\lambda (x_1, \dots, x_n)) = \sum (\lambda x_i) e_i = \lambda (\sum x_i e_i)$ \\
+		\underline{Инекция.} $f(x_1, \dots, x_n) = f(y_1, \dots, y_n) \Rightarrow (x_1, \dots, x_n) = (y_1, \dots, y_n)$ \\
+		\underline{Сюръекция.} $V = \sum \alpha_i e_i \Rightarrow v = f(\alpha_1, \dots, \alpha_n)$
+	\end{quote}
+	\subsection{Матрицы.}
+	\underline{$\mathbb{R}^n \xrightarrow{f} \mathbb{R}^m$}
+	\begin{quote}
+		$\left(
+		\begin{smallmatrix}
+			a_{11} & \dots & a_{1n} \\
+			\vdots &  & \vdots \\
+			a_{m1} & \dots & a_{mn}
+		\end{smallmatrix}
+		\right)$ \\
+		$(x_1, \dots, x_n) \rightarrow \left(
+		\begin{smallmatrix}
+			a_{11}x_1 + \dots + a_{1n}x_n \\
+			a_{21}x_1 + \dots + a_{2n}x_n \\
+			\vdots \\
+			a_{m1}x_1 + \dots + a_{mn}x_n
+		\end{smallmatrix}
+		\right)$ \\
+		$e_1 = (1, 0, \dots, 0) \rightarrow (b_{11}, b_{21}, \dots, b_{m1})$ \\
+		$e_2 = (0, 1, \dots, 0) \rightarrow (b_{12}, b_{22}, \dots, b_{m2})$ \\
+		$\vdots$ \\
+		$e_n = (0, 0, \dots, 1) \rightarrow (b_{1n}, b_{2n}, \dots, b_{mn})$ \\
+		$f((x_1, x_2, \dots, x_n)) = x_1 f(e_1) + x_2 f(e_2) + \dots + x_n f(e_n) = x_1 (b_{11}, b_{21}, \dots, b_{m1}) + x_2 (b_{12}, \dots, b_{m2}) + \dots =$ \\
+		$(x_1 b_{11} + x_2 b_{12} + \dots + x_n b_{1n},$ \\
+		$x_1 b_{21} + x_2 b_{22} + \dots + x_n b_{2n},$ \\
+		$\dots,$ \\
+		$x_1 b_{m1} + \dots + x_n b_{mn})$
+	\end{quote}
+	\textbf{Сложение матриц.}
+	\begin{quote}
+		$A = \left(
+		\begin{smallmatrix}
+			a_{11} & \dots & a_{1n} \\
+			\vdots &  & \vdots \\
+			a_{m1} & \dots & a_{mn}
+		\end{smallmatrix}
+		\right)$, $B = \left(
+		\begin{smallmatrix}
+			b_{11} & \dots & b_{1n} \\
+			\vdots &  & \vdots \\
+			b_{m1} & \dots & b_{mn}
+		\end{smallmatrix}
+		\right)$; $X$~--- матрица, $f_X$~--- линейное отображение. \\
+		$f_A: (x_1, \dots, x_n) \rightarrow \left(
+		\begin{smallmatrix}
+			a_{11}x_1 + \dots + a_{1n}x_n \\
+			\vdots \\
+			a_{m1}x_1 + \dots + a_{mn}x_n
+		\end{smallmatrix}
+		\right)$, $f_B: (x_1, \dots, x_n) \rightarrow \left(
+		\begin{smallmatrix}
+			b_{11}x_1 + \dots + b_{1n}x_n \\
+			\vdots \\
+			b_{m1}x_1 + \dots + b_{mn}x_n
+		\end{smallmatrix}
+		\right)$ \\
+		$f_A + f_B: (x_1, \dots, x_n) \rightarrow \left(
+		\begin{smallmatrix}
+			(a_{11} + b_{11})x_1 + \dots + (a_{1n} + b_{1n})x_n \\
+			\vdots \\
+			(a_{m1} + b_{m1})x_1 + \dots + (a_{mn} + b_{mn})x_n
+		\end{smallmatrix}
+		\right)$ \\
+		$A + B := (a_{ij} + b_{ij})$ \\
+		$\lambda A := (\lambda a_{ij})$
+	\end{quote}
+	\textbf{Произведение матриц (композиция).}
+	\begin{quote}
+		$\mathbb{R}^n \xrightarrow{f_A} \mathbb{R}^m \xrightarrow{f_B} \mathbb{R}^k$ \\
+		$f_A$ и $f_B$ построены по матрицам $A = \left(
+		\begin{smallmatrix}
+			a_{11} & \dots & a_{1n} \\
+			\vdots &  & \vdots \\
+			a_{m1} & \dots & a_{mn}
+		\end{smallmatrix}
+		\right)$ и $B = \left(
+		\begin{smallmatrix}
+			b_{11} & \dots & b_{1n} \\
+			\vdots &  & \vdots \\
+			b_{m1} & \dots & b_{mn}
+		\end{smallmatrix}
+		\right)$ \\
+		$f_C (V) = f_B (f_A (V))$ \\
+		$C := B \cdot A$ \\
+		$e_1 = (1, 0, \dots, 0)$; $f_A (e_1) = (a_{11}, \dots, a_{m1})$ \\
+		$1$ столбец: $f_B (a_{11}, \dots, a_{m1}) =$ \\
+		$(b_{11} a_{11} + b_{12} a_{21} + \dots + b_{1m}a_{m1},$ \\
+		$b_{21}a_{11} + b_{22} a_{21} + \dots + b_{2m} a_{m1},$ \\
+		$\vdots,$ \\
+		$b_{k1} a_{11} + b_{k2} a_{21} + \dots + b_{km} a_{m1})$ \\
+		$f_A (e_i) = (a_{1i}, \dots, a_{mi})$ \\
+		$i$ столбец: $f_B (f_A (e_i)) =$ \\
+		$(b_{11} a_{1i} + b_{12} a_{2i} + \dots + b_{1m}a_{mi},$ \\
+		$b_{21}a_{1i} + b_{22} a_{2i} + \dots + b_{2m} a_{mi},$ \\
+		$\vdots,$ \\
+		$b_{k1} a_{1i} + b_{k2} a_{2i} + \dots + b_{km} a_{mi})$ \\
+		$C = \left(
+		\begin{smallmatrix}
+			c_{11} & \dots & c_{1n} \\
+			\vdots &  & \vdots \\
+			c_{k1} & \dots & c_{kn}
+		\end{smallmatrix}
+		\right)$ \\
+		$c_{ij} = b_{i1} a_{1j} + b_{i2} a_{2j} + \dots + b_{im} a_{mj} = \sum\limits_{\alpha = 1}^{m}b_{i \alpha} a_{\alpha j}$
+	\end{quote}
+	\textbf{Опр.} $F^n \xrightarrow{f_a} F^m$, $f_a (v) = Av$. $Im f = \{ u \in F^m | \exists v \in F^n : u = f(v) \}$. $Ker f = \{ u \in F^n | f(u) = 0 \}$. \\
+	\textbf{Утв.} $Im f$ и $Ker f$~--- линейные подпространства. \\
+	\textbf{Теорема о гомоморфизме.} $V / Ker f \cong Im f$; $V = F^n$. \\
+	Доказательство:
+	\begin{quote}
+		$e_1, \dots, e_k$~--- базис в $Ker f$. Дополним его до базиса в $V$: $e_{k + 1}, \dots, e_n$. \\
+		Базис переходит:
+		\begin{quote}
+			$e_1 \rightarrow 0$ \\
+			$e_2 \rightarrow 0$ \\
+			$\vdots$ \\
+			$e_k \rightarrow 0$ \\
+			$e_{k + 1} \rightarrow g_{k + 1}$ \\
+			$\vdots$ \\
+			$e_n \rightarrow g_n$
+		\end{quote}
+		$g$~--- линейно независимая система, тк $\sum \beta_i g_i = 0$ и $f(\sum \beta_i g_i) = 0$. Тогда $\sum \beta_i e_i \in Ker f$. \\
+		$Im f = Lin(g_{k + 1}, \dots, g_n)$, тк $Im f \Leftrightarrow X = f (\sum \alpha_i e_i) = \sum \alpha_i g_i$.
+	\end{quote}
+	\textbf{Утв.} $V / Ker f \xrightarrow{g} Im f$, $[v] \xrightarrow{g} f(v)$. Тогда:
+	\begin{itemize}
+		\item $[v] \xrightarrow{g} f(v)$~--- корректно заданное отображение.
+		\item $v_1 - v_2 \in Ker f \Rightarrow f(v_1) = f(v_2) \Leftrightarrow f(v_1 - v_2) = 0$, тк $g([v]) = 0 \Rightarrow v \in Ker f \Rightarrow [v]$.
+		\item $u \in Im f \Rightarrow \exists u = f(v) \Rightarrow u = g([v])$.
+	\end{itemize}
+	\textbf{Опр.} $rank A := \dim(Im A)$, где $A$~--- матрица. Также это размерность линейного замыкания пространства столбцов матрицы. $Im A = $ линейное замыкания пространства столбцов, тк $u \in Im A = f(\sum \alpha_i e_i) = \sum \alpha_i f(e_i)$. $f(e_i)$~--- $i$-ый столбец матрицы. \\
+	\textbf{Опр.} Множество всех матриц $n \times m$ над полем $F$ обозначается $M_{n \times m}(F)$. Это множество кольцо с $1$ (ассоциативность сложение, нейтральный элемент сложения, обратимость сложения, коммутативность сложения, ассоциативность умножения, дистрибутивность, нейтральный элемент умножения). \\
+	\textbf{Опр.} Верхне-треугольная матрица~--- матрица, в которой под диагональю все нули. Аналогично нижне-треугольная. Они образуют линейное подпространство. Матрица, которая и верхне-треугольная, и нижне-треугольная~--- диагональная. \\
+	\textbf{Опр.} Симметричная матрица~--- $a_{ij} = a_{ji}$. \\
+	\textbf{Утв.} $\dim(Lin(U \cup W)) + \dim(u \cap w) = \dim(u) + \dim(v)$.
+	
+	
+	
+	
+	
+	\newpage
+	\section{Теория типов.}
+	\subsection{Основы математической логики. Классическое исчисление высказываний.}
+	Приоритет операций: $\urcorner \wedge \vee \rightarrow$. \\
+	$f: P \rightarrow \{ \text{True, False} \}$. $\llbracket \alpha \rrbracket^f =
+	\begin{cases}
+		f(X) & \alpha = X \\
+		\text{True} & \alpha = \beta \wedge \gamma, \llbracket \beta \rrbracket = \llbracket \gamma \rrbracket = \text{True} \\
+		\text{True} & \alpha = \beta \vee \gamma, \llbracket \beta \rrbracket = \text{True} / \llbracket \gamma \rrbracket = \text{True}
+	\end{cases}$ \\
+	\textbf{Опр.} $\alpha$~--- общезначимое, если при любой $f: \llbracket \alpha \rrbracket^f = \text{True}$. $\vDash \alpha$ \\
+	\textbf{Аксиомы:}
+	\begin{enumerate}
+		\item $\alpha \rightarrow \beta \rightarrow \alpha$
+		\item $(\alpha \rightarrow \beta) \rightarrow (\alpha \rightarrow \beta \rightarrow \gamma) \rightarrow \alpha \rightarrow \gamma$
+		\item $\alpha \rightarrow \beta \rightarrow \alpha \wedge \beta$
+		\item $\alpha \wedge \beta \rightarrow \alpha$
+		\item $\alpha \wedge \beta \rightarrow \beta$
+		\item $\alpha \rightarrow \alpha \vee \beta$
+		\item $\beta \rightarrow \alpha \vee \beta$
+		\item $(\alpha \rightarrow \gamma) \rightarrow (\beta \rightarrow \gamma) \rightarrow \alpha \vee \beta \rightarrow \gamma$
+		\item $(\alpha \rightarrow \beta) \rightarrow (\alpha \rightarrow \urcorner \beta) \rightarrow \urcorner \alpha$
+		\item $\urcorner \urcorner \alpha \rightarrow \alpha$
+	\end{enumerate}
+	\textbf{Утв.} $A \rightarrow A$. \\
+	Доказательство:
+	\begin{enumerate}
+		\item $A \rightarrow A \rightarrow A$
+		\item $(A \rightarrow A \rightarrow A) \rightarrow (A \rightarrow (A \rightarrow A) \rightarrow A) \rightarrow (A \rightarrow A)$ \\
+		$\alpha = A$, $\beta = A \rightarrow A$, $\gamma = A$
+		\item $(A \rightarrow (A \rightarrow A) \rightarrow A) \rightarrow A \rightarrow A$. Modus Ponens из 1 и 2.
+		\item $A \rightarrow (A \rightarrow A) \rightarrow A $ \\
+		$\alpha = A$, $\beta = A \rightarrow A$
+		\item $A \rightarrow A$
+	\end{enumerate}
+	\textbf{Опр.} $\vdash \alpha$~--- есть доказательство $\alpha$. $\gamma_1, \gamma_2, \dots \vdash \alpha$~--- есть доказательство $\alpha$ из $\gamma_1, \gamma_2, \dots$. \\
+	\textbf{Теорема о дедукции.} $\Gamma$, $\alpha \vdash \beta$ ттт $\Gamma \vdash \alpha \rightarrow \beta$. \\
+	\textbf{Утв.} $\vdash \alpha$ ттт $\vDash \alpha$. \\
+	\textbf{Утв.} Если из $\vDash \alpha$ следует $\vdash \alpha$, то оценка полна. Если из $\vdash \alpha$ следует $\vDash \alpha$, то оценка корректна. \\
+	Доказательство корректности:
+	\begin{quote}
+		Индукция по длине доказательства $\Gamma \vdash \alpha$. \\
+		Если $\alpha$~--- гипотеза, то очевидно, что следует $\Gamma \vDash \alpha$. \\
+		Если $\alpha$~--- аксиома, то нужно проверить все аксиомы. На примере 9 аксиомы:
+		\begin{quote}
+			$(\alpha \rightarrow \beta) \rightarrow (\alpha \rightarrow \urcorner \beta) \rightarrow \urcorner \alpha$ \\
+			Если $\llbracket \alpha \rrbracket = \text{False}$, то True, тк в конце $\urcorner \alpha$. \\
+			Если $\llbracket \alpha \rrbracket = \text{True}$, то либо первая либо вторая скобка~--- False.
+		\end{quote}
+		Переход:
+		\begin{quote}
+			Аксиома~--- понятно, тк она аксиома. Гипотеза~--- тоже понятно, тк доказана по ИП. Modus Ponens~--- понятно, тк то, из чего он получен~--- истино.
+		\end{quote}
+	\end{quote}
+	Доказательство полноты:
+	\begin{quote}
+		Используем: $A \vee \urcorner A$, $(\alpha \rightarrow \beta) \rightarrow (\urcorner \alpha \rightarrow \beta) \rightarrow \beta$, и если $\Gamma, \alpha \vdash \beta$ и $\Gamma, \urcorner \alpha \vdash \beta$, то $\Gamma \vdash \beta$ \\
+		fix $f$: $x_1 := \text{True}, x_2 := \text{False}, x_3 := \text{False}, \dots$ \\
+		$x_1, x_2, x_3, \dots \vdash \alpha$ \\
+		$\begin{cases}
+			x_1, x_2, \dots, x_n \vdash \alpha \\
+			x_1, x_2, \dots, \urcorner x_n \vdash \alpha \\
+			\vdots
+		\end{cases}$ \\
+		$\Leftcircle \gamma \Rightcircle =
+		\begin{cases}
+			\gamma & \llbracket \gamma \rrbracket = \text{True} \\
+			\urcorner \gamma & \llbracket \gamma \rrbracket = \text{False}
+		\end{cases}
+		$ Это надо, чтобы либо утверждение, либо его отрицание точно были доказуемые. \\
+	\end{quote}
+	\textbf{Внимание!} Какие-то челики поменяли $10$ аксиому на эту: $\alpha \rightarrow \urcorner \alpha \rightarrow \beta$. \\
+	Новая оценка: $] X \subset \mathbb{R}$. $X$~--- открыто, если $\forall x \in X \exists r > 0: (x - r; x + r) \subset X$. $Int X = \{ x \in X | \exists r > 0 (x - r; x + r) \subset X \}$ \\
+	$\llbracket \alpha \wedge \beta \rrbracket = \llbracket \alpha \rrbracket \cap \llbracket \beta \rrbracket$ \\
+	$\llbracket \alpha \vee \beta \rrbracket = \llbracket \alpha \rrbracket \cup \llbracket \beta \rrbracket$ \\
+	$\llbracket \alpha \rightarrow \beta \rrbracket = Int(\mathbb{R} \setminus \llbracket \alpha \rrbracket \cup \llbracket \beta \rrbracket)$ \\
+	$\llbracket \urcorner \alpha \rrbracket = Int(\mathbb{R} \setminus \llbracket \alpha \rrbracket)$ \\
+	\textbf{Правила вывода:}
+	\begin{enumerate}
+		\item $\infer{\Gamma, \alpha \vdash \alpha}{}$
+		\item $\infer{\Gamma \vdash \alpha \rightarrow \beta}{\Gamma, \alpha \vdash \beta}$
+		\item $\infer{\Gamma \vdash \beta}{\Gamma \vdash \alpha \rightarrow \beta & \Gamma \vdash \alpha}$
+		\item $\infer{\Gamma \vdash \alpha \wedge \beta}{\Gamma \vdash \alpha & \Gamma \vdash \beta}$
+		\item $\infer{\Gamma \vdash \alpha}{\Gamma \vdash \alpha \wedge \beta}$
+		\item $\infer{\Gamma \vdash \beta}{\Gamma \vdash \alpha \wedge \beta}$
+		\item $\infer{\Gamma \vdash \gamma}{\Gamma \vdash \alpha \rightarrow \gamma & \Gamma \vdash \beta \rightarrow \gamma & \Gamma \vdash \alpha \vee \beta}$
+		\item $\infer{\Gamma \vdash \alpha \vee \beta}{\Gamma \vdash \alpha}$
+		\item $\infer{\Gamma \vdash \alpha \vee \beta}{\Gamma \vdash \beta}$
+		\item $\infer{\Gamma \vdash \alpha}{\Gamma \vdash \perp}$ в ИИВ; $\infer{\Gamma \vdash \alpha}{\Gamma, \alpha \rightarrow \perp \vdash \perp}$ в КИВ
+	\end{enumerate}
+	\subsection{Исчисление предикатов.}
+	Логические переменные~--- пропозициональные. Численные~--- предметные. \\
+	Квантор~--- $\forall a.$; функция~--- $f(a)$; предикат~--- принимает не логическое выражение, возвращает логическое. \\
+	Если $\varphi$~--- функциональный символ, нужно $F\varphi: D^n \rightarrow D$. \\
+	Если $p$~--- предикатный символ, нужно $Tp: D^n \rightarrow \{ \text{True}, \text{False} \}$. \\
+	Если $x$~--- переменная, то $E(x) \in D$. \\
+	$\llbracket p(\theta_1, \dots, \theta_n) \rrbracket = Tp(\llbracket \theta_1 \rrbracket, \dots, \llbracket \theta_n \rrbracket)$ \\
+	$\llbracket \varphi (\theta_1, \dots, \theta_n) \rrbracket = F\varphi(\llbracket \theta_1 \rrbracket, \dots, \llbracket \theta_n \rrbracket)$ \\
+	$\llbracket \forall x. \alpha \rrbracket =$ True, если для всех $d \in D: E(x) = d$, то $\llbracket \alpha \rrbracket =$ True. \\
+	$\alpha [ x := \theta ]$~--- заменяет все свободные $x$ на $\theta$. \\
+	\textbf{Опр.} $\theta$ называется свободным для подстановки в $\alpha$ вместо $x$, если $\alpha [x := \theta]$ не сделает свободные вхождения в $\theta$ связанными.
+	\begin{enumerate}
+		\item $x \not\in FV(\Gamma)$ | $\infer{\Gamma \vdash \forall x. \alpha}{\Gamma \vdash \alpha}$
+		\item Нужна свобода для подстановки | $\infer{\Gamma \vdash \alpha [x := \theta]}{\Gamma \vdash \forall x. \alpha}$
+		\item Нужна свобода для подстановки | $\infer{\Gamma \vdash \exists x. \alpha}{\Gamma \vdash \alpha [x := \theta]}$
+		\item $x \not\in FV(\Gamma, \beta)$ | $\infer{\Gamma \vdash \beta}{\Gamma \vdash \exists x. \alpha & \Gamma, \alpha \vdash \beta}$
+	\end{enumerate}
+	\textbf{Теорема.} Если $\Gamma \vdash \alpha$ в классическом исчислении предикатов, то $\Gamma \vDash \alpha$ в двоичной оценки для предикатов. \\
+	Доказательство:
+	\begin{quote}
+		Индукция по длине доказательства. \\
+		База.
+		\begin{quote}
+			$\infer{\Gamma, \alpha \vdash \alpha}{}$ очевидно $\Gamma, \alpha \vDash \alpha$
+		\end{quote}
+		Переход.
+		\begin{quote}
+			$\infer{\Gamma \vdash \alpha}{\Gamma \vdash \alpha \wedge \beta}$. Есть $\Gamma \vDash \alpha \wedge \beta$, надо $\Gamma \vDash \alpha$. \\
+			$\infer{\Gamma \vdash \alpha}{\Gamma, \alpha \rightarrow \perp \vdash \perp}$. Есть $\Gamma, \alpha \rightarrow \perp \vDash \perp$, надо $\Gamma \vDash \alpha$.
+		\end{quote}
+	\end{quote}
+	\subsection{$\lambda$~--- исчисления.}
+	\textbf{Опр.} $\lambda$~--- исчисления~--- способ описать математику в программировании. \\
+	\textbf{Тезис 1.} Функции больше одного агрумента не нужны. \\
+	\textbf{Опр.} $\lambda x. P$~--- принимает $x$ и делает $P$. \\
+	\textbf{Опр.} $FV(\alpha)$~--- множество свободных переменных $\alpha$. \\
+	\textbf{Опр.} $\theta$ называется свободным для подстановки в $\alpha$ вместо $x$, если $\alpha [x := \theta]$ не сделает свободные вхождения в $\theta$ связанными. \\
+	\textbf{Опр.} $P =_{\alpha} Q$, если одно из следующего:
+	\begin{itemize}
+		\item $P$ и $Q$~--- одна и та же формула
+		\item $P = A_1 B_1$, $Q = A_2 B_2$; $A_1 =_{\alpha} A_2$ и $B_1 =_{\alpha} B_2$
+		\item $P = \lambda x. A_1$, $Q = \lambda y. A_2$; $A_1[x := t] =_{\alpha} A_2 [y := t]$
+	\end{itemize}
+	С этого момента любое $=$~--- это $=_{\alpha}$. \\
+	\textbf{Опр.} $(\lambda x. P)Q$~--- $\beta$~--- редекс. $A \rightarrow_{\beta} B$, если:
+	\begin{itemize}
+		\item $A = (\lambda x. P)Q$, $B = P[x := Q]$, есть свобода
+		\item $A = P_1Q_1$, $B = P_2Q_2$; $(P_1 = P_2$ и $Q_1 \rightarrow_{\beta} Q_2)$ или $(Q_1 = Q_2$ и $P_1 \rightarrow_{\beta} P_2)$
+		\item $A = \lambda x. P_1$, $B = \lambda x. P_2$; $P_1 \rightarrow_{\beta} P_2$
+	\end{itemize}
+	\textbf{Опр.} $\omega = (\lambda y. yy)(\lambda x. xx)$ \\
+	\textbf{Опр.} $A \twoheadrightarrow_{\beta} B$ за несколь (в том числе $0$) шагов. \\
+	\textbf{Опр.} Нормальный порядок~--- редуцируем самый левый $\beta$~--- редекс. Аппликативный порядок~--- из самых вложенных берем левый $\beta$~--- редекс. \\
+	\textbf{Опр.} $A \rightrightarrows_{\beta} B$, если:
+	\begin{itemize}
+		\item $A = B$
+		\item $A = \lambda x. P_1$, $B = \lambda x. P_2$; $P_1 \rightrightarrows_{\beta} P_2$
+		\item $A = P_1Q_2$, $B = P_2Q_2$; $P_1 \rightrightarrows_{\beta} P_2$ и $Q_1 \rightrightarrows_{\beta} Q_2$
+		\item $A = (\lambda x. P_1)Q_1$, $B = P_2[x := Q_2]$; $P_1 \rightrightarrows_{\beta} P_2$ и $Q_1 \rightrightarrows_{\beta} Q_2$
+	\end{itemize}
+	\textbf{Теорема Черча~--- Россера.} Если $A \twoheadrightarrow_{\beta} B$, $A \twoheadrightarrow_{\beta} C$ и $B \not= C$, то существует $D$, такое что $B \twoheadrightarrow_{\beta} D$ и $C \twoheadrightarrow_{\beta} D$. \\
+	Доказательство:
+	\begin{quote}
+		\textbf{Лемма.} Если $P_1 \rightrightarrows_{\beta} P_2$ и $Q_1 \rightrightarrows_{\beta} Q_2$, то $P_1 [x := Q_1] \rightrightarrows_{\beta} P_2 [x := Q_2]$~--- свобода есть.
+		\begin{quote}
+			\begin{itemize}
+				\item Случай $P_1 = P_2$~--- ясно.
+				\item Индукция по длине $P_1$.
+				\begin{itemize}
+					\item $P_1 = A_1 B_1$ \\
+					$P_2 = A_2 B_2$ \\
+					$A_1 \rightrightarrows_{\beta} A_2$ \\
+					$B_1 \rightrightarrows_{\beta} B_2$ \\
+					$A_1 [x := Q_1] \rightrightarrows_{\beta} A_2 [x := Q_2]$ \\
+					$B_1 [x := Q_1] \rightrightarrows_{\beta} B_2 [x := Q_2]$ \\
+					$P_1 [x := Q_1] = (A_1[x := Q_1])(B_1 [x:= Q_1])$ \\
+					$P_2 [x := Q_2] = (A_2[x := Q_2])(B_2 [x:= Q_2])$ \\
+					$P_1 [x := Q_1] \rightrightarrows_{\beta} P_2 [x := Q_2]$
+					\item $P_1 = \lambda y. A_1$ \\
+					$P_2 = \lambda y. A_2$ \\
+					$A_1 \rightrightarrows_{\beta} A_2$ \\
+					$A_1 [x := Q_1] \rightrightarrows_{\beta} A_2 [x := Q_2]$ \\
+					$P_1 [x := Q_1] = \lambda y. (A_1 [x := Q_1])$ \\
+					$P_2 [x := Q_2] = \lambda y. (A_2 [x := Q_2])$ \\
+					$P_1 [x := Q_1] \rightrightarrows_{\beta} P_2 [x := Q_2]$
+					\item $P_1 = (\lambda y. A_1) B_1$ \\
+					$P_2 = A_2 [y := B_2]$ \\
+					$A_1 \rightrightarrows_{\beta} A_2$ \\
+					$B_1 \rightrightarrows_{\beta} B_2$ \\
+					$A_1 [x := Q_1] \rightrightarrows_{\beta} A_2 [x := Q_2]$ \\
+					$B_1 [x := Q_1] \rightrightarrows_{\beta} B_2 [x := Q_2]$ \\
+					$(\lambda y. A_1 [x := Q_1])(B_1 [x := Q_1]) \rightrightarrows_{\beta} ? A_2 [y := B_2][x := Q_2]$ \\
+					$y \in ? FV(Q_2)$, если да, то $y \in FV(Q_1)$ \\
+					$y \in FV(A_1)$~--- иначе ясно. \\
+					$y \not\in FV(Q_2)$ \\
+					$A_2 [y := B_2][x := Q_2] = A [x := Q_2][y := B_2 [x := Q_2]]$ \\
+					$y = x$ аналогично
+				\end{itemize}
+			\end{itemize}
+		\end{quote}
+		\textbf{Лемма.} Если $P \rightrightarrows_{\beta} P_1$, $P \rightrightarrows_{\beta} P_2$ и $P_1 \not= P_2$, то существует $P_3$, такое что $P_1 \rightrightarrows_{\beta} P_3$ и $P_2 \rightrightarrows_{\beta} P_3$.
+		\begin{quote}
+			Индукция по элементам $P$.
+			\begin{itemize}
+				\item $P = P_1$~--- $P_3 = P_2$
+				\item $P = \lambda x. A$, $P_1 = \lambda x. A_1 \Rightarrow P_2 = \lambda x. A_2$. $P_3 = \lambda x. A_3$. $A \rightrightarrows_{\beta} A_1$, $A \rightrightarrows_{\beta} A_2$, $A_1 \rightrightarrows_{\beta} A_3$, $A_2 \rightrightarrows_{\beta} A_3$
+				\item $P = AB$, $P_1 = A_1B_1$
+				\begin{enumerate}[(I)]
+					\item $P_2 = A_2B_2$ \\
+					$A \rightrightarrows_{\beta} A_1$, $A \rightrightarrows_{\beta} A_2$; $B \rightrightarrows_{\beta} B_1$, $B \rightrightarrows_{\beta} B_2$. \\
+					$\exists A_3, B_3; P_3 = A_3B_3$
+					\item $P = (\lambda x. C)B$, $P_2 = C_2 [x := B_2]$, $P_1 (\lambda x. C_1) B_1$ \\
+					$A \rightrightarrows_{\beta} A_1$~--- тогда $A_1 = \lambda x. C_1$ \\
+					$B \rightrightarrows_{\beta} B_1$, $B \rightrightarrows_{\beta} B_2$; $C \rightrightarrows_{\beta} C_1$, $C \rightrightarrows_{\beta} C_2$ \\
+					$C_3, B_3$: $C_1 \rightrightarrows_{\beta} C_3$, $C_2 \rightrightarrows_{\beta} C_3$; $B_1 \rightrightarrows_{\beta} B_3$, $B_2 \rightrightarrows_{\beta} B_3$. $P_3 = C_3 [x := B_3]$
+				\end{enumerate}
+				\item $P = (\lambda x. C)B$, $P_1 = C_1 [x := B_1]$
+				\begin{enumerate}[(I)]
+					\item $P_2 = A_2B_2$. $(?)C \rightrightarrows_{\beta} A_2$, $B \rightrightarrows_{\beta} B_2$ \\
+					$C \rightrightarrows_{\beta} C_1$, $C \rightrightarrows_{\beta} C_2$; $B \rightrightarrows_{\beta} B_1$, $B \rightrightarrows_{\beta} B_2$
+					\item $P_2 = C_2 [x := B_2]$ \\
+					$\exists C_3, B_3$: $C_1 \rightrightarrows_{\beta} C_3$, $C_2 \rightrightarrows_{\beta} C_3$; $B_1 \rightrightarrows_{\beta} B_3$, $B_2 \rightrightarrows_{\beta} B_3$. $P_3 = C_3 [x := B_3]$
+				\end{enumerate}
+			\end{itemize}
+		\end{quote}
+		$P \rightrightarrows_{\beta} \dots \rightrightarrows_{\beta} P_1 \rightrightarrows_{\beta} \dots \rightrightarrows_{\beta} P_3$, $P \rightrightarrows_{\beta} \dots \rightrightarrows_{\beta} P_2 \rightrightarrows_{\beta} \dots \rightrightarrows_{\beta} P_3$ \\
+		Двойной параллельный $\beta$~--- редекс $= \twoheadrightarrow_{\beta}$
+	\end{quote}
 \end{document}
