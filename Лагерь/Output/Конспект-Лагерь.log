@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.8.6)  12 AUG 2025 10:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.8.6)  12 AUG 2025 10:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1318,15 +1318,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 311--325
 [7]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 376.
+(hyperref)                removing `math shift' on input line 377.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lambda' on input line 376.
+(hyperref)                removing `\lambda' on input line 377.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 376.
+(hyperref)                removing `math shift' on input line 377.
 
 
 
@@ -1341,13 +1341,13 @@ L3 programming layer <2025-07-19>
  ***********
 Package rerunfilecheck Info: File `Конспект-Лагерь.out' has not c
 hanged.
-(rerunfilecheck)             Checksum: D93B572E2ABB364B5EFE9CCE03004887;1758.
+(rerunfilecheck)             Checksum: D0CA25E76D0EB85EA27627700EFB60F7;2297.
  ) 
 Here is how much of TeX's memory you used:
- 34353 strings out of 468149
- 783790 string characters out of 5431083
+ 34355 strings out of 468149
+ 783820 string characters out of 5431083
  1287494 words of memory out of 5000000
- 62294 multiletter control sequences out of 15000+600000
+ 62295 multiletter control sequences out of 15000+600000
  642513 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  89i,15n,94p,1585b,781s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1373,9 +1373,9 @@ nts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/ilden/AppData/Local/Prog
 rams/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/ilden/AppD
 ata/Local/Programs/MiKTeX/fonts/type1/public/hoekwater/stmary10.pfb>
 Output written on C:\Users\ilden\Documents\School\Notes\Лагерь\Output\К�
-�нспект-Лагерь.pdf (9 pages, 242137 bytes).
+�нспект-Лагерь.pdf (9 pages, 244259 bytes).
 PDF statistics:
- 446 PDF objects out of 1000 (max. 8388607)
- 74 named destinations out of 1000 (max. 500000)
- 77 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 454 PDF objects out of 1000 (max. 8388607)
+ 75 named destinations out of 1000 (max. 500000)
+ 85 words of extra memory for PDF output out of 10000 (max. 10000000)
 
