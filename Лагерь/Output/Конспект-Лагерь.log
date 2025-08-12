@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.8.6)  12 AUG 2025 10:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.8.6)  12 AUG 2025 10:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1307,7 +1307,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 67--94
 [4]
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 310--324
+Underfull \hbox (badness 10000) in paragraph at lines 311--325
 
  []
 
@@ -1318,15 +1318,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 310--324
 [7]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 375.
+(hyperref)                removing `math shift' on input line 376.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lambda' on input line 375.
+(hyperref)                removing `\lambda' on input line 376.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 375.
+(hyperref)                removing `math shift' on input line 376.
 
 
 
@@ -1373,7 +1373,7 @@ nts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/ilden/AppData/Local/Prog
 rams/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/ilden/AppD
 ata/Local/Programs/MiKTeX/fonts/type1/public/hoekwater/stmary10.pfb>
 Output written on C:\Users\ilden\Documents\School\Notes\Лагерь\Output\К�
-�нспект-Лагерь.pdf (9 pages, 241847 bytes).
+�нспект-Лагерь.pdf (9 pages, 242137 bytes).
 PDF statistics:
  446 PDF objects out of 1000 (max. 8388607)
  74 named destinations out of 1000 (max. 500000)
