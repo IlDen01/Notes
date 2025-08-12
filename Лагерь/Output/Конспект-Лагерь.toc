@@ -8,3 +8,4 @@
 \contentsline {subsection}{\numberline {2.2}Интуиционистское исчисление высказываний. Естественный вывод.}{7}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Исчисление предикатов.}{7}{subsection.2.3}%
 \contentsline {subsection}{\numberline {2.4}$\lambda $~--- исчисления.}{8}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Просто~--- типизированное $\lambda $~--- исчисление.}{9}{subsection.2.5}%
