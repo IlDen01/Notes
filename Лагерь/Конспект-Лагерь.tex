@@ -502,4 +502,34 @@
 		\item $\Gamma \vdash P : \alpha$~--- Карри, то есть способ приписать типовые аннотации и получить доказуемое в Черче.
 	\end{itemize}
 	\textbf{Теорема.} Изоморфизм Карри~--- Ховард.
+	\subsection{Нормализуемость $\lambda_{\rightarrow}$. Система F.}
+	\textbf{Опр.} Выражение называется сильно нормализуемым, если нет способа редуцировать его бесконечно. \\
+	\textbf{Опр.} $SN$~--- множество всех сильно нормализуемых выражений. $X \subset SN$ насыщенно, если
+	\begin{itemize}
+		\item Если $m_1, \dots, m_n \in SN$, то $x m_1 m_2 \dots m_n \in X$
+		\item Если $m_1, \dots, m_n \in SN$, $M \in SN$, $N$~--- любое и $N [x := M] m_1, \dots, m_n \in X$, то $(\lambda x. N) m m_1, \dots, m_n \in X$
+	\end{itemize}
+	\textbf{Лемма.} $SN$~--- насыщенно. \\
+	$A, B$~--- множество выражений. $A \rightarrow B = \{ X | \forall Y \in A. XY \in B \}$. Если $A, B$~--- насыщенные, то $A \rightarrow B$~--- насыщенное. \\
+	$\sigma$~--- тип. $[\sigma] = \begin{cases}
+		SN & \sigma \text{~--- переменная} \\
+		[\tau_1] \rightarrow [\tau_2] & \sigma = \tau_1 \rightarrow \tau_2
+	\end{cases}$ \\
+	$[\alpha \rightarrow \alpha \rightarrow \alpha] = SN \rightarrow SN \rightarrow SN$. \\
+	\textbf{Лемма.} $[\sigma]$~--- насыщенно из предыдущего. \\
+	\textbf{Опр.} $\rho$ из переменных в $\lambda$-выражениях~--- оценка. \\
+	\textbf{Опр.} $M [x := \rho (x), y := \rho (xy), ...] = \llbracket M \rrbracket ^{\rho}$. \\
+	\textbf{Утв.} Для любой $\rho$ такой что для всех $x : \tau \in \Gamma$ верно $\rho (x) \in [\tau]$. \\
+	\textbf{Утв.} $\Gamma \vDash M : \sigma$, если выполнено $\llbracket M \rrbracket ^{\rho} \in [\sigma]$ \\
+	\textbf{Теорема.} Если $\Gamma \vdash M : \sigma$, то $\Gamma \vDash M : \sigma$. \\
+	Доказательство:
+	\begin{quote}
+		Индукция по размеру дерева вывода $\Gamma \vdash M : \sigma$
+	\end{quote}
+	\textbf{Опр.} $\Lambda$~--- принимает типовую переменную. \\
+	\textbf{Новые правила вывода}:
+	\begin{itemize}
+		\item $\infer{\Gamma \vdash \Lambda x. P : \forall x. \alpha}{\Gamma \vdash P : \alpha}$, $x \not\in FV(\Gamma)$
+		\item $\infer{\Gamma \vdash P \beta : \alpha [x := \beta]}{\Gamma \vdash P : \forall x. \alpha}$~--- есть свобода.
+	\end{itemize}
 \end{document}
