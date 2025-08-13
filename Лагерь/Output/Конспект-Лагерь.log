@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.8.12)  12 AUG 2025 14:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.8.12)  13 AUG 2025 10:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1307,7 +1307,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 67--94
 [4]
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 312--326
+Underfull \hbox (badness 10000) in paragraph at lines 324--338
 
  []
 
@@ -1318,30 +1318,30 @@ Underfull \hbox (badness 10000) in paragraph at lines 312--326
 [7]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 378.
+(hyperref)                removing `math shift' on input line 390.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lambda' on input line 378.
+(hyperref)                removing `\lambda' on input line 390.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 378.
+(hyperref)                removing `math shift' on input line 390.
 
 
 
 [8]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 475.
+(hyperref)                removing `math shift' on input line 487.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lambda' on input line 475.
+(hyperref)                removing `\lambda' on input line 487.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 475.
+(hyperref)                removing `math shift' on input line 487.
 
 
 
@@ -1388,7 +1388,7 @@ nts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/ilden/AppData/Local/Prog
 rams/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/ilden/AppD
 ata/Local/Programs/MiKTeX/fonts/type1/public/hoekwater/stmary10.pfb>
 Output written on C:\Users\ilden\Documents\School\Notes\Лагерь\Output\К�
-�нспект-Лагерь.pdf (10 pages, 249168 bytes).
+�нспект-Лагерь.pdf (10 pages, 249556 bytes).
 PDF statistics:
  471 PDF objects out of 1000 (max. 8388607)
  80 named destinations out of 1000 (max. 500000)
