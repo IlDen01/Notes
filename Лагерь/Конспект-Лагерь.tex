@@ -154,13 +154,13 @@
 			b_{m1} & \dots & b_{mn}
 		\end{smallmatrix}
 		\right)$; $X$~--- матрица, $f_X$~--- линейное отображение. \\
-		$f_A: (x_1, \dots, x_n) \rightarrow \left(
-		\begin{smallmatrix}
+		$f_A: (x_1, \dots, x_n) \rightarrow
+		\left( \begin{smallmatrix}
 			a_{11}x_1 + \dots + a_{1n}x_n \\
 			\vdots \\
 			a_{m1}x_1 + \dots + a_{mn}x_n
-		\end{smallmatrix}
-		\right)$, $f_B: (x_1, \dots, x_n) \rightarrow \left(
+		\end{smallmatrix} \right)
+		$, $f_B: (x_1, \dots, x_n) \rightarrow \left(
 		\begin{smallmatrix}
 			b_{11}x_1 + \dots + b_{1n}x_n \\
 			\vdots \\
@@ -259,7 +259,54 @@
 		\vdots \\
 		\beta_n
 	\end{smallmatrix} \right)
-	$
+	$ \\
+	\subsection{Системы линейных уравнений.}
+	\textbf{Опр.} Система линейных уравнений~--- $
+	\begin{cases}
+		a_{11}x_1 + \dots + a_{1n}x_n = b_1 \\
+		\vdots \\
+		a_{m1}x_1 + \dots + a_{mn}x_n = b_m
+	\end{cases}
+	\Leftrightarrow Av = b$, $v =
+	\left( \begin{smallmatrix}
+		x_0 \\
+		\vdots \\
+		x_n
+	\end{smallmatrix} \right)
+	$. Как устроенно множество решений:
+	\begin{itemize}
+		\item $\emptyset$
+		\item $v_0$~--- единственное решение.
+		\item Решений много $\Rightarrow$ это $v_0 + L := \{ v_0 + l | l \in L \}$, где $v_0$~--- какое-то решение, $L$~--- линейное подпространство ($L = Ker A$). \\
+		$Av_0 = b$; $Av_1 = b \Leftrightarrow A(v_1 - v_0) = 0 \Leftrightarrow (v_1 - v_0) \in Ker A$
+	\end{itemize}
+	\textbf{Опр.} Присоединение матриц. $(A | b) = 
+	\left( \begin{smallmatrix}
+		a_{11} & \dots & a_{1n} & | b_1 \\
+		a_{21} & \dots & a_{2n} & | b_2 \\
+		\vdots &  & \vdots \\
+		a_{m1} & \dots & a_{mn} & | b_n
+	\end{smallmatrix} \right)
+	$ \\
+	\textbf{Теорема Кронекера-Капелли.} Система имеет решение $\Leftrightarrow rank(A) = rank(A|b)$. \\
+	Доказательство:
+	\begin{quote}
+		$\Leftarrow$:
+		\begin{quote}
+			$ImA = \{ Av | v \in F^n \}$. $Im(A | b) = \{ Av + \alpha b | v \in F^n, \alpha \in F \}$. В $ImA$ есть базис $u_1, \dots, u_k$. $u_1, \dots, u_k \in Im(A | b) \Rightarrow u_1, \dots, u_k$~--- базис в $Im(A | b)$. $A(\sum \beta_i u_i) = \sum \beta_i (Av_i) = \sum \beta_i u_i = b$.
+		\end{quote}
+		$\Rightarrow$:
+		\begin{quote}
+			$b = Av_0 \Rightarrow \{ Av + \alpha b | v \in F^n, \alpha \in F \} = \{ Av | v \in F^n \}$, тк $Av + \alpha b = Av + \alpha (Av_0) = A(v + \alpha v_0) \in ImA$.
+		\end{quote}
+	\end{quote}
+	\textbf{Метод Гаусса.} Приводит матрицу к виду, в котором понятно, решается она или нет. Можно:
+	\begin{itemize}
+		\item Умножать строку на ненулевое число.
+		\item Переставить две строчки.
+		\item Заменить строку на сумму ее и какой-то другой.
+		\item Прибавить ко второй строке $\alpha \cdot$ первую.
+	\end{itemize}
 	
 	
 	
@@ -531,5 +578,26 @@
 	\begin{itemize}
 		\item $\infer{\Gamma \vdash \Lambda x. P : \forall x. \alpha}{\Gamma \vdash P : \alpha}$, $x \not\in FV(\Gamma)$
 		\item $\infer{\Gamma \vdash P \beta : \alpha [x := \beta]}{\Gamma \vdash P : \forall x. \alpha}$~--- есть свобода.
+	\end{itemize}
+	\subsection{Экзистенциальные типы. Система HM.}
+	\textbf{Опр.} $\exists p. p \wedge (\nu \wedge p \rightarrow p) \wedge (p \rightarrow \nu \wedge p)$, $\nu$~--- тип натурального числа. Это стек из программирования (обозначим $\sigma$). После квантора существования~--- набор методов стека. \\
+	$\infer{\Gamma \vdash ?? N ?? : \exists p. \sigma}{\Gamma \vdash : \sigma [p := \alpha]}$ \\
+	$\infer{\Gamma \vdash ?? N, M ??: \tau}{\Gamma \vdash N : \exists p. \sigma & \Gamma, x : \sigma \vdash M : \tau}$ \\
+	$rank \sigma =
+	\begin{cases}
+		1 & \sigma \text{ без кванторов} \\
+		\max(rank \tau, 1) & \sigma = \forall x. \tau \\
+		\max((rank \tau_1) + 1, rank \tau_2) & \sigma = \tau_1 \rightarrow \tau_2
+	\end{cases}
+	$ \\
+	\textbf{Опр.} Тип в HM~--- тип в просто-типизированном $\lambda$-исчислении. Типовая схема в HM~--- тип с поверхностными кванторами в просто-типизированном $\lambda$-исчислении. Далее в этой теме: $\sigma$~--- схемы, $\tau$~--- типы. \\
+	\textbf{Правила выводы в системе HM:}
+	\begin{itemize}
+		\item $\infer{\Gamma, x : \sigma \vdash x : \sigma}{}$
+		\item $\infer{\Gamma \vdash \lambda x. P : \tau_1 \rightarrow \tau_2}{\Gamma, x : \tau_1 \vdash P : \tau_2}$, $x \not\in \Gamma$
+		\item $\infer{\Gamma \vdash PQ : \tau_2}{\Gamma \vdash P : \tau_1 & \Gamma \vdash Q : \tau_1 \rightarrow \tau_2}$
+		\item $\infer{\Gamma \vdash \text{let } x := P \text{ in } Q : \tau}{\Gamma \vdash P : \sigma & \Gamma, x : \sigma \vdash Q : \tau}$, $x \not\in \Gamma$
+		\item $\infer{\Gamma \vdash P : \sigma_2}{\Gamma \vdash P : \sigma_1}$, $\sigma_1 \sqsubseteq \sigma_2$
+		\item $\infer{\Gamma \vdash P : \forall \alpha. \sigma}{\Gamma \vdash P : \sigma}$, $\alpha \not\in FV(\Gamma)$
 	\end{itemize}
 \end{document}
