@@ -600,4 +600,14 @@
 		\item $\infer{\Gamma \vdash P : \sigma_2}{\Gamma \vdash P : \sigma_1}$, $\sigma_1 \sqsubseteq \sigma_2$
 		\item $\infer{\Gamma \vdash P : \forall \alpha. \sigma}{\Gamma \vdash P : \sigma}$, $\alpha \not\in FV(\Gamma)$
 	\end{itemize}
+	\textbf{Правила вывода эквирекурсивных типов:}
+	\begin{itemize}
+		\item $\infer{\Gamma \vdash P : \tau [\alpha := \mu \alpha. \tau]}{\Gamma \vdash P : \mu \alpha. \tau}$
+		\item $\infer{\Gamma \vdash P : \mu \alpha. \tau}{\Gamma \vdash P : \tau [\alpha := \mu \alpha. \tau]}$
+	\end{itemize}
+	\textbf{Правила вывода изорекурсивных типов:}
+	\begin{itemize}
+		\item $\infer{\Gamma \vdash \text{unroll } P : \tau [\alpha := \mu \alpha. \tau]}{\Gamma \vdash \mu \alpha. \tau}$
+		\item $\infer{\Gamma \vdash \text{roll } P : \mu \alpha. \tau}{\Gamma \vdash P : \tau [\alpha := \mu \alpha. \tau]}$
+	\end{itemize}
 \end{document}
