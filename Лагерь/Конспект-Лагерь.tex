@@ -533,7 +533,7 @@
 	\end{quote}
 	\subsection{Просто~--- типизированное $\lambda$~--- исчисление.}
 	\textbf{Опр.} $\alpha \rightarrow \beta$~--- тип функции, которая принимает объект типа $\alpha$ и возвращает объект типа $\beta$. \\
-	Правила вывода:
+	\textbf{Правила вывода:}
 	\begin{enumerate}
 		\item $\infer{\Gamma, x : \alpha \vdash x : \alpha}{}$, $x \not\in \Gamma$
 		\item $\infer{\Gamma \vdash P Q : \beta}{\Gamma \vdash P : \alpha \rightarrow \beta & \Gamma \vdash Q : \alpha}$
@@ -591,7 +591,7 @@
 	\end{cases}
 	$ \\
 	\textbf{Опр.} Тип в HM~--- тип в просто-типизированном $\lambda$-исчислении. Типовая схема в HM~--- тип с поверхностными кванторами в просто-типизированном $\lambda$-исчислении. Далее в этой теме: $\sigma$~--- схемы, $\tau$~--- типы. \\
-	\textbf{Правила выводы в системе HM:}
+	\textbf{Правила вывода в системе HM:}
 	\begin{itemize}
 		\item $\infer{\Gamma, x : \sigma \vdash x : \sigma}{}$
 		\item $\infer{\Gamma \vdash \lambda x. P : \tau_1 \rightarrow \tau_2}{\Gamma, x : \tau_1 \vdash P : \tau_2}$, $x \not\in \Gamma$
