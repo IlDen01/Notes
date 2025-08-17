@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.8.12)  16 AUG 2025 14:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.8.12)  17 AUG 2025 14:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1312,9 +1312,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 244--263
 
 
 [5]
+Overfull \hbox (16.56279pt too wide) in paragraph at lines 313--314
+[]\T2A/cmr/m/n/10 ������������: $[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v[] \OT1/c
+mr/m/n/10 + \OML/cmm/m/it/10 u[]; v[]; [] ; v[]\OT1/cmr/m/n/10 ) = [](\OML/cmm/
+m/it/10 v[]; v[]; [] ; v[]\OT1/cmr/m/n/10 ) + [](\OML/cmm/m/it/10 u[]; v[]; [] 
+; v[]\OT1/cmr/m/n/10 )$\T2A/cmr/m/n/10 , $[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 
+v[]; v[]; [] ; v[]\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10  []\OT1/cmr/m/n/10 (\OM
+L/cmm/m/it/10 v[]; v[]; [] ; v[]\OT1/cmr/m/n/10 )$\T2A/cmr/m/n/10 . 
+ []
+
+
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 371--385
+Underfull \hbox (badness 10000) in paragraph at lines 393--407
 
  []
 
@@ -1325,53 +1335,53 @@ Underfull \hbox (badness 10000) in paragraph at lines 371--385
 [8]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 437.
+(hyperref)                removing `math shift' on input line 459.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lambda' on input line 437.
+(hyperref)                removing `\lambda' on input line 459.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 437.
+(hyperref)                removing `math shift' on input line 459.
 
 
 
 [9]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 534.
+(hyperref)                removing `math shift' on input line 556.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lambda' on input line 534.
+(hyperref)                removing `\lambda' on input line 556.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 534.
+(hyperref)                removing `math shift' on input line 556.
 
 
 
 [10]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 552.
+(hyperref)                removing `math shift' on input line 574.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lambda' on input line 552.
+(hyperref)                removing `\lambda' on input line 574.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 552.
+(hyperref)                removing `subscript' on input line 574.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\rightarrow' on input line 552.
+(hyperref)                removing `\rightarrow' on input line 574.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 552.
+(hyperref)                removing `math shift' on input line 574.
 
 
 
@@ -1386,13 +1396,13 @@ L3 programming layer <2025-07-20>
  ***********
 Package rerunfilecheck Info: File `Конспект-Лагерь.out' has not c
 hanged.
-(rerunfilecheck)             Checksum: C48CE6FA79733B428FBD0B30D28FB41F;3518.
+(rerunfilecheck)             Checksum: 73CE3F7ACD0EDA98CD28F98FF3D7BAE2;3932.
  ) 
 Here is how much of TeX's memory you used:
- 34370 strings out of 468134
- 783996 string characters out of 5430740
+ 34380 strings out of 468134
+ 784098 string characters out of 5430740
  1287875 words of memory out of 5000000
- 62315 multiletter control sequences out of 15000+600000
+ 62317 multiletter control sequences out of 15000+600000
  642513 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  89i,15n,94p,1585b,781s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1419,9 +1429,9 @@ iKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/ilden/AppData/Lo
 cal/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/il
 den/AppData/Local/Programs/MiKTeX/fonts/type1/public/hoekwater/stmary10.pfb>
 Output written on C:\Users\ilden\Documents\School\Notes\Лагерь\Output\К�
-�нспект-Лагерь.pdf (12 pages, 278353 bytes).
+�нспект-Лагерь.pdf (12 pages, 286245 bytes).
 PDF statistics:
- 521 PDF objects out of 1000 (max. 8388607)
- 85 named destinations out of 1000 (max. 500000)
- 117 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 541 PDF objects out of 1000 (max. 8388607)
+ 93 named destinations out of 1000 (max. 500000)
+ 133 words of extra memory for PDF output out of 10000 (max. 10000000)
 

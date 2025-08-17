@@ -301,12 +301,34 @@
 		\end{quote}
 	\end{quote}
 	\textbf{Метод Гаусса.} Приводит матрицу к виду, в котором понятно, решается она или нет. Можно:
-	\begin{itemize}
+	\begin{enumerate}
 		\item Умножать строку на ненулевое число.
 		\item Переставить две строчки.
 		\item Заменить строку на сумму ее и какой-то другой.
 		\item Прибавить ко второй строке $\alpha \cdot$ первую.
+	\end{enumerate}
+	\subsection{Определитель.}
+	\textbf{Опр.} Матрица~--- $n$ строк размера $m$ ($v_i = (a_1, \dots, a_m)$). Тогда функция det~--- это такая функция $(v_1, \dots, v_n) \xrightarrow{\det} F$ ($char F \not= 2$), что она:
+	\begin{itemize}
+		\item Полилинейная: $\det(v_1 + u_1, v_2, \dots, v_n) = \det(v_1, v_2, \dots, v_n) + \det(u_1, v_2, \dots, v_n)$, $\det(\alpha v_1, v_2, \dots, v_n) = \alpha \det(v_1, v_2, \dots, v_n)$.
+		\item Кососимметричная: $\det(v_1, \dots, v_{i - 1}, v_j, v_{i + 1}, \dots, v_{j - 1}, v_i, v_{j + 1}, \dots, v_n) = -\det(v_1, \dots, v_n)$.
 	\end{itemize}
+	Свойства:
+	\begin{itemize}
+		\item Если есть нулевая строка, то $\det A = 0$.
+		\item Если есть две равные (или пропорциональные) строки, то $\det A = 0$ (если $char F \not= 2$).
+		\item $4$-ая операция метода Гаусса не меняет определитель.
+	\end{itemize}
+	\textbf{Утв.} Определитель не более чем один. \\
+	Доказательство:
+	\begin{quote}
+		Все операции метода Гаусса контролируемо меняют определитель. Тогда есть два варианта, когда мы дошли до конца алгоритма:
+		\begin{enumerate}
+			\item Нижняя строка $0$. Тогда определитель $0$. Тогда он и был $0$, тк мы только умножаем его. Отсюда следует, что если определитель $0$, то матрица не обратима.
+			\item Все строки не $0$. Тогда делаем из матрицы единичную. У нее определитель $1$.
+		\end{enumerate}
+	\end{quote}
+	\textbf{Утв.} $\det(AB) = \det(A) \cdot \det(B)$.
 	
 	
 	
@@ -609,5 +631,17 @@
 	\begin{itemize}
 		\item $\infer{\Gamma \vdash \text{unroll } P : \tau [\alpha := \mu \alpha. \tau]}{\Gamma \vdash \mu \alpha. \tau}$
 		\item $\infer{\Gamma \vdash \text{roll } P : \mu \alpha. \tau}{\Gamma \vdash P : \tau [\alpha := \mu \alpha. \tau]}$
+	\end{itemize}
+	\subsection{Обобщенная система типов.}
+	\textbf{Опр.} int~--- тип, $\bigstar$~--- род, $\bigstar \rightarrow \bigstar$~--- род, $\square$~--- сорт. \\
+	\textbf{Правила вывода:}
+	\begin{itemize}
+		\item $\infer{\vdash \bigstar : \square}{}$
+		\item $\infer{\Gamma, x : \alpha \vdash x : \alpha}{\Gamma \vdash \alpha : \sigma}$, $x \not\in \Gamma$
+		\item $\infer{\Gamma \vdash FG : \beta [x := \sigma]}{\Gamma \vdash F : \Pi x^{\alpha}. \beta & \Gamma \vdash \sigma : \alpha}$
+		\item $\infer{\Gamma \vdash A : \alpha'}{\Gamma \vdash A : \alpha & \Gamma \vdash \alpha' : \sigma}$, $\alpha =_{\beta} \alpha'$
+		\item $\infer{\Gamma, x : \alpha \vdash A : \beta}{\Gamma \vdash A : \beta & \Gamma \vdash \alpha : \sigma}$, $x \not\in \Gamma$
+		\item $\infer{\Gamma \vdash \lambda x^{\alpha}. P : \Pi x^{\alpha}. \beta}{\Gamma \vdash \alpha : \sigma_1 & \Gamma, x : \alpha \vdash P : \beta & \Gamma, x : \alpha \vdash \beta : \sigma_2}$, $\sigma_1, \sigma_2 \in \{ <\bigstar, \square>, <\bigstar, \bigstar>, <\square, \square>, <\square, \bigstar> \}$
+		\item $\infer{\Gamma \vdash \Pi x^{\alpha}. \beta : \sigma_2}{\Gamma \vdash \alpha : \sigma_1 & \Gamma, x : \alpha \vdash \beta : \sigma_2}$, $\sigma_1, \sigma_2 \in \{ <\bigstar, \square>, <\bigstar, \bigstar>, <\square, \square>, <\square, \bigstar> \}$
 	\end{itemize}
 \end{document}
