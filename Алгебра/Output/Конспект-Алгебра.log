@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.8.6)  6 AUG 2025 12:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.8.12)  19 AUG 2025 10:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **./Конспект-Алгебра.tex
 (Конспект-Алгебра.tex
 LaTeX2e <2025-06-01> patch level 1
-L3 programming layer <2025-07-19>
+L3 programming layer <2025-07-20>
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
@@ -30,7 +30,7 @@ Package: inputenc 2024/02/08 v1.3d Input encoding file
 \inpenc@posthook=\toks18
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
-Package: babel 2025/07/13 v25.11 The multilingual framework for LuaLaTeX, pdfLa
+Package: babel 2025/08/03 v25.12 The multilingual framework for LuaLaTeX, pdfLa
 TeX and XeLaTeX
 \babel@savecnt=\count283
 LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input li
@@ -988,7 +988,7 @@ Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
 \every@verbatim=\toks52
 \verbatim@line=\toks53
 \verbatim@in@stream=\read4
-))
+)
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
 Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
 
@@ -1118,6 +1118,36 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip61
 )
+(C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/stmaryrd\stmaryrd.sty
+Package: stmaryrd 1994/03/03 St Mary's Road symbol package
+\symstmry=\mathgroup7
+LaTeX Font Info:    Overwriting symbol font `stmry' in version `bold'
+(Font)                  U/stmry/m/n --> U/stmry/b/n on input line 89.
+)) (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/lkproof\proof.sty
+\inferLineSkip=\dimen304
+\inferLabelSkip=\dimen305
+\@LeftOffset=\dimen306
+\@RightOffset=\dimen307
+\@SavedLeftOffset=\dimen308
+\UpperWidth=\dimen309
+\LowerWidth=\dimen310
+\LowerHeight=\dimen311
+\UpperLeftOffset=\dimen312
+\UpperRightOffset=\dimen313
+\UpperCenter=\dimen314
+\LowerCenter=\dimen315
+\UpperAdjust=\dimen316
+\RuleAdjust=\dimen317
+\LowerAdjust=\dimen318
+\RuleWidth=\dimen319
+\HLabelAdjust=\dimen320
+\VLabelAdjust=\dimen321
+\WidthAdjust=\dimen322
+\@UpperPart=\box78
+\@LowerPart=\box79
+\@LabelPart=\box80
+\ResultBox=\box81
+)
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 tex.def
 File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
@@ -1156,13 +1186,13 @@ LaTeX Info: Redefining \th on input line 5.
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count351
-\scratchdimen=\dimen304
-\scratchbox=\box78
+\scratchdimen=\dimen323
+\scratchbox=\box82
 \nofMPsegments=\count352
 \nofMParguments=\count353
 \everyMPshowfont=\toks54
 \MPscratchCnt=\count354
-\MPscratchDim=\dimen305
+\MPscratchDim=\dimen324
 \MPnumerator=\count355
 \makeMPintoPDFobject=\count356
 \everyMPtoPDFconversion=\toks55
@@ -1244,7 +1274,11 @@ LaTeX Font Info:    Trying to load font information for U+wasy on input line 3.
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/wasysym\uwasy.fd
 File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
-))
+)
+LaTeX Font Info:    Trying to load font information for U+stmry on input line 3
+.
+
+(C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/stmaryrd\ustmry.fd))
 \tf@toc=\write5
 \openout5 = `Конспект-Алгебра.toc'.
 
@@ -1275,18 +1309,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 44--56
 �лгебра.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
-L3 programming layer <2025-07-19>
+L3 programming layer <2025-07-20>
  ***********
 Package rerunfilecheck Info: File `Конспект-Алгебра.out' has not
  changed.
 (rerunfilecheck)             Checksum: FB699BEBC39202C5941BD663929C9303;1364.
  ) 
 Here is how much of TeX's memory you used:
- 34448 strings out of 468149
- 792775 string characters out of 5431083
- 1358366 words of memory out of 5000000
- 62441 multiletter control sequences out of 15000+600000
- 634376 words of font info for 58 fonts, out of 8000000 for 9000
+ 34776 strings out of 468134
+ 797208 string characters out of 5430740
+ 1361799 words of memory out of 5000000
+ 62770 multiletter control sequences out of 15000+600000
+ 634988 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  89i,12n,94p,1587b,2332s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx12

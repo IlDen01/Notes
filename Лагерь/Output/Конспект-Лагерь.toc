@@ -5,6 +5,7 @@
 \contentsline {subsection}{\numberline {1.3}Матрицы.}{3}{subsection.1.3}%
 \contentsline {subsection}{\numberline {1.4}Системы линейных уравнений.}{5}{subsection.1.4}%
 \contentsline {subsection}{\numberline {1.5}Определитель.}{6}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.6}Метод Крамера.}{6}{subsection.1.6}%
 \contentsline {section}{\numberline {2}Теория типов.}{7}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Основы математической логики. Классическое исчисление высказываний.}{7}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Интуиционистское исчисление высказываний. Естественный вывод.}{8}{subsection.2.2}%
@@ -14,3 +15,4 @@
 \contentsline {subsection}{\numberline {2.6}Нормализуемость $\lambda _{\rightarrow }$. Система F.}{11}{subsection.2.6}%
 \contentsline {subsection}{\numberline {2.7}Экзистенциальные типы. Система HM.}{11}{subsection.2.7}%
 \contentsline {subsection}{\numberline {2.8}Обобщенная система типов.}{12}{subsection.2.8}%
+\contentsline {subsection}{\numberline {2.9}Гомотопическая теория типов.}{12}{subsection.2.9}%

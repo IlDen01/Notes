@@ -329,6 +329,11 @@
 		\end{enumerate}
 	\end{quote}
 	\textbf{Утв.} $\det(AB) = \det(A) \cdot \det(B)$.
+	\subsection{Метод Крамера.}
+	\textbf{Метод Крамера.} Дана матрица $A$ размера $n \times n$ с $\det(A) \not= 0$, $X$~--- столбец неизвестных $(x_1, \dots, x_n)$ и $B$~--- столбец свободных членов $(b_1, \dots, b_n)$. Тогда решение по методу Крамера выглядит вот так:
+	\begin{quote}
+		Каждый неизвестный $x_i$ вычисляется по формуле $x_i = \frac{\det(A_i)}{\det(A)}$, где $\det(A)$~--- определитель основной матрицы, $\det(A_i)$~--- определитель матрицы, полученной заменой $i$-го столбца матрицы $A$ на столбец $B$.
+	\end{quote}
 	
 	
 	
@@ -644,4 +649,5 @@
 		\item $\infer{\Gamma \vdash \lambda x^{\alpha}. P : \Pi x^{\alpha}. \beta}{\Gamma \vdash \alpha : \sigma_1 & \Gamma, x : \alpha \vdash P : \beta & \Gamma, x : \alpha \vdash \beta : \sigma_2}$, $\sigma_1, \sigma_2 \in \{ <\bigstar, \square>, <\bigstar, \bigstar>, <\square, \square>, <\square, \bigstar> \}$
 		\item $\infer{\Gamma \vdash \Pi x^{\alpha}. \beta : \sigma_2}{\Gamma \vdash \alpha : \sigma_1 & \Gamma, x : \alpha \vdash \beta : \sigma_2}$, $\sigma_1, \sigma_2 \in \{ <\bigstar, \square>, <\bigstar, \bigstar>, <\square, \square>, <\square, \bigstar> \}$
 	\end{itemize}
+	\subsection{Гомотопическая теория типов.}
 \end{document}
