@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.8.12)  19 AUG 2025 11:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.8.12)  22 AUG 2025 12:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -394,20 +394,35 @@ Package: wasysym 2020/01/19 v2.4 Wasy-2 symbol support package
 LaTeX Font Info:    Overwriting symbol font `wasy' in version `bold'
 (Font)                  U/wasy/m/n --> U/wasy/b/n on input line 93.
 )
+(C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/amscls\amsthm.sty
+Package: amsthm 2020/05/29 v2.20.6
+\thm@style=\toks24
+\thm@bodyfont=\toks25
+\thm@headfont=\toks26
+\thm@notefont=\toks27
+\thm@headpunct=\toks28
+\thm@preskip=\skip54
+\thm@postskip=\skip55
+\thm@headsep=\skip56
+\dth@everypar=\toks29
+)
+\c@theorem=\count297
+\c@corollary=\count298
+
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/wrapfig\wrapfig.sty
 \wrapoverhang=\dimen159
 \WF@size=\dimen160
-\c@WF@wrappedlines=\count297
+\c@WF@wrappedlines=\count299
 \WF@box=\box55
-\WF@everypar=\toks24
+\WF@everypar=\toks30
 Package: wrapfig 2003/01/31  v 3.6
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count298
-\float@exts=\toks25
+\c@float@type=\count300
+\float@exts=\toks31
 \float@box=\box56
-\@float@everytoks=\toks26
+\@float@everytoks=\toks32
 \@floatcapt=\box57
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
@@ -415,7 +430,7 @@ Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
-\KV@toks@=\toks27
+\KV@toks@=\toks33
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
 Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
@@ -442,7 +457,7 @@ sty
 y
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil
 -common.tex
-\pgfutil@everybye=\toks28
+\pgfutil@everybye=\toks34
 \pgfutil@tempdima=\dimen163
 \pgfutil@tempdimb=\dimen164
 )
@@ -467,12 +482,12 @@ Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeys
 .code.tex
-\pgfkeys@pathtoks=\toks29
-\pgfkeys@temptoks=\toks30
+\pgfkeys@pathtoks=\toks35
+\pgfkeys@temptoks=\toks36
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeys
 libraryfiltered.code.tex
-\pgfkeys@tmptoks=\toks31
+\pgfkeys@tmptoks=\toks37
 ))
 \pgf@x=\dimen165
 \pgf@y=\dimen166
@@ -486,14 +501,14 @@ libraryfiltered.code.tex
 \pgf@yd=\dimen174
 \w@pgf@writea=\write3
 \r@pgf@reada=\read3
-\c@pgf@counta=\count299
-\c@pgf@countb=\count300
-\c@pgf@countc=\count301
-\c@pgf@countd=\count302
-\t@pgf@toka=\toks32
-\t@pgf@tokb=\toks33
-\t@pgf@tokc=\toks34
-\pgf@sys@id@count=\count303
+\c@pgf@counta=\count301
+\c@pgf@countb=\count302
+\c@pgf@countc=\count303
+\c@pgf@countd=\count304
+\t@pgf@toka=\toks38
+\t@pgf@tokb=\toks39
+\t@pgf@tokc=\toks40
+\pgf@sys@id@count=\count305
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf.c
 fg
@@ -512,8 +527,8 @@ File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
 ssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count304
-\pgfsyssoftpath@bigbuffer@items=\count305
+\pgfsyssoftpath@smallbuffer@items=\count306
+\pgfsyssoftpath@bigbuffer@items=\count307
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
 sprotocol.code.tex
@@ -548,11 +563,11 @@ code.tex)
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathparse
 r.code.tex
 \pgfmath@dimen=\dimen175
-\pgfmath@count=\count306
+\pgfmath@count=\count308
 \pgfmath@box=\box59
-\pgfmath@toks=\toks35
-\pgfmath@stack@operand=\toks36
-\pgfmath@stack@operation=\toks37
+\pgfmath@toks=\toks41
+\pgfmath@stack@operand=\toks42
+\pgfmath@stack@operation=\toks43
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunct
 ions.code.tex)
@@ -576,7 +591,7 @@ ions.integerarithmetics.code.tex)
 code.tex)
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfloat
 .code.tex
-\c@pgfmathroundto@lastzeros=\count307
+\c@pgfmathroundto@lastzeros=\count309
 ))
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfint.code.
 tex)
@@ -616,7 +631,7 @@ File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfpic=\box60
 \pgf@hbox=\box61
 \pgf@layerbox@main=\box62
-\pgf@picture@serial@count=\count308
+\pgf@picture@serial@count=\count310
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
 egraphicstate.code.tex
@@ -651,8 +666,8 @@ File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
 eshade.code.tex
 File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@max=\dimen199
-\pgf@sys@shading@range@num=\count309
-\pgf@shadingcount=\count310
+\pgf@sys@shading@range@num=\count311
+\pgf@shadingcount=\count312
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
 eimage.code.tex
@@ -712,8 +727,8 @@ code.tex
 Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
 \pgffor@iter=\dimen258
 \pgffor@skip=\dimen259
-\pgffor@stack=\toks38
-\pgffor@toks=\toks39
+\pgffor@stack=\toks44
+\pgffor@toks=\toks45
 ))
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
 z\tikz.code.tex
@@ -722,7 +737,7 @@ Package: tikz 2023-01-15 v3.1.10 (3.1.10)
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibr
 aryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count311
+\pgf@plot@mark@count=\count313
 \pgfplotmarksize=\dimen260
 )
 \tikz@lastx=\dimen261
@@ -737,19 +752,19 @@ File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \tikz@figbox@bg=\box66
 \tikz@tempbox=\box67
 \tikz@tempbox@bg=\box68
-\tikztreelevel=\count312
-\tikznumberofchildren=\count313
-\tikznumberofcurrentchild=\count314
-\tikz@fig@count=\count315
+\tikztreelevel=\count314
+\tikznumberofchildren=\count315
+\tikznumberofcurrentchild=\count316
+\tikz@fig@count=\count317
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodule
 matrix.code.tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count316
-\pgfmatrixcurrentcolumn=\count317
-\pgf@matrix@numberofcolumns=\count318
+\pgfmatrixcurrentrow=\count318
+\pgfmatrixcurrentcolumn=\count319
+\pgf@matrix@numberofcolumns=\count320
 )
-\tikz@expandcount=\count319
+\tikz@expandcount=\count321
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
 z/libraries\tikzlibrarytopaths.code.tex
@@ -784,12 +799,12 @@ Package: pgfplots 2021/05/15 v1.18.1 Data Visualization (1.18.1)
 e.tex
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotscore
 .code.tex
-\t@pgfplots@toka=\toks40
-\t@pgfplots@tokb=\toks41
-\t@pgfplots@tokc=\toks42
+\t@pgfplots@toka=\toks46
+\t@pgfplots@tokb=\toks47
+\t@pgfplots@tokc=\toks48
 \pgfplots@tmpa=\dimen269
-\c@pgfplots@coordindex=\count320
-\c@pgfplots@scanlineindex=\count321
+\c@pgfplots@coordindex=\count322
+\c@pgfplots@scanlineindex=\count323
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/sys\pgfplots
 sysgeneric.code.tex))
@@ -800,9 +815,9 @@ ib\pgfplotsoldpgfsupp_loader.code.tex
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibr
 aryfpu.code.tex)
 Package pgfplots: loading complementary utilities for your pgf version...
-\t@pgf@toka=\toks43
-\t@pgf@tokb=\toks44
-\t@pgf@tokc=\toks45
+\t@pgf@toka=\toks49
+\t@pgf@tokb=\toks50
+\t@pgf@tokc=\toks51
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/oldpgfcompat
 ib\pgfplotsoldpgfsupp_pgfutil-common-lists.tex))
@@ -814,14 +829,14 @@ e\pgfplotsliststructure.code.tex)
 e\pgfplotsliststructureext.code.tex)
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructur
 e\pgfplotsarray.code.tex
-\c@pgfplotsarray@tmp=\count322
+\c@pgfplotsarray@tmp=\count324
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructur
 e\pgfplotsmatrix.code.tex)
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/numtable\pgf
 plotstableshared.code.tex
-\c@pgfplotstable@counta=\count323
-\t@pgfplotstable@a=\toks46
+\c@pgfplotstable@counta=\count325
+\t@pgfplotstable@a=\toks52
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructur
 e\pgfplotsdeque.code.tex)
@@ -833,7 +848,7 @@ sbinary.data.code.tex))
 sutil.verb.code.tex)
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\pgflibr
 arypgfplots.surfshading.code.tex
-\c@pgfplotslibrarysurf@no=\count324
+\c@pgfplotslibrarysurf@no=\count326
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/sys\pgflibra
 rypgfplots.surfshading.pgfsys-pdftex.def)))
@@ -870,7 +885,7 @@ decorations.code.tex
 \pgfdecoratedinputsegmentcompleteddistance=\dimen272
 \pgfdecoratedinputsegmentremainingdistance=\dimen273
 \pgf@decorate@distancetomove=\dimen274
-\pgf@decorate@repeatstate=\count325
+\pgf@decorate@repeatstate=\count327
 \pgfdecorationsegmentamplitude=\dimen275
 \pgfdecorationsegmentlength=\dimen276
 )
@@ -886,7 +901,7 @@ z/libraries\tikzlibrarydecorations.pathreplacing.code.tex
 ions\pgflibrarydecorations.pathreplacing.code.tex))
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\tikzlib
 rarypgfplots.contourlua.code.tex)
-\pgfplots@numplots=\count326
+\pgfplots@numplots=\count328
 \pgfplots@xmin@reg=\dimen277
 \pgfplots@xmax@reg=\dimen278
 \pgfplots@ymin@reg=\dimen279
@@ -910,9 +925,9 @@ Package: array 2025/06/08 v2.6j Tabular extension package (FMi)
 \col@sep=\dimen283
 \ar@mcellbox=\box70
 \extrarowheight=\dimen284
-\NC@list=\toks47
-\extratabsurround=\skip54
-\backup@length=\skip55
+\NC@list=\toks53
+\extratabsurround=\skip57
+\backup@length=\skip58
 \ar@cellbox=\box71
 )
 \TX@col@width=\dimen285
@@ -920,36 +935,36 @@ Package: array 2025/06/08 v2.6j Tabular extension package (FMi)
 \TX@old@col=\dimen287
 \TX@target=\dimen288
 \TX@delta=\dimen289
-\TX@cols=\count327
-\TX@ftn=\toks48
+\TX@cols=\count329
+\TX@ftn=\toks54
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/xltabular\xltabular.sty
 Package: xltabular 2025/02/28 v0.2i `xltabular' package (hv,RN)
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
 Package: etoolbox 2025/02/11 v2.5l e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count328
+\etb@tempcnta=\count330
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/ltablex\ltablex.sty
 Package: ltablex 2014/08/13 v1.1 Modified tabularx
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/tools\longtable.sty
 Package: longtable 2024-12-18 v4.23 Multi-page Table package (DPC)
-\LTleft=\skip56
-\LTright=\skip57
-\LTpre=\skip58
-\LTpost=\skip59
-\LTchunksize=\count329
+\LTleft=\skip59
+\LTright=\skip60
+\LTpre=\skip61
+\LTpost=\skip62
+\LTchunksize=\count331
 \LTcapwidth=\dimen290
 \LT@head=\box72
 \LT@firsthead=\box73
 \LT@foot=\box74
 \LT@lastfoot=\box75
 \LT@gbox=\box76
-\LT@cols=\count330
-\LT@rows=\count331
-\c@LT@tables=\count332
-\c@LT@chunks=\count333
-\LT@p@ftn=\toks49
+\LT@cols=\count332
+\LT@rows=\count333
+\c@LT@tables=\count334
+\c@LT@chunks=\count335
+\LT@p@ftn=\toks55
 )))
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
@@ -960,9 +975,9 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
 ))
-\Gm@cnth=\count334
-\Gm@cntv=\count335
-\c@Gm@tempcnt=\count336
+\Gm@cnth=\count336
+\Gm@cntv=\count337
+\c@Gm@tempcnt=\count338
 \Gm@bindingoffset=\dimen291
 \Gm@wd@mp=\dimen292
 \Gm@odd@mp=\dimen293
@@ -971,22 +986,22 @@ Package: iftex 2024/12/12 v1.0g TeX engine tests
 \Gm@layoutheight=\dimen296
 \Gm@layouthoffset=\dimen297
 \Gm@layoutvoffset=\dimen298
-\Gm@dimlist=\toks50
+\Gm@dimlist=\toks56
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
 Package: enumitem 2025/02/06 v3.11 Customized lists
-\labelindent=\skip60
+\labelindent=\skip63
 \enit@outerparindent=\dimen299
-\enit@toks=\toks51
+\enit@toks=\toks57
 \enit@inbox=\box77
-\enit@count@id=\count337
-\enitdp@description=\count338
+\enit@count@id=\count339
+\enitdp@description=\count340
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/tools\verbatim.sty
 Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks52
-\verbatim@line=\toks53
+\every@verbatim=\toks58
+\verbatim@line=\toks59
 \verbatim@in@stream=\read4
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
@@ -1035,7 +1050,7 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count339
+\c@section@level=\count341
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.s
 ty
@@ -1043,8 +1058,8 @@ Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 )
 )
 \@linkdim=\dimen300
-\Hy@linkcounter=\count340
-\Hy@pagecounter=\count341
+\Hy@linkcounter=\count342
+\Hy@pagecounter=\count343
  (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
 File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -1052,7 +1067,7 @@ Now handling font encoding PD1 ...
 ) (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count342
+\Hy@SavedSpaceFactor=\count344
  (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
 File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -1067,7 +1082,7 @@ Package hyperref Info: Plain pages OFF on input line 4210.
 Package hyperref Info: Backreferencing OFF on input line 4215.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4462.
-\c@Hy@tempcnt=\count343
+\c@Hy@tempcnt=\count345
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip18
@@ -1084,7 +1099,7 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count344
+\Fld@menulength=\count346
 \Field@Width=\dimen302
 \Fld@charsize=\dimen303
 Package hyperref Info: Hyper figures OFF on input line 6078.
@@ -1094,16 +1109,16 @@ Package hyperref Info: backreferencing OFF on input line 6093.
 Package hyperref Info: Link coloring ON on input line 6096.
 Package hyperref Info: Link coloring with OCG OFF on input line 6103.
 Package hyperref Info: PDF/A mode OFF on input line 6108.
-\Hy@abspage=\count345
-\c@Item=\count346
-\c@Hfootnote=\count347
+\Hy@abspage=\count347
+\c@Item=\count348
+\c@Hfootnote=\count349
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
 File: hpdftex.def 2025-07-12 v7.01o Hyperref driver for pdfTeX
-\Fld@listcount=\count348
-\c@bookmark@seq@number=\count349
+\Fld@listcount=\count350
+\c@bookmark@seq@number=\count351
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfil
 echeck.sty
@@ -1116,7 +1131,7 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 84.
 )
-\Hy@SectionHShift=\skip61
+\Hy@SectionHShift=\skip64
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/stmaryrd\stmaryrd.sty
 Package: stmaryrd 1994/03/03 St Mary's Road symbol package
@@ -1151,7 +1166,7 @@ LaTeX Font Info:    Overwriting symbol font `stmry' in version `bold'
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 tex.def
 File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count350
+\l__color_backend_stack_int=\count352
 )
 (C:\Users\ilden\Documents\School\Notes\Р›Р°РіРµСЂСЊ\Output\РљРѕРЅСЃРїРµРєС‚-Р›Р
 °РіРµСЂСЊ.aux
@@ -1185,17 +1200,17 @@ LaTeX Info: Redefining \th on input line 5.
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count351
+\scratchcounter=\count353
 \scratchdimen=\dimen323
 \scratchbox=\box82
-\nofMPsegments=\count352
-\nofMParguments=\count353
-\everyMPshowfont=\toks54
-\MPscratchCnt=\count354
+\nofMPsegments=\count354
+\nofMParguments=\count355
+\everyMPshowfont=\toks60
+\MPscratchCnt=\count356
 \MPscratchDim=\dimen324
-\MPnumerator=\count355
-\makeMPintoPDFobject=\count356
-\everyMPtoPDFconversion=\toks55
+\MPnumerator=\count357
+\makeMPintoPDFobject=\count358
+\everyMPtoPDFconversion=\toks61
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
 ase.sty
@@ -1287,107 +1302,126 @@ LaTeX Font Info:    Trying to load font information for U+stmry on input line 3
 [1
 
 {C:/Users/ilden/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-Overfull \hbox (5.23067pt too wide) in paragraph at lines 67--94
+
+[2]
+Overfull \hbox (5.23067pt too wide) in paragraph at lines 110--113
 \T2A/cmr/m/n/10 Возьмем ми-ни-маль-ную (по вклю-че-нию) по-рож-да-ю-щую си-сте-
 му. $\OML/cmm/m/it/10 v[]; [] ; v[]$\T2A/cmr/m/n/10 . Пусть ока-за-лась ли-ней-
 но за-ви-си-мой. $[] \OML/cmm/m/it/10 []v[] \OT1/cmr/m/n/10 =
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 67--94
-
- []
-
-
-
-[2]
 
 [3]
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 244--263
-
- []
-
-
 
 [5]
-Overfull \hbox (16.56279pt too wide) in paragraph at lines 313--314
-[]\T2A/cmr/m/n/10 Полилинейная: $[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v[] \OT1/c
-mr/m/n/10 + \OML/cmm/m/it/10 u[]; v[]; [] ; v[]\OT1/cmr/m/n/10 ) = [](\OML/cmm/
-m/it/10 v[]; v[]; [] ; v[]\OT1/cmr/m/n/10 ) + [](\OML/cmm/m/it/10 u[]; v[]; [] 
-; v[]\OT1/cmr/m/n/10 )$\T2A/cmr/m/n/10 , $[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 
-v[]; v[]; [] ; v[]\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10  []\OT1/cmr/m/n/10 (\OM
-L/cmm/m/it/10 v[]; v[]; [] ; v[]\OT1/cmr/m/n/10 )$\T2A/cmr/m/n/10 . 
+Overfull \hbox (17.31885pt too wide) in paragraph at lines 375--376
+[]\T2A/cmr/m/it/10 Полилинейная: $[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v[] \OT1/
+cmr/m/n/10 + \OML/cmm/m/it/10 u[]; v[]; [] ; v[]\OT1/cmr/m/n/10 ) = [](\OML/cmm
+/m/it/10 v[]; v[]; [] ; v[]\OT1/cmr/m/n/10 ) + [](\OML/cmm/m/it/10 u[]; v[]; []
+ ; v[]\OT1/cmr/m/n/10 )$\T2A/cmr/m/it/10 , $[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10
+ v[]; v[]; [] ; v[]\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10  []\OT1/cmr/m/n/10 (\
+OML/cmm/m/it/10 v[]; v[]; [] ; v[]\OT1/cmr/m/n/10 )$\T2A/cmr/m/it/10 . 
  []
 
 
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 398--412
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 504--518
 
  []
 
 
 
-[7]
-
 [8]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 464.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lambda' on input line 464.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 464.
-
-
 
 [9]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 561.
+(hyperref)                removing `math shift' on input line 574.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lambda' on input line 561.
+(hyperref)                removing `\lambda' on input line 574.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 561.
+(hyperref)                removing `math shift' on input line 574.
 
 
 
 [10]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 579.
+(hyperref)                removing `math shift' on input line 671.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lambda' on input line 579.
+(hyperref)                removing `\lambda' on input line 671.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 579.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\rightarrow' on input line 579.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 579.
+(hyperref)                removing `math shift' on input line 671.
 
 
 
 [11]
 
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 689.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lambda' on input line 689.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 689.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\rightarrow' on input line 689.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 689.
+
+
+
 [12]
+
+[13]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 763.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\backslash' on input line 763.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 763.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 763.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\backslash' on input line 763.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 763.
+
+
+
+[14]
 (C:\Users\ilden\Documents\School\Notes\Р›Р°РіРµСЂСЊ\Output\РљРѕРЅСЃРїРµРєС‚-Р›Р
 °РіРµСЂСЊ.aux)
  ***********
@@ -1396,42 +1430,44 @@ L3 programming layer <2025-07-20>
  ***********
 Package rerunfilecheck Info: File `РљРѕРЅСЃРїРµРєС‚-Р›Р°РіРµСЂСЊ.out' has not c
 hanged.
-(rerunfilecheck)             Checksum: 9D466BF7BFE8A4887532097796E0E2B9;4378.
+(rerunfilecheck)             Checksum: D0303667A9B81A1B00B7D9BD36A62967;5357.
  ) 
 Here is how much of TeX's memory you used:
- 34384 strings out of 468134
- 784158 string characters out of 5430740
- 1287875 words of memory out of 5000000
- 62319 multiletter control sequences out of 15000+600000
- 642513 words of font info for 87 fonts, out of 8000000 for 9000
+ 34569 strings out of 468134
+ 787004 string characters out of 5430740
+ 1291501 words of memory out of 5000000
+ 62446 multiletter control sequences out of 15000+600000
+ 645135 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 89i,15n,94p,1585b,781s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 89i,15n,94p,1826b,707s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/public/wasy/dpi600\wasy
 10.pk> <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\
 tcrm1000.pk> <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi
-600\labx1200.pk> <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a
-/dpi600\larm1000.pk> <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh
--t2a/dpi600\labx1000.pk> <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/l
-h/lh-t2a/dpi600\labx1440.pk><C:/Users/ilden/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/ilden/AppData/Local/Programs/MiK
-TeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/ilden/AppData/Local/Pro
-grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/ilden/AppData/
-Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/ilden/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/User
-s/ilden/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-<C:/Users/ilden/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
-r5.pfb><C:/Users/ilden/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
-s/cm/cmr7.pfb><C:/Users/ilden/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-amsfonts/cm/cmsy10.pfb><C:/Users/ilden/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmsy7.pfb><C:/Users/ilden/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/ilden/AppData/Local/Programs/M
-iKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/ilden/AppData/Lo
-cal/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/il
-den/AppData/Local/Programs/MiKTeX/fonts/type1/public/hoekwater/stmary10.pfb>
+600\lati1000.pk> <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a
+/dpi600\labx1200.pk> <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh
+-t2a/dpi600\larm1000.pk> <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/l
+h/lh-t2a/dpi600\labx1000.pk> <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfo
+ur/lh/lh-t2a/dpi600\labx1440.pk><C:/Users/ilden/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/ilden/AppData/Local/Programs
+/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/ilden/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/ilden/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/il
+den/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/
+Users/ilden/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.
+pfb><C:/Users/ilden/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmr5.pfb><C:/Users/ilden/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmr7.pfb><C:/Users/ilden/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmsy10.pfb><C:/Users/ilden/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/ilden/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/ilden/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/ilden/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/User
+s/ilden/AppData/Local/Programs/MiKTeX/fonts/type1/public/hoekwater/stmary10.pfb
+>
 Output written on C:\Users\ilden\Documents\School\Notes\Р›Р°РіРµСЂСЊ\Output\РљР
-ѕРЅСЃРїРµРєС‚-Р›Р°РіРµСЂСЊ.pdf (12 pages, 289388 bytes).
+ѕРЅСЃРїРµРєС‚-Р›Р°РіРµСЂСЊ.pdf (14 pages, 333480 bytes).
 PDF statistics:
- 553 PDF objects out of 1000 (max. 8388607)
- 95 named destinations out of 1000 (max. 500000)
- 149 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 712 PDF objects out of 1000 (max. 8388607)
+ 147 named destinations out of 1000 (max. 500000)
+ 173 words of extra memory for PDF output out of 10000 (max. 10000000)
 
