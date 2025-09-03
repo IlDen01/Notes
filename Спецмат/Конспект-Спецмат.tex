@@ -1,0 +1,68 @@
+\documentclass{article}
+
+\input{C:/Users/ilden/Documents/School/TeX памятка/header.tex}
+
+\begin{document}
+	\tableofcontents
+	\setcounter{tocdepth}{3}
+	\newpage
+	\section{Теория групп.}
+	\begin{definition}
+		\label{group-def}
+		Группа~--- множество с одной операцией $*$: $G \times G \rightarrow G$ со следующими свойствами:
+		\begin{enumerate}
+			\item $a * (b * c) = (a * b) * c$
+			\item $\exists e$: $a * e = e * a = a$
+			\item $\forall a$ $\exists a^{-1}$: $a * a^{-1} = a^{-1} * a = e$
+		\end{enumerate}
+	\end{definition}
+	\begin{example}
+		\begin{itemize}
+			\item $(\mathbb{Z}; +)$
+			\item $(\mathbb{Q}; +)$
+			\item $(\mathbb{R}; +)$
+			\item $(\mathbb{C}; +)$
+			\item $(V; +)$
+			\item $(\mathbb{R}_+; \cdot)$
+			\item $(\mathbb{R} \setminus \{ 0 \}; \cdot)$
+			\item $(\mathbb{Z}_n; +)$
+		\end{itemize}
+	\end{example}
+	\begin{definition}
+		Пусть $H$~--- группа, $H \subset G$. Говорим, что $H$ является подгруппой (пишем $H < G$), если $H$ является группой относительно операции в $G$. Чтобы проверить, что $H$ является подгруппой, необходимо убедиться, что произведение двух элементов из $H$ принадлежит $H$, и элементы, обратные к $H$, тоже лежат в $H$.
+	\end{definition}
+	\begin{definition}
+		Абелева группа~--- \hyperref[group-def]{группа} с коммутативностью.
+	\end{definition}
+	\begin{definition}
+		Говорят, что группа $G$ порождается элементами $\{ x_i \}$, если любой элемент из $G$ можно представить как произведение нескольких $x_i$ и обратных к ним. \\
+		Группа называется циклической, если она порождена одним элементом.
+	\end{definition}
+	\begin{definition}
+		Пусть $G$~--- группа, $H < G$. Введем два отношения эквивалентности на $G$: $x \sim_1 y$ если $xy^{-1} \in H$, $x \sim_2 y$ если $x^{-1}y \in H$.
+	\end{definition}
+	\begin{definition}
+		Пусть теперь группа $G$ конечна, $H < G$. Количество классов эквивалентности $\sim_1$ называется индексом $G$ по $H$ и обозначается $[G : H]$.
+	\end{definition}
+	\begin{definition}
+		Пусть $x \in G$. Порядком элемента $x$ называется наименьшее натуральное число $n$, такое что $x^n = e$, где $e$~--- нейтральный элемент. Обозначение: $ord(x)$. Если такого $n$ не существует, то пишем $ord(x) = + \infty$.
+	\end{definition}
+	\begin{definition}
+		Пусть $X, Y \subset G$~--- подмножества группы. Их произведением будем называть множество $\{ xy | x \in X, y \in Y \}$.
+	\end{definition}
+	\begin{definition}
+		Полная линейна группа $GL(n, F)$~--- это множество всех квадратных матриц размера $n \times n$ с элементами из поля $F$, которые являются обратимыми ($\det \not= 0$), вместе с операцией матричного умножения.
+	\end{definition}
+	\begin{definition}
+		Специальная линейная группа $SL(n, F)$~--- это подгруппа полной линейной группы, состоящая из всех матриц с определителем, равным $1$. То есть это множество всех матриц $A$ размера $n \times n$ над полем $F$, таких что $\det(A) = 1$.
+	\end{definition}
+	\begin{definition}
+		Специальная ортогональная группа $SO(n, F)$~--- группа из ортогональных матриц. Матрица $A$ называется ортогональной, если $A^T \times A = A \times A^T = E$.
+	\end{definition}
+	\begin{statement}
+		Пусть $X$~--- произвольное множество. Тогда множество всех биекций $f: X \rightarrow X$ образуют группу относительно композиции. Эту группу обозначают $S_X$. Если $X = \{ 1, 2, \dots, n \}$, то $S_X$ обозначают $S_n$~--- группа подстановок.
+	\end{statement}
+	\begin{theorem}[Кэли]
+		Любая группа $G$ является подгруппой в группе подстановок, а именно $S_G$.
+	\end{theorem}
+\end{document}

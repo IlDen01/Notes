@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.8.12)  3 SEP 2025 10:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.8.12)  2 SEP 2025 11:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./Конспект-Алгебра.tex
-(Конспект-Алгебра.tex
+**./Конспект-История.tex
+(Конспект-История.tex
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-07-20>
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -412,19 +412,18 @@ Package: amsthm 2020/05/29 v2.20.6
 \c@statement=\count300
 \c@definition=\count301
 \c@method=\count302
-\c@axiom=\count303
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/wrapfig\wrapfig.sty
 \wrapoverhang=\dimen159
 \WF@size=\dimen160
-\c@WF@wrappedlines=\count304
+\c@WF@wrappedlines=\count303
 \WF@box=\box55
 \WF@everypar=\toks30
 Package: wrapfig 2003/01/31  v 3.6
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count305
+\c@float@type=\count304
 \float@exts=\toks31
 \float@box=\box56
 \@float@everytoks=\toks32
@@ -506,14 +505,14 @@ libraryfiltered.code.tex
 \pgf@yd=\dimen174
 \w@pgf@writea=\write3
 \r@pgf@reada=\read3
-\c@pgf@counta=\count306
-\c@pgf@countb=\count307
-\c@pgf@countc=\count308
-\c@pgf@countd=\count309
+\c@pgf@counta=\count305
+\c@pgf@countb=\count306
+\c@pgf@countc=\count307
+\c@pgf@countd=\count308
 \t@pgf@toka=\toks38
 \t@pgf@tokb=\toks39
 \t@pgf@tokc=\toks40
-\pgf@sys@id@count=\count310
+\pgf@sys@id@count=\count309
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf.c
 fg
@@ -532,8 +531,8 @@ File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
 ssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count311
-\pgfsyssoftpath@bigbuffer@items=\count312
+\pgfsyssoftpath@smallbuffer@items=\count310
+\pgfsyssoftpath@bigbuffer@items=\count311
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
 sprotocol.code.tex
@@ -568,7 +567,7 @@ code.tex)
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathparse
 r.code.tex
 \pgfmath@dimen=\dimen175
-\pgfmath@count=\count313
+\pgfmath@count=\count312
 \pgfmath@box=\box59
 \pgfmath@toks=\toks41
 \pgfmath@stack@operand=\toks42
@@ -596,7 +595,7 @@ ions.integerarithmetics.code.tex)
 code.tex)
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfloat
 .code.tex
-\c@pgfmathroundto@lastzeros=\count314
+\c@pgfmathroundto@lastzeros=\count313
 ))
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfint.code.
 tex)
@@ -636,7 +635,7 @@ File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfpic=\box60
 \pgf@hbox=\box61
 \pgf@layerbox@main=\box62
-\pgf@picture@serial@count=\count315
+\pgf@picture@serial@count=\count314
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
 egraphicstate.code.tex
@@ -671,8 +670,8 @@ File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
 eshade.code.tex
 File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@max=\dimen199
-\pgf@sys@shading@range@num=\count316
-\pgf@shadingcount=\count317
+\pgf@sys@shading@range@num=\count315
+\pgf@shadingcount=\count316
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
 eimage.code.tex
@@ -742,7 +741,7 @@ Package: tikz 2023-01-15 v3.1.10 (3.1.10)
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibr
 aryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count318
+\pgf@plot@mark@count=\count317
 \pgfplotmarksize=\dimen260
 )
 \tikz@lastx=\dimen261
@@ -757,19 +756,19 @@ File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \tikz@figbox@bg=\box66
 \tikz@tempbox=\box67
 \tikz@tempbox@bg=\box68
-\tikztreelevel=\count319
-\tikznumberofchildren=\count320
-\tikznumberofcurrentchild=\count321
-\tikz@fig@count=\count322
+\tikztreelevel=\count318
+\tikznumberofchildren=\count319
+\tikznumberofcurrentchild=\count320
+\tikz@fig@count=\count321
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodule
 matrix.code.tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count323
-\pgfmatrixcurrentcolumn=\count324
-\pgf@matrix@numberofcolumns=\count325
+\pgfmatrixcurrentrow=\count322
+\pgfmatrixcurrentcolumn=\count323
+\pgf@matrix@numberofcolumns=\count324
 )
-\tikz@expandcount=\count326
+\tikz@expandcount=\count325
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
 z/libraries\tikzlibrarytopaths.code.tex
@@ -808,8 +807,8 @@ e.tex
 \t@pgfplots@tokb=\toks47
 \t@pgfplots@tokc=\toks48
 \pgfplots@tmpa=\dimen269
-\c@pgfplots@coordindex=\count327
-\c@pgfplots@scanlineindex=\count328
+\c@pgfplots@coordindex=\count326
+\c@pgfplots@scanlineindex=\count327
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/sys\pgfplots
 sysgeneric.code.tex))
@@ -834,13 +833,13 @@ e\pgfplotsliststructure.code.tex)
 e\pgfplotsliststructureext.code.tex)
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructur
 e\pgfplotsarray.code.tex
-\c@pgfplotsarray@tmp=\count329
+\c@pgfplotsarray@tmp=\count328
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructur
 e\pgfplotsmatrix.code.tex)
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/numtable\pgf
 plotstableshared.code.tex
-\c@pgfplotstable@counta=\count330
+\c@pgfplotstable@counta=\count329
 \t@pgfplotstable@a=\toks52
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructur
@@ -853,7 +852,7 @@ sbinary.data.code.tex))
 sutil.verb.code.tex)
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\pgflibr
 arypgfplots.surfshading.code.tex
-\c@pgfplotslibrarysurf@no=\count331
+\c@pgfplotslibrarysurf@no=\count330
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/sys\pgflibra
 rypgfplots.surfshading.pgfsys-pdftex.def)))
@@ -890,7 +889,7 @@ decorations.code.tex
 \pgfdecoratedinputsegmentcompleteddistance=\dimen272
 \pgfdecoratedinputsegmentremainingdistance=\dimen273
 \pgf@decorate@distancetomove=\dimen274
-\pgf@decorate@repeatstate=\count332
+\pgf@decorate@repeatstate=\count331
 \pgfdecorationsegmentamplitude=\dimen275
 \pgfdecorationsegmentlength=\dimen276
 )
@@ -906,7 +905,7 @@ z/libraries\tikzlibrarydecorations.pathreplacing.code.tex
 ions\pgflibrarydecorations.pathreplacing.code.tex))
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\tikzlib
 rarypgfplots.contourlua.code.tex)
-\pgfplots@numplots=\count333
+\pgfplots@numplots=\count332
 \pgfplots@xmin@reg=\dimen277
 \pgfplots@xmax@reg=\dimen278
 \pgfplots@ymin@reg=\dimen279
@@ -940,14 +939,14 @@ Package: array 2025/06/08 v2.6j Tabular extension package (FMi)
 \TX@old@col=\dimen287
 \TX@target=\dimen288
 \TX@delta=\dimen289
-\TX@cols=\count334
+\TX@cols=\count333
 \TX@ftn=\toks54
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/xltabular\xltabular.sty
 Package: xltabular 2025/02/28 v0.2i `xltabular' package (hv,RN)
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
 Package: etoolbox 2025/02/11 v2.5l e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count335
+\etb@tempcnta=\count334
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/ltablex\ltablex.sty
 Package: ltablex 2014/08/13 v1.1 Modified tabularx
@@ -958,17 +957,17 @@ Package: longtable 2024-12-18 v4.23 Multi-page Table package (DPC)
 \LTright=\skip60
 \LTpre=\skip61
 \LTpost=\skip62
-\LTchunksize=\count336
+\LTchunksize=\count335
 \LTcapwidth=\dimen290
 \LT@head=\box72
 \LT@firsthead=\box73
 \LT@foot=\box74
 \LT@lastfoot=\box75
 \LT@gbox=\box76
-\LT@cols=\count337
-\LT@rows=\count338
-\c@LT@tables=\count339
-\c@LT@chunks=\count340
+\LT@cols=\count336
+\LT@rows=\count337
+\c@LT@tables=\count338
+\c@LT@chunks=\count339
 \LT@p@ftn=\toks55
 )))
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
@@ -980,9 +979,9 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
 ))
-\Gm@cnth=\count341
-\Gm@cntv=\count342
-\c@Gm@tempcnt=\count343
+\Gm@cnth=\count340
+\Gm@cntv=\count341
+\c@Gm@tempcnt=\count342
 \Gm@bindingoffset=\dimen291
 \Gm@wd@mp=\dimen292
 \Gm@odd@mp=\dimen293
@@ -1000,8 +999,8 @@ Package: enumitem 2025/02/06 v3.11 Customized lists
 \enit@outerparindent=\dimen299
 \enit@toks=\toks57
 \enit@inbox=\box77
-\enit@count@id=\count344
-\enitdp@description=\count345
+\enit@count@id=\count343
+\enitdp@description=\count344
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/tools\verbatim.sty
 Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
@@ -1055,7 +1054,7 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count346
+\c@section@level=\count345
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.s
 ty
@@ -1063,8 +1062,8 @@ Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 )
 )
 \@linkdim=\dimen300
-\Hy@linkcounter=\count347
-\Hy@pagecounter=\count348
+\Hy@linkcounter=\count346
+\Hy@pagecounter=\count347
  (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
 File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -1072,7 +1071,7 @@ Now handling font encoding PD1 ...
 ) (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count349
+\Hy@SavedSpaceFactor=\count348
  (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
 File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -1087,7 +1086,7 @@ Package hyperref Info: Plain pages OFF on input line 4210.
 Package hyperref Info: Backreferencing OFF on input line 4215.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4462.
-\c@Hy@tempcnt=\count350
+\c@Hy@tempcnt=\count349
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip18
@@ -1104,7 +1103,7 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count351
+\Fld@menulength=\count350
 \Field@Width=\dimen302
 \Fld@charsize=\dimen303
 Package hyperref Info: Hyper figures OFF on input line 6078.
@@ -1114,16 +1113,16 @@ Package hyperref Info: backreferencing OFF on input line 6093.
 Package hyperref Info: Link coloring ON on input line 6096.
 Package hyperref Info: Link coloring with OCG OFF on input line 6103.
 Package hyperref Info: PDF/A mode OFF on input line 6108.
-\Hy@abspage=\count352
-\c@Item=\count353
-\c@Hfootnote=\count354
+\Hy@abspage=\count351
+\c@Item=\count352
+\c@Hfootnote=\count353
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
 File: hpdftex.def 2025-07-12 v7.01o Hyperref driver for pdfTeX
-\Fld@listcount=\count355
-\c@bookmark@seq@number=\count356
+\Fld@listcount=\count354
+\c@bookmark@seq@number=\count355
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfil
 echeck.sty
@@ -1171,14 +1170,14 @@ LaTeX Font Info:    Overwriting symbol font `stmry' in version `bold'
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 tex.def
 File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count357
+\l__color_backend_stack_int=\count356
 )
-(C:\Users\ilden\Documents\School\Notes\Алгебра\Output\Конспект-�
-�лгебра.aux
+(C:\Users\ilden\Documents\School\Notes\История\Output\Конспект-�
+�стория.aux
 Package babel Info: 'russian' activates 'russian' shorthands.
 (babel)             Reported on input line 8.
 )
-\openout1 = `Конспект-Алгебра.aux'.
+\openout1 = `Конспект-История.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
@@ -1205,16 +1204,16 @@ LaTeX Info: Redefining \th on input line 5.
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count358
+\scratchcounter=\count357
 \scratchdimen=\dimen323
 \scratchbox=\box82
-\nofMPsegments=\count359
-\nofMParguments=\count360
+\nofMPsegments=\count358
+\nofMParguments=\count359
 \everyMPshowfont=\toks60
-\MPscratchCnt=\count361
+\MPscratchCnt=\count360
 \MPscratchDim=\dimen324
-\MPnumerator=\count362
-\makeMPintoPDFobject=\count363
+\MPnumerator=\count361
+\makeMPintoPDFobject=\count362
 \everyMPtoPDFconversion=\toks61
 )
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
@@ -1269,16 +1268,16 @@ your preamble.
 
 Package hyperref Info: Link coloring ON on input line 5.
 
-(C:\Users\ilden\Documents\School\Notes\Алгебра\Output\Конспект-�
-�лгебра.out)
-(C:\Users\ilden\Documents\School\Notes\Алгебра\Output\Конспект-�
-�лгебра.out)
+(C:\Users\ilden\Documents\School\Notes\История\Output\Конспект-�
+�стория.out)
+(C:\Users\ilden\Documents\School\Notes\История\Output\Конспект-�
+�стория.out)
 \@outlinefile=\write4
-\openout4 = `Конспект-Алгебра.out'.
+\openout4 = `Конспект-История.out'.
 
 
-(C:\Users\ilden\Documents\School\Notes\Алгебра\Output\Конспект-�
-�лгебра.toc
+(C:\Users\ilden\Documents\School\Notes\История\Output\Конспект-�
+�стория.toc
 LaTeX Font Info:    Trying to load font information for U+msa on input line 3.
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
@@ -1300,70 +1299,44 @@ LaTeX Font Info:    Trying to load font information for U+stmry on input line 3
 
 (C:\Users\ilden\AppData\Local\Programs\MiKTeX\tex/latex/stmaryrd\ustmry.fd))
 \tf@toc=\write5
-\openout5 = `Конспект-Алгебра.toc'.
+\openout5 = `Конспект-История.toc'.
 
 
 
 [1
 
 {C:/Users/ilden/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 38--40
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 44--56
-
- []
-
-
 
 [2]
-
-[3]
-
-[4]
-
-[5]
-(C:\Users\ilden\Documents\School\Notes\Алгебра\Output\Конспект-�
-�лгебра.aux)
+(C:\Users\ilden\Documents\School\Notes\История\Output\Конспект-�
+�стория.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-07-20>
  ***********
-Package rerunfilecheck Info: File `Конспект-Алгебра.out' has not
+Package rerunfilecheck Info: File `Конспект-История.out' has not
  changed.
-(rerunfilecheck)             Checksum: FB699BEBC39202C5941BD663929C9303;1364.
+(rerunfilecheck)             Checksum: BCFB0CA6BE119E7119D163705D463071;436.
  ) 
 Here is how much of TeX's memory you used:
- 34901 strings out of 468134
- 798830 string characters out of 5430740
- 1363679 words of memory out of 5000000
- 62892 multiletter control sequences out of 15000+600000
- 634988 words of font info for 61 fonts, out of 8000000 for 9000
+ 34342 strings out of 468134
+ 784045 string characters out of 5430740
+ 1268697 words of memory out of 5000000
+ 62378 multiletter control sequences out of 15000+600000
+ 634653 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 89i,12n,94p,1587b,2332s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 89i,5n,94p,1951b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx12
-00.pk> <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\
-tcrm1000.pk> <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi
-600\larm1000.pk> <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a
-/dpi600\labx1000.pk> <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh
--t2a/dpi600\labx1440.pk><C:/Users/ilden/AppData/Local/Programs/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmmi10.pfb><C:/Users/ilden/AppData/Local/Programs/MiKTeX/
-fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/ilden/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/ilden/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/ilden/AppDat
-a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/ilden
-/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/User
-s/ilden/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb
-><C:/Users/ilden/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
-msy5.pfb><C:/Users/ilden/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
-nts/cm/cmsy7.pfb><C:/Users/ilden/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/symbols/msbm10.pfb>
-Output written on C:\Users\ilden\Documents\School\Notes\Алгебра\Output\�
-�онспект-Алгебра.pdf (5 pages, 185303 bytes).
+00.pk> <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\la
+rm1000.pk> <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi60
+0\labx1000.pk> <C:\Users\ilden\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/d
+pi600\labx1440.pk><C:/Users/ilden/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmr10.pfb><C:/Users/ilden/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmr7.pfb>
+Output written on C:\Users\ilden\Documents\School\Notes\История\Output\�
+�онспект-История.pdf (2 pages, 60921 bytes).
 PDF statistics:
- 338 PDF objects out of 1000 (max. 8388607)
- 51 named destinations out of 1000 (max. 500000)
- 69 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 164 PDF objects out of 1000 (max. 8388607)
+ 7 named destinations out of 1000 (max. 500000)
+ 37 words of extra memory for PDF output out of 10000 (max. 10000000)
 
