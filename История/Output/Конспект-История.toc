@@ -1,4 +1,0 @@
-\babel@toc {russian}{}\relax 
-\contentsline {section}{\numberline {1}Первая мировая война.}{2}{section.1}%
-\contentsline {subsection}{\numberline {1.1}До войны.}{2}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Война.}{2}{subsection.1.2}%
