@@ -360,4 +360,42 @@
 		$\delta = \min \{ y_2 - y_0; y_0 - y_1 \}$ \\
 		Тогда $\forall y \in U_{\delta} (y) \Rightarrow f^{-1} (y) \in U_{\epsilon} (f^{-1} (y_0))$ тк $y_1 < y < y_2 \Rightarrow f^{-1} (y_1) < f^{-1} (y) < f^{-1} (y_2)$
 	\end{proof}
+	\begin{statement}
+		Полезные пределы.
+		\begin{enumerate}
+			\item $\lim\limits_{x \rightarrow +\infty} (1 + \frac{1}{x})^x = e$
+			\item $\lim\limits_{x \rightarrow -\infty} (1 + \frac{1}{x})^x = e$
+			\item $\lim\limits_{x \rightarrow 0} (1 + x)^{\frac{1}{x}} = e$
+			\item $\lim\limits_{x \rightarrow 0} \frac{\ln (1 + x)}{x} = 1$
+			\item $\lim\limits_{x \rightarrow 0} \frac{e^x - 1}{x} = 1$; $\lim\limits_{x \rightarrow 0} \frac{a^x - 1}{x}$
+			\item $\lim\limits_{x \rightarrow 0} \frac{(1 + x)^m - 1}{x} = m$; $m \in \mathbb{R}$
+			\item $\lim\limits_{x \rightarrow 0} \frac{1 - \cos x}{x^2} = \frac{1}{2}$
+		\end{enumerate}
+	\end{statement}
+	\begin{statement}
+		$(1 + x)^p \simeq 1 + px$, $x \rightarrow 0$.
+	\end{statement}
+	\begin{definition}
+		Символ Ландау~--- $\overline{o}$. $\lim\limits_{x \rightarrow x_0} \frac{f(x)}{g(x)} = 0$, тогда $f(x) := \overline{o}(g(x))$, $x \rightarrow x_0$.
+	\end{definition}
+	\begin{property}
+		\begin{enumerate}
+			\item $f(x)$ называется бесконечно малой в точке $x_0$, если $f(x) = \overline{o}(1)$, $x \rightarrow x_0$.
+			\item $\overline{o}(f(x)) + \overline{o}(f(x)) = \overline{o}(f(x))$, $x \rightarrow x_0$.
+			\item $C \cdot \overline{o}(f(x)) = \overline{o}(f(x))$, $x \rightarrow x_0$.
+			\item $\overline{o}(\overline{o}(f(x))) = \overline{o}(f(x))$, $x \rightarrow x_0$.
+		\end{enumerate}
+	\end{property}
+	\begin{definition}
+		Пусть $f$, $g$ обе бесконечно большие или бесконечно малые. $\lim\limits_{x \rightarrow x_0} \frac{f(x)}{g(x)} = 1$, тогда $f(x) \sim g(x)$, $x \rightarrow x_0$.
+	\end{definition}
+	\begin{statement}
+		$f(x) \sim g(x)$, $x \rightarrow x_0$ $\Leftrightarrow$ $f(x) = g(x) + \overline{o}(g(x))$, $x \rightarrow x_0$.
+	\end{statement}
+	\begin{definition}
+		$f(x) = \underline{O}(g(x))$, $x \rightarrow x_0$, если $\exists$ $C > 0$: $|f(x)| \leqslant C|g(x)|$ в некоторой окрестности точки $x_0$.
+	\end{definition}
+	\begin{definition}
+		$f(x) \asymp g(x)$, $x \rightarrow x_0$, если $\exists$ $c_1, c_2 > 0$: $c_1|g(x)| \leqslant |f(x)| \leqslant c_2|g(x)|$ в некоторой окрестности точки $x_0$.
+	\end{definition}
 \end{document}
