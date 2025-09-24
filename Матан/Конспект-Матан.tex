@@ -168,7 +168,7 @@
 			$b_n = (1 + \frac{1}{n})^{n + 1}; b_1 = 4, b_2 = 3,...$ $b_n \downarrow$ \\
 			$b_n \geqslant 1$ \\
 			Докажем, что $b_n$ убывает. \\
-			$\frac{b_n}{b_{n + 1}} = \frac{(\frac{n + 1}{n})^{n + 1}}{(\frac{n + 2}{n + 1})^{n + 2}} = \frac{n + 1}{n})^{n + 1} \cdot \frac{n + 1}{n + 2})^{n + 2} = \frac{n + 1}{n + 2} \cdot (\frac{n^2 + 2n + 1}{n^2 + 2n})^{n + 1} = \frac{n + 1}{n + 2} \cdot (1 + \frac{1}{n^2 + 2n})^{n + 1}$ (неравенство Бернули) $> \frac{n + 1}{n + 2} \cdot (1 + \frac{n + 1}{n^2 + 2n}) = \frac{(n + 1)(n^2 + 3n + 1)}{(n + 2)(n^2 + 2n)} = \frac{n^3 + 4n^2 + 4n + 1}{n^3 + 4n^2 + 4n} > 1$. \\
+			$\frac{b_n}{b_{n + 1}} = \frac{(\frac{n + 1}{n})^{n + 1}}{(\frac{n + 2}{n + 1})^{n + 2}} = \frac{n + 1}{n})^{n + 1} \cdot \frac{n + 1}{n + 2})^{n + 2} = \frac{n + 1}{n + 2} \cdot (\frac{n^2 + 2n + 1}{n^2 + 2n})^{n + 1} = \frac{n + 1}{n + 2} \cdot (1 + \frac{1}{n^2 + 2n})^{n + 1} \overbrace{>}^{\text{Неравенство Бернулли}} \frac{n + 1}{n + 2} \cdot (1 + \frac{n + 1}{n^2 + 2n}) = \frac{(n + 1)(n^2 + 3n + 1)}{(n + 2)(n^2 + 2n)} = \frac{n^3 + 4n^2 + 4n + 1}{n^3 + 4n^2 + 4n} > 1$. \\
 			$a_n = \frac{b_n}{(1 + \frac{1}{n})}$ \\
 			$\lim\limits_{n \rightarrow \infty} = \lim \frac{b_n}{1 + \frac{1}{n}} = \frac{\lim b_n}{\lim (1 + \frac{1}{n})} = \lim b_n$~--- существует. \\
 			$e := \lim\limits_{n \rightarrow \infty} (1 + \frac{1}{n})^n \approx 2.718281828459045...$
@@ -376,6 +376,7 @@
 	\begin{statement}
 		$(1 + x)^p \simeq 1 + px$, $x \rightarrow 0$.
 	\end{statement}
+	\section{$\overline{o}$ и $\underline{O}$.}
 	\begin{definition}
 		Символ Ландау~--- $\overline{o}$.
 		\begin{enumerate}
@@ -412,4 +413,10 @@
 	\begin{proof}
 		$\lim\limits_{x \rightarrow x_0} f(x)g(x) = \lim\limits_{x \rightarrow x_0} \dfrac{f(x)}{f_1(x)} \cdot f_1(x)g(x)$.
 	\end{proof}
+	\begin{statement}
+		$(1 + t)^\alpha = 1 + \alpha t + \overline{o}(t)$, $t \rightarrow 0$.
+	\end{statement}
+	\begin{statement}
+		$e^t = 1 + t + \overline{o}(t)$, $t \rightarrow 0$.
+	\end{statement}
 \end{document}

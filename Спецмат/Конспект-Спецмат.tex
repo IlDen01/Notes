@@ -83,6 +83,37 @@
 	\begin{definition}
 		Напомним, что перестановкой мы будем называть биекцию $f: \{ 1, 2, \dots, n \} \rightarrow \{ 1, 2, \dots, n \}$. Умножение перестановок — композиция биекций. Перестановки записываются в две строчки: в первой~--- числа от $1$ до $n$ (как правило, в порядке возрастания, но не обязательно), а во второй строчке под числом $k$ стоит число $f(k)$.
 	\end{definition}
+	\subsection{Группы.}
+	\begin{theorem}
+		$G$~--- группа; $H < G$. Равносильно:
+		\begin{enumerate}
+			\item $\forall x$ $xH = Hx$
+			\item $\forall x$ $xH \subset Hx$
+			\item $\forall x$ $xH \supset Hx$
+			\item $\forall x$ $xHx^{-1} = H$
+			\item $\forall x$ $xHx^{-1} \subset H$
+			\item $\forall x$ $xHx^{-1} \supset H$
+			\item $\forall x \in G$ $\forall h \in H$ $x^{-1}hx \in H$
+		\end{enumerate}
+	\end{theorem}
+	\begin{definition}
+		Такая $H$ называется нормальной подгруппой. Обозначается $H \vartriangleleft G$.
+	\end{definition}
+	\begin{definition}
+		$xhx^{-1}$ называется сопряженным элементом $h$.
+	\end{definition}
+	\begin{statement}
+		$h \sim x^{-1}hx$~--- отношение эквивалентности.
+	\end{statement}
+	\begin{definition}
+		$H \vartriangleleft G$. Класс смежности по $H$ можно перемножать.
+	\end{definition}
+	\begin{definition}
+		Множество классов смежности образуют группу. Это называется фактор-группой $G$ по $H$. $G/H$.
+	\end{definition}
+	\begin{definition}
+		Простая группа~--- группа без нетривиальных нормальных подгрупп.
+	\end{definition}
 	\section{Теория узлов.}
 	\begin{definition}
 		Узел~--- замкнутая, несамопересекающаяся кривая (ломаная с конечным числом звеньев/гладкая кривая) в $\mathbb{R}^3$.
