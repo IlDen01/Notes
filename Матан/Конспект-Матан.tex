@@ -360,19 +360,18 @@
 		$\delta = \min \{ y_2 - y_0; y_0 - y_1 \}$ \\
 		Тогда $\forall y \in U_{\delta} (y) \Rightarrow f^{-1} (y) \in U_{\epsilon} (f^{-1} (y_0))$ тк $y_1 < y < y_2 \Rightarrow f^{-1} (y_1) < f^{-1} (y) < f^{-1} (y_2)$
 	\end{proof}
-	\begin{statement}
-		Полезные пределы.
-		\begin{enumerate}
-			\item $\lim\limits_{x \rightarrow +\infty} (1 + \frac{1}{x})^x = e$
-			\item $\lim\limits_{x \rightarrow -\infty} (1 + \frac{1}{x})^x = e$
-			\item $\lim\limits_{x \rightarrow 0} (1 + x)^{\frac{1}{x}} = e$
-			\item $\lim\limits_{x \rightarrow 0} \frac{\ln (1 + x)}{x} = 1$
-			\item $\lim\limits_{x \rightarrow 0} \frac{e^x - 1}{x} = 1$; $\lim\limits_{x \rightarrow 0} \frac{a^x - 1}{x}$
-			\item $\lim\limits_{x \rightarrow 0} \frac{(1 + x)^m - 1}{x} = m$; $m \in \mathbb{R}$
-			\item $\lim\limits_{x \rightarrow 0} \frac{1 - \cos x}{x^2} = \frac{1}{2}$
-			\item $\lim\limits_{x \rightarrow +\infty} \dfrac{n}{2^n} = 0$
-		\end{enumerate}
-	\end{statement}
+	\subsection{Замечательные пределы.}
+	\begin{enumerate}
+		\item $\lim\limits_{x \rightarrow +\infty} \left(1 + \dfrac{1}{x}\right)^x = e$
+		\item $\lim\limits_{x \rightarrow -\infty} \left(1 + \dfrac{1}{x}\right)^x = e$
+		\item $\lim\limits_{x \rightarrow 0} (1 + x)^{\frac{1}{x}} = e$
+		\item $\lim\limits_{x \rightarrow 0} \dfrac{\ln (1 + x)}{x} = 1$
+		\item $\lim\limits_{x \rightarrow 0} \dfrac{e^x - 1}{x} = 1$; $\lim\limits_{x \rightarrow 0} \dfrac{a^x - 1}{x} = \ln a$
+		\item $\lim\limits_{x \rightarrow 0} \dfrac{(1 + x)^m - 1}{x} = m$; $m \in \mathbb{R}$
+		\item $\lim\limits_{x \rightarrow 0} \dfrac{1 - \cos x}{x^2} = \dfrac{1}{2}$
+		\item $\lim\limits_{x \rightarrow 0} \dfrac{\sin x}{x} = 1$
+		\item $\lim\limits_{x \rightarrow +\infty} \dfrac{n}{2^n} = 0$
+	\end{enumerate}
 	\begin{statement}
 		$(1 + x)^p \simeq 1 + px$, $x \rightarrow 0$.
 	\end{statement}
@@ -419,4 +418,14 @@
 	\begin{statement}
 		$e^t = 1 + t + \overline{o}(t)$, $t \rightarrow 0$.
 	\end{statement}
+	\subsection{Асимптотические равенства.}
+	\begin{enumerate}
+		\item $\lim\limits_{x \rightarrow 0} \dfrac{\sin x}{x} = 1$; $\sin x \sim x$; $\sin x = x + \overline{o}(x)$
+		\item $\lim\limits_{x \rightarrow 0} \dfrac{1 - \cos x}{x^2} = \dfrac{1}{2}$; $1 - \cos x \sim \dfrac{x^2}{2}$; $\cos x = 1 - \dfrac{x^2}{2} + \overline{o}(x^2)$
+		\item $\lim\limits_{x \rightarrow 0} \dfrac{\ln (1 + x)}{x} = 1$; $\ln (1 + x) \sim x$; $\ln (1 + x) = x + \overline{o}$ \\
+		$\log_a(1 + x) \sim \dfrac{x}{\ln a}$; $\log_a(1 + x) = \dfrac{x}{\ln a} + \overline{o}(x)$
+		\item $\lim\limits_{x \rightarrow 0} \dfrac{e^x - 1}{x} = 1$; $e^x - 1 \sim x$; $e^x = 1 + x + \overline{o}(x)$ \\
+		$e^x - 1 = x + \overline{o}(x)$; $a^x = 1 + x \ln a + \overline{o}(x)$
+		\item $\lim\limits_{x \rightarrow 0} \dfrac{(1 + x)^s - 1}{x} = s$; $(1 + x)^s - 1 \sim sx$; $(1 + x)^s = 1 + sx + \overline{o}(x)$
+	\end{enumerate}
 \end{document}
