@@ -1,6 +1,9 @@
 \documentclass[12pt]{article}
 
 \input{C:/Users/ilden/Documents/School/TeX памятка/header.tex}
+\newcommand{\orb}{\text{orb}}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\cycl}{\text{cycl}}
 
 \begin{document}
 	\tableofcontents
@@ -116,6 +119,18 @@
 	\end{definition}
 	\subsubsection{Группа $S_n$.}
 	\begin{definition}
+		Перестановкой конечного множества $M$ называется биекция $\pi : M \rightarrow M $. Множество всех перестановок множества $M$ обозначается символом $S(M)$. Произведением перестановок $\pi$ и $\sigma$ называется перестановка $\sigma \cdot \pi$, соответствующая биекции $x \mapsto \sigma (\pi (x))$.
+	\end{definition}
+	\begin{definition}
+		Пусть $\pi \in S(M)$. Орбитой элемента $a \in M$ называется множество $\orb_{\pi}(a) = \{ a, \pi(a), \pi^2(a), \dots \}$. Порядком элемента $a$ называется мощность его орбиты: $\ord(a) = |\orb(a)|$.
+	\end{definition}
+	\begin{definition}
+		В предыдущей серии показано, что любая перестановка является произведением циклов. Количество циклов в перестановке обозначается $\cycl(\pi)$. Если перестановка разбивается на циклы, длины которых~--- $l_1, \dots, l_m$, то $(l_1, \dots,l_m)$ называется цикленным типом перестановки $\pi$. Перестановка, у которой цикленный тип $(2, 1, 1, \dots, 1)$, называется транспозицией.
+	\end{definition}
+	\begin{definition}
+		Перестановка $\pi$ называется четной или нечетной в зависимости от четности числа $n + \cycl(\pi)$. Знаком перестановки называется число $\text{sign}(\pi) = (-1)^{n + \cycl(\pi)}$.
+	\end{definition}
+	\begin{definition}
 		Хотим $\forall$ перестановки называть ее четной или нечетной: ЧЧ $=$ Ч, НН $=$ Ч, ЧН $=$ Н, НЧ $=$ Н и $\exists$ Ч и НЧ перестановки.
 	\end{definition}
 	\begin{definition}
@@ -127,9 +142,9 @@
 	\begin{definition}
 		Перестановка с четным количеством инверсий~--- четная, с нечетным~--- нечетная.
 	\end{definition}
-	\begin{definition}
+	\begin{note}
 		$\forall$ перестановка~--- произведение транспозиций. Четное количество транспозиций $\Leftrightarrow$ четная перестановка.
-	\end{definition}
+	\end{note}
 	\begin{definition}
 		Четная перестановка $= (n + \text{количество циклов}) \mod{2}$.
 	\end{definition}
