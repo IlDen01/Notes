@@ -117,7 +117,7 @@
 	\begin{definition}
 		Простая группа~--- группа без нетривиальных нормальных подгрупп.
 	\end{definition}
-	\subsubsection{Группа $S_n$.}
+	\subsection{Перестановки.}
 	\begin{definition}
 		Перестановкой конечного множества $M$ называется биекция $\pi : M \rightarrow M $. Множество всех перестановок множества $M$ обозначается символом $S(M)$. Произведением перестановок $\pi$ и $\sigma$ называется перестановка $\sigma \cdot \pi$, соответствующая биекции $x \mapsto \sigma (\pi (x))$.
 	\end{definition}
@@ -151,24 +151,72 @@
 	\begin{theorem}
 		Перестановки сопряжены $\Leftrightarrow$ совпадает их циклический тип.
 	\end{theorem}
-	
-	
-	
-	\section{Теория узлов.}
+	\subsection{Центр группы.}
 	\begin{definition}
-		Узел~--- замкнутая, несамопересекающаяся кривая (ломаная с конечным числом звеньев/гладкая кривая) в $\mathbb{R}^3$.
+		$G$~--- группа. Центр $G$: $Z(G) := \{ g \in G | gh = hg, \forall g \in G \}$.
 	\end{definition}
-	\begin{definition}
-		Кривая Пеано~--- $f: [0, 1] \rightarrow [0, 1] \times [0, 1]$; непрерывная и сюръективная.
+	\begin{statement}
+		$Z(S_n) = \{ e \}$.
+	\end{statement}
+	\begin{theorem}
+		$Z(G) \vartriangleleft G$.
+	\end{theorem}
+	\begin{statement}
+		$Z(GL(\mathbb{R})) = \begin{pmatrix}
+			\alpha & 0 & \dots & 0 \\
+			0 & \alpha & \dots & 0 \\
+			\vdots & \vdots & \ddots & \vdots \\
+			0 & 0 & \dots & \alpha
+		\end{pmatrix}$
+	\end{statement}
+	\begin{definition}[Коммутатор]
+		$x, y \in G$. $[x, y] := xyx^{-1}y^{-1}$.
 	\end{definition}
-	\begin{definition}
-		Эквивалентные узлы~--- узлы, которые переходят из одного в другой с помощью следующих преобразований (преобразования Рейдемейчстера): избавиться от петли, растащить две дуги, перетащить нижнюю дугу, через точку пересечения двух других, на верх.
-	\end{definition}
+	\begin{statement}
+		$[x, y]^{-1} = [y, x]$.
+	\end{statement}
 	\begin{note}
-		Открытые проблемы:
-		\begin{itemize}
-			\item $\# (n)$~--- количество точек с $n$ двойных узлов в минимальной конфигурации. Экспериментально~--- функция не растет. Но не доказано.
-			\item $c(K)$~--- количество двойных точек в минимальной конфигурации. Гипотеза: $c(K_1 \# K_2) = c(K_1) + c(K_2)$.
-		\end{itemize}
+		Произведение коммутаторов не обязательно является коммутатором.
 	\end{note}
+	\begin{definition}[Коммутант]
+		$[G, G] := \left< [x, y] \right>$.
+	\end{definition}
+	\begin{theorem}
+		\begin{enumerate}
+			\item $[G, G] \vartriangleleft G$.
+			\item $G / [G; G]$~--- абелева.
+			\item $G / H$~--- абелева $\Rightarrow H \supset [G, G]$.
+		\end{enumerate}
+	\end{theorem}
+	\begin{statement}
+		$\alpha^{-1} [x, y] \alpha = [\alpha^{-1} x \alpha, \alpha^{-1} y \alpha]$.
+	\end{statement}
+	\begin{statement}
+		$\alpha^{-1} [x_1, y_1] [x_2, y_2] \dots [x_k, y_k] \alpha \in [G, G]$.
+	\end{statement}
+	\begin{theorem}[Галуа.]
+		$A_n$ простая, если $n \geqslant 5$.
+	\end{theorem}
+	
+	
+	
+	
+	
+	%\section{Теория узлов.}
+	%\begin{definition}
+	%	Узел~--- замкнутая, несамопересекающаяся кривая (ломаная с конечным числом звеньев/гладкая кривая) в $\mathbb{R}^3$.
+	%\end{definition}
+	%\begin{definition}
+	%	Кривая Пеано~--- $f: [0, 1] \rightarrow [0, 1] \times [0, 1]$; непрерывная и сюръективная.
+	%\end{definition}
+	%\begin{definition}
+	%	Эквивалентные узлы~--- узлы, которые переходят из одного в другой с помощью следующих преобразований (преобразования Рейдемейчстера): избавиться от петли, растащить две дуги, перетащить нижнюю дугу, через точку пересечения двух других, на верх.
+	%\end{definition}
+	%\begin{note}
+	%	Открытые проблемы:
+	%	\begin{itemize}
+	%		\item $\# (n)$~--- количество точек с $n$ двойных узлов в минимальной конфигурации. Экспериментально~--- функция не растет. Но не доказано.
+	%		\item $c(K)$~--- количество двойных точек в минимальной конфигурации. Гипотеза: $c(K_1 \# K_2) = c(K_1) + c(K_2)$.
+	%	\end{itemize}
+	%\end{note}
 \end{document}

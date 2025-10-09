@@ -174,7 +174,7 @@
 			$e := \lim\limits_{n \rightarrow \infty} (1 + \frac{1}{n})^n \approx 2.718281828459045...$
 		\end{quote}
 	\end{definition}
-	\begin{theorem}[Вейерштрасса]
+	\begin{theorem}[Больцано-Вейерштрасса]
 		Пусть последовательность $a_n$ ограничена. Тогда существует сходящаяся подпоследовательность.
 	\end{theorem}
 	\begin{proof}
@@ -418,6 +418,9 @@
 	\begin{statement}
 		$e^t = 1 + t + \overline{o}(t)$, $t \rightarrow 0$.
 	\end{statement}
+	\begin{statement}
+		Если $\exists$ $\lim\limits_{x \rightarrow x_0} \dfrac{f(x)}{g(x)} = k \in \mathbb{R} \setminus \{ 0 \} \Rightarrow f(x) \asymp g(x), x \rightarrow x_0 \Rightarrow f(x) = \underline{O}(g(x))$ и $g(x) = \underline{O}(f(x)), x \rightarrow x_0$.
+	\end{statement}
 	\subsection{Асимптотические равенства.}
 	\begin{enumerate}
 		\item $\lim\limits_{x \rightarrow 0} \dfrac{\sin x}{x} = 1$; $\sin x \sim x$; $\sin x = x + \overline{o}(x)$
@@ -428,4 +431,43 @@
 		$e^x - 1 = x + \overline{o}(x)$; $a^x = 1 + x \ln a + \overline{o}(x)$
 		\item $\lim\limits_{x \rightarrow 0} \dfrac{(1 + x)^s - 1}{x} = s$; $(1 + x)^s - 1 \sim sx$; $(1 + x)^s = 1 + sx + \overline{o}(x)$
 	\end{enumerate}
+	\section{Функции, непрерывне на отрезке.}
+	\begin{definition}
+		$f$ непрерывна на отрезке $[a, b]$, $a, b \in \mathbb{R}$; $a < b \Leftrightarrow \forall x_0 \in [a, b]$ $\lim\limits_{x \rightarrow x_0} f(x) = f(x_0)$.
+	\end{definition}
+	\begin{note}
+		$C(X) = \{ \text{множество функций непрерывных на множестве } X \}$.
+	\end{note}
+	\subsection{Первая теорема Вейерштрасса.}
+	\begin{theorem}[Первая теорема Вейерштрасса]
+		$f \in C([a, b])$. Тогда $f$ ограничена на $[a, b]$.
+	\end{theorem}
+	\begin{proof}
+		НУО докажем, что $f$ ограничена сверху. \\
+		$\#$ $f$ неограничена сверху.	$\exists x_n \in [a, b]$: $f(x_n) > n$.	$\{ x_n \} \in [a, b]$. $\exists$ $x_{n_k} \rightarrow x_0 \in [a, b]$. $f(x_0) = \lim\limits_{x_{n_k} \rightarrow x_0} f(x_{n_k}) = \infty$ $\#$.
+	\end{proof}
+	\subsection{Вторая Теорема Вейерштрасса.}
+	\begin{theorem}[Вторая Теорема Вейерштрасса]
+		Пусть $f \in C([a, b])$. Тогда $\exists \overline{x}, \underline{x} \in [a, b]$: $f(\overline{x}) = \min\limits_{[a, b]} f(x), f(\underline{x}) = \max\limits_{[a, b]} f(x)$.
+	\end{theorem}
+	\begin{proof}
+		$\# \inf\limits_{[a, b]} f(x) = m$ и не достигается. $f(x) > m$ $\forall x \in [a, b] \Rightarrow g(x) := \dfrac{1}{f(x) - m}$ неограничена на $[a, b]$. Но $\forall \varepsilon > 0$ $\exists$ $x_{\varepsilon} \in [a, b]$: $f(x_{\varepsilon}) < m + \varepsilon \Rightarrow g(x_{\varepsilon}) > \dfrac{1}{\varepsilon} \Rightarrow g$ неограничена сверху на $[a, b]$ $\#$.
+	\end{proof}
+	\subsection{Теорема Больцано-Коши.}
+	\begin{theorem}[Больцано-Коши]
+		$f \in C([a, b])$, $f(a)f(b) < 0$. Тогда $\exists$ $x_0 \in [a, b]$: $f(x_0) = 0$.
+	\end{theorem}
+	\begin{proof}[Доказательство №1]
+		НУО $f(a) < 0; f(b) > 0$. $a_0 := a, b_0 := b$. $[a_k, b_k] \rightarrow [a_{k + 1}, b_{k + 1}]$. $\lim a_k = \alpha$, $\lim b_k = \beta$. $\lim (a_k - b_k) = \alpha - \beta$, $\lim \dfrac{b - a}{2^k} = 0 \Rightarrow \alpha = \beta =: x_0$. $f(a_k) < 0, f(b_k) > 0$. $ \begin{cases}
+			f(x_0) = \lim\limits_{k \rightarrow \infty} f(a_k) \leqslant 0 \\
+			f(x_0) = \lim\limits_{k \rightarrow \infty} f(b_k) \geqslant 0
+		\end{cases} \Rightarrow f(x_0) = 0$.
+	\end{proof}
+	\begin{proof}[Доказательство №2]
+		$X = \{ x \in [a, b]: f(x) < 0 \} \not= \emptyset$. $\exists x_0 = \sup X < b$.
+	\end{proof}
+	\subsection{Третья Теорема Вейерштрасса.}
+	\begin{theorem}[Третья Теорема Вейерштрасса]
+		$f \in C([a, b])$, $M = \max\limits_{[a, b]} f(x), m = \min\limits_{[a, b]} f(x)$. Тогда $E(f) = [m; M]$.
+	\end{theorem}
 \end{document}
