@@ -431,12 +431,12 @@
 		$e^x - 1 = x + \overline{o}(x)$; $a^x = 1 + x \ln a + \overline{o}(x)$
 		\item $\lim\limits_{x \rightarrow 0} \dfrac{(1 + x)^s - 1}{x} = s$; $(1 + x)^s - 1 \sim sx$; $(1 + x)^s = 1 + sx + \overline{o}(x)$
 	\end{enumerate}
-	\section{Функции, непрерывне на отрезке.}
+	\section{Функции, непрерывные на отрезке.}
 	\begin{definition}
 		$f$ непрерывна на отрезке $[a, b]$, $a, b \in \mathbb{R}$; $a < b \Leftrightarrow \forall x_0 \in [a, b]$ $\lim\limits_{x \rightarrow x_0} f(x) = f(x_0)$.
 	\end{definition}
 	\begin{note}
-		$C(X) = \{ \text{множество функций непрерывных на множестве } X \}$.
+		$C(X) = \{ \text{множество функций непрерывных на множестве } X \}$. $f \in C(x)$: $\forall x_0 \in X$ $\forall \varepsilon > 0$ $\exists \delta > 0$: $|f(x) - f(x_0)| < \varepsilon$ $\forall |x - x_0| < \delta$.
 	\end{note}
 	\subsection{Первая теорема Вейерштрасса.}
 	\begin{theorem}[Первая теорема Вейерштрасса]
@@ -470,4 +470,14 @@
 	\begin{theorem}[Третья Теорема Вейерштрасса]
 		$f \in C([a, b])$, $M = \max\limits_{[a, b]} f(x), m = \min\limits_{[a, b]} f(x)$. Тогда $E(f) = [m; M]$.
 	\end{theorem}
+	\subsection{Равномерная непрерывность.}
+	\begin{definition}[Равномерная непрерывность]
+		$f$ равномерно непрерывна на $X$, если $\forall \varepsilon > 0$ $\exists \delta > 0$: $\forall x_0 \in X$ $|f(x) - f(x_0)| < \varepsilon$ $\forall |x - x_0| < \delta$.
+	\end{definition}
+	\begin{theorem}[?Коши-Вейерштрасса?]
+		Пусть $f \in C([a, b])$. Тогда $f$ равномерно непрерывна на $[a, b]$.
+	\end{theorem}
+	\begin{proof}
+		$\#$ $\exists \varepsilon > 0$: $\forall \delta > 0$: $\exists x_1 \xi$ $|f(x) - f(\xi)| \geqslant \varepsilon$, $|x - \xi| < \delta$. Возьмем $\delta_1 = 1$ $\exists x_1, \xi_1$: $|x_1 - \xi_1| < 1$ и $|f(x_1) - f(\xi_1)| \geqslant \varepsilon$, $\dots$, $\delta_n = \dfrac{1}{n}$ $\exists x_n, \xi_n$: $|x_n - \xi_n| < \dfrac{1}{n}$ и $|f(x_n) - f(\xi_n)| \geqslant \varepsilon$. $\{ x_n \}, \{ \xi_n \} \subset [a, b]$. $\{ x_{n_m} \rightarrow x_0 \}, \{ \xi_{n_m} \rightarrow \xi_0 \} \Rightarrow x_0 = \xi_0$. $|f(x_{n_m}) \rightarrow f(x_0) - f(\xi_{n_m}) \rightarrow f(x_0)| \geqslant \varepsilon$ $\#$.
+	\end{proof}
 \end{document}
