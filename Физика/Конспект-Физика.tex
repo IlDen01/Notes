@@ -636,4 +636,45 @@
 	\begin{definition}[Относительная влажность]
 		$\varphi = \dfrac{\rho_{\text{абс}}}{\rho_{\text{нп}(t)}} \cdot 100 \% = \dfrac{p_{H_2O}}{p_{\text{нп}(t)}} \cdot 100 \%$.
 	\end{definition}
+	\section{Термодинамика.}
+	\begin{definition}[Внутренняя энергия, $U$ Дж]
+		Суммарная кинетическая энергия молекул $+$ потенциальная энергия их взаимодействия. В идеальном газе только суммарная кинетическая энергия. $U = N \cdot \overline{E} = N_A \nu \cdot \dfrac{3}{2} KT = \dfrac{3}{2} \nu RT$~--- внутренняя энергия одноатомного идеального газа.
+	\end{definition}
+	\begin{definition}[Степень свободы газа, $i$]
+		Степени свободы газов~--- характеристики движения механической системы. Число степеней свободы определяет минимальное количество независимых переменных (обобщённых координат), необходимых для полного описания состояния механической системы.
+		\begin{itemize}
+			\item Одноатомный газ: $i = 3$.
+			\item Двухатомный газ: $i = 5$.
+			\item Многоатомный газ: $i = 6$.
+		\end{itemize}
+		Формула выглядит вот так: $U = \dfrac{i}{2} \nu RT$.
+	\end{definition}
+	\begin{definition}[Работа газа]
+		$A = p \cdot \varDelta V$. Численно равна площади под графиком в $p(\varDelta V)$ координатах.
+	\end{definition}
+	\subsection{Теплопередача.}
+	\begin{definition}[Теплопередача]
+		Передача энергии без совершения работы.
+	\end{definition}
+	Три способа теплопередачи:
+	\begin{itemize}
+		\item Конвекция~--- перемещение и перемешивание теплых слоев жидкостей и газов.
+		\item Теплопроводность~--- проводимость энергии от более нагретой части тела к менее нагретой путем хаотичного колебания частиц тела.
+		\item Излучение~--- поток фатов/электромагнитная волна. Также происходит в вакууме, в отличии от других способов.
+	\end{itemize}
+	\subsection{Первое начало термодинамики.}
+	$U_1 + Q + A_{\text{над телом}} = U_2 \Leftrightarrow Q = -A_{\text{над телом}} + \varDelta U \Leftrightarrow Q = A_{\text{тела}} + \varDelta U$.
+	\begin{xltabular}{\textwidth}{|X|X|X|}
+		\hline
+		Процесс & Первое начало & Комментарий \\
+		\hline
+		Изохорный, $V = const$ & $Q = \varDelta V = \dfrac{i}{2} \nu R \varDelta T$ & $A_{\text{тела}} = 0$; $\uparrow T \rightarrow \uparrow U \Rightarrow \varDelta U > 0$ \\
+		\hline
+		Изотермический, $T = const$ & $Q = A_{\text{тела}}$ & $T = const$, $T_1 = T_2 \Rightarrow \varDelta T = 0 \Rightarrow \varDelta U = 0$. $\uparrow V \Rightarrow A_{\text{тела}} > 0 \Rightarrow Q > 0$ \\
+		\hline
+		Изобарный, $p = const$ & $Q = A_{\text{тела}} + \varDelta U = p \varDelta V + \dfrac{i}{2} \nu R \varDelta T = p \varDelta V + \dfrac{i}{2} p \varDelta V = (1 + \dfrac{i}{2})p \varDelta V = (1 + \dfrac{i}{2}) \nu R \varDelta T$ & $T \uparrow$, $\varDelta U = \dfrac{i}{2} \nu RT = \dfrac{i}{2} \varDelta (pV) = \dfrac{i}{2} p \varDelta V$ \\
+		\hline
+		Адиабатный & $0 = A_{\text{тела}} + \varDelta U$ & Либо в термосе, либо очень быстро. $Q = 0$. $A_{\text{тела}} > 0$, $V \uparrow$; $\varDelta U < 0$, $T \downarrow$ \\
+		\hline
+	\end{xltabular}
 \end{document}
