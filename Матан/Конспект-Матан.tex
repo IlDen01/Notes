@@ -477,4 +477,46 @@
 	\begin{proof}
 		$\#$ $\exists \varepsilon > 0$: $\forall \delta > 0$: $\exists x_1 \xi$ $|f(x) - f(\xi)| \geqslant \varepsilon$, $|x - \xi| < \delta$. Возьмем $\delta_1 = 1$ $\exists x_1, \xi_1$: $|x_1 - \xi_1| < 1$ и $|f(x_1) - f(\xi_1)| \geqslant \varepsilon$, $\dots$, $\delta_n = \dfrac{1}{n}$ $\exists x_n, \xi_n$: $|x_n - \xi_n| < \dfrac{1}{n}$ и $|f(x_n) - f(\xi_n)| \geqslant \varepsilon$. $\{ x_n \}, \{ \xi_n \} \subset [a, b]$. $\{ x_{n_m} \rightarrow x_0 \}, \{ \xi_{n_m} \rightarrow \xi_0 \} \Rightarrow x_0 = \xi_0$. $|f(x_{n_m}) \rightarrow f(x_0) - f(\xi_{n_m}) \rightarrow f(x_0)| \geqslant \varepsilon$ $\#$.
 	\end{proof}
+	\section{Дифференциальное исчисление.}
+	\begin{definition}
+		$f$ дифференцируема в точке $x_0$, если $\exists$ $k \in \mathbb{R}$: $f(x) = f(x_0) + k(x - x_0) + \overline{o}(x - x_0)$.
+	\end{definition}
+	\begin{statement}
+		Если $f$ дифференцируема в точке $x_0$ $\Leftrightarrow$ $\exists$ $\lim\limits_{x \rightarrow x_0} \dfrac{f(x) - f(x_0)}{x -  x_0} = k$.
+	\end{statement}
+	\begin{proof}
+		$\overline{o}(x - x_0) + k(x - x_0) = f(x) - f(x_0) \Leftrightarrow k + \dfrac{\overline{o}(x - x_0)}{x - x_0} = \dfrac{f(x) - f(x_0)}{x - x_0} \Leftrightarrow k = k + \lim \dfrac{\overline{o}(x - x_0)}{x - x_0} = \lim \dfrac{f(x) - f(x_0)}{x - x_0}$.
+	\end{proof}
+	\begin{definition}
+		Такое $k$ называется производной в точке $x_0$. Обозначается $f'(x_0) = \lim\limits_{x \rightarrow x_0} \dfrac{f(x) - f(x_0)}{x - x_0}$.
+	\end{definition}
+	\begin{statement}
+		Если $f$ дифференцируема, то она непрерывна.
+	\end{statement}
+	\begin{definition}
+		Производная (функция) функции $f \rightarrow g(x) = f'(x)$: $x_0 \mapsto \lim\limits_{x \rightarrow x_0} \dfrac{f(x) - f(x_0)}{x - x_0}$; $\varDelta x = x - x_0$; $x_0 \mapsto \lim\limits_{x \rightarrow \varDelta x} \dfrac{f(x + \varDelta x) - f(x)}{\varDelta x}$; $f'(x) = \lim\limits_{\varDelta x \rightarrow 0} \dfrac{f(x + \varDelta x) - f(x)}{\varDelta x}$.
+	\end{definition}
+	\begin{note}
+		$f(\tilde{x}) = f(x) \cdot f'(x)(\tilde{x} - x) + \overline{o}(\tilde{x} - x)$. $f(x + \varDelta x) = f(x) + f'(x) \cdot \varDelta x + \overline{o}(\varDelta)$; $\varDelta f(x) := f(x + \varDelta x) - f(x)$. $\varDelta f(x) = f'(x) \cdot \varDelta x + \overline{o}(\varDelta x)$, $\varDelta x \rightarrow 0$.
+	\end{note}
+	\begin{definition}[Дифференциал функции]
+		$df(x) := f'(x) \varDelta x$.
+	\end{definition}
+	\begin{note}
+		Пусть $f(x) = x$. $\varDelta x = 1 \cdot \varDelta x + 0$, $\varDelta f(x) = f'(x) \varDelta x + \delta (\varDelta x)$ $\Rightarrow$ $f'(x) = 1$ $\Rightarrow$ $df(x) = \varDelta x$. Тогда $df(x) = f'(x)d(x)$, $f'(x) = \dfrac{df(x)}{dx}$.
+	\end{note}
+	\begin{note}
+		Дифференциал~--- линейная часть малого приращения функции.
+	\end{note}
+	\subsection{Правила дифференцирования.}
+	(рассматриваем дифференцируемые функции):
+	\begin{enumerate}
+		\item $(c)' = 0$; $(cf(x))' = cf'(x)$
+		\item $(f(x) \pm g(x))' = f'(x) \pm g'(x)$
+		\item $(f(x) \cdot g(x))' = f'(x) \cdot g(x) + f(x) \cdot g'(x) \rightarrow d(fg) = df \cdot g + dg \cdot f$
+		\item $\left( \dfrac{1}{f(x)} \right)' = - \dfrac{f'(x)}{f^2(x)}$, $f(x) \not= 0$
+		\item $\left( \dfrac{f(x)}{g(x)} \right)' = \dfrac{f'(x)g(x) - f(x)g'(x)}{g^2(x)}$
+		\item Пусть $f$ дифференцируема в точке $x$, $g$ дифференцируема в точке $f(x)$. Тогда $g(f(x))$ дифференцируема в точке $x$ и $(g(f(x)))' = g'(f(x)) \cdot f'(x)$ или $dg(f(x)) = g'(f(x)) \cdot df(x)$
+		\item $f$ дифференцируема в точке $x_0$ и $f'(x_0) \not= 0$. Если $f$ обратима в окрестности точки $x_0$, то $f^{-1}$ дифференцируема в точке $y_0 = f(x_0)$ и $(f^{-1})'(y_0) = \dfrac{1}{f'(x_0)} = \dfrac{1}{f'(f^{-1}(y_0))}$
+	\end{enumerate}
 \end{document}
