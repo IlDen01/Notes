@@ -497,13 +497,13 @@
 		Производная (функция) функции $f \rightarrow g(x) = f'(x)$: $x_0 \mapsto \lim\limits_{x \rightarrow x_0} \dfrac{f(x) - f(x_0)}{x - x_0}$; $\varDelta x = x - x_0$; $x_0 \mapsto \lim\limits_{x \rightarrow \varDelta x} \dfrac{f(x + \varDelta x) - f(x)}{\varDelta x}$; $f'(x) = \lim\limits_{\varDelta x \rightarrow 0} \dfrac{f(x + \varDelta x) - f(x)}{\varDelta x}$.
 	\end{definition}
 	\begin{note}
-		$f(\tilde{x}) = f(x) \cdot f'(x)(\tilde{x} - x) + \overline{o}(\tilde{x} - x)$. $f(x + \varDelta x) = f(x) + f'(x) \cdot \varDelta x + \overline{o}(\varDelta)$; $\varDelta f(x) := f(x + \varDelta x) - f(x)$. $\varDelta f(x) = f'(x) \cdot \varDelta x + \overline{o}(\varDelta x)$, $\varDelta x \rightarrow 0$.
+		$f(\tilde{x}) = f(x) \cdot f'(x)(\tilde{x} - x) + \overline{o}(\tilde{x} - x)$. $f(x + \varDelta x) = f(x) + f'(x) \cdot \varDelta x + \overline{o}(\varDelta x)$; $\varDelta f(x) := f(x + \varDelta x) - f(x)$. $\varDelta f(x) = f'(x) \cdot \varDelta x + \overline{o}(\varDelta x)$, $\varDelta x \rightarrow 0$.
 	\end{note}
 	\begin{definition}[Дифференциал функции]
 		$df(x) := f'(x) \varDelta x$.
 	\end{definition}
 	\begin{note}
-		Пусть $f(x) = x$. $\varDelta x = 1 \cdot \varDelta x + 0$, $\varDelta f(x) = f'(x) \varDelta x + \delta (\varDelta x)$ $\Rightarrow$ $f'(x) = 1$ $\Rightarrow$ $df(x) = \varDelta x$. Тогда $df(x) = f'(x)d(x)$, $f'(x) = \dfrac{df(x)}{dx}$.
+		Пусть $f(x) = x$. $\varDelta x = 1 \cdot \varDelta x + 0$, $\varDelta f(x) = f'(x) \varDelta x + \overline{o}(\varDelta x)$ $\Rightarrow$ $f'(x) = 1$ $\Rightarrow$ $df(x) = \varDelta x$. Тогда $df(x) = f'(x)d(x)$, $f'(x) = \dfrac{df(x)}{dx}$.
 	\end{note}
 	\begin{note}
 		Дифференциал~--- линейная часть малого приращения функции.
@@ -518,5 +518,16 @@
 		\item $\left( \dfrac{f(x)}{g(x)} \right)' = \dfrac{f'(x)g(x) - f(x)g'(x)}{g^2(x)}$
 		\item Пусть $f$ дифференцируема в точке $x$, $g$ дифференцируема в точке $f(x)$. Тогда $g(f(x))$ дифференцируема в точке $x$ и $(g(f(x)))' = g'(f(x)) \cdot f'(x)$ или $dg(f(x)) = g'(f(x)) \cdot df(x)$
 		\item $f$ дифференцируема в точке $x_0$ и $f'(x_0) \not= 0$. Если $f$ обратима в окрестности точки $x_0$, то $f^{-1}$ дифференцируема в точке $y_0 = f(x_0)$ и $(f^{-1})'(y_0) = \dfrac{1}{f'(x_0)} = \dfrac{1}{f'(f^{-1}(y_0))}$
+		\item $(\sin x)' = \cos x$
+		\item $(\cos x)' = - \sin x$
+		\item $(\tg x)' = \dfrac{1}{\cos^2 x}$
+		\item $(\ctg x)' = - \dfrac{1}{\sin^2 x}$
+		\item $(\arcsin x)' = \dfrac{1}{\sqrt{1 - x^2}}$
+		\item $(\arccos x)' = - \dfrac{1}{\sqrt{1 - x^2}}$
+		\item $(\arctg x)' = \dfrac{1}{1 + x^2}$
+		\item $(\arcctg x)' = - \dfrac{1}{1 + x^2}$
+		\item $(e^x)' = e^x$; $(a^x)' = a^x \cdot \ln a$
+		\item $(\ln x)' = \dfrac{1}{x}$; $(\log_ax)' = \dfrac{1}{x \ln a}$
+		\item $(x^p)' = px^{p - 1}$
 	\end{enumerate}
 \end{document}
