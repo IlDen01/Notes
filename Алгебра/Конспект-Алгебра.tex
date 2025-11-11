@@ -224,4 +224,33 @@
 	\begin{note}
 		Думать об основании $> 1$ и $< 1$.
 	\end{note}
+	\section{Метод рационализации.}
+	\begin{enumerate}
+		\item $\log_{f(x)}g(x) > 0 = \log_{f(x)}1$ \\
+		$f(x) > 0$, $g(x) > 0$, $f(x) \not= 1$ \\
+		$\left[ \begin{gathered}
+			\begin{cases}
+				f(x) > 1 \\
+				g(x) > 1
+			\end{cases} \\
+			\begin{cases}
+				f(x) < 1 \\
+				g(x) < 1
+			\end{cases}
+		\end{gathered} \right. \Leftrightarrow (f(x) - 1)(g(x) - 1) > 0$ \\
+		$\log_{f(x)}g(x) > 0 \Rightarrow (f(x) - 1)(g(x) - 1) > 0$
+		\item $\log_{f(x)}g(x) - \log_{f(x)}h(x) > 0 \Rightarrow (f(x) - 1)(g(x) - h(x)) > 0$
+		\item \begin{enumerate}
+			\item $\log_{f(x)}g(x) > 1 \Rightarrow (f(x) - 1)(g(x) - f(x)) > 0$
+			\item $\log_{f(x)}g(x) > k \Rightarrow (f(x) - 1)(g(x) - f^k(x)) > 0$
+		\end{enumerate}
+		\item $\log_{f(x)}g(x) - \log_{h(x)}g(x) > 0 \Rightarrow (g(x) - 1)(f(x) - 1)(h(x) - 1)(h(x) - f(x)) > 0$
+		\item \begin{enumerate}
+			\item $f(x)^{g(x)} - 1 > 0 \Rightarrow g(x)(f(x) - 1) > 0$
+			\item $f(x)^{g(x)} - k > 0 \Rightarrow (g(x) - \log_{f(x)}k)(f(x) - 1) > 0$
+		\end{enumerate}
+		\item $f(x)^{g(x)} - f(x)^{h(x)} > 0 \Rightarrow (f(x) - 1)(g(x) - h(x)) > 0$
+		\item $f(x)^{g(x)} - h(x)^{g(x)} > 0 \Rightarrow g(x)(f(x) - h(x)) > 0$
+		\item $|a| - |b| > 0 \Rightarrow (a - b)(a + b) > 0$
+	\end{enumerate}
 \end{document}
