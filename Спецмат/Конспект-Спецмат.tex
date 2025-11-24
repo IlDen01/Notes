@@ -4,6 +4,8 @@
 \newcommand{\orb}{\text{orb}}
 \newcommand{\ord}{\text{ord}}
 \newcommand{\cycl}{\text{cycl}}
+\newcommand{\Img}[1]{\text{Im}(#1)}
+\newcommand{\Ker}[1]{\text{Ker}(#1)}
 
 \begin{document}
 	\tableofcontents
@@ -135,8 +137,8 @@
 	\end{definition}
 	\begin{definition}
 		Инверсия: $\alpha = \begin{pmatrix}
-			1 & 2 & \dots & i & \dots & j & \dots & n \\
-			a_1 & a_2 & \dots & a_i & \dots & a_j & \dots & n \\
+			1 & 2 & \dots & i & \dots & j & \dots & n\\
+			a_1 & a_2 & \dots & a_i & \dots & a_j & \dots & n\\
 		\end{pmatrix}$. Пара $(i, j)$ называется инверсией, если $i < j$ и $a_i > a_j$.
 	\end{definition}
 	\begin{definition}
@@ -163,9 +165,9 @@
 	\end{theorem}
 	\begin{statement}
 		$Z(GL(\mathbb{R})) = \begin{pmatrix}
-			\alpha & 0 & \dots & 0 \\
-			0 & \alpha & \dots & 0 \\
-			\vdots & \vdots & \ddots & \vdots \\
+			\alpha & 0 & \dots & 0\\
+			0 & \alpha & \dots & 0\\
+			\vdots & \vdots & \ddots & \vdots\\
 			0 & 0 & \dots & \alpha
 		\end{pmatrix}$
 	\end{statement}
@@ -210,6 +212,37 @@
 		\end{itemize}
 		$G \simeq H$, если существует изоморфизм $f: G \rightarrow H$.
 	\end{definition}
+	\subsection{Кватернионы.}
+	$\mathbb{H} := \{ a + bi + cj + dk | a, b, c, d \in \mathbb{R} \}$.
+	\begin{xltabular}{\textwidth}{|c|c|c|c|}
+		\hline
+		$\times$ & $i$ & $j$ & $k$\\
+		\hline
+		$i$ & $-1$ & $k = -ji$ & $-j = -ki$\\
+		\hline
+		$j$ & $-k = -ij$ & $-1$ & $i = -kj$\\
+		\hline
+		$k$ & $j = -ik$ & $-i = -jk$ & $-1$\\
+		\hline
+	\end{xltabular}
+	\subsubsection{Группа Кватернионов.}
+	$\mathbb{H} = \{ \pm 1, \pm i, \pm j, \pm k \}$.
+	\begin{lemma}
+		$a_1, a_2, \dots, a_{2n}$~--- строка из символов $j$ и $k$. Если перевернуть строку и заменить $j \leftrightarrow k$, то произведение не изменится.
+	\end{lemma}
+	\subsection{Теоремы об изоморфизме.}
+	\subsubsection{Первая теорема об изоморфизме.}
+	\begin{theorem}
+		Пусть $f : G \rightarrow H$~--- гомоморфизм групп. Тогда $\Img{f} \simeq G / \Ker{f}$.
+	\end{theorem}
+	\subsubsection{Вторая теорема об изоморфизме.}
+	\begin{theorem}
+		Пусть $G$~--- группа, $H$ и $K$~--- ее подгруппы, причем $K$ нормальна. Тогда $HK / K \simeq H / (H \cap K)$.
+	\end{theorem}
+	\subsubsection{Третья теорема об изоморфизме.}
+	\begin{theorem}
+		Пусть $G$~--- группа, $H$ и $K$~--- ее нормальные подгруппы, причем $K \subset N$. Тогда $(G / K) / (N / K) \simeq G / N$.
+	\end{theorem}
 	
 	
 	
