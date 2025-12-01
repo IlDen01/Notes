@@ -6,6 +6,8 @@
 \newcommand{\cycl}{\text{cycl}}
 \newcommand{\Img}[1]{\text{Im}(#1)}
 \newcommand{\Ker}[1]{\text{Ker}(#1)}
+\newcommand{\Aut}[1]{\text{Aut}(#1)}
+\newcommand{\st}[1]{\text{st}(#1)}
 
 \begin{document}
 	\tableofcontents
@@ -243,11 +245,52 @@
 	\begin{theorem}
 		Пусть $G$~--- группа, $H$ и $K$~--- ее нормальные подгруппы, причем $K \subset N$. Тогда $(G / K) / (N / K) \simeq G / N$.
 	\end{theorem}
-	
-	
-	
-	
-	
+	\subsection{Группы автоморфизмов графа.}
+	\begin{definition}
+		Автоморфизмом графа Г называется биекция множества его вершин на себя, так что пара вершин смежны тогда и только тогда, когда смежны их образы. Автоморфизмы графа образуют группу относительно композиции. Обозначается $\Aut{\text{Г}}$.
+	\end{definition}
+	\begin{theorem}[Фрухта]
+		Для любой группы $G$ найдется граф, группа автоморфизмов которого в точности $G$.
+	\end{theorem}
+	\subsection{Действие группы на множестве.}
+	\begin{definition}
+		$G$~--- группа, $M$~--- множество. Действием (левое) называем $G$ на $M$ называем $\cdot$: $G \times M \rightarrow M$: $(g; x) \mapsto g \cdot x$ или $g(x)$.
+	\end{definition}
+	\begin{property}
+		\begin{enumerate}
+			\item $(g \cdot h) \cdot x = g \cdot (h \cdot x)$.
+			\item $e \cdot x = x$.
+		\end{enumerate}
+	\end{property}
+	\begin{corollary}
+		$gx = y \Rightarrow g^{-1}y = x$.
+	\end{corollary}
+	\begin{definition}[2]
+		Действие $G$ на $M$~--- это гомоморфизм $F: G \rightarrow S_M$ (группа перестановок $M$). $g \cdot x := F(g)(x)$. Наоборот: есть $\cdot$: $G \times M \rightarrow M$: $F(g)(x) := g(x)$.
+	\end{definition}
+	\begin{definition}
+		$x$ неподвижен под действием $g$, если $g \cdot x = x$. Орбита $x$: $\orb(x) := \{ g \cdot x | g \in G \}$.
+	\end{definition}
+	\begin{statement}
+		Орбиты либо совпадают, либо не пересекаются.
+	\end{statement}
+	\begin{definition}
+		$x \in M$; стабилизатор $x$~--- это $\st{x} := \{ g \in G | gx = x \}$.
+	\end{definition}
+	\begin{statement}
+		$\st{x}$~--- подгруппа в $G$.
+	\end{statement}
+	\begin{definition}
+		$\st{g} := \{ x | gx = x \}$~--- стабилизатор $g$.
+	\end{definition}
+	\begin{lemma}[Бермсайда]
+		$G$~--- конечная группа; $M$~--- конечная $\Rightarrow$ количество орбит $= \dfrac{1}{|G|} \sum\limits_{g \in G} |\st{g}| = \dfrac{1}{|G|} \sum\limits_{x \in M} |\st{x}|$, тк $\sum\limits_{g \in G} |\st{g}| = \sum\limits_{x \in M} |\st{x}| = \# \{ (g, x) | gx = x \}$.
+	\end{lemma}
+
+
+
+
+
 	%\section{Теория узлов.}
 	%\begin{definition}
 	%	Узел~--- замкнутая, несамопересекающаяся кривая (ломаная с конечным числом звеньев/гладкая кривая) в $\mathbb{R}^3$.
