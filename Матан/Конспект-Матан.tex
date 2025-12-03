@@ -283,7 +283,18 @@
 	\begin{definition}
 		$f$ непрерывна в точке $x_0 \in D$, если $\exists \lim \limits_{x \rightarrow x_0} f(x) = f(x_0)$.
 	\end{definition}
-	\begin{definition}[ПО Коши]
+	\begin{note}
+		Функция не непрерывна:
+		\begin{enumerate}
+			\item $\lim\limits_{x \rightarrow x_0} \exists$, но $\not= f(x_0)$~--- устранимый разрыв.
+			\item $\lim\limits_{x \rightarrow x_0} \nexists$~--- неустранимы разрыв.
+			\begin{enumerate}
+				\item $\lim\limits_{x \rightarrow x_0 - 0} f(x) = a$, $\lim\limits_{x \rightarrow x_0 + 0} f(x) = b$, $a, b \in \mathbb{R}$~--- разрыв I рода или скачок.
+				\item Разрыв второго рода или существенная особенность.
+			\end{enumerate}
+		\end{enumerate}
+	\end{note}
+	\begin{definition}[По Коши]
 		$\lim \limits_{x \rightarrow x_0} f(x) = a$, если $\forall \varepsilon > 0$ $\exists \delta > 0$: $f(x) \subset U_{\varepsilon}(a)$ $\forall x \in \mathring{U}_{\delta}(x_0) \cap D(f)$.
 	\end{definition}
 	\begin{statement}
@@ -530,4 +541,44 @@
 		\item $(\ln x)' = \dfrac{1}{x}$; $(\log_ax)' = \dfrac{1}{x \ln a}$
 		\item $(x^p)' = px^{p - 1}$
 	\end{enumerate}
+	\subsection{Вторая производная.}
+	\begin{definition}
+		Пусть $f(x)$ дифференцируема $\forall x \in X$, тогда $f'(x): X \rightarrow \mathbb{R}$. $(f')' =: f''$.
+	\end{definition}
+	\subsubsection{Многочлен Тейлора.}
+	\begin{definition}[Многочлен Тейлора]
+		$T_{n, x_0} f = f(x_0) + f'(x_0)(x - x_0) + \dfrac{f''(x_0)}{2}(x - x_0)^2 + \dfrac{f'''(x_0)}{3!}(x - x_0)^3 + \dots + \dfrac{f^{(n)}(x_0)}{n!}(x - x_0)^n = \sum\limits_{k = 0}^{n} \dfrac{f^{(k)}(x_0)}{k!}(x - x_0)^k$.
+	\end{definition}
+	\subsubsection{Формула Тейлора.}
+	\begin{theorem}[Формула Тейлора.]
+		$f(x) = T_{n, x_0} f + R_{n, x_0} f$. Остатки бывают в разных формах (например в форме Пеано это $\overline{o}((x - x_0)^n)$).
+	\end{theorem}
+	\begin{proof}
+		$f(x) = T_{n, x_0} f + \overline{o} ((x - x_0)^n) \Leftrightarrow f(x) - T_{n, x_0} f = \overline{o}((x - x_0)^n) \Leftrightarrow \lim\limits_{x \rightarrow x_0} \dfrac{f(x) - T_{n, x_0} f}{(x - x_0)^n} = \left[ \dfrac{0}{0} \right] \overset{\text{правило Лопиталя}}{=} \lim\limits_{x \rightarrow x_0} \dfrac{f'(x) - (f'(x_0) + f''(x_0)(x - x_0) + \dots + \frac{f^{(n)}}{(n - 1)!} (x - x_0)^{n - 1})}{n(x - x_0)^{n - 1}} = \dots =$\\
+		$= \lim\limits_{x \rightarrow x_0} \dfrac{f^{(n)}(x) - f^{(n)}(x_0)}{n!} = 0$.
+	\end{proof}
+	\subsubsection{Правило Лопиталя.}
+	\begin{theorem}[Правило Лопиталя.]
+		Пусть $f(x)$, $g(x)$ непрерывно дифференцируемы в окрестности точки $x_0$, $x_0 \in \mathbb{R}$. Пусть $\lim\limits_{x \rightarrow x_0} \dfrac{f(x)}{g(x)} = \left[ \dfrac{\infty}{\infty} \right]$ или $\left[ \dfrac{0}{0} \right]$. Тогда, если $\exists \lim\limits_{x \rightarrow x_0} \dfrac{f'(x)}{g'(x)} = a$, то $\lim\limits_{x \rightarrow x_0} \dfrac{f(x)}{g(x)} = a$.
+	\end{theorem}
+	\subsubsection{Утверждения.}
+	\begin{statement}
+		$\exists f'(x_0) \Leftrightarrow f(x) = f(x_0) + A \cdot (x - x_0) + \overline{o} (x - x_0)$ и $A = f'(x_0)$.
+	\end{statement}
+	\begin{statement}
+		$f$ непрерывно дифференцируема $n$ раз в некоторой окрестности точки $x_0$ $\Rightarrow$ $f(x) = f(x_0) + f'(x_0)(x - x_0) + \dfrac{f''(x_0)}{2!}(x - x_0)^2 + \dots + \dfrac{f^{(n)}(x_0)}{n!}(x - x_0)^n + \overline{o}((x - x_0)^n)$.
+	\end{statement}
+	\subsubsection{Применение Тейлора.}
+	\begin{statement}
+		$e^x = 1 + x + \dfrac{x^2}{2!} + \dfrac{x^3}{3!} + \dots + \dfrac{x^n}{n!} + \overline{o}(x^n)$.
+	\end{statement}
+	\begin{statement}
+		$\sin x = 0 + x + \dfrac{0}{2!}x^2 - \dfrac{1}{3!}x^3 + 0 \cdot x^4 + \dfrac{1}{3!}x^5 + \dots = x - \dfrac{x^3}{3!} + \dfrac{x^5}{5!} - \dots + (-1)^n \dfrac{x^{2n + 1}}{(2n + 1)!} + \overline{o}(x^{2n + 2})$.
+	\end{statement}
+	\begin{statement}
+		$\cos x$
+	\end{statement}
+	\begin{statement}
+		$(1 + x)^{\alpha}$
+	\end{statement}
 \end{document}
