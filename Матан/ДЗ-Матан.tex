@@ -4,41 +4,69 @@
 
 \begin{document}
 	\begin{center}
-		\large\bf Домашнее задание \textnumero 2
+		\large\bf Домашнее задание
 	\end{center}
-	Каждая задача (если специально не указано) оценивается в 0,5 балла.\medskip
-	
 	\begin{enumerate}
-		\item Доказать, что $e^{\frac{1}{x}} = \overline{o}\left(x^n\right)$, $\forall n \in \mathbb{N}$, $x \rightarrow 0 - 0$.
-		\item Доказать, что $\forall s > 0$; $\forall a > 1$: $x^s = \overline{o}\left(a^x\right)$, $x \rightarrow + \infty$.
-		\item Доказать, что $\forall s > 0$; $\forall p > 0$: $\left(\ln x\right)^5 = \overline{o}\left(x^p\right)$, $x \rightarrow + \infty$.\bigskip
+		\item Доказать, что определения равносильны.
+		\begin{enumerate}[I.]
+			\item Функция называется выпуклой на отрезке $[a, b]$ если для каждого отрезка $[x_1, x_2]$, принадлежащего $[a, b]$, график функции f расположен не выше отрезка с концами в $(x_1, f(x_1))$ и $(x_2, f(x_2))$ (строго выпуклой, если ниже). Иными словами, если для любых $x_1, x, x_2 \in [a, b]$, $x_1 < x < x_2$ справедливо неравенство $f(x) \leqslant y(x) = \dfrac{x_2 - x}{x_2 - x_1} f(x_1) + \dfrac{x - x_1}{x_2 - x_1} f(x_2)$, что равносильно $(x_2 - x_1) f(x) \leqslant (x_2 - x) f(x_1) + (x - x_1) f(x_2)$.
+			\item Пусть $f: X \rightarrow \mathbb{R}$, $X$~--- выпуклое множество.\\
+			$f(x)$~--- выпуклая (выпуклая вниз) на $X$, если
+			$$
+			\forall x_1, x_2 \in X \qquad f \left( \dfrac{x_1 + x_2}{2} \right) \leqslant \dfrac{f(x_1) + f(x_2)}{2}
+			$$
+			$f(x)$~--- строго выпуклая на $X$, если
+			$$
+			\forall x_1, x_2 \in X \qquad f \left( \dfrac{x_1 + x_2}{2} \right) < \dfrac{f(x_1) + f(x_2)}{2}
+			$$
+			$f(x)$~--- вогнутая (выпуклая вверх) на $X$, если
+			$$
+			\forall x_1, x_2 \in X \qquad f \left( \dfrac{x_1 + x_2}{2} \right) \geqslant \dfrac{f(x_1) + f(x_2)}{2}
+			$$
+			$f(x)$~--- строго вогнутая на $X$, если
+			$$
+			\forall x_1, x_2 \in X \qquad f \left( \dfrac{x_1 + x_2}{2} \right) > \dfrac{f(x_1) + f(x_2)}{2}
+			$$
+		\end{enumerate}
 		
-		В задачах (4)--(8) нужно найти степенную асимптотику (т.е. получить формулу вида $f(x)\sim ax^s$ для каких-нибудь $a$ и $s$.)
+		\item Доказать лемму.
+		\begin{lemma}
+			Пусть функция $f$ определена на отрезке $[a, b]$. Тогда она выпукла тогда и только тогда, когда для любых $x_1, x, x_2 \in [a, b]$, $x_1 < x < x_2$, справедливо любое из следующих трех неравенств:
+			$$
+			\frac{f(x) - f(x_1)}{x - x_1} \leqslant \frac{f(x_2) - f(x)}{x_2 - x},
+			$$
+			$$
+			\frac{f(x) - f(x_1)}{x - x_1} \leqslant \frac{f(x_2) - f(x_1)}{x_2 - x_1},
+			$$
+			$$
+			\frac{f(x_2) - f(x_1)}{x_2 - x_1} \leqslant \frac{f(x_2) - f(x)}{x_2 - x},
+			$$
+			причем в случае строгой выпуклости неравенства также будут строгими.
+		\end{lemma}
 		
-		\item $f(x) = \dfrac{\sqrt{x}}{\sqrt{x + 2} - 2\sqrt{x + 1} + \sqrt{x}}$, $x \rightarrow 0$, $x \rightarrow + \infty$.
-		\item $f(x) = \dfrac{1 - \cos x \sqrt{\cos 2x}}{x^5}$, $x \rightarrow 0$.
-		\item $f(x) = \dfrac{x^2 \arctg x}{x^5 + x^2 + 1}$, $x \rightarrow 0$, $x \rightarrow + \infty$, $x \rightarrow - \infty$.
-		\item $f(x) = \sqrt{1 + 2x} - \sqrt[3]{1 + 3x}$, $x \rightarrow 0$, $x \rightarrow + \infty$.
-		\item $f(x) = 1 - \cos \left(1 - \cos \left(\dfrac{1}{x}\right)\right)$, $x \rightarrow \infty$.
-		\item Найти асимптотику $\ln (1 + e^x)$, $x \rightarrow + \infty$, $x \rightarrow - \infty$.
+		\item Докажите, что если $f(x)$ выпуклая на $(a,b)$, то для любой точки $x_0$, в которой функция дифференцируема верно 
+		\begin{equation*}
+			f(x)\geq f(x_0)+f'(x_0)(x-x_0), \quad \forall x\in(a,b)    
+		\end{equation*}
+		(т.е. график функции лежит выше касательной). Причем для строго выпуклых функций неравенство строгое при всех $x\ne x_0$.
 		
-		\item (*) Найти асимптотику $x^x-1\sim a(x-1)^s$, $x \rightarrow 1$.
+		\item Сформулируйте и докажите обратное утверждение.
 		
-		\item Найти асимптотику $\sqrt{1-\sqrt[3]{x}}\sim a(1-x)^s$, $x \rightarrow 1-0$.
+		\item Докажите, что функция $\ln x$ вогнута на $(0,+\infty)$.
 		
-		\item Пусть $\forall\delta>0$\quad $\exists\varepsilon=\varepsilon(\delta,x_0)>0$ такое, что если $|x-x_0|<\delta$, то $|f(x)-f(x_0)|<\varepsilon$. Следует ли отсюда, что функция $f$ непрерывна в точке $x_0$. Какое свойство функции описывается таким образом?
+		\item Приведите пример функции, непрерывной в точке $x_0$, но не имеющей в этой точке ни левой, ни правой производной.
 		
-		\item Пусть $\forall\varepsilon>0$\quad $\exists\delta=\delta(\varepsilon,x_0)>0$ такое, что если $|f(x)-f(x_0)|<\varepsilon$, то $|x-x_0|<\delta$. Следует ли отсюда, что функция $f$ непрерывна в точке $x_0$. Какое свойство функции описывается таким образом?
-		
-		\item Пусть $\forall\delta>0$\quad $\exists\varepsilon=\varepsilon(\delta,x_0)>0$ такое, что если $|f(x)-f(x_0)|<\varepsilon$, то $|x-x_0|<\delta$. Следует ли отсюда, что функция $f$ непрерывна в точке $x_0$. Какое свойство функции описывается таким образом?
-		
-		\textit{Указание.} Рассмотрите функцию
-		$$
-		f(x)=
+		\item При каких $\alpha$ функция $f(x) =
 		\begin{cases}
-			\arctg(x),\quad x\in\mathbb{Q}\\
-			\pi-\arctg(x),\quad x\in\mathbb{R}\setminus\mathbb{Q}.
-		\end{cases}
-		$$
+			x^\alpha\sin \left( \dfrac{1}{x} \right),\ x \ne 0,\\
+			0,\ x = 0
+		\end{cases}$ дифференцируема в нуле.
+		
+		\item Найти $f'_{\pm}(x_0)$ для функции $f(x) = |x - x_0|\varphi(x)$, где функция $\varphi(x)$ непрерывна в точке $x_0$.
+		
+		\item Исследуйте на диффиренцируемость функцию $f(x) = |x^3 (x+1)^2 (x+2)|$.
+		
+		\item Функция $f(x)$ дифференцируема в точке $x_0$. Найдите предел последовательности\\
+		$a_n = n \left( f \left( x_0 + \dfrac{1}{n} \right) - f(x_0) \right)$. Верно ли обратное утверждение (т.е. влечет ли сходимость такой последовательности существование производной).
 	\end{enumerate}
 \end{document}
