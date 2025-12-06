@@ -712,10 +712,90 @@
 		$f(x) = T_{n, x_0} f + \overline{o} ((x - x_0)^n) \Leftrightarrow f(x) - T_{n, x_0} f = \overline{o}((x - x_0)^n) \Leftrightarrow \lim\limits_{x \rightarrow x_0} \dfrac{f(x) - T_{n, x_0} f}{(x - x_0)^n} = \left[ \dfrac{0}{0} \right] \overset{\text{правило Лопиталя}}{=} \lim\limits_{x \rightarrow x_0} \dfrac{f'(x) - (f'(x_0) + f''(x_0)(x - x_0) + \dots + \frac{f^{(n)}}{(n - 1)!} (x - x_0)^{n - 1})}{n(x - x_0)^{n - 1}} = \dots =$\\
 		$= \lim\limits_{x \rightarrow x_0} \dfrac{f^{(n)}(x) - f^{(n)}(x_0)}{n!} = 0$.
 	\end{proof}
+	\subsubsection{Теорема Ферма.}
+	\begin{theorem}[Ферма]
+		Пусть $f \in C([a, b]) \cap C^1(a, b)$. Тогда, если $x_0 \in (a, b)$ точка экстремума (точка локального максимума или минимума), то $f'(x_0) = 0$.
+	\end{theorem}
+	\begin{proof}
+		$f'(x_0) = f'_-(x_0) = f'_+(x_0)$
+		
+		$x_0$~--- локальный максимум:
+		\begin{align*}
+			f'_+(x_0) = \lim\limits_{\varDelta \to +0} \dfrac{\overbrace{f(x_0 + \varDelta x)}^{\leqslant f(x_0)} - f(x_0)}{\varDelta x} \leqslant 0\\
+			f'_-(x_0) = \lim\limits{\varDelta x \to +0} \dfrac{f(x_0) - \overbrace{f(x_0 - \varDelta x)}^{\leqslant f(x_0)}}{\varDelta x} \geqslant 0\\
+			\Rightarrow f'(x_0) = 0
+		\end{align*}
+	\end{proof}
+	\begin{corollary}
+		В точке экстремума производная нулевая или не существует.
+	\end{corollary}
+	\subsubsection{Немного определений.}
+	\begin{definition}
+		$x_0$ стационарная, если $f'(x_0) = 0$.
+	\end{definition}
+	\begin{definition}
+		$x_0$ критическая, если $f'(x_0) = 0$ или $f'(x_0) \nexists$
+	\end{definition}
+	\begin{definition}
+		$x_0$ экстремум, если это локальный минимум или максимум.
+	\end{definition}
+	\subsubsection{Теорема Ролля.}
+	\begin{theorem}[Ролля]
+		Пусть $f \in C([a, b]) \cap C^1(a, b)$, $f(a) = f(b)$. Тогда $\exists c \in (a, b)$: $f'(c) = 0$.
+	\end{theorem}
+	\begin{proof}
+		$f \in C([a, b]) \Rightarrow$ достигается максимум и минимум $\Rightarrow$ хотя бы одна из них $c \in (a, b) \Rightarrow$ по теореме Ферма $f'(c) = 0$.
+	\end{proof}
+	\subsubsection{Теорема Коши.}
+	\begin{theorem}[Коши]
+		$f, g \in C([a, b]) \cap C^1(a, b)$, $g'(x) \ne 0$ на $(a, b)$. Тогда $\exists c \in (a, b)$: $\dfrac{f(b) - f(a)}{g(b) - g(a)} = \dfrac{f'(c)}{g'(c)}$.
+	\end{theorem}
+	\begin{proof}
+		Рассмотрим функцию $h(x) = f(x) - k g(x)$, $k \in \mathbb{R}$: $\in C^1(a, b) \cap C([a, b])$.
+		
+		Выберем $k$, такое что $h(a) = h(b)$. $f(a) - k g(a) = f(b) - k g(b) \Rightarrow k(g(b) - g(a)) = f(b) - f(a) \Rightarrow k = \dfrac{f(b) - f(a)}{g(b) - g(a)}$.
+		
+		По теореме Ролля $\exists c \in (a, b)$: $h'(c) = 0$
+		
+		$f'(c) - k g'(c) = 0$
+	\end{proof}
+	\subsubsection{Теорема Лагранжа.}
+	\begin{theorem}[Лагранжа о среднем в дифференциальной форме.]
+		$f \in C([a, b]) \cap C^1(a, b)$. Тогда $\exists c \in (a, b)$: $f(b) - f(a) = f'(c)(b - a)$.
+	\end{theorem}
+	\begin{proof}
+		Следует из теоремы Коши, если взять $g(x) = x$.
+	\end{proof}
 	\subsubsection{Правило Лопиталя.}
 	\begin{theorem}[Правило Лопиталя.]
-		Пусть $f(x)$, $g(x)$ непрерывно дифференцируемы в окрестности точки $x_0$, $x_0 \in \mathbb{R}$. Пусть $\lim\limits_{x \rightarrow x_0} \dfrac{f(x)}{g(x)} = \left[ \dfrac{\infty}{\infty} \right]$ или $\left[ \dfrac{0}{0} \right]$. Тогда, если $\exists \lim\limits_{x \rightarrow x_0} \dfrac{f'(x)}{g'(x)} = a$, то $\lim\limits_{x \rightarrow x_0} \dfrac{f(x)}{g(x)} = a$.
+		Пусть $f(x)$, $g(x)$ непрерывно дифференцируемы в окрестности точки $x_0$, $x_0 \in \mathbb{R}$. Пусть $\lim\limits_{x \rightarrow x_0} \dfrac{f(x)}{g(x)} = \left[ \dfrac{\infty}{\infty} \right]$ или $\left[ \dfrac{0}{0} \right]$. Тогда, если $\exists \lim\limits_{x \rightarrow x_0} \dfrac{f'(x)}{g'(x)} = a$, то $\exists \lim\limits_{x \rightarrow x_0} \dfrac{f(x)}{g(x)} = a$.
 	\end{theorem}
+	\begin{proof}
+		\begin{enumerate}
+			\item $x_0 \in \mathbb{R}$, $\left[ \dfrac{0}{0} \right] \Rightarrow f(x_0) = g(x_0) = 0$
+			
+			$\lim\limits_{x \to x_0} \dfrac{f(x)}{g(x)} = \lim\limits_{x \to x_0} \dfrac{f(x) - f(x_0)}{g(x) - x(x_0)} \overset{\text{по теореме Коши}}{=} \lim\limits_{x \to x_0} \dfrac{f'(c(x))}{g'(c(x))} = \lim\limits_{c \to x_0} \dfrac{f)}{g'(c)} = a$.
+			
+			\item $x_0 \in \mathbb{R}$, $\left[ \dfrac{\infty}{\infty} \right]$
+			
+			$\dfrac{f(x)}{g(x)} = \dfrac{\frac{1}{g(x)}}{\frac{1}{f(x)}} = \dfrac{g_1(x)}{f_1(x)}$, пусть
+			$$
+			f_1(x) =
+			\begin{cases}
+				\dfrac{1}{f(x)}, x \ne x_0\\
+				0, x = x_0
+			\end{cases}
+			$$
+			$$
+			g_1(x) =
+			\begin{cases}
+				\dfrac{1}{g(x)}, x \ne x_0\\
+				0, x = x_0
+			\end{cases}
+			$$
+			$f_1, g_1$ непрерывно дифференцируемы.
+		\end{enumerate}
+	\end{proof}
 	\subsubsection{Утверждения.}
 	\begin{statement}
 		$\exists f'(x_0) \Leftrightarrow f(x) = f(x_0) + A \cdot (x - x_0) + \overline{o} (x - x_0)$ и $A = f'(x_0)$.
