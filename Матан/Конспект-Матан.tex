@@ -794,8 +794,42 @@
 			\end{cases}
 			$$
 			$f_1, g_1$ непрерывно дифференцируемы.
+			
+			\item $x_0 = \pm \infty$ (НУО рассмотрим только $+ \infty$); $a \in \mathbb{R}$
+			
+			fix $\varepsilon > 0$: $\exists \delta > 0$: $\left| \dfrac{f'(x)}{g'(x)} - a \right| < \varepsilon \quad \forall x > \dfrac{1}{\delta}$
+			
+			fix $y \in (\dfrac{1}{\delta}; + \infty) \quad \exists c$ между $x$ и $y$: $\dfrac{f(x) - f(y)}{g(x) - g(y)} = \dfrac{f'(c)}{g'(c)}$
+			
+			$$
+			\dfrac{f(x)(1 - \frac{f(x)}{f(x)})}{g(x)(1 - \frac{g(y)}{g(x)})} = \dfrac{f'(c)}{g'(c)}
+			$$
+			$$
+			\dfrac{f(x)}{g(x)} = \dfrac{f'(c)}{g'(c)} \cdot \dfrac{1 - \frac{g(y)}{g(x)}}{1 - \frac{f(y)}{f(x)}} = \dfrac{f'(c)}{g'(c)} \cdot \left( 1 + \underbrace{\dfrac{\overbrace{\frac{f(y)}{f(x)}}^{\to 0} - \overbrace{\frac{g(y)}{g(x)}}^{\to 0}}{1 - \underbrace{\frac{f(y)}{f(x)}}_{\to 0}}}_{\text{б. м.}} \right) > \dfrac{1}{2} \cdot \dfrac{f'(c)}{g'(c)} > \dfrac{1}{2 \varepsilon} \quad \forall x \geqslant \dfrac{1}{2 \delta}
+			$$
+			
+			\item $x_0 = \pm \infty$ (НУО рассмотрим только $+ \infty$); $\left[ \dfrac{0}{0} \right]$
+			
+			$$
+			\lim\limits_{x \to + \infty} \dfrac{f(x)}{g(x)} \underset{x = \frac{1}{t}}{=} \lim\limits_{t \to +0} \dfrac{f(\frac{1}{t})}{g(\frac{1}{t})} = \left[ \dfrac{0}{0} \right]
+			$$
+			
+			Рассмотрим
+			$$
+			\exists \lim \dfrac{(f(\frac{1}{t}))'}{(g(\frac{1}{t}))'} = \lim\limits_{t \to +0} \dfrac{f'(\frac{1}{t}) \cdot (- \frac{1}{t^2})}{g'(\frac{1}{t}) \cdot (- \frac{1}{t^2})} = \lim\limits_{x \to + \infty} \dfrac{f'(x)}{g'(x)} = a
+			$$
 		\end{enumerate}
 	\end{proof}
+	\paragraph{Применение Лопиталя.}
+	\begin{lemma}
+		$\forall p > 0 \quad \forall a > 1 \qquad x^p = \overline{o}(a^x)$, $x \to + \infty$.
+	\end{lemma}
+	\begin{lemma}
+		$\forall p > 0 \quad \forall a \in (0; 1) \cup (1; + \infty) \qquad \log_a x = \overline{o}(x^p)$, $x \to + \infty$.
+	\end{lemma}
+	\begin{lemma}
+		$\forall \alpha > 0 \quad \forall p > 0 \quad \forall a \in (0; 1) \cup (1; + \infty) \qquad \log_a^\alpha x = \overline{o}(x^p)$, $x \to + \infty$.
+	\end{lemma}
 	\subsubsection{Утверждения.}
 	\begin{statement}
 		$\exists f'(x_0) \Leftrightarrow f(x) = f(x_0) + A \cdot (x - x_0) + \overline{o} (x - x_0)$ и $A = f'(x_0)$.
@@ -811,9 +845,9 @@
 		$\sin x = 0 + x + \dfrac{0}{2!}x^2 - \dfrac{1}{3!}x^3 + 0 \cdot x^4 + \dfrac{1}{3!}x^5 + \dots = x - \dfrac{x^3}{3!} + \dfrac{x^5}{5!} - \dots + (-1)^n \dfrac{x^{2n + 1}}{(2n + 1)!} + \overline{o}(x^{2n + 2})$.
 	\end{statement}
 	\begin{statement}
-		$\cos x$
+		$\cos x =$
 	\end{statement}
 	\begin{statement}
-		$(1 + x)^{\alpha}$
+		$(1 + x)^{\alpha} =$
 	\end{statement}
 \end{document}
