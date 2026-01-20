@@ -253,4 +253,71 @@
 		\item $f(x)^{g(x)} - h(x)^{g(x)} > 0 \Rightarrow g(x)(f(x) - h(x)) > 0$
 		\item $|a| - |b| > 0 \Rightarrow (a - b)(a + b) > 0$
 	\end{enumerate}
+	
+	\section{Квадратные трехчлены с параметром.}
+	
+	$f(x) = ax^2 + bx + c$; $x_1 < x_2$; $a \neq 0$
+	
+	\begin{xltabular}{\textwidth}{|X|X|}
+		\hline
+		Два корня разных знаков & $ca < 0$\\
+		\hline
+		Два корня одинаковых знаков & $\begin{cases}
+			D > 0\\
+			ca > 0
+		\end{cases}$\\
+		\hline
+		Два положительных корня & $\begin{cases}
+			D > 0\\
+			ca > 0\\
+			ba < 0
+		\end{cases}$\\
+		\hline
+		Два отрицательных корня & $\begin{cases}
+			D > 0\\
+			ca > 0\\
+			ba > 0
+		\end{cases}$\\
+		\hline
+	\end{xltabular}
+	
+	\subsection{Сравнение корней с границами ($l, r$).}
+	
+	\begin{xltabular}{\textwidth}{|X|X|}
+		\hline
+		$m < x_1 < x_2$ & $\begin{cases}
+			D > 0\\
+			x_0 > r\\
+			a f(r) > 0
+		\end{cases}$\\
+		\hline
+		$x_1 < x_2 < l$ & $\begin{cases}
+			D > 0\\
+			x_0 < l\\
+			a f(l) > 0
+		\end{cases}$\\
+		\hline
+		$l < x_1 < x_2 < r$ & $\begin{cases}
+			D > 0\\
+			l < x_0 < r\\
+			a f(l) > 0\\
+			a f(r) > 0
+		\end{cases}$\\
+		\hline
+		$x_1 < l < r < x_2$ & $\begin{cases}
+			a f(l) < 0\\
+			a f(r) < 0
+		\end{cases}$\\
+		\hline
+		$l < x_1 < r < x_2$ & $\begin{cases}
+			a f(l) > 0\\
+			a f(r) < 0
+		\end{cases}$\\
+		\hline
+		$x_1 < l < x_2 < r$ & $\begin{cases}
+			a f(r) > 0\\
+			a f(l) < 0
+		\end{cases}$\\
+		\hline
+	\end{xltabular}
 \end{document}
