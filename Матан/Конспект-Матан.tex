@@ -2,6 +2,9 @@
 
 \input{/home/ilden/Documents/School/TeX-Cheat-Sheet/header.tex}
 
+\newcommand{\twoheaduparrow}{\rotatebox[origin=c]{90}{$\twoheadrightarrow$}}
+\newcommand{\twoheaddownarrow}{\rotatebox[origin=c]{-90}{$\twoheadrightarrow$}}
+
 \begin{document}
 	\tableofcontents
 	\setcounter{tocdepth}{3}
@@ -850,4 +853,50 @@
 	%\begin{statement}
 	%	$(1 + x)^{\alpha} =$
 	%\end{statement}
+	
+	\section{Построение графика функции и анализ.}
+	
+	$y = f(x)$
+	
+	\begin{enumerate}
+		\item $D(f)$~--- смотрим область определения, поведение в точках разрыва.
+		\item Точки пересечения с осями и промежутки знакопостоянства.
+		\item Поведение на $\pm \infty$ (асимптоты).\\
+		Прямая $y = kx + b$, асимптота $y = f(x)$ $\Leftrightarrow$ $f(x) - (kx + b) = \overline{o}(1)$
+		\begin{statement}
+			$y = kx + b$ является асимптотой для $y = f(x)$ при $x \to +\infty$ $\Leftrightarrow$ $k = \lim\limits_{x \to +\infty} \dfrac{f(x)}{x}$; $b = \lim\limits_{x \to +\infty} (f(x) - k(x))$.
+		\end{statement}
+		\item Исследование на четность/нечетность.
+		\item Исследование на монотонность и точки экстремума.
+		\begin{theorem}
+			Пусть $f$ непрерывно дифференцируема на $\langle a; b \rangle$. Если:
+			\begin{itemize}
+				\item $f' \geqslant 0$ на $\langle a; b \rangle$, то $f \uparrow$ на $\langle a; b \rangle$.
+				\item $f' > 0$ на $\langle a; b \rangle$, то $f \twoheaduparrow$ на $\langle a; b \rangle$.
+				\item $f' \leqslant 0$ на $\langle a; b \rangle$, то $f \downarrow$ на $\langle a; b \rangle$.
+				\item $f' < 0$ на $\langle a; b \rangle$, то $f \twoheaddownarrow$ на $\langle a; b \rangle$.
+			\end{itemize}
+		\end{theorem}
+		\begin{proof}
+			$\forall x_1 < x_2$, $x_1, x_2 \in \langle a; b \rangle \overset{?}{\Rightarrow} f(x_1) \geqslant f(x_2)$.\\
+			$f$ непрерывно дифференцируема на $[x_1, x_2] \Rightarrow \exists c \in [x_1, x_2]: f(x_2) - f(x_1) = f'(x)(x_2 - x_1)$.
+		\end{proof}
+		
+		\begin{theorem}
+			Пусть $f \uparrow$ на $\langle a; b \rangle$ и дифференцируема на $\langle a; b \rangle$ $\Rightarrow$ $f' \geqslant 0$ на $\langle a; b \rangle$.
+		\end{theorem}
+		\begin{proof}
+			$f'(x) = \lim\limits_{\varDelta x \to 0} \dfrac{f(x + \varDelta x) - f(x)}{\varDelta x} \geqslant 0$.
+		\end{proof}
+		\item Исследование на выпуклость.\\
+		Если $f \in C^2(\langle a; b \rangle)$, то если:
+		\begin{itemize}
+			\item Если $f'' \geqslant 0$, то $f$ выпукла вниз.
+			\item Если $f'' > 0$, то $f$ строго выпукла вниз.
+			\item Если $f'' \leqslant 0$, то $f$ выпукла вверх.
+			\item Если $f'' < 0$, то $f$ строго выпукла вверх.
+		\end{itemize}
+		\item Строим график.
+		\item $E(f)$.
+	\end{enumerate}
 \end{document}
