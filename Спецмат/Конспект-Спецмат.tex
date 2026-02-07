@@ -286,8 +286,55 @@
 	\begin{lemma}[Бермсайда]
 		$G$~--- конечная группа; $M$~--- конечная $\Rightarrow$ количество орбит $= \dfrac{1}{|G|} \sum\limits_{g \in G} |\st{g}| = \dfrac{1}{|G|} \sum\limits_{x \in M} |\st{x}|$, тк $\sum\limits_{g \in G} |\st{g}| = \sum\limits_{x \in M} |\st{x}| = \# \{ (g, x) | gx = x \}$.
 	\end{lemma}
-	\subsection{Образование и соотношения.}
-	\subsubsection{Свободная группа.}
+	
+	\section{Метрические пространства.}
+	
+	\begin{definition}
+		$M$~--- множество; $\rho$: $M \times M \rightarrow \mathbb{R}$.
+		\begin{enumerate}
+			\item $\rho(x, y) \geqslant 0$; $\rho(x, y) = 0 \Leftrightarrow x = y$
+			\item $\rho(x, y) = \rho(y, x)$
+			\item $\rho(x, z) \leqslant \rho(x, y) + \rho(y, z)$
+		\end{enumerate}
+		$(M, \rho)$~--- метрическое пространство.
+	\end{definition}
+	
+	\begin{definition}
+		$B(x_0, r) := \{ x \in M | \rho(x, x_0) < r \}$
+	\end{definition}
+	
+	\begin{definition}
+		$A \subset M$. $A$ называется открытым, если $\forall x_0 \in A \, \exists \varepsilon: B(x_0, \varepsilon) \subset A$.
+	\end{definition}
+	
+	\begin{definition}
+		$f$ называется замкнутым, если $X \setminus f$ открыто.
+	\end{definition}
+	
+	\begin{theorem}
+		\begin{enumerate}
+			\item $\{ U_i \}_{i \in I}$~--- открыто $\Rightarrow$ $\bigcup\limits_{i \in I}$~--- открыто.
+			\item $\{ U_i \}_{i \in I}^{n}$~--- открыто $\Rightarrow$ $\bigcup\limits_{i \in I}^{n}$~--- открыто.
+			\item $\emptyset; M$~--- открыты.
+		\end{enumerate}
+	\end{theorem}
+	
+	\begin{theorem}
+		\begin{enumerate}
+			\item $\{ F_i \}_{i \in I}$~--- замкнуто $\Rightarrow$ $\bigcap\limits_{i \in I} F_i$~--- замкнуто.
+			\item $\{ F_i \}_{i \in I}^{n}$~--- замкнуто $\Rightarrow$ $\bigcap\limits_{i \in I}^{n} F_i$~--- замкнуто.
+			\item $\emptyset; M$~--- замкнуто.
+		\end{enumerate}
+	\end{theorem}
+	
+	\begin{definition}[Топологическое пространство]
+		Множество $X$ с множеством $\Omega \subset 2^X$ ($A \in \Omega$~--- открытые подмножества):
+		\begin{enumerate}
+			\item $\bigcup\limits_{i \in I} U_i \in \Omega$, если $\forall U_i \in \Omega$
+			\item $U_1, \dots, U_n \in \Omega \Rightarrow \bigcap\limits_{i=1}^n U_i \in \Omega$
+			\item $\emptyset, X \in \Omega$
+		\end{enumerate}
+	\end{definition}
 
 
 
