@@ -1,6 +1,6 @@
 \documentclass[12pt]{article}
 
-\input{/home/ilden/Documents/School/TeX-Cheat-Sheet/header.tex}
+\input{C:/Users/ilden/Documents/School/TeX-Cheat-Sheet/header.tex}
 \newcommand{\orb}{\text{orb}}
 \newcommand{\ord}{\text{ord}}
 \newcommand{\cycl}{\text{cycl}}
@@ -334,6 +334,14 @@
 			\item $U_1, \dots, U_n \in \Omega \Rightarrow \bigcap\limits_{i=1}^n U_i \in \Omega$
 			\item $\emptyset, X \in \Omega$
 		\end{enumerate}
+	\end{definition}
+	
+	\begin{definition}[Граница множества $\partial A$]
+		Это множество точек, в любой окрестности (шаре) которых есть как точки из $A$, так и точки не из $A$. $x \in \partial A \Leftrightarrow \forall r > 0: B(x, r) \cap A \ne \emptyset$ и $B(x, r) \cap (X \setminus A) \ne \emptyset$
+	\end{definition}
+	
+	\begin{definition}[Замыкание $\overline{A}$]
+		Объединение множества и его границы: $\overline{A} = A \cup \partial A$. Замыкание всегда является замкнутым множеством.
 	\end{definition}
 
 

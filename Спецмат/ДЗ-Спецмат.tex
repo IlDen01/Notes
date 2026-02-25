@@ -1,0 +1,62 @@
+\documentclass[12pt]{article}
+
+\input{C:/Users/ilden/Documents/School/TeX-Cheat-Sheet/header.tex}
+
+\begin{document}
+	
+	\section*{ДЗ: Метрические пространства}
+	
+	\begin{problem}
+		Докажите, что $\partial A$ является замкнутым подмножеством.
+	\end{problem}
+	
+	\begin{solution}
+		Докажем, что дополнение $X \setminus \partial A$ открыто.
+		Пусть $x \in X \setminus \partial A$. По определению границы, это означает, что существует $r > 0$, такой что шар $B(x, r)$ либо целиком лежит в $A$, либо целиком лежит в $X \setminus A$.
+		В обоих случаях $B(x, r) \cap \partial A = \emptyset$, то есть $B(x, r) \subset (X \setminus \partial A)$.
+		Так как для любой точки $x$ из дополнения существует окрестность, лежащая в дополнении, множество $X \setminus \partial A$ открыто. Следовательно, $\partial A$ замкнуто.
+	\end{solution}
+	
+	\begin{problem}
+		Докажите, что $A$ замкнуто тогда и только тогда, когда $\partial A \subset A$.
+	\end{problem}
+	
+	\begin{solution}
+		$(\Rightarrow)$ Пусть $A$ замкнуто. Тогда $X \setminus A$ открыто. Предположим, что существует $x \in \partial A$, такой что $x \notin A$. Тогда $x \in X \setminus A$. Так как $X \setminus A$ открыто, существует $\varepsilon > 0$, такой что $B(x, \varepsilon) \subset X \setminus A$. Значит, $B(x, \varepsilon) \cap A = \emptyset$, что противоречит определению граничной точки. Следовательно, $\partial A \subset A$.
+		
+		$(\Leftarrow)$ Пусть $\partial A \subset A$. Рассмотрим произвольную точку $y \in X \setminus A$. Так как $y \notin A$, то $y \notin \partial A$. Значит, $y$ — внешняя точка (не граничная и не внутренняя). По определению, существует $r > 0$, такой что $B(y, r) \cap A = \emptyset$, то есть $B(y, r) \subset X \setminus A$.
+		Таким образом, $X \setminus A$ открыто $\Rightarrow A$ замкнуто.
+	\end{solution}
+	
+	\begin{problem}
+		Рассмотрим $\rho_1(x, y) = \min\{1, \rho(x, y)\}$.
+		\begin{enumerate}[(a)]
+			\item Докажите, что $\rho_1$ является метрикой.
+			\item Докажите, что множество открыто в $(X, \rho)$ $\Leftrightarrow$ открыто в $(X, \rho_1)$.
+		\end{enumerate}
+	\end{problem}
+	
+	\begin{solution}
+		\begin{enumerate}[(a)]
+			\item Аксиомы 1 (положительность) и 2 (симметрия) очевидны. Проверим неравенство треугольника:
+			$$ \min(1, \rho(x, z)) \leqslant \min(1, \rho(x, y)) + \min(1, \rho(y, z)). $$
+			\begin{itemize}
+				\item Если $\rho(x, y) + \rho(y, z) \geqslant 1$, то правая часть неравенства $\geqslant 1$, а левая всегда $\leqslant 1$. Верно.
+				\item Если $\rho(x, y) + \rho(y, z) < 1$, то $\rho(x, y) < 1$ и $\rho(y, z) < 1$. Тогда $\rho_1(x, z) \leqslant \rho_1(x, y) + \rho_1(y, z)$. Верно.
+			\end{itemize}
+			
+			\item Заметим, что для любого $r \in (0, 1)$ выполняется $B^{\rho}(x, r) = B^{\rho_1}(x, r)$.
+			Пусть $U$ открыто в $(X, \rho)$. Тогда $\forall x \in U \exists \varepsilon > 0: B^\rho(x, \varepsilon) \subset U$. Выберем $\delta = \min(0.5, \varepsilon)$. Тогда $B^{\rho_1}(x, \delta) = B^\rho(x, \delta) \subset U$. Значит, $U$ открыто в $(X, \rho_1)$.
+			Обратное доказывается аналогично.
+		\end{enumerate}
+	\end{solution}
+	
+	\begin{problem}
+		Существуют ли три открытых подмножества с общей границей?
+	\end{problem}
+	
+	\begin{solution}
+		\textbf{Да, существуют.} Пример: $(0, 1); (-\infty, 0) \cup (1, \infty); \mathbb{R} \setminus \{ 0, 1 \}$.
+	\end{solution}
+	
+\end{document}
