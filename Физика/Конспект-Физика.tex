@@ -920,8 +920,8 @@
 		$I = \dfrac{q}{t}$.
 	\end{definition}
 	
-	\begin{definition}[Плотность тока, $\iota \, \dfrac{\text{А}}{\text{м}^2}$]
-		$\iota = \dfrac{I}{S}$.
+	\begin{definition}[Плотность тока, $j \, \dfrac{\text{А}}{\text{м}^2}$]
+		$j = \dfrac{I}{S}$.
 	\end{definition}
 	
 	\begin{definition}[Электро-движущая сила, $\varepsilon \, \text{В}$]
@@ -966,4 +966,44 @@
 		\item $\sum\limits_i I_i = 0$
 		\item $\sum\limits_i \varepsilon_i = \sum\limits_i I_i R_i + \sum\limits_i I_i r_i$
 	\end{enumerate}
+	
+	\subsection{Электрический ток в различных средах.}
+	
+	\textbf{Вещества} делятся на:
+	
+	\begin{itemize}
+		\item Проводники. Концентрация свободных электронов примерно $10^{28} \, \text{м}^{-3}$. Примеры: металлы, растворы и расплавы электролитов, плазма.
+		
+		\item Диэлектрики. Концентрация $< 10^{17} \, \text{м}^{-3}$. Примеры: янтарь, фарфор, резина, стекло, парафин, керосин, лаки, дистиллированная вода.
+		
+		\textbf{Пробивная напряженность}~--- напряженность, при которой диэлектрики начинают проводить ток. У воздуха: $3000 \dfrac{\text{кВ}}{\text{м}}$; фарфора: $8000-15000 \dfrac{\text{кВ}}{\text{м}}$.
+		
+		\item Полупроводники. Примеры: германий, селен, кремний.
+	\end{itemize}
+	
+	\paragraph{Теория Друде.} Уравнение движения свободного электрона в электрическом поле из классической теории электропроводности Друде, где связываются сила поля, дрейфовая скорость, время и длина свободного пробега электрона: $E \cdot \overline{e} = m \cdot a = \dfrac{m V_{max}}{\tau} = \dfrac{m V_{max} u}{\lambda}$, где $u = \sqrt{\dfrac{3KT}{m_e}} = \sqrt{\dfrac{3 \cdot 1.38 \cdot 10^{-23} \, \frac{\text{Дж}}{\text{К}} \cdot 300 \, \text{К}}{9.1 \cdot 10^{-31} \, \text{кг}}} \approx 1.168 \cdot 10^5 \, \dfrac{\text{м}}{\text{с}}$, $\tau = \dfrac{\lambda}{u}$.
+	
+	$E e = \dfrac{m u}{\lambda} \cdot \dfrac{2 I}{e n S} \Rightarrow j = E \cdot \dfrac{e^2 \lambda n}{2 m u} = E \sigma \Rightarrow I = \dfrac{\sigma S}{d} U \Rightarrow I = GU$.
+	
+	\begin{definition}[Проводимость, $G \, \text{См (симменсы)}$]
+		$G = \dfrac{I}{U}$.
+	\end{definition}
+	
+	\begin{definition}[Сверхпроводимость]
+		Явление полной потери металлом электрического сопротивления при охлаждении до температуры, близкой к $0 \, \text{К}$.
+	\end{definition}
+	
+	\subsection{Электрический ток в растворах и расплавах электролитов.}
+	
+	\begin{definition}[Электролиты]
+		Вещества, которые проводят ток из-за распада на ионы.
+	\end{definition}
+	
+	\begin{definition}[Электролитическая диссоциация]
+		Явление процесса распада молекулы на ионы при растворении или плавлении.
+	\end{definition}
+	
+	\begin{definition}[Электролиз]
+		Процесс выделения на электродах вещества, связанный с\\ окислительно-восстановительными реакциями.
+	\end{definition}
 \end{document}

@@ -304,11 +304,12 @@
 	\end{definition}
 	
 	\begin{definition}
+		\label{open-def}
 		$A \subset M$. $A$ называется открытым, если $\forall x_0 \in A \, \exists \varepsilon: B(x_0, \varepsilon) \subset A$.
 	\end{definition}
 	
 	\begin{definition}
-		$f$ называется замкнутым, если $X \setminus f$ открыто.
+		$f$ называется замкнутым, если $X \setminus f$ \hyperref[open-def]{открыто}.
 	\end{definition}
 	
 	\begin{theorem}
@@ -337,12 +338,35 @@
 	\end{definition}
 	
 	\begin{definition}[Граница множества $\partial A$]
+		\label{border-def}
 		Это множество точек, в любой окрестности (шаре) которых есть как точки из $A$, так и точки не из $A$. $x \in \partial A \Leftrightarrow \forall r > 0: B(x, r) \cap A \ne \emptyset$ и $B(x, r) \cap (X \setminus A) \ne \emptyset$
 	\end{definition}
 	
 	\begin{definition}[Замыкание $\overline{A}$]
-		Объединение множества и его границы: $\overline{A} = A \cup \partial A$. Замыкание всегда является замкнутым множеством.
+		Объединение множества и его \hyperref[border-def]{границы}: $\overline{A} = A \cup \partial A$. Замыкание всегда является замкнутым множеством.
 	\end{definition}
+	
+	\begin{definition}[Канторово множество, $K$]
+		Получается, если выкидывать каждый раз среднюю треть на $(0, 1)$.
+	\end{definition}
+	
+	\begin{definition}[Гомеоморфизм]
+		$X \simeq Y$, если $\exists f: X \rightarrow Y$:
+		\begin{itemize}
+			\item $f$~--- непрерывна.
+			\item $f$~--- биекция.
+			\item $f'$~--- непрерывна.
+		\end{itemize}
+	\end{definition}
+	
+	\begin{property}
+		\begin{enumerate}
+			\item $K$~--- замкнуто.
+			\item Длина $K = 0$.
+			\item $K$ несчетно.
+			\item $K \simeq K \times K$
+		\end{enumerate}
+	\end{property}
 
 
 
