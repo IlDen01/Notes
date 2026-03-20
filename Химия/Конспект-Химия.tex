@@ -1,6 +1,8 @@
 \documentclass[12pt]{article}
 
 \input{C:/Users/ilden/Documents/School/TeX-Cheat-Sheet/header.tex}
+\usepackage{chemfig}
+\setchemfig{atom sep=1.75em}
 
 \begin{document}
 	
@@ -71,4 +73,203 @@
 		\item Ионный
 	\end{itemize}
 	
+	\chemfig{H_3C-CH_3}
+	
+	\chemfig{H_3C-CH(-[::90]OH)-CH_3}
+	
+	\chemfig{CH_3-C(=[::30]O)(-[::-30]OH)}
+	
+	\chemfig{**6(------)}
+	
+	\chemfig{*6(------)}
+	
+	\chemfig{**6(--(-CH_3)----)}
+	
+	\chemfig{**6(---(-O-C(=[::60]O)-CH_3)--(-C(=[::-60]O)-OH)-)}
+	
+	\chemfig{**6(------)} $+ CH_4 \rightarrow$ \chemfig{**6(---(-CH_3)---)}
+	
+	\section*{Задача 55}
+	
+	\textbf{Дано:}
+	\begin{itemize}
+		\item $m_{\text{смеси}} = 38$ г (муравьиная + уксусная кислоты)
+		\item $m_{\text{р-ра}}(NaOH) = 300$ г, $\omega = 10\%$
+	\end{itemize}
+	\textbf{Найти:} $V_{\text{газа}}$ (н.у.) при реакции с $[Ag(NH_3)_2]OH$.
+	
+	\subsection*{Решение}
+	
+	1. \textbf{Найдем количество вещества гидроксида натрия:}
+	$$ m(NaOH) = 300 \cdot 0.10 = 30 \text{ г} $$
+	$$ n(NaOH) = \frac{30}{40} = 0.75 \text{ моль} $$
+	
+	2. \textbf{Уравнения реакций нейтрализации:}
+	Обе кислоты реагируют с щелочью. Пусть $n(HCOOH) = x$, $n(CH_3COOH) = y$.
+	
+	\schemestart
+	\chemfig{H-C(=[:30]O)-[:-30]OH} \+ \chemfig{NaOH} \arrow \chemfig{H-C(=[:30]O)-[:-30]ONa} \+ \chemfig{H_2O}
+	\schemestop
+	
+	\vspace{0.5cm}
+	
+	\schemestart
+	\chemfig{CH_3-C(=[:30]O)-[:-30]OH} \+ \chemfig{NaOH} \arrow \chemfig{CH_3-C(=[:30]O)-[:-30]ONa} \+ \chemfig{H_2O}
+	\schemestop
+	
+	Система уравнений:
+	$$
+	\begin{cases}
+		x + y = 0.75 & (\text{по молям NaOH}) \\
+		46x + 60y = 38 & (\text{по массе смеси})
+	\end{cases}
+	$$
+	Выразим $x = 0.75 - y$ и подставим во второе уравнение:
+	$$ 46(0.75 - y) + 60y = 38 $$
+	$$ 34.5 - 46y + 60y = 38 \Rightarrow 14y = 3.5 \Rightarrow y = 0.25 \text{ моль} $$
+	$$ x = 0.5 \text{ моль (муравьиная кислота)} $$
+	
+	3. \textbf{Реакция с аммиачным раствором оксида серебра:}
+	Реагирует только муравьиная кислота (содержит альдегидную группу):
+	
+	\schemestart
+	\chemfig{H-C(=[:30]O)-[:-30]OH} \+ \chemfig{O} 
+	\arrow{->[\scriptsize $Ag_2O$][\scriptsize $NH_3$]} 
+	\chemfig{CO_2 \uparrow} \+ \chemfig{H_2O} \+ \chemfig{2Ag \downarrow}
+	\schemestop
+	
+	$$ n(CO_2) = n(HCOOH) = 0.5 \text{ моль} $$
+	$$ V(CO_2) = 0.5 \cdot 22.4 = 11.2 \text{ л} $$
+	
+	\textbf{Ответ:} 11,2 л.
+	
+	\newpage
+	
+	\section*{Задача 59}
+	
+	\textbf{Дано:} $m(\text{к-ты}) = 14.8$ г, $V(O_2) = 15.68$ л.\\
+	\textbf{Найти:} Формулу кислоты.
+	
+	\subsection*{Решение}
+	
+	1. \textbf{Схема превращений:}
+	\schemestart
+	\chemfig{R-COOH} \arrow{->[\scriptsize NaOH]} \chemfig{R-COONa} \arrow{->[\scriptsize NaOH, $t$]} \chemfig{R-H} \arrow{->[\scriptsize $O_2$]} \chemfig{CO_2} \+ \chemfig{H_2O}
+	\schemestop
+	
+	Пусть формула кислоты $C_kH_{2k+1}COOH$. Тогда алкан имеет формулу $C_kH_{2k+2}$.
+	
+	2. \textbf{Горение алкана:}
+	$$ n(O_2) = \frac{15.68}{22.4} = 0.7 \text{ моль} $$
+	Уравнение:
+	$$ C_kH_{2k+2} + \frac{3k+1}{2}O_2 \rightarrow kCO_2 + (k+1)H_2O $$
+	
+	3. \textbf{Расчет:}
+	Пусть количество кислоты (и алкана) равно $x$ моль.
+	$$ x \cdot \frac{3k+1}{2} = 0.7 \Rightarrow x = \frac{1.4}{3k+1} $$
+	Масса кислоты:
+	$$ M(\text{к-ты}) = 14k + 46 $$
+	$$ m = n \cdot M \Rightarrow 14.8 = \frac{1.4(14k+46)}{3k+1} $$
+	$$ 14.8(3k+1) = 19.6k + 64.4 $$
+	$$ 44.4k + 14.8 = 19.6k + 64.4 \Rightarrow 24.8k = 49.6 \Rightarrow k = 2 $$
+	
+	Радикал $C_2H_5$. Кислота — пропионовая.
+	
+	\textbf{Структура:}
+	\chemfig{CH_3-CH_2-C(=[:30]O)-[:-30]OH}
+	
+	\textbf{Ответ:} $C_2H_5COOH$ (пропионовая кислота).
+	
+	\hrulefill
+	
+	\section*{Задача 60}
+	
+	\textbf{Дано:} $\omega(O) = 36.36\%$, $m_{\text{практ}} = 11$ г, $\eta = 60\%$.\\
+	\textbf{Найти:} $m(\text{алкана})$.
+	
+	\subsection*{Решение}
+	
+	1. \textbf{Формула кислоты ($C_nH_{2n}O_2$):}
+	$$ M = \frac{2 \cdot 16}{0.3636} = 88 \text{ г/моль} $$
+	$$ 14n + 32 = 88 \Rightarrow n = 4 $$
+	Кислота: $C_3H_7COOH$ (Масляная кислота).
+	\chemfig{CH_3-CH_2-CH_2-C(=[:30]O)-[:-30]OH}
+	
+	2. \textbf{Окислительный крекинг:}
+	Для получения масляной кислоты разрывом цепи пополам нужен октан ($C_8H_{18}$).
+	\schemestart
+	\chemfig{C_8H_{18}} \+ \chemfig{2.5 O_2} \arrow \chemfig{2 C_3H_7COOH} \+ \chemfig{H_2O}
+	\schemestop
+	
+	3. \textbf{Расчет:}
+	$$ m_{\text{теор}}(\text{к-ты}) = \frac{11}{0.6} = 18.33 \text{ г} $$
+	$$ n(\text{к-ты}) = \frac{18.33}{88} \approx 0.208 \text{ моль} $$
+	По уравнению $n(\text{алкана}) = \frac{1}{2} n(\text{к-ты}) = 0.104$ моль.
+	$$ m(C_8H_{18}) = 0.104 \cdot 114 \approx 11.9 \text{ г} $$
+	
+	\textbf{Ответ:} 11,9 г.
+	
+	\newpage
+	
+	\section*{Задача 62}
+	
+	\textbf{Дано:} Газ $B$ ($\rho = 1.965$ г/л), $m(A) = 26.4$ г.\\
+	\textbf{Найти:} Структуры $A$, $m(NaOH)$.
+	
+	\subsection*{Решение}
+	
+	1. \textbf{Определение газа B:}
+	$$ M(B) = 1.965 \cdot 22.4 = 44 \text{ г/моль} $$
+	Алкан $C_nH_{2n+2} = 44 \Rightarrow 14n+2=44 \Rightarrow n=3$. Газ — пропан ($C_3H_8$).
+	
+	2. \textbf{Определение кислоты A:}
+	Реакция Дюма (декарбоксилирование):
+	\schemestart
+	\chemfig{R-COONa} \+ \chemfig{NaOH} \arrow{->[$t$]} \chemfig{R-H} \+ \chemfig{Na_2CO_3}
+	\schemestop
+	Если $R-H$ это $C_3H_8$, то радикал $R$ это $C_3H_7$.
+	Кислота $A$: $C_3H_7COOH$ (изомеры бутановой кислоты).
+	
+	\textbf{Возможные структуры:}
+	
+	а) Бутановая кислота (н-масляная):
+	\chemfig{CH_3-CH_2-CH_2-C(=[:30]O)-[:-30]OH}
+	
+	б) 2-метилпропановая кислота (изомасляная):
+	\chemfig{CH_3-CH(-[2]CH_3)-C(=[:30]O)-[:-30]OH}
+	
+	3. \textbf{Расчет массы NaOH:}
+	Для превращения кислоты в алкан нужно: 1 моль NaOH для нейтрализации + 1 моль NaOH для сплавления. Итого 2 моль NaOH на 1 моль кислоты.
+	$$ n(A) = \frac{26.4}{88} = 0.3 \text{ моль} $$
+	$$ n(NaOH) = 2 \cdot 0.3 = 0.6 \text{ моль} $$
+	$$ m(NaOH) = 0.6 \cdot 40 = 24 \text{ г} $$
+	
+	\textbf{Ответ:} 24 г.
+	
+	\hrulefill
+	
+	\section*{Задача 63}
+	
+	\textbf{Дано:} Смесь кислот. Нейтрализация: 300 г 10\% NaOH. Окисление: 11.2 л газа.
+	
+	\subsection*{Решение}
+	
+	Аналогично задаче 55, но в обратном порядке.
+	
+	1. Газ выделяется только из муравьиной кислоты:
+	$$ n(CO_2) = \frac{11.2}{22.4} = 0.5 \text{ моль} \Rightarrow n(HCOOH) = 0.5 \text{ моль} $$
+	
+	2. Общее количество щелочи:
+	$$ n(NaOH) = \frac{300 \cdot 0.1}{40} = 0.75 \text{ моль} $$
+	На муравьиную кислоту ушло 0.5 моль NaOH.
+	Остаток на уксусную: $0.75 - 0.5 = 0.25$ моль.
+	
+	3. Массовые доли:
+	$$ m(HCOOH) = 0.5 \cdot 46 = 23 \text{ г} $$
+	$$ m(CH_3COOH) = 0.25 \cdot 60 = 15 \text{ г} $$
+	$$ m_{\text{общ}} = 38 \text{ г} $$
+	$$ \omega(HCOOH) = \frac{23}{38} \approx 60.5\% $$
+	$$ \omega(CH_3COOH) = \frac{15}{38} \approx 39.5\% $$
+	
+	\textbf{Ответ:} 60.5\% и 39.5\%.
 \end{document}

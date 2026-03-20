@@ -350,6 +350,10 @@
 		Получается, если выкидывать каждый раз среднюю треть на $(0, 1)$.
 	\end{definition}
 	
+	\begin{definition}[Непрерывность отображения]
+		$f: X \rightarrow Y$ непрерывна, если $\forall U \subset Y \, f^{-1} (U)$~--- открыто в $X$.
+	\end{definition}
+	
 	\begin{definition}[Гомеоморфизм]
 		$X \simeq Y$, если $\exists f: X \rightarrow Y$:
 		\begin{itemize}
@@ -367,10 +371,74 @@
 			\item $K \simeq K \times K$
 		\end{enumerate}
 	\end{property}
+	
+	\section{Связность.}
+	
+	\begin{definition}[Несвязность.]
+		$X$~--- несвязное пространство, если $\exists$ открытые $U, V \subset X$:
+		\begin{enumerate}
+			\item $U, V \ne \emptyset$
+			\item $U \cap V = \emptyset$
+			\item $U \cup V = X$
+		\end{enumerate}
+	\end{definition}
+	
+	\begin{definition}[Несвязность.]
+		$X$~--- топологическое пространство; $A \ne \emptyset \subset X$. $A$ несвязно, если $\exists$ открытые $U, V \subset X$:
+		\begin{itemize}
+			\item $U \cap A \ne \emptyset$, $V \cap A \ne \emptyset$
+			\item $U \cap V \cap A = \emptyset$
+			\item $A \subset U \cup V$
+		\end{itemize}
+	\end{definition}
+	
+	\begin{definition}[Линейная связность.]
+		$X$~--- топологическое пространство. $X$ называется линейно связным, если $\forall a, b \in X$  $\exists$ непрерывное $f: [0, 1] \rightarrow X$: $f(0) = a, f(1) = b$.
+	\end{definition}
+	
+	\begin{note}
+		Линейная связность $\Rightarrow$ связность.
+	\end{note}
+	
+	\begin{theorem}
+		$I = [0, 1]$ связен.
+	\end{theorem}
+	
+	\begin{proof}
+		Допустим противное.
+		
+		$U, V$~--- открытые; $U \cap I \ne \emptyset$, $V \cap I \ne \emptyset$; $U \cap V \cap I = \emptyset$; $I \subset U \cap V$.
+		
+		НУО $0 \in U$.
+		
+		$x_0 = \inf \{ V \cap I \}$.
+		
+		Пусть $x_0 \in V \Rightarrow \exists \varepsilon > 0: B(x_0, \varepsilon) \subset V \Rightarrow (x_0 - \varepsilon; x_0 + \varepsilon) \subset V \Rightarrow x_0$~--- не инфимум.
+		
+		Пусть тогда $x_0 \in U \Rightarrow \exists \varepsilon > 0: B(x_0, \varepsilon) \subset U \Rightarrow (x_0 - \varepsilon; x_0 + \varepsilon) \subset U \Rightarrow x_0 + \dfrac{\varepsilon}{2}$~--- нижняя грань $V \cap I$.
+		
+		Если $x_0 = 0: [0, \varepsilon) \subset U \Rightarrow x_0 \geqslant \varepsilon$.
+	\end{proof}
+	
+	\begin{theorem}
+		$f: X \rightarrow Y$ непрерывно; $A \subset X$~--- связно $\Rightarrow f(A)$ связно в $Y$.
+	\end{theorem}
+	
+	\begin{theorem}[Вейерштрасса]
+		$X$~--- связен; $f: X \rightarrow R$; $f(x_1) = a$, $f(x_2) = b$, $a \leqslant c \leqslant b \Rightarrow \exists x_0: f(x_0) = c$.
+	\end{theorem}
+	
+	\begin{definition}[Блин]
+		Открытое (связное) ограниченное подмножество плоскости.
+	\end{definition}
+	
+	\begin{statement}
+		Блин одной прямой, параллельной данной, можно разделить на 2 равные части.
+	\end{statement}
 
 
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 

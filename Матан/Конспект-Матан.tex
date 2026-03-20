@@ -908,4 +908,110 @@
 			y = y(t)
 		\end{cases}$ является графиком функции.
 	\end{definition}
+	
+	\section{Интегральное исчисление.}
+	
+	Рассмотрим ограниченную функцию $f: [a, b] \rightarrow \mathbb{R}, \, m \leqslant f(x) \leqslant M$. Возьмем точки $\{ x_0 = a < x_1 < x_2 < \dots < x_n = b \}$. $\xi_k \in [x_{k - 1}, x_k], \, \forall k = 1 \dots n$.
+	
+	\begin{definition}[Разбиение отрезка с выбранными точками]
+		Набор $x_k$ с набором $\xi_k$ ($\forall k = 1 \dots n$) называется разбиеним отрезка с выбранными точками.
+	\end{definition}
+	
+	\begin{definition}[Интегральная сумма функции $f$ для разбиения отрезка с выбранными точками]
+		$$ m (b - a) \leqslant \sum\limits_{k = 1}^n f(\xi_k)(x_k - x_{k - 1}) \leqslant M (b - a) $$
+	\end{definition}
+	
+	\begin{definition}[Мелкость (ранг) разбиения]
+		$$ d = \max\limits_{k = 1}^n \{ x_k - x_{k - 1} \} $$
+	\end{definition}
+	
+	\begin{definition}[Интеграл функции]
+		Пусть $\exists I \in \mathbb{R}$, такое что $\forall \varepsilon > 0 \, \exists \delta > 0$: $\forall$ разбиения $d < \delta$, $\forall$ выбора $\{ \xi_k \}$ верно $\sum\limits_{k = 1}^n f(\xi_k)(x_k - x_{k - 1}) - I < \varepsilon$, тогда $I := \int\limits_a^b f(x) dx$.
+	\end{definition}
+	
+	\begin{definition}[Верхняя и нижняя сумма Дарбу]
+		$f$ ограничена на $[a; b] \, \{ x_k \}_{k = 0}^n$~--- разбиение.
+		
+		$\sum\limits_{k = 1}^n \sup f_{[x_{k - 1}, x_k]} \varDelta x_k = \overline{S}_{\{ x_k \}}$~--- верхняя сумма Дарбу.
+		
+		$\sum\limits_{k = 1}^n \inf f_{[x_{k - 1}, x_k]} \varDelta x_k = \underline{S}_{\{ x_k \}}$~--- нижняя сумма Дарбу.
+	\end{definition}
+	
+	\begin{statement}
+		$\forall$ выбора $\{ \xi_k \}$ (для fix $\{ x_k \}$): $$ \underline{S}_{\{ x_k \}} \leqslant \sum\limits_{k = 1}^n f(\xi_k) \varDelta x_k \leqslant \overline{S}_{\{ x_k \}} $$
+	\end{statement}
+	
+	\begin{lemma}
+		Если добавить в разбиение еще одну точку, то верхняя сумма Дарбу не увеличится, а нижняя~--- не уменьшится.
+	\end{lemma}
+	
+	\begin{proof}
+		Возьмем точку $c$.
+		
+		$\sup f_{[x_k; x_{k + 1}]} \varDelta x_k \rightarrow \sup f_{[x_k, c]} (c - x_k) + \sup f_{[c; x_{k + 1}]} (x_{k + 1} - c) \leqslant \sup f_{[x_k, x_{k + 1}]} (c - x_k) + \sup f_{[x_k, x_{k + 1}]} (x_{k + 1} - c) = \sup f_{[x_k, x_{k + 1}]} (x_{k + 1} - x_k)$.
+		
+		Для минимума аналогично.
+	\end{proof}
+	
+	\begin{lemma}
+		$\{ x_k \}, \, \{ y_m \}$~--- два разбиения $[a; b]$. Тогда $\underline{S}_{\{ x_k \}} \leqslant \overline{S}_{\{ y_m \}}$.
+	\end{lemma}
+	
+	\begin{statement}
+		$\{ \overline{S}_{\{ x_k \}} \}_{\forall \text{разбиения}}$ ограничено снизу; $\{ \underline{S}_{\{ x_k \}} \}_{\forall \text{разбиения}}$ ограничено сверху.
+	\end{statement}
+	
+	\begin{definition}
+		$S^* = \inf \overline{S}_{\{ x_k \}}$; $S_* = \sup \underline{S}_{\{ x_k \}}$. $\inf$ и $\sup$ берутся по множеству всех разбиений $[a; b]$.
+	\end{definition}
+	
+	\begin{lemma}
+		$S^* = S_* \Leftrightarrow \exists \int\limits_a^b f(x) dx$.
+	\end{lemma}
+	
+	\begin{proof}
+		\begin{itemize}
+			\item[$\Rightarrow$]
+			
+			Пусть $S^* = S_* = S$. fix $\varepsilon > 0$.
+			
+			$\exists \{ z_l \}$: $\overline{S}_{\{ z_l \}} < S + \varepsilon$.
+			
+			$\exists \{ y_m \}$: $\underline{S}_{\{ y_m \}} > S - \varepsilon$.
+			
+			$\rightarrow \{ x_k \} := \{ z_l \} \cup \{ y_m \}$.
+			
+			$S - \varepsilon < \underline{S}_{\{ x_k \}} \leqslant \overline{S}_{\{ x_k \}} < S + \varepsilon$; $\delta := \max \{ \varDelta x_k \}$~--- искомая $\delta$.
+			
+			$\forall$ разбиения $\{ w_m \}$, мелкость $d < \delta$; $\{ \tilde{w}_m \} = \{ w_m \} \cup \{ x_k \}$.
+			
+			$\underline{S}_{\{ w_m \}} \leqslant \underline{S}_{\{ \tilde{w}_m \}} \leqslant \overline{S}_{\{ \tilde{w}_m \}} \leqslant \overline{S}_{\{ w_m \}}$ и $\overline{S}_{\{ \tilde{w}_m \}} - \underline{S}_{\{ \tilde{w}_m \}} \leqslant \overline{S}_{x_k} - \underline{S}_{x_k} < 2 \varepsilon$
+			
+			$\left| \sum\limits_{m = 1}^m f(\xi_m) \varDelta w_m - S \right| \leqslant \max \{ \left| \sum \dots - \underline{S}_{\{ w_m \}} \right|; \left| \sum \dots - \overline{S}_{\{ w_m \}} \right| \} \overset{?}{\leqslant} \overline{S}_{\{ w_m \}} - \underline{S}_{\{ w_m \}} < 2 \varepsilon$
+			
+			\item[$\Leftarrow$]
+			
+			fix $\varepsilon > 0$. $\exists \{ x_k \}$ $\forall$ выбора точек $\xi_k$ $\sum f(\xi_k) \varDelta x_k < S + \varepsilon$.
+			
+			Пусть $\xi_k: f(\xi_k) > \sup f_{[x_{k - 1}, x_k]} - \dfrac{\varepsilon}{2 (b - a)}$.
+			
+			$\sum f(\xi_k) \varDelta x_k \geqslant \sum \left( \sup f_{[x_{k - 1}, x_k]} - \dfrac{\varepsilon}{2 (b - a)} \right) \varDelta x_k$
+		\end{itemize}
+	\end{proof}
+	
+	\begin{theorem}[Вейерштрасса]
+		Пусть $f \in C([a; b])$. Тогда $\exists \, \int\limits_a^b f(x) dx$.
+	\end{theorem}
+	
+	\begin{proof}
+		fix $\varepsilon > 0$. $f$ равномерно непрерывна на $[a; b] \Rightarrow \exists \delta = \delta(\varepsilon): \, \forall x, y \in [a; b]: \, |x - y| < \delta \Rightarrow |f(x) - f(y)| < \varepsilon$.
+		
+		Возьмем произвольное разбиение $\{ x_k \}$, $d < \delta$.
+		
+		Пусть $\xi_k$~--- точки максимума, $\eta_k$~--- точки минимум а на $[x_{k - 1}, x_k]$.
+		
+		$\overline{S}_{\{ x_k \}} - \underline{S}_{\{ x_k \}} = \sum\limits_{k = 1}^k (f(\xi_k) - f(\eta_k)) \varDelta x_k < \varepsilon \sum\limits_{k = 1}^k \varDelta x_k = \varepsilon (b - a)$.
+		
+		$0 \leqslant \overline{S}_{\{ x_k\}} - \underline{S}_{\{ x_k \}} < \varepsilon (b - a) \Rightarrow S^* = S_* \Rightarrow \exists \int\limits_a^b f(x) dx$.
+	\end{proof}
 \end{document}
