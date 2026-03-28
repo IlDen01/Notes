@@ -4,6 +4,11 @@
 
 \newcommand{\twoheaduparrow}{\rotatebox[origin=c]{90}{$\twoheadrightarrow$}}
 \newcommand{\twoheaddownarrow}{\rotatebox[origin=c]{-90}{$\twoheadrightarrow$}}
+\newcommand{\dint}{\displaystyle\int}
+\newcommand{\arcsinh}{\text{arcsinh} \,}
+\newcommand{\arccosh}{\text{arccosh} \,}
+\newcommand{\arctgh}{\text{arctgh} \,}
+\newcommand{\arcctgh}{\text{arcctgh} \,}
 
 \begin{document}
 	\tableofcontents
@@ -926,7 +931,7 @@
 	\end{definition}
 	
 	\begin{definition}[Интеграл функции]
-		Пусть $\exists I \in \mathbb{R}$, такое что $\forall \varepsilon > 0 \, \exists \delta > 0$: $\forall$ разбиения $d < \delta$, $\forall$ выбора $\{ \xi_k \}$ верно $\sum\limits_{k = 1}^n f(\xi_k)(x_k - x_{k - 1}) - I < \varepsilon$, тогда $I := \int\limits_a^b f(x) dx$.
+		Пусть $\exists I \in \mathbb{R}$, такое что $\forall \varepsilon > 0 \, \exists \delta > 0$: $\forall$ разбиения $d < \delta$, $\forall$ выбора $\{ \xi_k \}$ верно $\sum\limits_{k = 1}^n f(\xi_k)(x_k - x_{k - 1}) - I < \varepsilon$, тогда $I := \dint\limits_a^b f(x) dx$.
 	\end{definition}
 	
 	\begin{definition}[Верхняя и нижняя сумма Дарбу]
@@ -966,7 +971,7 @@
 	\end{definition}
 	
 	\begin{lemma}
-		$S^* = S_* \Leftrightarrow \exists \int\limits_a^b f(x) dx$.
+		$S^* = S_* \Leftrightarrow \exists \dint\limits_a^b f(x) dx$.
 	\end{lemma}
 	
 	\begin{proof}
@@ -1000,7 +1005,7 @@
 	\end{proof}
 	
 	\begin{theorem}[Вейерштрасса]
-		Пусть $f \in C([a; b])$. Тогда $\exists \, \int\limits_a^b f(x) dx$.
+		Пусть $f \in C([a; b])$. Тогда $\exists \, \dint\limits_a^b f(x) dx$.
 	\end{theorem}
 	
 	\begin{proof}
@@ -1012,6 +1017,84 @@
 		
 		$\overline{S}_{\{ x_k \}} - \underline{S}_{\{ x_k \}} = \sum\limits_{k = 1}^k (f(\xi_k) - f(\eta_k)) \varDelta x_k < \varepsilon \sum\limits_{k = 1}^k \varDelta x_k = \varepsilon (b - a)$.
 		
-		$0 \leqslant \overline{S}_{\{ x_k\}} - \underline{S}_{\{ x_k \}} < \varepsilon (b - a) \Rightarrow S^* = S_* \Rightarrow \exists \int\limits_a^b f(x) dx$.
+		$0 \leqslant \overline{S}_{\{ x_k\}} - \underline{S}_{\{ x_k \}} < \varepsilon (b - a) \Rightarrow S^* = S_* \Rightarrow \exists \dint\limits_a^b f(x) dx$.
 	\end{proof}
+	
+	\subsection{Свойства интегралов.}
+	
+	\begin{enumerate}
+		\item \textbf{Линейность.}
+		
+		Пусть $f$ и $g$ интегрируемы на $[a, b]$, тогда $\forall \alpha, \beta$ $\alpha f + \beta g$ тоже интегрируема на $[a, b]$ и $\dint\limits_a^b (\alpha f + \beta g) dx = \underbrace{\alpha \dint\limits_a^bf dx}_A + \underbrace{\beta \dint\limits_a^b g dx}_B$.
+		
+		\begin{proof}
+			fix $\varepsilon$.
+			
+			$\left| \sum (\alpha f(\xi_k) + \beta g(\xi_k)) \varDelta x - \alpha A - \beta B \right|$
+		\end{proof}
+	\end{enumerate}
+	
+	\begin{lemma}
+		Пусть $f$ непрерывна на $[\alpha, \beta]$; $F_1(x)$ и $F_2(x)$~--- две первообразные к $f(x)$ на $[\alpha, \beta]$. Тогда $F_1(x) - F_2(x) = const$.
+	\end{lemma}
+	
+	\begin{proof}
+		$G(x) = F_1(x) - F_2(x)$; $\forall x_1, x_2 \in [\alpha, \beta]$.
+		
+		По теореме Лагранжа о средних в дифференциальной форме:
+		
+		$\exists c \in (x_1, x_2)$: $G(x_1) - G(x_2) = G'(c)(x_1 - x_2) = (F_1'(c) - F_2'(c))(x_1 - x_2) = 0 \, \forall x_1, x_2 \Rightarrow G(x) = const$.
+	\end{proof}
+	
+	\begin{theorem}[Формула Ньютона-Лейбница]
+		$f$ непрерывна на $[a, b]$; $F(x)$~--- любая первообразная $f(x)$. Тогда $\dint\limits_a^b f(x) dx = F(b) - F(a) =: F(x) \Bigr|_a^b$.
+	\end{theorem}
+	
+	\begin{proof}
+		$\Phi (x) = \dint\limits_a^b f(x) dx = F(x) + C$.
+		
+		$t = b$: $\Phi (b) = F(b) + C$.
+		
+		$t = a$: $\Phi (a) = F(a) + C \Rightarrow C = -F(a)$.
+	\end{proof}
+	
+	\begin{theorem}[Формула замены переменной]
+		Пусть $f$ непрерывна на $[\alpha, \beta]$; $g$ непрерывно дифференцируема на $[a, b]$ и $g(a) = \alpha$, $g(b) = \beta$. Тогда $\dint\limits_a^b f(g(x)) g'(x) dx = \dint\limits_a^b f(t) dt$.
+	\end{theorem}
+	
+	\begin{proof}
+		$\dint\limits_a^b f(t) dt = F(\beta) - F(\alpha) = F(g(b)) - F(g(a)) = F(g(x)) \Bigr|_a^b = \dint\limits_a^b (F(g(x)))' dx\\
+		= \dint\limits_a^b f(g(x)) g'(x) dx$.
+	\end{proof}
+	
+	\begin{theorem}[Формула интегрирования по частям]
+		Пусть $f$ и $g$ непрерывно дифференцируемы на $[a, b]$. Тогда $\dint\limits_a^b f(x) g'(x) dx = f(x) g(x) \Bigr|_a^b - \dint\limits_a^b f'(x) g(x) dx$, что эквивалентно $\dint\limits_a^b f(x) d g(x) = f(x) g(x) \Bigr|_a^b - \dint\limits_a^b g(x) d f(x)$.
+	\end{theorem}
+	
+	\begin{proof}
+		$\dint\limits_a^b f g' dx + \dint\limits_a^b f' g dx = \dint\limits_a^b (f g' + f' g) dx = \dint\limits_a^b (fg)' dx = fg \Bigr|_a^b$.
+	\end{proof}
+	
+	\subsection{Правила интегрирования.}
+	
+	\begin{enumerate}
+		\item $\dint x^s dx = \dfrac{x^{s + 1}}{s + 1} + C$; $s \ne -1$
+		\item $\dint \dfrac{dx}{x} = \ln |x| + C$
+		\item $\dint a^x dx = \dfrac{a^x}{\ln a} + C$; $\dint e^x dx = e^x + C$
+		\item $\dint \sin x dx = - \cos x$
+		\item $\dint \cos x dx = \sin x + C$
+		\item $\dint \dfrac{dx}{\sin^2 x} = - \ctg x + C$
+		\item $\dint \dfrac{dx}{\cos^2 x} = \tg x + C$
+		\item $\dint \tg x dx = - \ln |\cos x| + C$
+		\item $\dint \ctg x dx = \ln |\sin x| + C$
+		\item $\dint \dfrac{dx}{x^2 + 1} = \arctg x + C$
+		
+		$\dint \dfrac{dx}{x^2 + a^2} = \dfrac{1}{a^2} \dint \dfrac{a d \left( \dfrac{x}{a} \right)}{\left( \dfrac{x}{a} \right)^2 + 1} = \dfrac{1}{a} \arctg \dfrac{x}{a} + C$
+		
+		\item $\dint \dfrac{dx}{x^2 - a^2} = \dfrac{1}{2 a} \left( \dint \dfrac{d (x - a)}{x - 1} - \dint \dfrac{d (x + a)}{x + a} \right) = \dfrac{1}{2 a} \left( \ln |x - a| - \ln |x + a| \right) + C = \dfrac{1}{2 a} \ln \left| \dfrac{x - a}{x + a} \right| + C$
+		\item $\dint \dfrac{dx}{\sqrt{1 - x^2}} = \arcsin x + C$
+		\item $\dint \dfrac{dx}{\sqrt{x^2 - 1}} = \arcsinh x + C$
+		\item $\dint \dfrac{dx}{\sqrt{x^2 + 1}} = \ln \left( x + \sqrt{x^2 + 1} \right) + C$
+		\item $\dint \arctg x dx = x \arctg x - \dint x d (\arctg x) = x \arctg x - \dfrac{1}{2} \dint \dfrac{2}{x^2 + 1} dx = x \arctg x - \dfrac{1}{2} \ln (x^2 + 1) + C$
+	\end{enumerate}
 \end{document}

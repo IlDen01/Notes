@@ -374,7 +374,7 @@
 	
 	\section{Связность.}
 	
-	\begin{definition}[Несвязность.]
+	\begin{definition}[Несвязность]
 		$X$~--- несвязное пространство, если $\exists$ открытые $U, V \subset X$:
 		\begin{enumerate}
 			\item $U, V \ne \emptyset$
@@ -383,7 +383,7 @@
 		\end{enumerate}
 	\end{definition}
 	
-	\begin{definition}[Несвязность.]
+	\begin{definition}[Несвязность]
 		$X$~--- топологическое пространство; $A \ne \emptyset \subset X$. $A$ несвязно, если $\exists$ открытые $U, V \subset X$:
 		\begin{itemize}
 			\item $U \cap A \ne \emptyset$, $V \cap A \ne \emptyset$
@@ -392,7 +392,7 @@
 		\end{itemize}
 	\end{definition}
 	
-	\begin{definition}[Линейная связность.]
+	\begin{definition}[Линейная связность]
 		$X$~--- топологическое пространство. $X$ называется линейно связным, если $\forall a, b \in X$  $\exists$ непрерывное $f: [0, 1] \rightarrow X$: $f(0) = a, f(1) = b$.
 	\end{definition}
 	
@@ -435,6 +435,48 @@
 	\begin{statement}
 		Блин одной прямой, параллельной данной, можно разделить на 2 равные части.
 	\end{statement}
+	
+	\begin{statement}
+		Любой блин можно разделить на две равновеликие части прямой, проходящей через заданную точку.
+	\end{statement}
+	
+	\begin{statement}
+		Два любых блина, каждый на две равновеликие части.
+	\end{statement}
+	
+	\begin{statement}
+		Один блин на 4 равновеликие части, двумя перпендикулярными разрезами.
+	\end{statement}
+	
+	\section{Компактность.}
+	
+	\begin{definition}[Покрытие]
+		$(X, \Omega)$~--- топологическое пространство; $\{ U_i \}$~--- открытое. Если $\bigcup\limits_i U_i = X$, то $\{ U_i \}$~--- открытое покрытие.
+	\end{definition}
+	
+	\begin{definition}[Компактность]
+		$X$ называется компактным, если $\forall$ покрытия $\{ U_i \}$ $\exists U_1, U_2, \dots, U_n$: $\{ U_k \}_{k = 1}^n$~--- покрытие.
+	\end{definition}
+	
+	\begin{definition}
+		$(X, \Omega)$~--- топологическое пространство, $A \subset X$. $A$ компактное, если $\forall \{ U_i \}_{i \in I}$: $\bigcup\limits_{i \in I} U_i \supset A \Rightarrow \exists U_1, \dots, U_n$: $U_1 \cup \dots \cup U_n \supset A$.
+	\end{definition}
+	
+	\begin{theorem}
+		$A \subset \mathbb{R}^n \Rightarrow A$~--- компактно $\Leftrightarrow A$~--- замкнуто и ограничено.
+	\end{theorem}
+	
+	\begin{theorem}
+		$A$ компактно, $f: A \rightarrow \mathbb{R}$ непрерывная функция $\Rightarrow f$ достигает свои max и min.
+	\end{theorem}
+	
+	\begin{theorem}
+		$[0, 1]$~--- компактно.
+	\end{theorem}
+	
+	\begin{theorem}
+		Замкнутое подмножество компактного~--- компактно.
+	\end{theorem}
 
 
 
