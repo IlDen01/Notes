@@ -1020,19 +1020,99 @@
 		$0 \leqslant \overline{S}_{\{ x_k\}} - \underline{S}_{\{ x_k \}} < \varepsilon (b - a) \Rightarrow S^* = S_* \Rightarrow \exists \dint\limits_a^b f(x) dx$.
 	\end{proof}
 	
-	\subsection{Свойства интегралов.}
+		\subsection{Свойства интегралов.}
 	
 	\begin{enumerate}
 		\item \textbf{Линейность.}
 		
-		Пусть $f$ и $g$ интегрируемы на $[a, b]$, тогда $\forall \alpha, \beta$ $\alpha f + \beta g$ тоже интегрируема на $[a, b]$ и $\dint\limits_a^b (\alpha f + \beta g) dx = \underbrace{\alpha \dint\limits_a^bf dx}_A + \underbrace{\beta \dint\limits_a^b g dx}_B$.
+		Пусть $f$ и $g$ интегрируемы на $[a, b]$, тогда $\forall \alpha, \beta \in \mathbb{R}$ функция $\alpha f + \beta g$ тоже интегрируема на $[a, b]$ и 
+		$$ \dint\limits_a^b (\alpha f(x) + \beta g(x)) dx = \alpha \dint\limits_a^b f(x) dx + \beta \dint\limits_a^b g(x) dx $$
 		
 		\begin{proof}
-			fix $\varepsilon$.
-			
-			$\left| \sum (\alpha f(\xi_k) + \beta g(\xi_k)) \varDelta x - \alpha A - \beta B \right|$
+			Пусть $A = \dint\limits_a^b f(x) dx$ и $B = \dint\limits_a^b g(x) dx$. Рассмотрим модуль разности интегральной суммы и предполагаемого значения интеграла:
+			\begin{align*}
+				&\left| \sum\limits_{k=1}^n (\alpha f(\xi_k) + \beta g(\xi_k))\varDelta x_k - (\alpha A + \beta B) \right| \\
+				={}& \left| \alpha \left(\sum\limits_{k=1}^n f(\xi_k)\varDelta x_k - A\right) + \beta \left(\sum\limits_{k=1}^n g(\xi_k)\varDelta x_k - B\right) \right| \\
+				\leqslant{}& |\alpha| \cdot \left| \sum\limits_{k=1}^n f(\xi_k)\varDelta x_k - A \right| + |\beta| \cdot \left| \sum\limits_{k=1}^n g(\xi_k)\varDelta x_k - B \right|
+			\end{align*}
+			Fix $\varepsilon > 0$. Так как $f$ и $g$ интегрируемы, то для $\varepsilon' = \dfrac{\varepsilon}{|\alpha| + |\beta| + 1} > 0$ существуют $\delta_1 > 0$ и $\delta_2 > 0$ такие, что для любого разбиения с мелкостью $d < \delta_1$ (для $f$) и $d < \delta_2$ (для $g$) выполняется:
+			$$ \left| \sum f(\xi_k)\varDelta x_k - A \right| < \varepsilon' \quad \text{и} \quad \left| \sum g(\xi_k)\varDelta x_k - B \right| < \varepsilon' $$
+			Выберем $\delta = \min(\delta_1, \delta_2)$. Тогда для любого разбиения с мелкостью $d < \delta$ имеем:
+			$$ |\alpha| \cdot \left| \dots \right| + |\beta| \cdot \left| \dots \right| < |\alpha|\varepsilon' + |\beta|\varepsilon' = (|\alpha| + |\beta|)\frac{\varepsilon}{|\alpha| + |\beta| + 1} < \varepsilon $$
+			Что и требовалось доказать.
 		\end{proof}
+		
+		\item \textbf{Аддитивность.}
+		
+		Пусть $f$ интегрируема на $[a, b]$. Тогда $\forall c \in (a, b)$ функция $f$ интегрируема на отрезках $[a, c]$ и $[c, b]$, и справедливо равенство:
+		$$ \dint\limits_a^b f(x) dx = \dint\limits_a^c f(x) dx + \dint\limits_c^b f(x) dx $$
+		
+		\item \textbf{Монотонность.}
+		
+		Пусть функции $f(x)$ и $g(x)$ интегрируемы на $[a, b]$ и $\forall x \in [a, b]$ выполняется $f(x) \leqslant g(x)$. Тогда:
+		$$ \dint\limits_a^b f(x) dx \leqslant \dint\limits_a^b g(x) dx $$
+		Если, кроме того, $f$ и $g$ непрерывны и $\exists x_0 \in [a, b]: f(x_0) < g(x_0)$, то неравенство будет строгим.
+		
+		\begin{proof}[Идея]
+			Рассмотрим функцию $h(x) = g(x) - f(x) \geqslant 0$. Интегральная сумма для $h(x)$ будет неотрицательна, следовательно, и ее предел (интеграл) также будет неотрицателен: $\dint\limits_a^b (g(x) - f(x)) dx \geqslant 0$.
+		\end{proof}
+		
 	\end{enumerate}
+	
+	\begin{theorem}[О среднем значении в интегральной форме]
+		Пусть $f(x)$ непрерывна на отрезке $[a, b]$. Тогда $\exists c \in [a, b]$ такая, что
+		$$ \dint\limits_a^b f(x) dx = f(c) \cdot (b-a) $$
+	\end{theorem}
+	\begin{proof}
+		Т.к. $f \in C([a, b])$, по теореме Вейерштрасса она достигает на нем своих наименьшего $m$ и наибольшего $M$ значений.
+		$$ m \leqslant f(x) \leqslant M, \quad \forall x \in [a, b] $$
+		Интегрируя это неравенство от $a$ до $b$:
+		$$ \dint\limits_a^b m \,dx \leqslant \dint\limits_a^b f(x) \,dx \leqslant \dint\limits_a^b M \,dx $$
+		$$ m(b-a) \leqslant \dint\limits_a^b f(x) \,dx \leqslant M(b-a) $$
+		Разделим на $(b-a)$:
+		$$ m \leqslant \frac{1}{b-a}\dint\limits_a^b f(x) \,dx \leqslant M $$
+		По теореме о промежуточном значении для непрерывной функции, существует точка $c \in [a, b]$, в которой функция принимает это среднее значение.
+	\end{proof}
+	
+	\begin{definition}[Кусочно-непрерывная функция]
+		Функция называется \textbf{кусочно-непрерывной} на отрезке $[a, b]$, если она имеет конечное число точек разрыва, и все они являются разрывами первого рода.
+	\end{definition}
+	
+	\begin{theorem}
+		Если функция $f$ кусочно-непрерывна на $[a, b]$, то она интегрируема на $[a, b]$.
+	\end{theorem}
+	
+	\subsection{Интеграл с переменным верхним пределом}
+	
+	Пусть $f$ интегрируема на $[\alpha, \beta]$. Зафиксируем $a \in [\alpha, \beta]$ и рассмотрим функцию:
+	$$ F(x) = \dint\limits_a^x f(t) dt, \quad x \in [\alpha, \beta] $$
+	
+	\begin{theorem}[Основная теорема анализа (Теорема Барроу)]
+		Пусть $f(t)$ непрерывна на отрезке $[\alpha, \beta]$. Тогда функция $F(x) = \dint\limits_a^x f(t) dt$:
+		\begin{enumerate}
+			\item Непрерывна на $[\alpha, \beta]$.
+			\item Дифференцируема в любой точке $x_0 \in (\alpha, \beta)$, и ее производная равна $F'(x_0) = f(x_0)$.
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		1) Докажем непрерывность. Рассмотрим $\lim_{\Delta x \to 0} (F(x_0 + \Delta x) - F(x_0))$.
+		$$ F(x_0 + \Delta x) - F(x_0) = \dint\limits_a^{x_0+\Delta x} f(t) dt - \dint\limits_a^{x_0} f(t) dt = \dint\limits_{x_0}^{x_0+\Delta x} f(t) dt $$
+		Так как $f$ непрерывна на отрезке, она на нем ограничена. $|\dint\limits_{x_0}^{x_0+\Delta x} f(t) dt| \leqslant \sup |f| \cdot |\Delta x| \to 0$ при $\Delta x \to 0$.
+		
+		2) Найдем производную.
+		$$ F'(x_0) = \lim_{\Delta x \to 0} \frac{F(x_0 + \Delta x) - F(x_0)}{\Delta x} = \lim_{\Delta x \to 0} \frac{1}{\Delta x} \dint\limits_{x_0}^{x_0+\Delta x} f(t) dt $$
+		По теореме о среднем, $\exists c \in [x_0, x_0+\Delta x]$ такое, что $\dint\limits_{x_0}^{x_0+\Delta x} f(t) dt = f(c) \cdot \Delta x$.
+		$$ F'(x_0) = \lim_{\Delta x \to 0} \frac{f(c) \cdot \Delta x}{\Delta x} = \lim_{\Delta x \to 0} f(c) = f(x_0) $$
+		Последний переход верен, так как при $\Delta x \to 0$ имеем $c \to x_0$, а функция $f$ непрерывна.
+	\end{proof}
+	
+	\begin{definition}[Первообразная]
+		Пусть $f$ определена на $[\alpha, \beta]$. Функция $F(x)$ называется \textbf{первообразной} для $f(x)$, если $\forall x \in [\alpha, \beta]$ выполняется $F'(x) = f(x)$.
+	\end{definition}
+	
+	\begin{statement}
+		Из теоремы Барроу следует, что если функция $f$ непрерывна на отрезке, то у нее существует хотя бы одна первообразная (а именно, $F(x)=\dint_a^x f(t)dt$).
+	\end{statement}
 	
 	\begin{lemma}
 		Пусть $f$ непрерывна на $[\alpha, \beta]$; $F_1(x)$ и $F_2(x)$~--- две первообразные к $f(x)$ на $[\alpha, \beta]$. Тогда $F_1(x) - F_2(x) = const$.

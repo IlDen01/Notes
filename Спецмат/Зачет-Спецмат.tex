@@ -14,7 +14,7 @@
 	\subsection{Определение и задачи}
 	
 	\begin{definition}
-		Числа Фибоначчи определяются рекуррентно: $F_1 = F_2 = 1$, $F_{n+1} = F_n + F_{n-1}$ для $n \geq 2$.
+		Числа Фибоначчи определяются рекуррентно: $F_1 = F_2 = 1$, $F_{n+1} = F_n + F_{n-1}$ для $n \geqslant 2$.
 	\end{definition}
 	
 	\textbf{Задачи, приводящие к числам Фибоначчи:}
@@ -112,7 +112,7 @@
 	\subsection{Зацикливание остатков}
 	
 	\begin{theorem}
-		Последовательность $F_n \mod m$ периодична для любого $m \geq 2$.
+		Последовательность $F_n \mod m$ периодична для любого $m \geqslant 2$.
 	\end{theorem}
 	
 	\begin{proof}
@@ -122,7 +122,7 @@
 		
 		Пусть $(F_i \mod m, F_{i+1} \mod m) = (F_j \mod m, F_{j+1} \mod m)$ при $i < j$.
 		
-		Тогда $F_{i+k} \equiv F_{j+k} \pmod{m}$ для всех $k \geq 0$ (по рекурренции вперёд).
+		Тогда $F_{i+k} \equiv F_{j+k} \pmod{m}$ для всех $k \geqslant 0$ (по рекурренции вперёд).
 		
 		Более того, $F_{i-1} = F_{i+1} - F_i \equiv F_{j+1} - F_j = F_{j-1} \pmod{m}$, так что последовательность периодична и назад, начиная с $(F_1, F_2) = (1, 1)$.
 	\end{proof}
@@ -263,16 +263,16 @@
 	\end{proof}
 	
 	\begin{definition}
-		Отношение $\leq$ на $X$~--- \textbf{частичный порядок}, если:
+		Отношение $\leqslant$ на $X$~--- \textbf{частичный порядок}, если:
 		\begin{itemize}
-			\item (Рефлексивность) $x \leq x$
-			\item (Антисимметричность) $x \leq y, y \leq x \Rightarrow x = y$
-			\item (Транзитивность) $x \leq y, y \leq z \Rightarrow x \leq z$
+			\item (Рефлексивность) $x \leqslant x$
+			\item (Антисимметричность) $x \leqslant y, y \leqslant x \Rightarrow x = y$
+			\item (Транзитивность) $x \leqslant y, y \leqslant z \Rightarrow x \leqslant z$
 		\end{itemize}
 	\end{definition}
 	
 	\begin{definition}
-		Частичный порядок~--- \textbf{линейный (полный)}, если $\forall x, y$: $x \leq y$ или $y \leq x$.
+		Частичный порядок~--- \textbf{линейный (полный)}, если $\forall x, y$: $x \leqslant y$ или $y \leqslant x$.
 	\end{definition}
 	
 	\newpage
@@ -286,7 +286,7 @@
 	\end{definition}
 	
 	\begin{definition}
-		$|A| \leq |B|$, если существует инъекция $f: A \to B$.
+		$|A| \leqslant |B|$, если существует инъекция $f: A \to B$.
 	\end{definition}
 	
 	\subsection{Счётные множества}
@@ -380,7 +380,7 @@
 	\end{theorem}
 	
 	\begin{proof}
-		$|A| \leq |2^A|$: инъекция $a \mapsto \{a\}$.
+		$|A| \leqslant |2^A|$: инъекция $a \mapsto \{a\}$.
 		
 		Предположим, существует биекция $f: A \to 2^A$. Рассмотрим множество
 		\[B = \{a \in A : a \notin f(a)\}.\]
@@ -397,7 +397,7 @@
 	\subsection{Теорема Кантора--Бернштейна}
 	
 	\begin{theorem}[Кантор--Бернштейн]
-		Если $|A| \leq |B|$ и $|B| \leq |A|$, то $|A| = |B|$.
+		Если $|A| \leqslant |B|$ и $|B| \leqslant |A|$, то $|A| = |B|$.
 	\end{theorem}
 	
 	\begin{proof}
@@ -414,7 +414,7 @@
 		
 		Инъективность: на $A^*$ это $f$ (инъекция), вне $A^*$ это $g^{-1}$ (инъекция). Если $a \in A^*$, $a' \notin A^*$ и $h(a) = h(a')$, то $f(a) = g^{-1}(a')$, значит $a' = g(f(a)) \in A_{n+1}$ для некоторого $n$, противоречие.
 		
-		Сюръективность: для $b \in B$, если $g(b) \in A^*$, то $g(b) \in A_n$ для некоторого $n \geq 1$ (не в $A_0$, т.к. $g(b) \in g(B)$), значит $g(b) = g(f(a))$ для $a \in A_{n-1} \subseteq A^*$, откуда $b = f(a) = h(a)$. Если $g(b) \notin A^*$, то $h(g(b)) = g^{-1}(g(b)) = b$.
+		Сюръективность: для $b \in B$, если $g(b) \in A^*$, то $g(b) \in A_n$ для некоторого $n \geqslant 1$ (не в $A_0$, т.к. $g(b) \in g(B)$), значит $g(b) = g(f(a))$ для $a \in A_{n-1} \subseteq A^*$, откуда $b = f(a) = h(a)$. Если $g(b) \notin A^*$, то $h(g(b)) = g^{-1}(g(b)) = b$.
 	\end{proof}
 	
 	\newpage
@@ -484,7 +484,7 @@
 	\end{definition}
 	
 	\begin{definition}
-		\textbf{Функция распределения:} $F_X(x) = P(X \leq x) = P(\{\omega : X(\omega) \leq x\})$.
+		\textbf{Функция распределения:} $F_X(x) = P(X \leqslant x) = P(\{\omega : X(\omega) \leqslant x\})$.
 	\end{definition}
 	
 	\subsection{Математическое ожидание}
@@ -496,7 +496,7 @@
 	\begin{theorem}[Свойства математического ожидания]
 		\begin{enumerate}
 			\item \textbf{Линейность:} $\mathbb{E}[aX + bY] = a\mathbb{E}[X] + b\mathbb{E}[Y]$
-			\item Если $X \geq 0$, то $\mathbb{E}[X] \geq 0$
+			\item Если $X \geqslant 0$, то $\mathbb{E}[X] \geqslant 0$
 			\item Если $X$ и $Y$ независимы, то $\mathbb{E}[XY] = \mathbb{E}[X] \cdot \mathbb{E}[Y]$
 		\end{enumerate}
 	\end{theorem}
@@ -515,14 +515,14 @@
 	
 	\begin{theorem}[Свойства дисперсии]
 		\begin{enumerate}
-			\item $\mathbb{D}[X] \geq 0$
+			\item $\mathbb{D}[X] \geqslant 0$
 			\item $\mathbb{D}[aX + b] = a^2 \mathbb{D}[X]$
 			\item Если $X, Y$ независимы: $\mathbb{D}[X + Y] = \mathbb{D}[X] + \mathbb{D}[Y]$
 		\end{enumerate}
 	\end{theorem}
 	
 	\begin{proof}
-		1. $\mathbb{D}[X] = \mathbb{E}[(X - \mathbb{E}[X])^2] \geq 0$, т.к. квадрат неотрицателен.
+		1. $\mathbb{D}[X] = \mathbb{E}[(X - \mathbb{E}[X])^2] \geqslant 0$, т.к. квадрат неотрицателен.
 		
 		2. $\mathbb{E}[aX+b] = a\mathbb{E}[X] + b$, поэтому
 		$\mathbb{D}[aX+b] = \mathbb{E}[(aX+b - a\mathbb{E}[X] - b)^2] = \mathbb{E}[a^2(X-\mathbb{E}[X])^2] = a^2 \mathbb{D}[X]$.
@@ -577,31 +577,31 @@
 	\subsection{Неравенство Чебышёва и закон больших чисел}
 	
 	\begin{theorem}[Неравенство Маркова]
-		Если $X \geq 0$, то $P(X \geq a) \leq \frac{\mathbb{E}[X]}{a}$.
+		Если $X \geqslant 0$, то $P(X \geqslant a) \leqslant \frac{\mathbb{E}[X]}{a}$.
 	\end{theorem}
 	
 	\begin{proof}
-		$\mathbb{E}[X] = \sum_x x P(X = x) \geq \sum_{x \geq a} x P(X = x) \geq a \sum_{x \geq a} P(X = x) = a P(X \geq a)$.
+		$\mathbb{E}[X] = \sum_x x P(X = x) \geqslant \sum_{x \geqslant a} x P(X = x) \geqslant a \sum_{x \geqslant a} P(X = x) = a P(X \geqslant a)$.
 	\end{proof}
 	
 	\begin{theorem}[Неравенство Чебышёва]
-		$P(|X - \mathbb{E}[X]| \geq \varepsilon) \leq \frac{\mathbb{D}[X]}{\varepsilon^2}$.
+		$P(|X - \mathbb{E}[X]| \geqslant \varepsilon) \leqslant \frac{\mathbb{D}[X]}{\varepsilon^2}$.
 	\end{theorem}
 	
 	\begin{proof}
 		Применяем Маркова к $(X - \mathbb{E}[X])^2$:
-		\[P(|X - \mathbb{E}[X]| \geq \varepsilon) = P((X - \mathbb{E}[X])^2 \geq \varepsilon^2) \leq \frac{\mathbb{E}[(X - \mathbb{E}[X])^2]}{\varepsilon^2} = \frac{\mathbb{D}[X]}{\varepsilon^2}.\]
+		\[P(|X - \mathbb{E}[X]| \geqslant \varepsilon) = P((X - \mathbb{E}[X])^2 \geqslant \varepsilon^2) \leqslant \frac{\mathbb{E}[(X - \mathbb{E}[X])^2]}{\varepsilon^2} = \frac{\mathbb{D}[X]}{\varepsilon^2}.\]
 	\end{proof}
 	
 	\begin{theorem}[Закон больших чисел]
 		Пусть $X_1, X_2, \dots$~--- независимые одинаково распределённые случайные величины с $\mathbb{E}[X_i] = \mu$, $\mathbb{D}[X_i] = \sigma^2 < \infty$. Тогда
-		\[P\left(\left|\frac{X_1 + \dots + X_n}{n} - \mu\right| \geq \varepsilon\right) \to 0 \text{ при } n \to \infty.\]
+		\[P\left(\left|\frac{X_1 + \dots + X_n}{n} - \mu\right| \geqslant \varepsilon\right) \to 0 \text{ при } n \to \infty.\]
 	\end{theorem}
 	
 	\begin{proof}
 		Пусть $S_n = X_1 + \dots + X_n$. Тогда $\mathbb{E}[S_n/n] = \mu$, $\mathbb{D}[S_n/n] = \sigma^2/n$.
 		
-		По Чебышёву: $P(|S_n/n - \mu| \geq \varepsilon) \leq \frac{\sigma^2}{n\varepsilon^2} \to 0$.
+		По Чебышёву: $P(|S_n/n - \mu| \geqslant \varepsilon) \leqslant \frac{\sigma^2}{n\varepsilon^2} \to 0$.
 	\end{proof}
 	
 	\newpage
@@ -611,7 +611,7 @@
 	\subsection{Ряды Фарея}
 	
 	\begin{definition}
-		\textbf{Ряд Фарея} $F_n$~--- возрастающая последовательность несократимых дробей в $[0, 1]$ со знаменателями $\leq n$.
+		\textbf{Ряд Фарея} $F_n$~--- возрастающая последовательность несократимых дробей в $[0, 1]$ со знаменателями $\leqslant n$.
 	\end{definition}
 	
 	Пример: $F_4 = \{0/1, 1/4, 1/3, 1/2, 2/3, 3/4, 1/1\}$.
@@ -629,7 +629,7 @@
 	\end{proof}
 	
 	\begin{definition}
-		Дробь $\frac{p}{q}$ называется \textbf{близкой} к $\alpha$, если для любой дроби $\frac{r}{s}$ с $s \leq q$ и $\frac{r}{s} \neq \frac{p}{q}$ выполнено $\left|\alpha - \frac{p}{q}\right| < \left|\alpha - \frac{r}{s}\right|$.
+		Дробь $\frac{p}{q}$ называется \textbf{близкой} к $\alpha$, если для любой дроби $\frac{r}{s}$ с $s \leqslant q$ и $\frac{r}{s} \neq \frac{p}{q}$ выполнено $\left|\alpha - \frac{p}{q}\right| < \left|\alpha - \frac{r}{s}\right|$.
 	\end{definition}
 	
 	\subsection{Цепные дроби}
@@ -744,11 +744,11 @@
 	\subsection{Подгруппы и смежные классы}
 	
 	\begin{definition}
-		$H \subseteq G$~--- \textbf{подгруппа} ($H \leq G$), если $H$~--- группа относительно операции $G$.
+		$H \subseteq G$~--- \textbf{подгруппа} ($H \leqslant G$), если $H$~--- группа относительно операции $G$.
 	\end{definition}
 	
 	\begin{theorem}[Критерий подгруппы]
-		$H \leq G \Leftrightarrow H \neq \varnothing$ и $\forall a, b \in H: ab^{-1} \in H$.
+		$H \leqslant G \Leftrightarrow H \neq \varnothing$ и $\forall a, b \in H: ab^{-1} \in H$.
 	\end{theorem}
 	
 	\begin{definition}
@@ -757,7 +757,7 @@
 	\end{definition}
 	
 	\begin{theorem}[Лагранж]
-		Если $G$ конечна и $H \leq G$, то $|H|$ делит $|G|$.
+		Если $G$ конечна и $H \leqslant G$, то $|H|$ делит $|G|$.
 	\end{theorem}
 	
 	\begin{proof}
@@ -813,7 +813,7 @@
 	\end{definition}
 	
 	\begin{theorem}
-		$\ker \varphi \trianglelefteq G$, $\text{Im} \varphi \leq H$.
+		$\ker \varphi \trianglelefteq G$, $\text{Im} \varphi \leqslant H$.
 	\end{theorem}
 	
 	\begin{proof}
@@ -912,7 +912,7 @@
 		\begin{enumerate}
 			\item $d(x, y) = 0 \Leftrightarrow x = y$
 			\item $d(x, y) = d(y, x)$ (симметричность)
-			\item $d(x, z) \leq d(x, y) + d(y, z)$ (неравенство треугольника)
+			\item $d(x, z) \leqslant d(x, y) + d(y, z)$ (неравенство треугольника)
 		\end{enumerate}
 	\end{definition}
 	
@@ -931,19 +931,19 @@
 	\textbf{2. $\mathbb{R}^n$ с манхэттенской метрикой:} $d_1(x, y) = \sum_{i=1}^{n} |x_i - y_i|$
 	
 	\begin{proof}
-		Неравенство треугольника: $|x_i - z_i| \leq |x_i - y_i| + |y_i - z_i|$, суммируем.
+		Неравенство треугольника: $|x_i - z_i| \leqslant |x_i - y_i| + |y_i - z_i|$, суммируем.
 	\end{proof}
 	
 	\textbf{3. $\mathbb{R}^n$ с метрикой Чебышёва:} $d_\infty(x, y) = \max_i |x_i - y_i|$
 	
 	\begin{proof}
-		$|x_i - z_i| \leq |x_i - y_i| + |y_i - z_i| \leq d_\infty(x, y) + d_\infty(y, z)$.
+		$|x_i - z_i| \leqslant |x_i - y_i| + |y_i - z_i| \leqslant d_\infty(x, y) + d_\infty(y, z)$.
 	\end{proof}
 	
 	\textbf{4. Дискретная метрика:} $d(x, y) = \begin{cases} 0, & x = y \\ 1, & x \neq y \end{cases}$
 	
 	\begin{proof}
-		Неравенство треугольника: если $x \neq z$, то $d(x,z) = 1 \leq d(x,y) + d(y,z)$ (хотя бы одно из слагаемых $\geq 1$).
+		Неравенство треугольника: если $x \neq z$, то $d(x,z) = 1 \leqslant d(x,y) + d(y,z)$ (хотя бы одно из слагаемых $\geqslant 1$).
 	\end{proof}
 	
 	\textbf{5. Пространство ограниченных последовательностей $\ell^\infty$:} $d(x, y) = \sup_n |x_n - y_n|$
@@ -955,15 +955,15 @@
 		
 		2. Симметричность очевидна.
 		
-		3. $|f(x) - h(x)| \leq |f(x) - g(x)| + |g(x) - h(x)| \leq d(f,g) + d(g,h)$, значит $d(f,h) \leq d(f,g) + d(g,h)$.
+		3. $|f(x) - h(x)| \leqslant |f(x) - g(x)| + |g(x) - h(x)| \leqslant d(f,g) + d(g,h)$, значит $d(f,h) \leqslant d(f,g) + d(g,h)$.
 	\end{proof}
 	
 	\textbf{7. $p$-адическая метрика на $\mathbb{Z}$:} $d_p(a, b) = p^{-\nu_p(a-b)}$, где $\nu_p(n)$~--- показатель вхождения $p$ в $n$.
 	
 	\begin{proof}
-		Ключевое свойство: $\nu_p(a + b) \geq \min(\nu_p(a), \nu_p(b))$.
+		Ключевое свойство: $\nu_p(a + b) \geqslant \min(\nu_p(a), \nu_p(b))$.
 		
-		Отсюда ультраметрическое неравенство: $d_p(a, c) \leq \max(d_p(a, b), d_p(b, c))$.
+		Отсюда ультраметрическое неравенство: $d_p(a, c) \leqslant \max(d_p(a, b), d_p(b, c))$.
 	\end{proof}
 	
 	\subsection{Открытые и замкнутые множества}
@@ -971,7 +971,7 @@
 	\begin{definition}
 		\textbf{Открытый шар:} $B(x, r) = \{y \in X : d(x, y) < r\}$.
 		
-		\textbf{Замкнутый шар:} $\overline{B}(x, r) = \{y \in X : d(x, y) \leq r\}$.
+		\textbf{Замкнутый шар:} $\overline{B}(x, r) = \{y \in X : d(x, y) \leqslant r\}$.
 	\end{definition}
 	
 	\begin{definition}
@@ -1217,15 +1217,14 @@
 	\end{theorem}
 	
 	\begin{proof}
-		Предположим противное: $\exists \varepsilon_0 > 0$: $\forall \delta > 0 \ \exists x, y: d(x, y) < \delta$, но $|f(x) - f(y)| \geq \varepsilon_0$.
+		Предположим противное: $\exists \varepsilon_0 > 0$: $\forall \delta > 0 \ \exists x, y: d(x, y) < \delta$, но $|f(x) - f(y)| \geqslant \varepsilon_0$.
 		
-		Возьмём $\delta_n = 1/n$, получим $x_n, y_n$: $d(x_n, y_n) < 1/n$, $|f(x_n) - f(y_n)| \geq \varepsilon_0$.
+		Возьмём $\delta_n = 1/n$, получим $x_n, y_n$: $d(x_n, y_n) < 1/n$, $|f(x_n) - f(y_n)| \geqslant \varepsilon_0$.
 		
 		По компактности $x_{n_k} \to x^*$. Тогда $y_{n_k} \to x^*$ (так как $d(x_{n_k}, y_{n_k}) \to 0$).
 		
 		По непрерывности $f(x_{n_k}) \to f(x^*)$ и $f(y_{n_k}) \to f(x^*)$.
 		
-		Значит $|f(x_{n_k}) - f(y_{n_k})| \to 0$. Противоречие с $|f(x_{n_k}) - f(y_{n_k})| \geq \varepsilon_0$.
+		Значит $|f(x_{n_k}) - f(y_{n_k})| \to 0$. Противоречие с $|f(x_{n_k}) - f(y_{n_k})| \geqslant \varepsilon_0$.
 	\end{proof}
-	
 \end{document}
