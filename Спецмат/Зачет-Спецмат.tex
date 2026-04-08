@@ -1,0 +1,1231 @@
+\documentclass[12pt]{article}
+
+\input{C:/Users/ilden/Documents/School/TeX-Cheat-Sheet/header.tex}
+
+\newcommand{\Cl}{\text{Cl}}
+
+\begin{document}
+	\tableofcontents
+	\setcounter{tocdepth}{3}
+	\newpage
+	
+	\section{Числа Фибоначчи. Задачи, приводящие к числам Фибоначчи. Некоторые тождества с числами Фибоначчи. НОД чисел Фибоначчи. Зацикливание остатков и поведение чисел Фибоначчи, кратных n.}
+	
+	\subsection{Определение и задачи}
+	
+	\begin{definition}
+		Числа Фибоначчи определяются рекуррентно: $F_1 = F_2 = 1$, $F_{n+1} = F_n + F_{n-1}$ для $n \geq 2$.
+	\end{definition}
+	
+	\textbf{Задачи, приводящие к числам Фибоначчи:}
+	\begin{enumerate}
+		\item \textbf{Задача о кроликах:} Сколько пар кроликов будет через $n$ месяцев, если каждая пара начинает размножаться со второго месяца жизни и производит одну пару в месяц?
+		\item \textbf{Задача о лестнице:} Сколькими способами можно подняться на $n$-ю ступеньку, если можно шагать на 1 или 2 ступеньки?
+		\item \textbf{Задача о разбиениях:} Число способов замостить полоску $2 \times n$ плитками $1 \times 2$ и $2 \times 1$ равно $F_{n+1}$.
+	\end{enumerate}
+	
+	\subsection{Свойства чисел Фибоначчи}
+	
+	\begin{enumerate}
+		\item $F_1 + F_2 + \dots + F_n = F_{n + 2} - 1$
+		
+		\begin{proof}
+			Индукция по $n$. База: $n = 1$: $F_1 = 1 = F_3 - 1 = 2 - 1$. \\
+			Переход: пусть верно для $n$. Тогда
+			\[F_1 + \dots + F_n + F_{n+1} = (F_{n+2} - 1) + F_{n+1} = F_{n+3} - 1.\]
+		\end{proof}
+		
+		\item $F_1 + F_3 + \dots + F_{2n - 1} = F_{2n}$
+		
+		\begin{proof}
+			Индукция по $n$. База: $n = 1$: $F_1 = 1 = F_2$. \\
+			Переход: $F_1 + F_3 + \dots + F_{2n-1} + F_{2n+1} = F_{2n} + F_{2n+1} = F_{2n+2}$.
+		\end{proof}
+		
+		\item $F_2 + F_4 + \dots + F_{2n} = F_{2n + 1} - 1$
+		
+		\begin{proof}
+			Из свойств 1 и 2: 
+			\[F_2 + F_4 + \dots + F_{2n} = (F_1 + \dots + F_{2n}) - (F_1 + F_3 + \dots + F_{2n-1}) = (F_{2n+2} - 1) - F_{2n} = F_{2n+1} - 1.\]
+		\end{proof}
+		
+		\item $F_1^2 + F_2^2 + \dots + F_n^2 = F_n F_{n + 1}$
+		
+		\begin{proof}
+			Индукция по $n$. База: $n = 1$: $F_1^2 = 1 = F_1 F_2$. \\
+			Переход: 
+			\[F_1^2 + \dots + F_n^2 + F_{n+1}^2 = F_n F_{n+1} + F_{n+1}^2 = F_{n+1}(F_n + F_{n+1}) = F_{n+1} F_{n+2}.\]
+		\end{proof}
+		
+		\item (Тождество Кассини) $F_{n - 1} F_{n + 1} - F_n^2 = (-1)^n$
+		
+		\begin{proof}
+			Индукция по $n$. База: $n = 2$: $F_1 F_3 - F_2^2 = 1 \cdot 2 - 1 = 1 = (-1)^2$. \\
+			Переход: пусть $F_{n-1} F_{n+1} - F_n^2 = (-1)^n$. Тогда
+			\begin{align*}
+				F_n F_{n+2} - F_{n+1}^2 &= F_n(F_n + F_{n+1}) - F_{n+1}^2 \\
+				&= F_n^2 + F_n F_{n+1} - F_{n+1}^2 \\
+				&= F_n^2 - F_{n+1}(F_{n+1} - F_n) \\
+				&= F_n^2 - F_{n+1} F_{n-1} = -(-1)^n = (-1)^{n+1}.
+			\end{align*}
+		\end{proof}
+		
+		\item $F_{n + k} = F_n F_{k - 1} + F_{n + 1} F_k$
+		
+		\begin{proof}
+			Индукция по $k$ при фиксированном $n$. \\
+			База: $k = 1$: $F_{n+1} = F_n \cdot F_0 + F_{n+1} \cdot F_1 = F_n \cdot 0 + F_{n+1} \cdot 1 = F_{n+1}$. \\
+			$k = 2$: $F_{n+2} = F_n \cdot F_1 + F_{n+1} \cdot F_2 = F_n + F_{n+1} = F_{n+2}$. \\
+			Переход: пусть верно для $k$ и $k-1$. Тогда
+			\begin{align*}
+				F_{n+k+1} &= F_{n+k} + F_{n+k-1} \\
+				&= (F_n F_{k-1} + F_{n+1} F_k) + (F_n F_{k-2} + F_{n+1} F_{k-1}) \\
+				&= F_n(F_{k-1} + F_{k-2}) + F_{n+1}(F_k + F_{k-1}) \\
+				&= F_n F_k + F_{n+1} F_{k+1}.
+			\end{align*}
+		\end{proof}
+	\end{enumerate}
+	
+	\subsection{НОД чисел Фибоначчи}
+	
+	\begin{theorem}
+		$(F_m, F_n) = F_{(m, n)}$
+	\end{theorem}
+	
+	\begin{proof}
+		\textbf{Шаг 1:} Докажем, что $(F_m, F_n) = (F_{m-n}, F_n)$ при $m > n$.
+		
+		Из свойства 6: $F_m = F_{m-n} F_{n-1} + F_{m-n+1} F_n$.
+		
+		Значит, $(F_m, F_n) = (F_{m-n} F_{n-1} + F_{m-n+1} F_n, F_n) = (F_{m-n} F_{n-1}, F_n)$.
+		
+		Покажем, что $(F_{n-1}, F_n) = 1$. По тождеству Кассини: $F_{n-1} F_{n+1} - F_n^2 = (-1)^n$.
+		
+		Если $d = (F_{n-1}, F_n)$, то $d | F_{n-1} F_{n+1}$ и $d | F_n^2$, значит $d | (-1)^n$, то есть $d = 1$.
+		
+		Следовательно, $(F_{m-n} F_{n-1}, F_n) = (F_{m-n}, F_n)$.
+		
+		\textbf{Шаг 2:} По аналогии с алгоритмом Евклида:
+		\[(F_m, F_n) = (F_{m-n}, F_n) = \dots = (F_{m \mod n}, F_n) = \dots = (F_{(m,n)}, F_{(m,n)}) = F_{(m,n)}.\]
+	\end{proof}
+	
+	\subsection{Зацикливание остатков}
+	
+	\begin{theorem}
+		Последовательность $F_n \mod m$ периодична для любого $m \geq 2$.
+	\end{theorem}
+	
+	\begin{proof}
+		Рассмотрим пары $(F_n \mod m, F_{n+1} \mod m)$. Всего таких пар не более $m^2$.
+		
+		По принципу Дирихле, среди первых $m^2 + 1$ пар найдутся две одинаковые.
+		
+		Пусть $(F_i \mod m, F_{i+1} \mod m) = (F_j \mod m, F_{j+1} \mod m)$ при $i < j$.
+		
+		Тогда $F_{i+k} \equiv F_{j+k} \pmod{m}$ для всех $k \geq 0$ (по рекурренции вперёд).
+		
+		Более того, $F_{i-1} = F_{i+1} - F_i \equiv F_{j+1} - F_j = F_{j-1} \pmod{m}$, так что последовательность периодична и назад, начиная с $(F_1, F_2) = (1, 1)$.
+	\end{proof}
+	
+	\begin{definition}
+		Период Пизано $\pi(m)$~--- наименьший период последовательности $F_n \mod m$.
+	\end{definition}
+	
+	\begin{theorem}
+		Числа Фибоначчи, кратные $n$, появляются периодически с периодом, делящим $\pi(n)$.
+	\end{theorem}
+	
+	\newpage
+	
+	\section{Множества, операции над множествами. Отображения: сюръекции, инъекции, биекции. Образы и прообразы множеств. Односторонне и двусторонне обратные отображения. Отношения, отношения эквивалентности, отношения порядка.}
+	
+	\subsection{Множества и операции над ними}
+	
+	\begin{definition}
+		Множество~--- совокупность различных объектов, рассматриваемых как единое целое.
+	\end{definition}
+	
+	\textbf{Операции над множествами:}
+	\begin{itemize}
+		\item \textbf{Объединение:} $A \cup B = \{x : x \in A \text{ или } x \in B\}$
+		\item \textbf{Пересечение:} $A \cap B = \{x : x \in A \text{ и } x \in B\}$
+		\item \textbf{Разность:} $A \setminus B = \{x : x \in A \text{ и } x \notin B\}$
+		\item \textbf{Симметрическая разность:} $A \triangle B = (A \setminus B) \cup (B \setminus A)$
+		\item \textbf{Дополнение:} $\overline{A} = X \setminus A$ (относительно универсума $X$)
+		\item \textbf{Декартово произведение:} $A \times B = \{(a, b) : a \in A, b \in B\}$
+	\end{itemize}
+	
+	\textbf{Законы де Моргана:}
+	\[\overline{A \cup B} = \overline{A} \cap \overline{B}, \quad \overline{A \cap B} = \overline{A} \cup \overline{B}\]
+	
+	\subsection{Отображения}
+	
+	\begin{definition}
+		Отображение $f: X \to Y$~--- правило, сопоставляющее каждому $x \in X$ единственный элемент $f(x) \in Y$.
+	\end{definition}
+	
+	\begin{definition}
+		Отображение $f: X \to Y$ называется:
+		\begin{itemize}
+			\item \textbf{Инъекцией}, если $f(x_1) = f(x_2) \Rightarrow x_1 = x_2$
+			\item \textbf{Сюръекцией}, если $\forall y \in Y \ \exists x \in X: f(x) = y$
+			\item \textbf{Биекцией}, если $f$ инъективно и сюръективно
+		\end{itemize}
+	\end{definition}
+	
+	\subsection{Образы и прообразы}
+	
+	\begin{definition}
+		Пусть $f: X \to Y$, $A \subseteq X$, $B \subseteq Y$. Тогда:
+		\begin{itemize}
+			\item \textbf{Образ:} $f(A) = \{f(x) : x \in A\}$
+			\item \textbf{Прообраз:} $f^{-1}(B) = \{x \in X : f(x) \in B\}$
+		\end{itemize}
+	\end{definition}
+	
+	\begin{theorem}[Свойства образов и прообразов]
+		\begin{enumerate}
+			\item $f^{-1}(B_1 \cup B_2) = f^{-1}(B_1) \cup f^{-1}(B_2)$
+			\item $f^{-1}(B_1 \cap B_2) = f^{-1}(B_1) \cap f^{-1}(B_2)$
+			\item $f(A_1 \cup A_2) = f(A_1) \cup f(A_2)$
+			\item $f(A_1 \cap A_2) \subseteq f(A_1) \cap f(A_2)$ (равенство при инъективности)
+		\end{enumerate}
+	\end{theorem}
+	
+	\begin{proof}
+		1. $x \in f^{-1}(B_1 \cup B_2) \Leftrightarrow f(x) \in B_1 \cup B_2 \Leftrightarrow f(x) \in B_1 \text{ или } f(x) \in B_2 \Leftrightarrow x \in f^{-1}(B_1) \cup f^{-1}(B_2)$.
+		
+		2. Аналогично.
+		
+		3. $y \in f(A_1 \cup A_2) \Leftrightarrow \exists x \in A_1 \cup A_2: f(x) = y \Leftrightarrow y \in f(A_1) \cup f(A_2)$.
+		
+		4. Если $y \in f(A_1 \cap A_2)$, то $\exists x \in A_1 \cap A_2: f(x) = y$, значит $y \in f(A_1)$ и $y \in f(A_2)$.
+	\end{proof}
+	
+	\subsection{Обратные отображения}
+	
+	\begin{definition}
+		Пусть $f: X \to Y$.
+		\begin{itemize}
+			\item $g: Y \to X$~--- \textbf{левое обратное}, если $g \circ f = \text{id}_X$
+			\item $h: Y \to X$~--- \textbf{правое обратное}, если $f \circ h = \text{id}_Y$
+			\item $f^{-1}: Y \to X$~--- \textbf{двустороннее обратное}, если $f^{-1} \circ f = \text{id}_X$ и $f \circ f^{-1} = \text{id}_Y$
+		\end{itemize}
+	\end{definition}
+	
+	\begin{theorem}
+		\begin{enumerate}
+			\item $f$ имеет левое обратное $\Leftrightarrow$ $f$ инъективно
+			\item $f$ имеет правое обратное $\Leftrightarrow$ $f$ сюръективно
+			\item $f$ имеет двустороннее обратное $\Leftrightarrow$ $f$ биективно
+		\end{enumerate}
+	\end{theorem}
+	
+	\begin{proof}
+		1. $(\Rightarrow)$ Пусть $g \circ f = \text{id}_X$. Если $f(x_1) = f(x_2)$, то $x_1 = g(f(x_1)) = g(f(x_2)) = x_2$.
+		
+		$(\Leftarrow)$ Пусть $f$ инъективно. Зафиксируем $x_0 \in X$. Определим $g(y) = x$, если $y = f(x)$, и $g(y) = x_0$ иначе. Тогда $g(f(x)) = x$.
+		
+		2. $(\Rightarrow)$ Пусть $f \circ h = \text{id}_Y$. Для любого $y \in Y$: $f(h(y)) = y$, значит $y \in \text{Im} f$.
+		
+		$(\Leftarrow)$ Пусть $f$ сюръективно. Для каждого $y$ выберем $h(y)$ такой, что $f(h(y)) = y$.
+		
+		3. Следует из 1 и 2. Если есть левое $g$ и правое $h$, то $g = g \circ \text{id}_Y = g \circ (f \circ h) = (g \circ f) \circ h = \text{id}_X \circ h = h$.
+	\end{proof}
+	
+	\subsection{Отношения}
+	
+	\begin{definition}
+		Бинарное отношение на $X$~--- подмножество $R \subseteq X \times X$. Пишем $xRy$ вместо $(x, y) \in R$.
+	\end{definition}
+	
+	\begin{definition}
+		Отношение $\sim$ на $X$~--- \textbf{отношение эквивалентности}, если:
+		\begin{itemize}
+			\item (Рефлексивность) $x \sim x$ для всех $x$
+			\item (Симметричность) $x \sim y \Rightarrow y \sim x$
+			\item (Транзитивность) $x \sim y, y \sim z \Rightarrow x \sim z$
+		\end{itemize}
+	\end{definition}
+	
+	\begin{definition}
+		Класс эквивалентности элемента $x$: $[x] = \{y \in X : y \sim x\}$.
+	\end{definition}
+	
+	\begin{theorem}
+		Классы эквивалентности образуют разбиение множества $X$.
+	\end{theorem}
+	
+	\begin{proof}
+		1. Каждый $x \in [x]$ (рефлексивность), так что классы покрывают $X$.
+		
+		2. Если $[x] \cap [y] \neq \varnothing$, возьмём $z \in [x] \cap [y]$. Тогда $z \sim x$ и $z \sim y$, значит $x \sim y$ (по симметричности и транзитивности), откуда $[x] = [y]$.
+	\end{proof}
+	
+	\begin{definition}
+		Отношение $\leq$ на $X$~--- \textbf{частичный порядок}, если:
+		\begin{itemize}
+			\item (Рефлексивность) $x \leq x$
+			\item (Антисимметричность) $x \leq y, y \leq x \Rightarrow x = y$
+			\item (Транзитивность) $x \leq y, y \leq z \Rightarrow x \leq z$
+		\end{itemize}
+	\end{definition}
+	
+	\begin{definition}
+		Частичный порядок~--- \textbf{линейный (полный)}, если $\forall x, y$: $x \leq y$ или $y \leq x$.
+	\end{definition}
+	
+	\newpage
+	
+	\section{Мощности множеств. Счётные множества и их свойства. Несуществование мощности между конечными и счётными. Множества мощности континуум, свойства. Несуществование наибольшей мощности. Континуум как мощность множества подмножеств счётного множества. Теорема Кантора-Бернштейна.}
+	
+	\subsection{Мощности множеств}
+	
+	\begin{definition}
+		Множества $A$ и $B$ \textbf{равномощны} ($|A| = |B|$ или $A \sim B$), если существует биекция $f: A \to B$.
+	\end{definition}
+	
+	\begin{definition}
+		$|A| \leq |B|$, если существует инъекция $f: A \to B$.
+	\end{definition}
+	
+	\subsection{Счётные множества}
+	
+	\begin{definition}
+		Множество называется \textbf{счётным}, если оно равномощно $\mathbb{N}$.
+	\end{definition}
+	
+	\begin{theorem}[Свойства счётных множеств]
+		\begin{enumerate}
+			\item Подмножество счётного множества конечно или счётно.
+			\item Объединение счётного числа счётных множеств счётно.
+			\item $\mathbb{Z}$ счётно.
+			\item $\mathbb{Q}$ счётно.
+			\item $\mathbb{N} \times \mathbb{N}$ счётно.
+		\end{enumerate}
+	\end{theorem}
+	
+	\begin{proof}
+		1. Пусть $A \subseteq B$, $B$ счётно. Если $A$ бесконечно, занумеруем элементы $B = \{b_1, b_2, \dots\}$ и выберем элементы $A$ в порядке их появления: $a_1$~--- первый элемент $B$, лежащий в $A$, и т.д.
+		
+		2. Пусть $A_1, A_2, \dots$~--- счётные, $A_i = \{a_{i1}, a_{i2}, \dots\}$. Выписываем элементы по диагоналям: $a_{11}, a_{12}, a_{21}, a_{13}, a_{22}, a_{31}, \dots$
+		
+		3. $\mathbb{Z} = \{0, 1, -1, 2, -2, \dots\}$.
+		
+		4. $\mathbb{Q} = \bigcup_{n=1}^{\infty} \{p/n : p \in \mathbb{Z}\}$~--- счётное объединение счётных.
+		
+		5. Диагональный метод: $(m, n) \mapsto \frac{(m+n)(m+n+1)}{2} + n$.
+	\end{proof}
+	
+	\subsection{Несуществование мощности между конечными и счётными}
+	
+	\begin{theorem}
+		Любое бесконечное множество содержит счётное подмножество.
+	\end{theorem}
+	
+	\begin{proof}
+		Пусть $A$ бесконечно. Выберем $a_1 \in A$. Затем $a_2 \in A \setminus \{a_1\}$ (возможно, т.к. $A$ бесконечно). Продолжаем: $a_n \in A \setminus \{a_1, \dots, a_{n-1}\}$. Получаем счётное $\{a_1, a_2, \dots\} \subseteq A$.
+	\end{proof}
+	
+	\begin{corollary}
+		Не существует мощности, строго большей всех конечных и строго меньшей $|\mathbb{N}|$.
+	\end{corollary}
+	
+	\subsection{Континуум}
+	
+	\begin{definition}
+		Мощность $\mathfrak{c} = |\mathbb{R}|$ называется \textbf{континуумом}.
+	\end{definition}
+	
+	\begin{theorem}
+		$|(0, 1)| = |\mathbb{R}|$.
+	\end{theorem}
+	
+	\begin{proof}
+		Биекция: $f(x) = \tan(\pi x - \pi/2)$.
+	\end{proof}
+	
+	\begin{theorem}[Кантор]
+		$\mathbb{R}$ несчётно.
+	\end{theorem}
+	
+	\begin{proof}[Диагональный аргумент]
+		Предположим $\mathbb{R}$ счётно. Занумеруем $(0,1) = \{r_1, r_2, \dots\}$, где $r_i = 0.d_{i1}d_{i2}d_{i3}\dots$
+		
+		Построим $r = 0.d_1d_2d_3\dots$, где $d_i \neq d_{ii}$ и $d_i \notin \{0, 9\}$.
+		
+		Тогда $r \neq r_i$ для всех $i$ (отличается в $i$-й цифре). Противоречие.
+	\end{proof}
+	
+	\begin{theorem}[Свойства континуума]
+		\begin{enumerate}
+			\item $|[0,1]| = |(0,1)| = |\mathbb{R}|$
+			\item $|\mathbb{R}^n| = |\mathbb{R}|$
+			\item $|\mathbb{R}| = |2^{\mathbb{N}}|$
+		\end{enumerate}
+	\end{theorem}
+	
+	\begin{proof}
+		1. $(0,1) \subseteq [0,1] \subseteq \mathbb{R}$, и $|(0,1)| = |\mathbb{R}|$, применяем Кантора--Бернштейна.
+		
+		2. Для $\mathbb{R}^2$: каждое число из $(0,1)$ запишем в виде бесконечной десятичной дроби (без девяток в периоде). Паре $(0.a_1a_2a_3\dots, 0.b_1b_2b_3\dots)$ сопоставим $0.a_1b_1a_2b_2\dots$ Это инъекция $\mathbb{R}^2 \to \mathbb{R}$. Обратная инъекция: $x \mapsto (x, 0)$.
+		
+		3. Каждому $A \subseteq \mathbb{N}$ сопоставим число $\sum_{n \in A} 2 \cdot 3^{-n} \in [0,1]$. Это инъекция $2^{\mathbb{N}} \to [0,1]$. Обратно: числу из $[0,1)$ в двоичной записи $0.b_1b_2\dots$ сопоставим $\{n : b_n = 1\}$.
+	\end{proof}
+	
+	\subsection{Несуществование наибольшей мощности}
+	
+	\begin{theorem}[Кантор]
+		Для любого множества $A$: $|A| < |2^A|$ (строгое неравенство).
+	\end{theorem}
+	
+	\begin{proof}
+		$|A| \leq |2^A|$: инъекция $a \mapsto \{a\}$.
+		
+		Предположим, существует биекция $f: A \to 2^A$. Рассмотрим множество
+		\[B = \{a \in A : a \notin f(a)\}.\]
+		
+		Так как $f$ биекция, $\exists b \in A$: $f(b) = B$.
+		
+		Вопрос: $b \in B$?
+		\begin{itemize}
+			\item Если $b \in B$, то по определению $B$: $b \notin f(b) = B$. Противоречие.
+			\item Если $b \notin B$, то $b \notin f(b)$, значит $b \in B$ по определению. Противоречие.
+		\end{itemize}
+	\end{proof}
+	
+	\subsection{Теорема Кантора--Бернштейна}
+	
+	\begin{theorem}[Кантор--Бернштейн]
+		Если $|A| \leq |B|$ и $|B| \leq |A|$, то $|A| = |B|$.
+	\end{theorem}
+	
+	\begin{proof}
+		Пусть $f: A \to B$ и $g: B \to A$~--- инъекции. Построим биекцию $h: A \to B$.
+		
+		Определим последовательности: $A_0 = A \setminus g(B)$, $A_{n+1} = g(f(A_n))$.
+		
+		Пусть $A^* = \bigcup_{n=0}^{\infty} A_n$.
+		
+		Определим $h: A \to B$:
+		\[h(a) = \begin{cases} f(a), & \text{если } a \in A^* \\ g^{-1}(a), & \text{если } a \notin A^* \end{cases}\]
+		
+		Корректность $g^{-1}$: если $a \notin A^*$, то $a \notin A_0 = A \setminus g(B)$, значит $a \in g(B)$.
+		
+		Инъективность: на $A^*$ это $f$ (инъекция), вне $A^*$ это $g^{-1}$ (инъекция). Если $a \in A^*$, $a' \notin A^*$ и $h(a) = h(a')$, то $f(a) = g^{-1}(a')$, значит $a' = g(f(a)) \in A_{n+1}$ для некоторого $n$, противоречие.
+		
+		Сюръективность: для $b \in B$, если $g(b) \in A^*$, то $g(b) \in A_n$ для некоторого $n \geq 1$ (не в $A_0$, т.к. $g(b) \in g(B)$), значит $g(b) = g(f(a))$ для $a \in A_{n-1} \subseteq A^*$, откуда $b = f(a) = h(a)$. Если $g(b) \notin A^*$, то $h(g(b)) = g^{-1}(g(b)) = b$.
+	\end{proof}
+	
+	\newpage
+	
+	\section{Дискретное вероятностное пространство. Парадокс Бертрана. Вероятности событий, независимые события. Формулы полной вероятности и Байеса. Случайные величины и их функции распределения. Математическое ожидание и его свойства. Дисперсия и её свойства. Классические распределения: биномиальное, геометрическое, гипергеометрическое. Распределение Пуассона как предел биномиального. Математическое ожидание и дисперсия классических распределений. Неравенство Чебышёва и закон больших чисел.}
+	
+	\subsection{Дискретное вероятностное пространство}
+	
+	\begin{definition}
+		\textbf{Дискретное вероятностное пространство}~--- пара $(\Omega, P)$, где $\Omega$~--- конечное или счётное множество элементарных исходов, $P: \Omega \to [0, 1]$ такова, что $\sum_{\omega \in \Omega} P(\omega) = 1$.
+	\end{definition}
+	
+	\begin{definition}
+		\textbf{Событие}~--- подмножество $A \subseteq \Omega$. Вероятность события: $P(A) = \sum_{\omega \in A} P(\omega)$.
+	\end{definition}
+	
+	\subsection{Парадокс Бертрана}
+	
+	\textbf{Задача:} Какова вероятность того, что случайная хорда окружности длиннее стороны вписанного равностороннего треугольника?
+	
+	\textbf{Три ответа:}
+	\begin{enumerate}
+		\item Фиксируем конец, второй равномерен на окружности: $P = 1/3$
+		\item Середина хорды равномерна на диаметре: $P = 1/2$  
+		\item Середина хорды равномерна в круге: $P = 1/4$
+	\end{enumerate}
+	
+	\textbf{Мораль:} Вероятностная модель должна быть чётко определена.
+	
+	\subsection{Независимые события}
+	
+	\begin{definition}
+		События $A$ и $B$ \textbf{независимы}, если $P(A \cap B) = P(A) \cdot P(B)$.
+	\end{definition}
+	
+	\begin{definition}
+		\textbf{Условная вероятность:} $P(A|B) = \frac{P(A \cap B)}{P(B)}$ при $P(B) > 0$.
+	\end{definition}
+	
+	\subsection{Формулы полной вероятности и Байеса}
+	
+	\begin{theorem}[Формула полной вероятности]
+		Пусть $B_1, \dots, B_n$~--- разбиение $\Omega$ ($B_i \cap B_j = \varnothing$, $\bigcup B_i = \Omega$), $P(B_i) > 0$. Тогда
+		\[P(A) = \sum_{i=1}^{n} P(A|B_i) P(B_i).\]
+	\end{theorem}
+	
+	\begin{proof}
+		$A = A \cap \Omega = A \cap (B_1 \cup \dots \cup B_n) = (A \cap B_1) \cup \dots \cup (A \cap B_n)$.
+		
+		События $A \cap B_i$ попарно несовместны, поэтому
+		\[P(A) = \sum_{i=1}^{n} P(A \cap B_i) = \sum_{i=1}^{n} P(A|B_i) P(B_i).\]
+	\end{proof}
+	
+	\begin{theorem}[Формула Байеса]
+		При тех же условиях:
+		\[P(B_k|A) = \frac{P(A|B_k) P(B_k)}{\sum_{i=1}^{n} P(A|B_i) P(B_i)}.\]
+	\end{theorem}
+	
+	\begin{proof}
+		\[P(B_k|A) = \frac{P(A \cap B_k)}{P(A)} = \frac{P(A|B_k) P(B_k)}{P(A)}.\]
+	\end{proof}
+	
+	\subsection{Случайные величины}
+	
+	\begin{definition}
+		\textbf{Случайная величина}~--- функция $X: \Omega \to \mathbb{R}$.
+	\end{definition}
+	
+	\begin{definition}
+		\textbf{Функция распределения:} $F_X(x) = P(X \leq x) = P(\{\omega : X(\omega) \leq x\})$.
+	\end{definition}
+	
+	\subsection{Математическое ожидание}
+	
+	\begin{definition}
+		\textbf{Математическое ожидание:} $\mathbb{E}[X] = \sum_{\omega \in \Omega} X(\omega) P(\omega) = \sum_{x} x \cdot P(X = x)$.
+	\end{definition}
+	
+	\begin{theorem}[Свойства математического ожидания]
+		\begin{enumerate}
+			\item \textbf{Линейность:} $\mathbb{E}[aX + bY] = a\mathbb{E}[X] + b\mathbb{E}[Y]$
+			\item Если $X \geq 0$, то $\mathbb{E}[X] \geq 0$
+			\item Если $X$ и $Y$ независимы, то $\mathbb{E}[XY] = \mathbb{E}[X] \cdot \mathbb{E}[Y]$
+		\end{enumerate}
+	\end{theorem}
+	
+	\begin{proof}
+		1. $\mathbb{E}[aX + bY] = \sum_\omega (aX(\omega) + bY(\omega)) P(\omega) = a \sum_\omega X(\omega) P(\omega) + b \sum_\omega Y(\omega) P(\omega)$.
+		
+		3. $\mathbb{E}[XY] = \sum_{x,y} xy \cdot P(X=x, Y=y) = \sum_{x,y} xy \cdot P(X=x) P(Y=y) = \left(\sum_x x P(X=x)\right) \left(\sum_y y P(Y=y)\right)$.
+	\end{proof}
+	
+	\subsection{Дисперсия}
+	
+	\begin{definition}
+		\textbf{Дисперсия:} $\mathbb{D}[X] = \mathbb{E}[(X - \mathbb{E}[X])^2] = \mathbb{E}[X^2] - (\mathbb{E}[X])^2$.
+	\end{definition}
+	
+	\begin{theorem}[Свойства дисперсии]
+		\begin{enumerate}
+			\item $\mathbb{D}[X] \geq 0$
+			\item $\mathbb{D}[aX + b] = a^2 \mathbb{D}[X]$
+			\item Если $X, Y$ независимы: $\mathbb{D}[X + Y] = \mathbb{D}[X] + \mathbb{D}[Y]$
+		\end{enumerate}
+	\end{theorem}
+	
+	\begin{proof}
+		1. $\mathbb{D}[X] = \mathbb{E}[(X - \mathbb{E}[X])^2] \geq 0$, т.к. квадрат неотрицателен.
+		
+		2. $\mathbb{E}[aX+b] = a\mathbb{E}[X] + b$, поэтому
+		$\mathbb{D}[aX+b] = \mathbb{E}[(aX+b - a\mathbb{E}[X] - b)^2] = \mathbb{E}[a^2(X-\mathbb{E}[X])^2] = a^2 \mathbb{D}[X]$.
+		
+		3. При независимости: $\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]$, поэтому
+		\begin{align*}
+			\mathbb{D}[X+Y] &= \mathbb{E}[(X+Y)^2] - (\mathbb{E}[X+Y])^2 \\
+			&= \mathbb{E}[X^2] + 2\mathbb{E}[XY] + \mathbb{E}[Y^2] - (\mathbb{E}[X])^2 - 2\mathbb{E}[X]\mathbb{E}[Y] - (\mathbb{E}[Y])^2 \\
+			&= \mathbb{D}[X] + \mathbb{D}[Y].
+		\end{align*}
+	\end{proof}
+	
+	\subsection{Классические распределения}
+	
+	\textbf{Биномиальное распределение} $X \sim \text{Bin}(n, p)$:
+	\[P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}, \quad k = 0, 1, \dots, n\]
+	\[\mathbb{E}[X] = np, \quad \mathbb{D}[X] = np(1-p)\]
+	
+	\begin{proof}[Доказательство для $\mathbb{E}$]
+		$X = X_1 + \dots + X_n$, где $X_i$~--- индикатор успеха в $i$-м испытании. $\mathbb{E}[X_i] = p$, поэтому $\mathbb{E}[X] = np$.
+	\end{proof}
+	
+	\textbf{Геометрическое распределение} $X \sim \text{Geom}(p)$:
+	\[P(X = k) = (1-p)^{k-1} p, \quad k = 1, 2, 3, \dots\]
+	\[\mathbb{E}[X] = \frac{1}{p}, \quad \mathbb{D}[X] = \frac{1-p}{p^2}\]
+	
+	\textbf{Гипергеометрическое распределение:}
+	Из $N$ объектов $K$ отмечены. Выбираем $n$ без возвращения. $X$~--- число отмеченных.
+	\[P(X = k) = \frac{\binom{K}{k} \binom{N-K}{n-k}}{\binom{N}{n}}\]
+	\[\mathbb{E}[X] = \frac{nK}{N}\]
+	
+	\subsection{Распределение Пуассона}
+	
+	\begin{definition}
+		$X \sim \text{Pois}(\lambda)$: $P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}$, $k = 0, 1, 2, \dots$
+	\end{definition}
+	
+	\begin{theorem}
+		При $n \to \infty$, $p \to 0$, $np \to \lambda$: $\text{Bin}(n, p) \to \text{Pois}(\lambda)$.
+	\end{theorem}
+	
+	\begin{proof}
+		\begin{align*}
+			\binom{n}{k} p^k (1-p)^{n-k} &= \frac{n!}{k!(n-k)!} \left(\frac{\lambda}{n}\right)^k \left(1 - \frac{\lambda}{n}\right)^{n-k} \\
+			&= \frac{\lambda^k}{k!} \cdot \frac{n(n-1)\cdots(n-k+1)}{n^k} \cdot \left(1 - \frac{\lambda}{n}\right)^n \cdot \left(1 - \frac{\lambda}{n}\right)^{-k} \\
+			&\to \frac{\lambda^k}{k!} \cdot 1 \cdot e^{-\lambda} \cdot 1 = \frac{\lambda^k e^{-\lambda}}{k!}.
+		\end{align*}
+	\end{proof}
+	
+	\[\mathbb{E}[X] = \lambda, \quad \mathbb{D}[X] = \lambda\]
+	
+	\subsection{Неравенство Чебышёва и закон больших чисел}
+	
+	\begin{theorem}[Неравенство Маркова]
+		Если $X \geq 0$, то $P(X \geq a) \leq \frac{\mathbb{E}[X]}{a}$.
+	\end{theorem}
+	
+	\begin{proof}
+		$\mathbb{E}[X] = \sum_x x P(X = x) \geq \sum_{x \geq a} x P(X = x) \geq a \sum_{x \geq a} P(X = x) = a P(X \geq a)$.
+	\end{proof}
+	
+	\begin{theorem}[Неравенство Чебышёва]
+		$P(|X - \mathbb{E}[X]| \geq \varepsilon) \leq \frac{\mathbb{D}[X]}{\varepsilon^2}$.
+	\end{theorem}
+	
+	\begin{proof}
+		Применяем Маркова к $(X - \mathbb{E}[X])^2$:
+		\[P(|X - \mathbb{E}[X]| \geq \varepsilon) = P((X - \mathbb{E}[X])^2 \geq \varepsilon^2) \leq \frac{\mathbb{E}[(X - \mathbb{E}[X])^2]}{\varepsilon^2} = \frac{\mathbb{D}[X]}{\varepsilon^2}.\]
+	\end{proof}
+	
+	\begin{theorem}[Закон больших чисел]
+		Пусть $X_1, X_2, \dots$~--- независимые одинаково распределённые случайные величины с $\mathbb{E}[X_i] = \mu$, $\mathbb{D}[X_i] = \sigma^2 < \infty$. Тогда
+		\[P\left(\left|\frac{X_1 + \dots + X_n}{n} - \mu\right| \geq \varepsilon\right) \to 0 \text{ при } n \to \infty.\]
+	\end{theorem}
+	
+	\begin{proof}
+		Пусть $S_n = X_1 + \dots + X_n$. Тогда $\mathbb{E}[S_n/n] = \mu$, $\mathbb{D}[S_n/n] = \sigma^2/n$.
+		
+		По Чебышёву: $P(|S_n/n - \mu| \geq \varepsilon) \leq \frac{\sigma^2}{n\varepsilon^2} \to 0$.
+	\end{proof}
+	
+	\newpage
+	
+	\section{Ряды Фарея и близкие дроби. Цепные дроби, связь с алгоритмом Евклида. Формулы для подходящих дробей. Связь с близкими дробями. Порядок приближения иррациональных чисел подходящими дробями. Критерий периодичности цепных дробей.}
+	
+	\subsection{Ряды Фарея}
+	
+	\begin{definition}
+		\textbf{Ряд Фарея} $F_n$~--- возрастающая последовательность несократимых дробей в $[0, 1]$ со знаменателями $\leq n$.
+	\end{definition}
+	
+	Пример: $F_4 = \{0/1, 1/4, 1/3, 1/2, 2/3, 3/4, 1/1\}$.
+	
+	\begin{theorem}[Свойства соседних дробей в $F_n$]
+		Если $\frac{a}{b}$ и $\frac{c}{d}$~--- соседние в $F_n$, то $|bc - ad| = 1$.
+	\end{theorem}
+	
+	\begin{proof}
+		Индукция по $n$. Для $F_1$: $0/1$ и $1/1$, $|1 \cdot 0 - 1 \cdot 1| = 1$.
+		
+		При переходе от $F_{n-1}$ к $F_n$ между соседними $a/b$ и $c/d$ может вставиться медианта $\frac{a+c}{b+d}$ (если $b + d = n$).
+		
+		Проверяем: $|b(a+c) - a(b+d)| = |bc - ad| = 1$ и $|(a+c)d - c(b+d)| = |ad - bc| = 1$.
+	\end{proof}
+	
+	\begin{definition}
+		Дробь $\frac{p}{q}$ называется \textbf{близкой} к $\alpha$, если для любой дроби $\frac{r}{s}$ с $s \leq q$ и $\frac{r}{s} \neq \frac{p}{q}$ выполнено $\left|\alpha - \frac{p}{q}\right| < \left|\alpha - \frac{r}{s}\right|$.
+	\end{definition}
+	
+	\subsection{Цепные дроби}
+	
+	\begin{definition}
+		Цепная дробь: $[a_0; a_1, a_2, \dots] = a_0 + \cfrac{1}{a_1 + \cfrac{1}{a_2 + \cfrac{1}{\ddots}}}$
+	\end{definition}
+	
+	\subsection{Связь с алгоритмом Евклида}
+	
+	Для $\frac{a}{b}$: $a = bq_0 + r_1$, $b = r_1 q_1 + r_2$, \dots
+	
+	Тогда $\frac{a}{b} = [q_0; q_1, q_2, \dots, q_n]$.
+	
+	\subsection{Подходящие дроби}
+	
+	\begin{definition}
+		\textbf{Подходящая дробь:} $\frac{p_n}{q_n} = [a_0; a_1, \dots, a_n]$.
+	\end{definition}
+	
+	\begin{theorem}[Рекуррентные формулы]
+		\begin{align*}
+			p_{-1} = 1, \quad p_0 &= a_0, \quad p_n = a_n p_{n-1} + p_{n-2} \\
+			q_{-1} = 0, \quad q_0 &= 1, \quad q_n = a_n q_{n-1} + q_{n-2}
+		\end{align*}
+	\end{theorem}
+	
+	\begin{proof}
+		Индукция. Для $n = 0$: $p_0/q_0 = a_0/1$.
+		
+		Для $n = 1$: $[a_0; a_1] = a_0 + 1/a_1 = (a_0 a_1 + 1)/a_1 = p_1/q_1$.
+		
+		Переход: $[a_0; \dots, a_n] = [a_0; \dots, a_{n-2}, a_{n-1} + 1/a_n]$.
+		
+		Применяя индукционное предположение с $a_{n-1}' = a_{n-1} + 1/a_n$:
+		\[\frac{p_n}{q_n} = \frac{a_{n-1}' p_{n-2} + p_{n-3}}{a_{n-1}' q_{n-2} + q_{n-3}} = \frac{(a_{n-1} + 1/a_n) p_{n-2} + p_{n-3}}{(a_{n-1} + 1/a_n) q_{n-2} + q_{n-3}}.\]
+		
+		Умножая на $a_n$: $\frac{a_n(a_{n-1} p_{n-2} + p_{n-3}) + p_{n-2}}{a_n(a_{n-1} q_{n-2} + q_{n-3}) + q_{n-2}} = \frac{a_n p_{n-1} + p_{n-2}}{a_n q_{n-1} + q_{n-2}}$.
+	\end{proof}
+	
+	\begin{theorem}
+		$p_n q_{n-1} - p_{n-1} q_n = (-1)^{n-1}$.
+	\end{theorem}
+	
+	\begin{proof}
+		$p_n q_{n-1} - p_{n-1} q_n = (a_n p_{n-1} + p_{n-2}) q_{n-1} - p_{n-1} (a_n q_{n-1} + q_{n-2})$
+		$= p_{n-2} q_{n-1} - p_{n-1} q_{n-2} = -(p_{n-1} q_{n-2} - p_{n-2} q_{n-1}) = \dots = (-1)^{n-1}(p_0 q_{-1} - p_{-1} q_0) = (-1)^{n-1}$.
+	\end{proof}
+	
+	\begin{corollary}
+		$\gcd(p_n, q_n) = 1$~--- подходящие дроби несократимы.
+	\end{corollary}
+	
+	\subsection{Связь с близкими дробями}
+	
+	\begin{theorem}
+		Всякая подходящая дробь является близкой.
+	\end{theorem}
+	
+	\begin{theorem}
+		Всякая близкая дробь является либо подходящей, либо промежуточной.
+	\end{theorem}
+	
+	\subsection{Порядок приближения}
+	
+	\begin{theorem}
+		Для иррационального $\alpha$ и подходящей дроби $p_n/q_n$:
+		\[\frac{1}{q_n(q_n + q_{n+1})} < \left|\alpha - \frac{p_n}{q_n}\right| < \frac{1}{q_n q_{n+1}}.\]
+	\end{theorem}
+	
+	\begin{theorem}[Теорема Лежандра]
+		Если $\left|\alpha - \frac{p}{q}\right| < \frac{1}{2q^2}$, то $\frac{p}{q}$~--- подходящая дробь к $\alpha$.
+	\end{theorem}
+	
+	\subsection{Критерий периодичности}
+	
+	\begin{theorem}[Лагранж]
+		Цепная дробь числа $\alpha$ периодична тогда и только тогда, когда $\alpha$~--- квадратичная иррациональность (корень квадратного уравнения с целыми коэффициентами).
+	\end{theorem}
+	
+	\begin{proof}[Идея доказательства]
+		$(\Leftarrow)$ Пусть $\alpha = \frac{a + \sqrt{D}}{b}$. Полные частные $\alpha_n$ имеют вид $\frac{c_n + \sqrt{D}}{d_n}$ с ограниченными $c_n, d_n$, значит множество полных частных конечно.
+		
+		$(\Rightarrow)$ Если период $(a_k, \dots, a_{k+T-1})$, то $\alpha_k = [a_k; a_{k+1}, \dots, a_{k+T-1}, \alpha_k]$. Это квадратное уравнение на $\alpha_k$, поэтому $\alpha_k$ квадратично иррационально. Отсюда и $\alpha$ квадратично иррационально.
+	\end{proof}
+	
+	\newpage
+	
+	\section{Понятие группы, примеры групп. Подгруппы, смежные классы, теорема Лагранжа. Нормальные подгруппы, эквивалентность определений. Факторгруппа. Гомоморфизм, ядро, образ. Теоремы о гомоморфизме. Перестановки, чётность перестановок, критерий сопряжённости перестановок. Группа автоморфизмов графа, теорема Фрухта. Классификация конечных абелевых групп (без доказательства).}
+	
+	\subsection{Понятие группы}
+	
+	\begin{definition}
+		\textbf{Группа}~--- множество $G$ с бинарной операцией $\cdot$, удовлетворяющей:
+		\begin{enumerate}
+			\item (Ассоциативность) $(ab)c = a(bc)$
+			\item (Нейтральный элемент) $\exists e: ae = ea = a$
+			\item (Обратный элемент) $\forall a \ \exists a^{-1}: aa^{-1} = a^{-1}a = e$
+		\end{enumerate}
+		Группа \textbf{абелева}, если $ab = ba$.
+	\end{definition}
+	
+	\textbf{Примеры:}
+	\begin{itemize}
+		\item $(\mathbb{Z}, +)$, $(\mathbb{Q}^*, \cdot)$, $(\mathbb{R}^*, \cdot)$
+		\item $(\mathbb{Z}_n, +)$~--- вычеты по модулю $n$
+		\item $S_n$~--- группа перестановок
+		\item $GL_n(\mathbb{R})$~--- обратимые матрицы
+		\item Группа симметрий правильного $n$-угольника $D_n$
+	\end{itemize}
+	
+	\subsection{Подгруппы и смежные классы}
+	
+	\begin{definition}
+		$H \subseteq G$~--- \textbf{подгруппа} ($H \leq G$), если $H$~--- группа относительно операции $G$.
+	\end{definition}
+	
+	\begin{theorem}[Критерий подгруппы]
+		$H \leq G \Leftrightarrow H \neq \varnothing$ и $\forall a, b \in H: ab^{-1} \in H$.
+	\end{theorem}
+	
+	\begin{definition}
+		\textbf{Левый смежный класс:} $aH = \{ah : h \in H\}$.
+		\textbf{Правый смежный класс:} $Ha = \{ha : h \in H\}$.
+	\end{definition}
+	
+	\begin{theorem}[Лагранж]
+		Если $G$ конечна и $H \leq G$, то $|H|$ делит $|G|$.
+	\end{theorem}
+	
+	\begin{proof}
+		Смежные классы образуют разбиение $G$. Все смежные классы равномощны (биекция $aH \to bH$: $ah \mapsto bh$). Если классов $k$ штук, то $|G| = k \cdot |H|$.
+	\end{proof}
+	
+	\begin{definition}
+		\textbf{Индекс подгруппы:} $[G : H] = |G|/|H|$ (число смежных классов).
+	\end{definition}
+	
+	\subsection{Нормальные подгруппы}
+	
+	\begin{definition}
+		$H \trianglelefteq G$ (\textbf{нормальная подгруппа}), если выполнено одно из эквивалентных условий:
+		\begin{enumerate}
+			\item $\forall g \in G: gH = Hg$
+			\item $\forall g \in G: gHg^{-1} = H$
+			\item $\forall g \in G, h \in H: ghg^{-1} \in H$
+		\end{enumerate}
+	\end{definition}
+	
+	\begin{proof}[Эквивалентность]
+		$(1) \Rightarrow (2)$: $gH = Hg \Rightarrow gHg^{-1} = Hgg^{-1} = H$.
+		
+		$(2) \Rightarrow (3)$: $gHg^{-1} = H \Rightarrow ghg^{-1} \in H$.
+		
+		$(3) \Rightarrow (1)$: $gh = (ghg^{-1})g \in Hg$ и $hg = g(g^{-1}hg) \in gH$.
+	\end{proof}
+	
+	\subsection{Факторгруппа}
+	
+	\begin{theorem}
+		Если $H \trianglelefteq G$, то $G/H = \{gH : g \in G\}$ с операцией $(aH)(bH) = (ab)H$~--- группа.
+	\end{theorem}
+	
+	\begin{proof}
+		Корректность: если $aH = a'H$ и $bH = b'H$, то $a' = ah_1$, $b' = bh_2$.
+		$a'b' = ah_1 bh_2 = a(h_1 b)h_2 = a(bh_3)h_2 = ab(h_3 h_2)$ (использовали $h_1 b = b h_3$ из нормальности).
+		Значит $a'b'H = abH$.
+		
+		Ассоциативность, нейтральный $eH = H$, обратный $(aH)^{-1} = a^{-1}H$~--- проверяются непосредственно.
+	\end{proof}
+	
+	\subsection{Гомоморфизм}
+	
+	\begin{definition}
+		$\varphi: G \to H$~--- \textbf{гомоморфизм}, если $\varphi(ab) = \varphi(a)\varphi(b)$.
+	\end{definition}
+	
+	\begin{definition}
+		\textbf{Ядро:} $\ker \varphi = \{g \in G : \varphi(g) = e_H\}$.
+		\textbf{Образ:} $\text{Im} \varphi = \varphi(G)$.
+	\end{definition}
+	
+	\begin{theorem}
+		$\ker \varphi \trianglelefteq G$, $\text{Im} \varphi \leq H$.
+	\end{theorem}
+	
+	\begin{proof}
+		Ядро: если $a, b \in \ker \varphi$, то $\varphi(ab^{-1}) = \varphi(a)\varphi(b)^{-1} = e \cdot e = e$.
+		Нормальность: $\varphi(gag^{-1}) = \varphi(g)\varphi(a)\varphi(g)^{-1} = \varphi(g) e \varphi(g)^{-1} = e$.
+		
+		Образ: если $\varphi(a), \varphi(b) \in \text{Im} \varphi$, то $\varphi(a)\varphi(b)^{-1} = \varphi(ab^{-1}) \in \text{Im} \varphi$.
+	\end{proof}
+	
+	\begin{theorem}[Первая теорема о гомоморфизме]
+		$G / \ker \varphi \cong \text{Im} \varphi$.
+	\end{theorem}
+	
+	\begin{proof}
+		Определим $\psi: G/\ker\varphi \to \text{Im}\varphi$: $\psi(g \ker\varphi) = \varphi(g)$.
+		
+		Корректность: если $g' = gk$, $k \in \ker\varphi$, то $\varphi(g') = \varphi(g)\varphi(k) = \varphi(g)$.
+		
+		Гомоморфизм: $\psi(aK \cdot bK) = \psi(abK) = \varphi(ab) = \varphi(a)\varphi(b) = \psi(aK)\psi(bK)$.
+		
+		Инъективность: $\psi(gK) = e \Rightarrow \varphi(g) = e \Rightarrow g \in K \Rightarrow gK = K$.
+		
+		Сюръективность: очевидна.
+	\end{proof}
+	
+	\subsection{Перестановки}
+	
+	\begin{definition}
+		\textbf{Перестановка}~--- биекция $\{1, \dots, n\} \to \{1, \dots, n\}$.
+		$S_n$~--- группа всех перестановок, $|S_n| = n!$.
+	\end{definition}
+	
+	\begin{definition}
+		\textbf{Цикл} $(i_1 \, i_2 \, \dots \, i_k)$~--- перестановка $i_1 \mapsto i_2 \mapsto \dots \mapsto i_k \mapsto i_1$.
+		\textbf{Транспозиция}~--- цикл длины 2.
+	\end{definition}
+	
+	\begin{theorem}
+		Любая перестановка раскладывается в произведение независимых циклов (единственно с точностью до порядка).
+	\end{theorem}
+	
+	\begin{theorem}
+		Любая перестановка раскладывается в произведение транспозиций.
+	\end{theorem}
+	
+	\begin{proof}
+		$(i_1 \, i_2 \, \dots \, i_k) = (i_1 \, i_k)(i_1 \, i_{k-1}) \cdots (i_1 \, i_2)$.
+	\end{proof}
+	
+	\begin{definition}
+		\textbf{Чётность} перестановки $\sigma$: $\text{sgn}(\sigma) = (-1)^{\text{число транспозиций}}$.
+		Корректность: $\text{sgn}(\sigma) = \prod_{i < j} \frac{\sigma(j) - \sigma(i)}{j - i}$.
+	\end{definition}
+	
+	\begin{theorem}
+		$A_n = \{\sigma \in S_n : \text{sgn}(\sigma) = 1\}$~--- нормальная подгруппа индекса 2.
+	\end{theorem}
+	
+	\begin{theorem}[Критерий сопряжённости]
+		$\sigma$ и $\tau$ сопряжены в $S_n$ $\Leftrightarrow$ они имеют одинаковый цикловой тип.
+	\end{theorem}
+	
+	\begin{proof}
+		Если $\tau = \rho \sigma \rho^{-1}$ и $\sigma = (i_1 \dots i_k) \cdots$, то $\tau = (\rho(i_1) \dots \rho(i_k)) \cdots$~--- тот же цикловой тип.
+		
+		Обратно: если цикловые типы совпадают, запишем циклы и построим $\rho$, переводящее элементы циклов $\sigma$ в элементы циклов $\tau$.
+	\end{proof}
+	
+	\subsection{Автоморфизмы графа}
+	
+	\begin{definition}
+		\textbf{Автоморфизм графа} $G = (V, E)$~--- биекция $\varphi: V \to V$, сохраняющая смежность.
+		$\text{Aut}(G)$~--- группа автоморфизмов.
+	\end{definition}
+	
+	\begin{theorem}[Фрухт, 1939]
+		Для любой конечной группы $G$ существует граф $\Gamma$ с $\text{Aut}(\Gamma) \cong G$.
+	\end{theorem}
+	
+	\subsection{Классификация конечных абелевых групп}
+	
+	\begin{theorem}[Без доказательства]
+		Любая конечная абелева группа изоморфна прямому произведению циклических групп простых степенных порядков:
+		\[G \cong \mathbb{Z}_{p_1^{a_1}} \times \mathbb{Z}_{p_2^{a_2}} \times \cdots \times \mathbb{Z}_{p_k^{a_k}},\]
+		где разложение единственно с точностью до порядка сомножителей.
+	\end{theorem}
+	
+	\newpage
+	
+	\section{Метрические пространства. Примеры. Непрерывные отображения метрических пространств, равносильные определения. Связность, теорема о промежуточном значении, задачи о блинах. Компактность, критерий компактности в $\mathbb{R}^n$. Теорема Вейерштрасса о достижении максимума.}
+	
+	\subsection{Метрические пространства}
+	
+	\begin{definition}
+		\textbf{Метрическое пространство}~--- пара $(X, d)$, где $d: X \times X \to [0, +\infty)$ удовлетворяет:
+		\begin{enumerate}
+			\item $d(x, y) = 0 \Leftrightarrow x = y$
+			\item $d(x, y) = d(y, x)$ (симметричность)
+			\item $d(x, z) \leq d(x, y) + d(y, z)$ (неравенство треугольника)
+		\end{enumerate}
+	\end{definition}
+	
+	\subsection{Примеры}
+	
+	\begin{note}
+		Для примеров надо уметь доказывать, почему это метрические пространства.
+	\end{note}
+	
+	\textbf{1. $\mathbb{R}^n$ с евклидовой метрикой:} $d(x, y) = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2}$
+	
+	\begin{proof}[Проверка аксиом]
+		1, 2 очевидны. Неравенство треугольника~--- неравенство Минковского.
+	\end{proof}
+	
+	\textbf{2. $\mathbb{R}^n$ с манхэттенской метрикой:} $d_1(x, y) = \sum_{i=1}^{n} |x_i - y_i|$
+	
+	\begin{proof}
+		Неравенство треугольника: $|x_i - z_i| \leq |x_i - y_i| + |y_i - z_i|$, суммируем.
+	\end{proof}
+	
+	\textbf{3. $\mathbb{R}^n$ с метрикой Чебышёва:} $d_\infty(x, y) = \max_i |x_i - y_i|$
+	
+	\begin{proof}
+		$|x_i - z_i| \leq |x_i - y_i| + |y_i - z_i| \leq d_\infty(x, y) + d_\infty(y, z)$.
+	\end{proof}
+	
+	\textbf{4. Дискретная метрика:} $d(x, y) = \begin{cases} 0, & x = y \\ 1, & x \neq y \end{cases}$
+	
+	\begin{proof}
+		Неравенство треугольника: если $x \neq z$, то $d(x,z) = 1 \leq d(x,y) + d(y,z)$ (хотя бы одно из слагаемых $\geq 1$).
+	\end{proof}
+	
+	\textbf{5. Пространство ограниченных последовательностей $\ell^\infty$:} $d(x, y) = \sup_n |x_n - y_n|$
+	
+	\textbf{6. Пространство непрерывных функций $C[a,b]$:} $d(f, g) = \max_{x \in [a,b]} |f(x) - g(x)|$
+	
+	\begin{proof}
+		1. $d(f,g) = 0 \Leftrightarrow |f(x) - g(x)| = 0$ для всех $x \Leftrightarrow f = g$.
+		
+		2. Симметричность очевидна.
+		
+		3. $|f(x) - h(x)| \leq |f(x) - g(x)| + |g(x) - h(x)| \leq d(f,g) + d(g,h)$, значит $d(f,h) \leq d(f,g) + d(g,h)$.
+	\end{proof}
+	
+	\textbf{7. $p$-адическая метрика на $\mathbb{Z}$:} $d_p(a, b) = p^{-\nu_p(a-b)}$, где $\nu_p(n)$~--- показатель вхождения $p$ в $n$.
+	
+	\begin{proof}
+		Ключевое свойство: $\nu_p(a + b) \geq \min(\nu_p(a), \nu_p(b))$.
+		
+		Отсюда ультраметрическое неравенство: $d_p(a, c) \leq \max(d_p(a, b), d_p(b, c))$.
+	\end{proof}
+	
+	\subsection{Открытые и замкнутые множества}
+	
+	\begin{definition}
+		\textbf{Открытый шар:} $B(x, r) = \{y \in X : d(x, y) < r\}$.
+		
+		\textbf{Замкнутый шар:} $\overline{B}(x, r) = \{y \in X : d(x, y) \leq r\}$.
+	\end{definition}
+	
+	\begin{definition}
+		Множество $U \subseteq X$ \textbf{открыто}, если $\forall x \in U \ \exists r > 0: B(x, r) \subseteq U$.
+	\end{definition}
+	
+	\begin{definition}
+		Множество $F \subseteq X$ \textbf{замкнуто}, если $X \setminus F$ открыто.
+	\end{definition}
+	
+	\begin{definition}
+		\textbf{Замыкание:} $\Cl A = \overline{A}$~--- наименьшее замкнутое множество, содержащее $A$.
+		
+		Эквивалентно: $x \in \Cl A \Leftrightarrow \forall r > 0: B(x, r) \cap A \neq \varnothing$.
+	\end{definition}
+	
+	\subsection{Непрерывные отображения}
+	
+	\begin{definition}
+		$f: X \to Y$ \textbf{непрерывно в точке} $x_0$, если:
+		$\forall \varepsilon > 0 \ \exists \delta > 0: d_X(x, x_0) < \delta \Rightarrow d_Y(f(x), f(x_0)) < \varepsilon$.
+	\end{definition}
+	
+	\begin{theorem}
+		$f: X \rightarrow Y$ непрерывно $\Leftrightarrow \forall U$~--- открытого в $Y$: $f^{-1} (U)$ открыто в $X$.
+	\end{theorem}
+	
+	\begin{proof}
+		$(\Rightarrow)$ Пусть $f$ непрерывно, $U$ открыто в $Y$, $x_0 \in f^{-1}(U)$.
+		
+		Тогда $f(x_0) \in U$, и $\exists \varepsilon > 0: B(f(x_0), \varepsilon) \subseteq U$.
+		
+		По непрерывности $\exists \delta > 0: f(B(x_0, \delta)) \subseteq B(f(x_0), \varepsilon) \subseteq U$.
+		
+		Значит $B(x_0, \delta) \subseteq f^{-1}(U)$, то есть $f^{-1}(U)$ открыто.
+		
+		$(\Leftarrow)$ Пусть прообразы открытых открыты. Возьмём $x_0 \in X$, $\varepsilon > 0$.
+		
+		$B(f(x_0), \varepsilon)$ открыт в $Y$, значит $f^{-1}(B(f(x_0), \varepsilon))$ открыт в $X$.
+		
+		$x_0 \in f^{-1}(B(f(x_0), \varepsilon))$, значит $\exists \delta > 0: B(x_0, \delta) \subseteq f^{-1}(B(f(x_0), \varepsilon))$.
+		
+		Это означает: $d(x, x_0) < \delta \Rightarrow d(f(x), f(x_0)) < \varepsilon$.
+	\end{proof}
+	
+	\begin{theorem}[Эквивалентные определения непрерывности]
+		Следующие условия равносильны:
+		\begin{enumerate}
+			\item $f$ непрерывно (в смысле $\varepsilon$-$\delta$)
+			\item Прообраз любого открытого множества открыт
+			\item Прообраз любого замкнутого множества замкнут
+			\item $f(\Cl A) \subseteq \Cl f(A)$ для любого $A \subseteq X$
+			\item Для любой сходящейся последовательности $x_n \to x$: $f(x_n) \to f(x)$
+		\end{enumerate}
+	\end{theorem}
+	
+	\begin{proof}
+		$(2) \Leftrightarrow (3)$: $f^{-1}(Y \setminus F) = X \setminus f^{-1}(F)$.
+		
+		$(1) \Rightarrow (5)$: Пусть $x_n \to x$, $\varepsilon > 0$. По непрерывности $\exists \delta: d(y, x) < \delta \Rightarrow d(f(y), f(x)) < \varepsilon$. Так как $x_n \to x$, $\exists N: n > N \Rightarrow d(x_n, x) < \delta$. Тогда $d(f(x_n), f(x)) < \varepsilon$.
+		
+		$(5) \Rightarrow (4)$: Пусть $x \in \Cl A$. Тогда $\exists x_n \in A: x_n \to x$. По (5): $f(x_n) \to f(x)$. Так как $f(x_n) \in f(A)$, имеем $f(x) \in \Cl f(A)$.
+		
+		$(4) \Rightarrow (3)$: Пусть $F$ замкнуто в $Y$. Тогда $f(\Cl f^{-1}(F)) \subseteq \Cl f(f^{-1}(F)) \subseteq \Cl F = F$. Значит $\Cl f^{-1}(F) \subseteq f^{-1}(F)$, то есть $f^{-1}(F)$ замкнуто.
+	\end{proof}
+	
+	\subsection{Связность}
+	
+	\begin{definition}
+		Метрическое пространство $X$ \textbf{связно}, если его нельзя представить в виде объединения двух непустых непересекающихся открытых множеств.
+		
+		Эквивалентно: если $X = U \sqcup V$, где $U, V$ открыты, то $U = \varnothing$ или $V = \varnothing$.
+	\end{definition}
+	
+	\begin{definition}
+		$A \subseteq X$ \textbf{связно}, если $A$ связно как подпространство с индуцированной метрикой.
+	\end{definition}
+	
+	\begin{theorem}
+		$A$ связно в $X \Rightarrow \Cl A$ связно.
+	\end{theorem}
+	
+	\begin{proof}
+		Предположим $\Cl A = U \sqcup V$, где $U, V$ открыты в $\Cl A$ и непусты.
+		
+		Тогда $A = (A \cap U) \sqcup (A \cap V)$, где $A \cap U$ и $A \cap V$ открыты в $A$.
+		
+		Так как $A$ связно, либо $A \cap U = \varnothing$, либо $A \cap V = \varnothing$.
+		
+		Пусть $A \cap V = \varnothing$, тогда $A \subseteq U$. Но $U$ замкнуто в $\Cl A$ (как дополнение к открытому $V$), и $\Cl A$~--- наименьшее замкнутое, содержащее $A$. Значит $\Cl A \subseteq U$, противоречие с $V \neq \varnothing$.
+	\end{proof}
+	
+	\begin{theorem}
+		Непрерывный образ связного множества связен.
+	\end{theorem}
+	
+	\begin{proof}
+		Пусть $f: X \to Y$ непрерывно, $X$ связно. Предположим $f(X) = U \sqcup V$ (открытые в $f(X)$, непустые).
+		
+		Тогда $X = f^{-1}(U) \sqcup f^{-1}(V)$. Так как $f$ непрерывно, $f^{-1}(U)$ и $f^{-1}(V)$ открыты в $X$.
+		
+		Они непусты (так как $U, V$ непусты и $U, V \subseteq f(X)$). Противоречие со связностью $X$.
+	\end{proof}
+	
+	\begin{theorem}
+		Подмножество $\mathbb{R}$ связно $\Leftrightarrow$ оно является промежутком.
+	\end{theorem}
+	
+	\begin{proof}
+		$(\Leftarrow)$ Пусть $I$~--- промежуток, $I = U \sqcup V$ (открытые, непустые). Возьмём $a \in U$, $b \in V$, $a < b$.
+		
+		Пусть $c = \sup(U \cap [a, b])$. Тогда $c \in \Cl U$, но $U$ замкнуто в $I$ (как дополнение к $V$), значит $c \in U$.
+		
+		Так как $U$ открыто, $\exists \varepsilon: (c - \varepsilon, c + \varepsilon) \cap I \subseteq U$. Но тогда $c$ не супремум. Противоречие.
+		
+		$(\Rightarrow)$ Пусть $A$ связно, $a, b \in A$, $a < c < b$. Если $c \notin A$, то $A = (A \cap (-\infty, c)) \sqcup (A \cap (c, +\infty))$~--- разбиение на открытые непустые. Противоречие.
+	\end{proof}
+	
+	\begin{theorem}[О промежуточном значении]
+		Пусть $f: [a, b] \to \mathbb{R}$ непрерывна, $f(a) < c < f(b)$ (или $f(a) > c > f(b)$). Тогда $\exists x \in (a, b): f(x) = c$.
+	\end{theorem}
+	
+	\begin{proof}
+		$[a, b]$ связен, значит $f([a, b])$ связен. Связное подмножество $\mathbb{R}$~--- промежуток. Так как $f(a), f(b) \in f([a,b])$ и $c$ между ними, $c \in f([a,b])$.
+	\end{proof}
+	
+	\subsection{Задачи о блинах}
+	
+	\begin{theorem}[О блинах / Ham Sandwich Theorem в $\mathbb{R}^2$]
+		Любые две ограниченные измеримые фигуры на плоскости можно одновременно разрезать пополам одной прямой.
+	\end{theorem}
+	
+	\begin{proof}[Идея]
+		Для каждого направления $\theta \in [0, \pi)$ существует единственная прямая с этим направлением, делящая первую фигуру пополам. Пусть $f(\theta)$~--- разность площадей частей второй фигуры.
+		
+		$f$ непрерывна, $f(0) = -f(\pi) = -f(0)$ (при повороте на $\pi$ стороны меняются местами).
+		
+		Если $f(0) \neq 0$, по теореме о промежуточном значении $\exists \theta: f(\theta) = 0$.
+	\end{proof}
+	
+	\begin{theorem}[Борсука--Улама в $\mathbb{R}^2$]
+		Для любой непрерывной $f: S^1 \to \mathbb{R}$ существует $x \in S^1$: $f(x) = f(-x)$.
+	\end{theorem}
+	
+	\begin{proof}
+		Рассмотрим $g(x) = f(x) - f(-x)$. Тогда $g(-x) = -g(x)$.
+		
+		Если $g(x_0) > 0$, то $g(-x_0) < 0$. По связности $S^1$ и непрерывности $g$, существует путь от $x_0$ до $-x_0$, на котором $g$ меняет знак.
+	\end{proof}
+	
+	\subsection{Компактность}
+	
+	\begin{definition}
+		\textbf{Покрытие} множества $A$~--- семейство множеств $\{U_\alpha\}$: $A \subseteq \bigcup_\alpha U_\alpha$.
+		
+		Покрытие \textbf{открытое}, если все $U_\alpha$ открыты.
+	\end{definition}
+	
+	\begin{definition}
+		Множество $K$ \textbf{компактно}, если из любого открытого покрытия $K$ можно выбрать конечное подпокрытие.
+	\end{definition}
+	
+	\begin{theorem}[Свойства компактных множеств]
+		\begin{enumerate}
+			\item Компактное множество замкнуто и ограничено.
+			\item Замкнутое подмножество компакта компактно.
+			\item Непрерывный образ компакта компактен.
+		\end{enumerate}
+	\end{theorem}
+	
+	\begin{proof}
+		1. \textit{Ограниченность:} $K \subseteq \bigcup_{n=1}^{\infty} B(x_0, n)$. Выбираем конечное подпокрытие, $K \subseteq B(x_0, N)$.
+		
+		\textit{Замкнутость:} Пусть $y \notin K$. Для каждого $x \in K$ возьмём $r_x = d(x, y)/2$.
+		
+		$\{B(x, r_x)\}_{x \in K}$ покрывает $K$. Выбираем конечное: $K \subseteq B(x_1, r_1) \cup \dots \cup B(x_n, r_n)$.
+		
+		Пусть $r = \min(r_1, \dots, r_n)$. Тогда $B(y, r) \cap K = \varnothing$, значит $y$ не предельная точка $K$.
+		
+		2. Пусть $F \subseteq K$ замкнуто, $\{U_\alpha\}$ покрывает $F$. Тогда $\{U_\alpha\} \cup \{X \setminus F\}$ покрывает $K$.
+		
+		Выбираем конечное подпокрытие $K$. Убираем $X \setminus F$~--- получаем конечное покрытие $F$.
+		
+		3. Пусть $f: K \to Y$ непрерывно, $\{V_\alpha\}$ покрывает $f(K)$.
+		
+		$\{f^{-1}(V_\alpha)\}$~--- открытое покрытие $K$. Выбираем конечное: $f^{-1}(V_1), \dots, f^{-1}(V_n)$.
+		
+		Тогда $V_1, \dots, V_n$ покрывает $f(K)$.
+	\end{proof}
+	
+	\begin{theorem}[Критерий компактности в $\mathbb{R}^n$]
+		$K \subseteq \mathbb{R}^n$ компактно $\Leftrightarrow$ $K$ замкнуто и ограничено.
+	\end{theorem}
+	
+	\begin{proof}
+		$(\Rightarrow)$ Доказано выше.
+		
+		$(\Leftarrow)$ \textbf{Шаг 1:} $[a, b]$ компактен в $\mathbb{R}$.
+		
+		Пусть $\{U_\alpha\}$ покрывает $[a, b]$. Пусть $A = \{x \in [a, b] : [a, x] \text{ покрывается конечным числом } U_\alpha\}$.
+		
+		$a \in A$ (один $U_\alpha$ достаточно). Пусть $c = \sup A$.
+		
+		$c \in U_{\alpha_0}$ для некоторого $\alpha_0$. Так как $U_{\alpha_0}$ открыто, $\exists \varepsilon: (c - \varepsilon, c + \varepsilon) \cap [a,b] \subseteq U_{\alpha_0}$.
+		
+		Так как $c = \sup A$, $\exists x \in A: x > c - \varepsilon$. Тогда $[a, x]$ покрывается конечным числом $U_\alpha$, и $[x, \min(c + \varepsilon, b)] \subseteq U_{\alpha_0}$.
+		
+		Значит $\min(c + \varepsilon, b) \in A$. Если $c < b$, противоречие с $c = \sup A$. Значит $c = b \in A$.
+		
+		\textbf{Шаг 2:} $[a_1, b_1] \times \dots \times [a_n, b_n]$ компактен (индукция, используя лемму о трубке).
+		
+		\textbf{Шаг 3:} $K$ замкнуто и ограничено, значит $K \subseteq$ некоторому параллелепипеду $P$.
+		
+		$P$ компактен, $K$ замкнуто в $P$, значит $K$ компактен.
+	\end{proof}
+	
+	\begin{theorem}[Секвенциальная компактность]
+		В метрическом пространстве: $K$ компактно $\Leftrightarrow$ из любой последовательности в $K$ можно выбрать сходящуюся подпоследовательность с пределом в $K$.
+	\end{theorem}
+	
+	\subsection{Теорема Вейерштрасса}
+	
+	\begin{theorem}[Вейерштрасс]
+		Непрерывная функция на компакте достигает максимума и минимума.
+	\end{theorem}
+	
+	\begin{proof}
+		Пусть $f: K \to \mathbb{R}$ непрерывна, $K$ компактно.
+		
+		\textbf{Ограниченность:} $f(K)$ компактно (непрерывный образ компакта), значит ограничено.
+		
+		\textbf{Достижение максимума:} Пусть $M = \sup f(K)$. Существует последовательность $x_n \in K$: $f(x_n) \to M$.
+		
+		Так как $K$ компактно, $\exists$ подпоследовательность $x_{n_k} \to x^* \in K$.
+		
+		По непрерывности $f$: $f(x^*) = \lim f(x_{n_k}) = M$.
+		
+		Аналогично для минимума.
+	\end{proof}
+	
+	\begin{theorem}[Равномерная непрерывность на компакте]
+		Непрерывная функция на компакте равномерно непрерывна.
+	\end{theorem}
+	
+	\begin{proof}
+		Предположим противное: $\exists \varepsilon_0 > 0$: $\forall \delta > 0 \ \exists x, y: d(x, y) < \delta$, но $|f(x) - f(y)| \geq \varepsilon_0$.
+		
+		Возьмём $\delta_n = 1/n$, получим $x_n, y_n$: $d(x_n, y_n) < 1/n$, $|f(x_n) - f(y_n)| \geq \varepsilon_0$.
+		
+		По компактности $x_{n_k} \to x^*$. Тогда $y_{n_k} \to x^*$ (так как $d(x_{n_k}, y_{n_k}) \to 0$).
+		
+		По непрерывности $f(x_{n_k}) \to f(x^*)$ и $f(y_{n_k}) \to f(x^*)$.
+		
+		Значит $|f(x_{n_k}) - f(y_{n_k})| \to 0$. Противоречие с $|f(x_{n_k}) - f(y_{n_k})| \geq \varepsilon_0$.
+	\end{proof}
+	
+\end{document}
