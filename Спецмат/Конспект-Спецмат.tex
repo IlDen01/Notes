@@ -316,7 +316,7 @@
 		\begin{enumerate}
 			\item $\{ U_i \}_{i \in I}$~--- открыто $\Rightarrow$ $\bigcup\limits_{i \in I}$~--- открыто.
 			\item $\{ U_i \}_{i \in I}^{n}$~--- открыто $\Rightarrow$ $\bigcup\limits_{i \in I}^{n}$~--- открыто.
-			\item $\emptyset; M$~--- открыты.
+			\item $\varnothing; M$~--- открыты.
 		\end{enumerate}
 	\end{theorem}
 	
@@ -324,7 +324,7 @@
 		\begin{enumerate}
 			\item $\{ F_i \}_{i \in I}$~--- замкнуто $\Rightarrow$ $\bigcap\limits_{i \in I} F_i$~--- замкнуто.
 			\item $\{ F_i \}_{i \in I}^{n}$~--- замкнуто $\Rightarrow$ $\bigcap\limits_{i \in I}^{n} F_i$~--- замкнуто.
-			\item $\emptyset; M$~--- замкнуто.
+			\item $\varnothing; M$~--- замкнуто.
 		\end{enumerate}
 	\end{theorem}
 	
@@ -333,13 +333,13 @@
 		\begin{enumerate}
 			\item $\bigcup\limits_{i \in I} U_i \in \Omega$, если $\forall U_i \in \Omega$
 			\item $U_1, \dots, U_n \in \Omega \Rightarrow \bigcap\limits_{i=1}^n U_i \in \Omega$
-			\item $\emptyset, X \in \Omega$
+			\item $\varnothing, X \in \Omega$
 		\end{enumerate}
 	\end{definition}
 	
 	\begin{definition}[Граница множества $\partial A$]
 		\label{border-def}
-		Это множество точек, в любой окрестности (шаре) которых есть как точки из $A$, так и точки не из $A$. $x \in \partial A \Leftrightarrow \forall r > 0: B(x, r) \cap A \ne \emptyset$ и $B(x, r) \cap (X \setminus A) \ne \emptyset$
+		Это множество точек, в любой окрестности (шаре) которых есть как точки из $A$, так и точки не из $A$. $x \in \partial A \Leftrightarrow \forall r > 0: B(x, r) \cap A \ne \varnothing$ и $B(x, r) \cap (X \setminus A) \ne \varnothing$
 	\end{definition}
 	
 	\begin{definition}[Замыкание $\overline{A}$]
@@ -377,17 +377,17 @@
 	\begin{definition}[Несвязность]
 		$X$~--- несвязное пространство, если $\exists$ открытые $U, V \subset X$:
 		\begin{enumerate}
-			\item $U, V \ne \emptyset$
-			\item $U \cap V = \emptyset$
+			\item $U, V \ne \varnothing$
+			\item $U \cap V = \varnothing$
 			\item $U \cup V = X$
 		\end{enumerate}
 	\end{definition}
 	
 	\begin{definition}[Несвязность]
-		$X$~--- топологическое пространство; $A \ne \emptyset \subset X$. $A$ несвязно, если $\exists$ открытые $U, V \subset X$:
+		$X$~--- топологическое пространство; $A \ne \varnothing \subset X$. $A$ несвязно, если $\exists$ открытые $U, V \subset X$:
 		\begin{itemize}
-			\item $U \cap A \ne \emptyset$, $V \cap A \ne \emptyset$
-			\item $U \cap V \cap A = \emptyset$
+			\item $U \cap A \ne \varnothing$, $V \cap A \ne \varnothing$
+			\item $U \cap V \cap A = \varnothing$
 			\item $A \subset U \cup V$
 		\end{itemize}
 	\end{definition}
@@ -407,7 +407,7 @@
 	\begin{proof}
 		Допустим противное.
 		
-		$U, V$~--- открытые; $U \cap I \ne \emptyset$, $V \cap I \ne \emptyset$; $U \cap V \cap I = \emptyset$; $I \subset U \cap V$.
+		$U, V$~--- открытые; $U \cap I \ne \varnothing$, $V \cap I \ne \varnothing$; $U \cap V \cap I = \varnothing$; $I \subset U \cap V$.
 		
 		НУО $0 \in U$.
 		
