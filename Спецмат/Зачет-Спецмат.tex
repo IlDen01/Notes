@@ -173,6 +173,43 @@
 		\end{itemize}
 	\end{definition}
 	
+	\begin{definition}
+		\textbf{Изоморфизм}~--- биекция, сохраняющая структуру. В зависимости от контекста:
+		\begin{itemize}
+			\item \textbf{Изоморфизм частично упорядоченных множеств:} биекция $f: (X, \leq_X) \to (Y, \leq_Y)$ такая, что $x_1 \leq_X x_2 \Leftrightarrow f(x_1) \leq_Y f(x_2)$.
+			\item \textbf{Изоморфизм групп:} биективный гомоморфизм $f: G \to H$, то есть $f(ab) = f(a)f(b)$.
+			\item \textbf{Изоморфизм графов:} биекция $f: V(G) \to V(H)$, сохраняющая смежность: $\{u, v\} \in E(G) \Leftrightarrow \{f(u), f(v)\} \in E(H)$.
+			\item \textbf{Изометрия метрических пространств:} биекция $f: (X, d_X) \to (Y, d_Y)$ такая, что $d_Y(f(x), f(y)) = d_X(x, y)$.
+		\end{itemize}
+	\end{definition}
+	
+	\begin{note}
+		Два объекта называются \textbf{изоморфными} ($X \cong Y$), если между ними существует изоморфизм. Изоморфные объекты неразличимы с точки зрения соответствующей структуры.
+	\end{note}
+	
+	\begin{theorem}
+		Изоморфизм~--- отношение эквивалентности:
+		\begin{enumerate}
+			\item (Рефлексивность) $X \cong X$ (тождественное отображение).
+			\item (Симметричность) $X \cong Y \Rightarrow Y \cong X$ (обратное отображение).
+			\item (Транзитивность) $X \cong Y, Y \cong Z \Rightarrow X \cong Z$ (композиция).
+		\end{enumerate}
+	\end{theorem}
+	
+	\begin{proof}
+		1. Тождественное отображение $\text{id}: X \to X$~--- биекция, сохраняющая структуру.
+		
+		2. Если $f: X \to Y$~--- изоморфизм, то $f^{-1}: Y \to X$~--- тоже биекция.
+		
+		Сохранение структуры: например, для частичных порядков: $y_1 \leq_Y y_2 \Leftrightarrow f(f^{-1}(y_1)) \leq_Y f(f^{-1}(y_2)) \Leftrightarrow f^{-1}(y_1) \leq_X f^{-1}(y_2)$.
+		
+		Для групп: $f^{-1}(ab) = f^{-1}(f(f^{-1}(a)) \cdot f(f^{-1}(b))) = f^{-1}(f(f^{-1}(a) \cdot f^{-1}(b))) = f^{-1}(a) \cdot f^{-1}(b)$.
+		
+		3. Если $f: X \to Y$ и $g: Y \to Z$~--- изоморфизмы, то $g \circ f: X \to Z$~--- биекция.
+		
+		Сохранение структуры: например, для групп: $(g \circ f)(ab) = g(f(ab)) = g(f(a)f(b)) = g(f(a))g(f(b)) = (g \circ f)(a) \cdot (g \circ f)(b)$.
+	\end{proof}
+	
 	\subsection{Образы и прообразы}
 	
 	\begin{definition}
