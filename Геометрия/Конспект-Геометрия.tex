@@ -2,6 +2,16 @@
 
 \input{C:/Users/ilden/Documents/School/TeX-Cheat-Sheet/header.tex}
 
+\tikzset{
+	dot/.style={circle, fill=black, inner sep=1pt},
+	invisible/.style={dashed, thin, opacity=0.5},
+	visible/.style={thick},
+	main/.style={blue!70!black, thick},
+	aux/.style={red!70!black, thin},
+	plane/.style={fill=green!20, opacity=0.4},
+	secant/.style={green!50!black, thick}
+}
+
 \begin{document}
 	\tableofcontents
 	\setcounter{tocdepth}{3}
@@ -9,15 +19,254 @@
 	
 	\section{Тетраэдр}
 	
+	\subsection{Медианы, высоты и средние линии}
+	
 	\begin{theorem}
 		Если в тетраэдре две пары перпендикулярных скрещивающихся ребер, то он ортоцентрический (высоты пересекаются в одной точке).
+		
+		\begin{center}
+			\begin{tikzpicture}[scale=1.2, line join=round, line cap=round]
+				% Координаты вершин
+				\coordinate (D) at (2, 4);
+				\coordinate (A) at (0, 0);
+				\coordinate (B) at (5, 0.5);
+				\coordinate (C) at (1.5, 1.5);
+				
+				% Основание и скрытые линии
+				\draw[invisible] (A) -- (C);
+				\draw[invisible] (B) -- (C);
+				\draw[invisible] (D) -- (C);
+				
+				% Видимые ребра
+				\draw[visible] (A) -- (B) -- (D) -- cycle;
+				
+				% Точка пересечения высот (ортоцентр) H
+				\coordinate (H) at (1.9, 1.4);
+				\node[dot, label=right:$H$] at (H) {};
+				
+				% Высота из D на плоскость ABC
+				\coordinate (Hd) at (1.9, 0.6);
+				\draw[aux, dashed] (D) -- (H) -- (Hd);
+				\node[below] at (Hd) {\small $H_D$};
+				
+				% Высота из A на плоскость BDC
+				\coordinate (Ha) at (2.8, 2);
+				\draw[aux, dashed] (A) -- (H) -- (Ha);
+				\node[right] at (Ha) {\small $H_A$};
+				
+				% Подписи вершин
+				\node[below left] at (A) {$A$};
+				\node[below right] at (B) {$B$};
+				\node[above] at (C) {$C$};
+				\node[above] at (D) {$D$};
+			\end{tikzpicture}
+		\end{center}
 	\end{theorem}
 	
 	\begin{theorem}
 		Медианы тетраэдра пересекаются в одной точке и делятся в отношение $3 : 1$.
+		
+		\begin{center}
+			\begin{tikzpicture}[scale=1.2, line join=round, line cap=round]
+				\coordinate (D) at (2, 4);
+				\coordinate (A) at (0, 0);
+				\coordinate (B) at (5, 0);
+				\coordinate (C) at (1.5, 1.5);
+				
+				% Скрытые ребра
+				\draw[invisible] (A) -- (C);
+				\draw[invisible] (B) -- (C);
+				\draw[invisible] (D) -- (C);
+				
+				% Видимые ребра
+				\draw[visible] (A) -- (B) -- (D) -- cycle;
+				
+				% Центроид грани ABC (G_D)
+				\coordinate (Gd) at (2.16, 0.5); 
+				% Центроид грани BCD (G_A)
+				\coordinate (Ga) at (2.83, 1.83);
+				
+				% Точка пересечения медиан (Центроид тетраэдра M)
+				% M = (A+B+C+D)/4. Gd = (A+B+C)/3. M = 3/4 Gd + 1/4 D.
+				\coordinate (M) at (2.12, 1.37);
+				
+				% Рисуем медианы
+				\draw[aux, dashed] (D) -- (M) -- (Gd);
+				\draw[aux, dashed] (A) -- (M) -- (Ga);
+				
+				\node[dot, label=right:$M$] at (M) {};
+				\node[below] at (Gd) {\small $G_D$};
+				\node[right] at (Ga) {\small $G_A$};
+				
+				\node[below left] at (A) {$A$};
+				\node[below right] at (B) {$B$};
+				\node[above] at (C) {$C$};
+				\node[above] at (D) {$D$};
+				
+				% Обозначение отношения
+				\node[left, red] at (2.1, 2.7) {$3x$};
+				\node[left, red] at (2.15, 0.9) {$x$};
+			\end{tikzpicture}
+		\end{center}
 	\end{theorem}
 	
 	\begin{theorem}
 		Средние линии тетраэдра пересекаются в одной точке и делятся в точке пересечения пополам.
+		
+		\begin{center}
+			\begin{tikzpicture}[scale=1.2, line join=round, line cap=round]
+				\coordinate (D) at (2, 4);
+				\coordinate (A) at (0, 0);
+				\coordinate (B) at (5, 0.5);
+				\coordinate (C) at (1.5, 1.5);
+				
+				\draw[invisible] (A) -- (C);
+				\draw[invisible] (B) -- (C);
+				\draw[invisible] (D) -- (C);
+				\draw[visible] (A) -- (B) -- (D) -- cycle;
+				
+				% Середины ребер
+				\coordinate (M_AB) at (2.5, 0.25);
+				\coordinate (M_CD) at (1.75, 2.75);
+				\coordinate (M_AD) at (1, 2);
+				\coordinate (M_BC) at (3.25, 1);
+				
+				% Точка пересечения
+				\coordinate (M) at (2.125, 1.5);
+				\node[dot, label=right:$M$] at (M) {};
+				
+				% Средние линии
+				\draw[aux, dashed] (M_AB) -- (M_CD);
+				\draw[aux, dashed] (M_AD) -- (M_BC);
+				
+				% Узлы для середин
+				\node[dot, scale=0.5] at (M_AB) {};
+				\node[dot, scale=0.5] at (M_CD) {};
+				\node[dot, scale=0.5] at (M_AD) {};
+				\node[dot, scale=0.5] at (M_BC) {};
+				
+				\node[below left] at (A) {$A$};
+				\node[below right] at (B) {$B$};
+				\node[above] at (C) {$C$};
+				\node[above] at (D) {$D$};
+			\end{tikzpicture}
+		\end{center}
 	\end{theorem}
+	
+	\subsection{Теорема Менелая}
+	
+	\begin{theorem}[Теорема Менелая для тетраэдра]
+		Возьмем три точки $M, N, K$, лежащие в одной плоскости; $M \in AD$, $N \in BD$, $K \in AC$. Тогда если эта плоскость пересекает $BC$ в точке $P$, то:
+		$$\dfrac{DM}{MA} \cdot \dfrac{AK}{KC} \cdot \dfrac{CP}{PB} \cdot \dfrac{BN}{ND} = 1$$
+		
+		\begin{center}
+			\begin{tikzpicture}[scale=1.5, line join=round, line cap=round]
+				% 1. Координаты вершин тетраэдра
+				\coordinate (D) at (2, 4);
+				\coordinate (A) at (0, 0);
+				\coordinate (B) at (5, 0.5);
+				\coordinate (C) at (1.5, 1.5);
+				
+				% 2. Точки на ребрах через интерполяцию (calc)
+				% Точки M и N на передних ребрах
+				\coordinate (M) at ($(A)!0.4!(D)$); 
+				\coordinate (N) at ($(B)!0.6!(D)$);
+				% Точки K и P на задних ребрах
+				\coordinate (K) at ($(A)!0.65!(C)$);
+				\coordinate (P) at ($(B)!0.4!(C)$); 
+				
+				% 3. Отрисовка невидимых ребер тетраэдра
+				\draw[invisible] (A) -- (C);
+				\draw[invisible] (B) -- (C);
+				\draw[invisible] (D) -- (C);
+				
+				% 4. Заливка плоскости сечения
+				\fill[plane] (M) -- (N) -- (P) -- (K) -- cycle;
+				
+				% 5. Отрисовка линий сечения
+				% Линия MN видима (на передней грани ADB)
+				\draw[secant] (M) -- (N);
+				% Остальные линии сечения уходят на невидимые грани
+				\draw[secant, dashed] (N) -- (P);
+				\draw[secant, dashed] (P) -- (K);
+				\draw[secant, dashed] (K) -- (M);
+				
+				% 6. Отрисовка видимых ребер тетраэдра
+				\draw[visible] (A) -- (B) -- (D) -- cycle;
+				
+				% 7. Подписи и точки
+				\node[below left] at (A) {$A$};
+				\node[below right] at (B) {$B$};
+				\node[above] at (C) {$C$};
+				\node[above] at (D) {$D$};
+				
+				\node[dot, label=left:$M$] at (M) {};
+				\node[dot, label=right:$N$] at (N) {};
+				\node[dot, label=above left:$K$] at (K) {};
+				\node[dot, label=below:$P$] at (P) {};
+			\end{tikzpicture}
+		\end{center}
+	\end{theorem}
+	
+	\begin{statement}
+		В ортоцентрическом тетраэдре суммы квадратов противоположных ребер равны:
+		$$AB^2 + CD^2 = AC^2 + BD^2 = AD^2 + BC^2$$
+		
+		\begin{center}
+			\begin{tikzpicture}[scale=1.5, line join=round, line cap=round]
+				% Стили для параллелепипеда
+				\tikzset{box/.style={gray, thin, opacity=0.4}}
+				
+				% Координаты вершин параллелепипеда (основание)
+				\coordinate (V0) at (0, 0);       % Передний-левый-низ
+				\coordinate (V1) at (3.5, 0.5);   % Передний-правый-низ
+				\coordinate (V2) at (1.2, 1.2);   % Задний-левый-низ
+				\coordinate (V3) at (4.7, 1.7);   % Задний-правый-низ (точка B)
+				
+				% Координаты вершин параллелепипеда (верх)
+				\coordinate (V4) at (0, 3.5);     % Передний-левый-верх
+				\coordinate (V5) at (3.5, 4.0);   % Передний-правый-верх (точка D)
+				\coordinate (V6) at (1.2, 4.7);   % Задний-левый-верх (точка C)
+				\coordinate (V7) at (4.7, 5.2);   % Задний-правый-верх
+				
+				% Вершины тетраэдра
+				\coordinate (A) at (V0);
+				\coordinate (B) at (V3);
+				\coordinate (C) at (V6);
+				\coordinate (D) at (V5);
+				
+				% 1. Отрисовка невидимых линий параллелепипеда
+				\draw[box, dashed] (V2) -- (V0);
+				\draw[box, dashed] (V2) -- (V3);
+				\draw[box, dashed] (V2) -- (V6);
+				
+				
+				% 2. Отрисовка видимых линий параллелепипеда
+				\draw[box] (V0) -- (V1) -- (V3);
+				\draw[box] (V4) -- (V5) -- (V7) -- (V6) -- cycle;
+				\draw[box] (V0) -- (V4);
+				\draw[box] (V1) -- (V5);
+				\draw[box] (V3) -- (V7);
+				
+				% 3. Отрисовка ребер тетраэдра
+				\draw[visible] (A) -- (B);
+				\draw[visible] (A) -- (D);
+				\draw[visible] (B) -- (D);
+				\draw[visible] (C) -- (D);
+				\draw[visible] (B) -- (C);
+				\draw[visible] (A) -- (C);
+				
+				% 4. Подписи вершин тетраэдра
+				\node[dot, label=below left:$A$] at (A) {};
+				\node[dot, label=right:$B$] at (B) {};
+				\node[dot, label=above:$C$] at (C) {};
+				\node[dot, label=above:$D$] at (D) {};
+				
+				% Обозначения ребер параллелепипеда (для доказательства)
+				\node[below, gray] at ($(V0)!0.5!(V1)$) {\small $x$};
+				\node[right, gray] at ($(V1)!0.5!(V3)$) {\small $y$};
+				\node[left, gray] at ($(V0)!0.5!(V4)$) {\small $z$};
+			\end{tikzpicture}
+		\end{center}
+	\end{statement}
 \end{document}
