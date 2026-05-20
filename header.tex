@@ -1,0 +1,71 @@
+% === Кодировки и язык ===
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage{mathtext}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+
+% === Математика ===
+\usepackage{amsmath, amssymb, wasysym, amsthm}
+\usepackage{stmaryrd}
+\usepackage{proof}
+
+% === Теоремные окружения ===
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{corollary}{Следствие}[section]
+\newtheorem{lemma}{Лемма}[section]
+\newtheorem{statement}{Утверждение}[section]
+\newtheorem{axiom}{Аксиома}[section]
+\newtheorem{law}{Закон}[section]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}[section]
+\newtheorem{example}{Пример}[section]
+\newtheorem{problem}{Задача}
+\newtheorem{method}{Метод}[section]
+\newtheorem{event}{Событие}[section]
+
+\theoremstyle{remark}
+\newtheorem{note}{Заметка}[section]
+\newtheorem{property}{Свойство}[section]
+\newtheorem{principle}{Правило}[section]
+\newtheorem{person}{Личность}[section]
+\newtheorem*{solution}{Решение}
+
+% === Графика и float'ы ===
+\usepackage{wrapfig, float}
+% \makeatletter
+% \g@addto@macro\@floatboxreset\centering
+% \makeatother
+\usepackage{graphicx}
+
+% === TikZ / PGFPlots ===
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{pgfplotstable}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{calc, patterns, angles, quotes, intersections}
+
+% === Таблицы ===
+\usepackage{tabularx}
+\usepackage{xltabular}
+\renewcommand\tabularxcolumn[1]{m{#1}}
+
+% === Разметка ===
+\usepackage{geometry}
+\geometry{margin=0.5in}
+
+% === Списки и прочее ===
+\usepackage[shortlabels]{enumitem}
+\usepackage{verbatim}
+
+% === Гиперссылки (почти последним!) ===
+\usepackage[
+colorlinks=true,
+linkcolor=blue,
+urlcolor=blue,
+citecolor=blue,
+bookmarks=true,
+bookmarksopen=false
+]{hyperref}

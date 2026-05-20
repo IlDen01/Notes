@@ -1,0 +1,2188 @@
+\documentclass[12pt,a4paper]{article}
+
+\include{~/School/Notes/header.tex}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstset{
+    language=C++,
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    extendedchars=true,
+    literate={а}{{\selectfont\char224}}1
+        {б}{{\selectfont\char225}}1
+        {в}{{\selectfont\char226}}1
+        {г}{{\selectfont\char227}}1
+        {д}{{\selectfont\char228}}1
+        {е}{{\selectfont\char229}}1
+        {ё}{{\"e}}1
+        {ж}{{\selectfont\char230}}1
+        {з}{{\selectfont\char231}}1
+        {и}{{\selectfont\char232}}1
+        {й}{{\selectfont\char233}}1
+        {к}{{\selectfont\char234}}1
+        {л}{{\selectfont\char235}}1
+        {м}{{\selectfont\char236}}1
+        {н}{{\selectfont\char237}}1
+        {о}{{\selectfont\char238}}1
+        {п}{{\selectfont\char239}}1
+        {р}{{\selectfont\char240}}1
+        {с}{{\selectfont\char241}}1
+        {т}{{\selectfont\char242}}1
+        {у}{{\selectfont\char243}}1
+        {ф}{{\selectfont\char244}}1
+        {х}{{\selectfont\char245}}1
+        {ц}{{\selectfont\char246}}1
+        {ч}{{\selectfont\char247}}1
+        {ш}{{\selectfont\char248}}1
+        {щ}{{\selectfont\char249}}1
+        {ъ}{{\selectfont\char250}}1
+        {ы}{{\selectfont\char251}}1
+        {ь}{{\selectfont\char252}}1
+        {э}{{\selectfont\char253}}1
+        {ю}{{\selectfont\char254}}1
+        {я}{{\selectfont\char255}}1
+        {А}{{\selectfont\char192}}1
+        {Б}{{\selectfont\char193}}1
+        {В}{{\selectfont\char194}}1
+        {Г}{{\selectfont\char195}}1
+        {Д}{{\selectfont\char196}}1
+        {Е}{{\selectfont\char197}}1
+        {Ё}{{\"E}}1
+        {Ж}{{\selectfont\char198}}1
+        {З}{{\selectfont\char199}}1
+        {И}{{\selectfont\char200}}1
+        {Й}{{\selectfont\char201}}1
+        {К}{{\selectfont\char202}}1
+        {Л}{{\selectfont\char203}}1
+        {М}{{\selectfont\char204}}1
+        {Н}{{\selectfont\char205}}1
+        {О}{{\selectfont\char206}}1
+        {П}{{\selectfont\char207}}1
+        {Р}{{\selectfont\char208}}1
+        {С}{{\selectfont\char209}}1
+        {Т}{{\selectfont\char210}}1
+        {У}{{\selectfont\char211}}1
+        {Ф}{{\selectfont\char212}}1
+        {Х}{{\selectfont\char213}}1
+        {Ц}{{\selectfont\char214}}1
+        {Ч}{{\selectfont\char215}}1
+        {Ш}{{\selectfont\char216}}1
+        {Щ}{{\selectfont\char217}}1
+        {Ъ}{{\selectfont\char218}}1
+        {Ы}{{\selectfont\char219}}1
+        {Ь}{{\selectfont\char220}}1
+        {Э}{{\selectfont\char221}}1
+        {Ю}{{\selectfont\char222}}1
+        {Я}{{\selectfont\char223}}1
+}
+
+\begin{document}
+
+\begin{center}
+{\LARGE\bfseries Полный конспект к зачёту по C++}
+\end{center}
+
+\tableofcontents
+\setcounter{tocdepth}{3}
+\newpage
+
+%=============================================================================
+\section{Билет 1. Основы. Базовые типы данных. Указатели, массивы}
+%=============================================================================
+
+\subsection{Базовые типы данных}
+
+В C++ типы делятся на несколько категорий:
+
+\subsubsection{Целочисленные типы}
+\texttt{short}, \texttt{int}, \texttt{long}, \texttt{long long}. Каждый может быть \texttt{signed} (по умолчанию) или \texttt{unsigned}.
+
+Стандарт \textbf{не фиксирует} конкретные размеры, а задаёт лишь минимальные гарантии:
+\begin{itemize}
+    \item \texttt{short} --- не менее 16 бит
+    \item \texttt{int} --- не менее 16 бит (на практике почти всегда 32)
+    \item \texttt{long} --- не менее 32 бит
+    \item \texttt{long long} --- не менее 64 бит
+\end{itemize}
+И гарантирован порядок: $1 = \texttt{sizeof(char)} \le \texttt{sizeof(short)} \le \texttt{sizeof(int)} \le \texttt{sizeof(long)} \le \texttt{sizeof(long long)}$.
+
+\textbf{Почему размеры не фиксированы?} Потому что C++ проектировался для работы на разных архитектурах (от 8-битных микроконтроллеров до 64-битных серверов). Фиксация размеров привела бы к неэффективности на некоторых платформах. Если нужен точный размер, используют типы из \texttt{<cstdint>}: \texttt{int8\_t}, \texttt{int16\_t}, \texttt{int32\_t}, \texttt{int64\_t} и их \texttt{uint}-аналоги.
+
+\textbf{Знаковое переполнение} --- это UB. \textbf{Беззнаковое переполнение} --- определено стандартом (арифметика по модулю $2^n$).
+
+\subsubsection{Типы с плавающей точкой}
+\texttt{float} (обычно 32 бита, IEEE 754 single), \texttt{double} (обычно 64 бита, IEEE 754 double), \texttt{long double} (платформозависим).
+
+\textbf{Как работает представление?} Число хранится в виде $(-1)^s \times m \times 2^e$, где $s$ --- знак, $m$ --- мантисса, $e$ --- экспонента. Из-за конечности мантиссы возникают ошибки округления: \texttt{0.1 + 0.2 != 0.3}.
+
+\subsubsection{Символьные типы}
+\begin{itemize}
+    \item \texttt{char} --- 1 байт. Может быть signed или unsigned (implementation-defined!).
+    \item \texttt{wchar\_t} --- <<широкий>> символ (размер зависит от платформы: 2 байта на Windows, 4 на Linux).
+    \item \texttt{char16\_t}, \texttt{char32\_t} (C++11) --- фиксированные размеры для Unicode (UTF-16, UTF-32).
+    \item \texttt{char8\_t} (C++20) --- для UTF-8.
+\end{itemize}
+
+\subsubsection{Логический тип}
+\texttt{bool}: хранит \texttt{true} или \texttt{false}. Гарантированно может быть неявно преобразован в \texttt{int} (true $\to$ 1, false $\to$ 0) и обратно (любое ненулевое $\to$ true).
+
+\subsubsection{void}
+Не является типом объекта. Используется для обозначения отсутствия возвращаемого значения и для указателей общего назначения (\texttt{void*}).
+
+\subsection{Указатели}
+
+\textbf{Указатель} --- переменная, хранящая адрес объекта в памяти.
+
+\begin{lstlisting}
+int x = 10;
+int* ptr = &x;   // & --- взятие адреса
+*ptr = 20;       // * --- разыменование (доступ к значению по адресу)
+\end{lstlisting}
+
+\textbf{Как это работает на уровне железа?} Указатель --- это просто целое число (обычно размером с регистр: 4 байта на 32-битных, 8 на 64-битных системах), которое интерпретируется как адрес ячейки памяти. Разыменование --- это инструкция процессора для чтения/записи по данному адресу.
+
+\textbf{Нулевой указатель} (\texttt{nullptr} в C++11) --- указатель, который гарантированно не указывает ни на один объект. Разыменование \texttt{nullptr} --- UB.
+
+\textbf{void*} --- указатель на <<что-то>>. Нельзя разыменовать (компилятор не знает тип), нельзя к нему применять арифметику. Нужен для совместимости с C API (\texttt{malloc} возвращает \texttt{void*}).
+
+\subsubsection{Адресная арифметика}
+При прибавлении целого числа к указателю сдвиг происходит на \texttt{n * sizeof(T)} байт:
+\begin{lstlisting}
+int arr[5] = {10, 20, 30, 40, 50};
+int* p = arr;       // p указывает на arr[0]
+*(p + 2) = 100;     // Эквивалентно arr[2] = 100
+// p + 2 сдвигает адрес на 2 * sizeof(int) = 8 байт
+\end{lstlisting}
+
+Можно вычитать два указателя одного типа --- результат имеет тип \texttt{ptrdiff\_t} (знаковое целое) и показывает количество элементов между ними.
+
+\subsection{Массивы}
+
+\textbf{Массив} --- непрерывная последовательность элементов одного типа.
+
+\begin{lstlisting}
+int arr[5] = {1, 2, 3, 4, 5};
+int arr2[] = {1, 2, 3}; // Размер выводится: 3
+\end{lstlisting}
+
+\textbf{Array-to-pointer decay:} в большинстве контекстов имя массива неявно преобразуется в указатель на первый элемент. Исключения: \texttt{sizeof(arr)} (даёт размер всего массива), \texttt{\&arr} (тип \texttt{int(*)[5]}, а не \texttt{int**}), \texttt{decltype(arr)} (даёт \texttt{int[5]}).
+
+\textbf{Почему \texttt{arr[i]} эквивалентно \texttt{*(arr+i)}?} Потому что оператор \texttt{[]} определён именно так. Следствие: \texttt{i[arr]} тоже валидно (но так не пишут).
+
+\textbf{Многомерные массивы:} \texttt{int m[3][4]} --- это массив из 3 элементов, каждый из которых является массивом из 4 \texttt{int}. В памяти лежит непрерывно (row-major order).
+
+\textbf{Массив переменной длины (VLA):} в C99 разрешены, в C++ \textbf{запрещены} стандартом (хотя некоторые компиляторы поддерживают как расширение). Вместо VLA --- \texttt{std::vector}.
+
+\subsection{Ссылки (кратко)}
+Ссылка --- это алиас (другое имя) для существующего объекта. В отличие от указателя, ссылку нельзя <<переназначить>> и она не может быть null.
+\begin{lstlisting}
+int x = 10;
+int& ref = x; // ref --- другое имя для x
+ref = 20;     // x теперь 20
+\end{lstlisting}
+\textbf{Как реализовано?} Внутри компилятор обычно реализует ссылку как указатель, но на уровне языка они отличаются: ссылка не может быть неинициализированной, не может быть null, не может быть перенаправлена.
+
+%=============================================================================
+\section{Билет 2. Компиляция. Этапы. Препроцессор. ODR. Mangling}
+%=============================================================================
+
+\subsection{Этапы компиляции}
+
+Компиляция C++ программы проходит через несколько этапов:
+
+\begin{enumerate}
+    \item \textbf{Препроцессинг} (\texttt{cpp} / \texttt{g++ -E}):
+    \begin{itemize}
+        \item Обрабатываются директивы: \texttt{\#include} (подставляет содержимое файла), \texttt{\#define} (макросы), \texttt{\#if}/\texttt{\#ifdef}/\texttt{\#ifndef} (условная компиляция), \texttt{\#pragma}.
+        \item Удаляются комментарии.
+        \item Результат --- \textbf{единица трансляции} (translation unit): один большой текстовый файл.
+    \end{itemize}
+
+    \item \textbf{Компиляция} (\texttt{g++ -S}):
+    \begin{itemize}
+        \item Лексический анализ (токены), синтаксический анализ (AST), семантический анализ (проверка типов), оптимизации, генерация ассемблерного кода.
+        \item Каждая единица трансляции компилируется \textbf{независимо} от других.
+    \end{itemize}
+
+    \item \textbf{Ассемблирование} (\texttt{g++ -c}):
+    \begin{itemize}
+        \item Ассемблерный код $\to$ объектный файл (\texttt{.o} / \texttt{.obj}).
+        \item Содержит машинный код + таблицу символов (имена функций/переменных и их адреса, пока неразрешённые).
+    \end{itemize}
+
+    \item \textbf{Линковка} (linking):
+    \begin{itemize}
+        \item Линкер (ld) собирает все объектные файлы и библиотеки в исполняемый файл.
+        \item \textbf{Разрешение символов}: если в файле \texttt{a.o} вызывается функция \texttt{foo()}, определённая в \texttt{b.o}, линкер подставляет правильный адрес.
+        \item Если символ не найден --- ошибка ``undefined reference''. Если найден дважды --- ошибка ``multiple definition''.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Директивы препроцессора}
+
+\subsubsection{\texttt{\#include}}
+Буквально копирует содержимое указанного файла в текущую позицию.
+\begin{itemize}
+    \item \texttt{\#include <file>} --- ищет в системных путях.
+    \item \texttt{\#include "file"} --- ищет сначала в текущей директории, потом в системных.
+\end{itemize}
+
+\subsubsection{\texttt{\#define} и макросы}
+\begin{lstlisting}
+#define PI 3.14159
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+\end{lstlisting}
+\textbf{Проблемы макросов}: нет проверки типов, неожиданные побочные эффекты (\texttt{MAX(i++, j)} вычислит \texttt{i++} дважды), загрязнение глобального пространства имён. В C++ предпочтительны \texttt{constexpr}, \texttt{inline} функции и \texttt{templates}.
+
+\subsubsection{Include Guard}
+Проблема: если \texttt{a.h} включается в \texttt{b.h} и \texttt{c.h}, а \texttt{main.cpp} включает оба, то содержимое \texttt{a.h} попадёт дважды $\to$ ошибка переопределения.
+\begin{lstlisting}
+// a.h
+#ifndef A_H_INCLUDED
+#define A_H_INCLUDED
+struct Foo { int x; };
+#endif
+\end{lstlisting}
+Альтернатива: \texttt{\#pragma once} --- не стандартизована, но поддерживается всеми основными компиляторами и работает быстрее (не нужно парсить файл заново).
+
+\subsection{Объявление vs Определение}
+
+\begin{itemize}
+    \item \textbf{Объявление} (declaration) --- сообщает компилятору, что сущность существует. Не выделяет память.
+\begin{lstlisting}
+extern int x;           // объявление переменной
+void foo(int a);        // объявление функции
+class MyClass;          // forward declaration класса
+\end{lstlisting}
+
+    \item \textbf{Определение} (definition) --- выделяет память / предоставляет реализацию. Является также объявлением.
+\begin{lstlisting}
+int x = 5;              // определение переменной
+void foo(int a) { ... } // определение функции
+class MyClass { ... };  // определение класса
+\end{lstlisting}
+\end{itemize}
+
+\textbf{Зачем разделение?} Потому что единицы трансляции компилируются независимо. Когда \texttt{a.cpp} вызывает функцию из \texttt{b.cpp}, компилятору \texttt{a.cpp} достаточно знать \textit{объявление} (сигнатуру), чтобы проверить типы. Конкретный адрес функции подставит линкер.
+
+\subsection{One Definition Rule (ODR)}
+
+\textbf{ODR} --- фундаментальное правило C++:
+\begin{enumerate}
+    \item В одной единице трансляции --- не более одного определения любой переменной, функции, класса, перечисления, шаблона.
+    \item Во всей программе --- ровно одно определение каждой ODR-используемой не-inline функции и не-inline переменной.
+    \item Типы (классы, enum), inline-функции и шаблоны могут определяться в нескольких единицах трансляции, но все определения должны быть \textbf{идентичными} (token-by-token).
+\end{enumerate}
+
+Нарушение ODR --- \textbf{UB} (не обязательно ошибка линковки!).
+
+\subsection{Связывание (Linkage)}
+
+\begin{itemize}
+    \item \textbf{Внешнее связывание} (external linkage): имя видно линкеру из других единиц трансляции. По умолчанию у функций и глобальных переменных.
+    \item \textbf{Внутреннее связывание} (internal linkage): имя видно только в текущей единице трансляции. Достигается:
+    \begin{itemize}
+        \item Ключевым словом \texttt{static} перед глобальной переменной/функцией.
+        \item Помещением в анонимное пространство имён (\texttt{namespace \{ ... \}}).
+        \item \texttt{const} и \texttt{constexpr} глобальные переменные по умолчанию имеют внутреннее связывание.
+    \end{itemize}
+    \item \textbf{Без связывания} (no linkage): локальные переменные.
+\end{itemize}
+
+\subsection{inline}
+
+\textbf{Что делает \texttt{inline}?}
+\begin{itemize}
+    \item \textbf{Не} гарантирует инлайнинг (вставку тела функции в место вызова). Это лишь \textit{подсказка} компилятору. Современные компиляторы сами решают, что инлайнить.
+    \item \textbf{Главное назначение}: изменяет ODR --- позволяет определять функцию в заголовочном файле, не нарушая ODR. Линкер при наличии нескольких одинаковых определений inline-функции оставит одно.
+    \item С C++17: \texttt{inline} переменные --- то же самое для переменных (можно определять в header).
+\end{itemize}
+
+\subsection{Name Mangling (Декорирование имён)}
+
+\textbf{Проблема}: C++ поддерживает перегрузку функций (\texttt{foo(int)}, \texttt{foo(double)}), пространства имён, шаблоны. Но линкер работает с плоскими символами (именами).
+
+\textbf{Решение}: компилятор кодирует в имя символа информацию о типах параметров, пространстве имён и т.д.:
+\begin{lstlisting}
+// Исходный код:
+namespace math { int add(int a, int b); }
+// Может стать символом: _ZN4math3addEii (GCC/Clang)
+\end{lstlisting}
+
+\textbf{Зачем это знать?}
+\begin{itemize}
+    \item Ошибки линковки показывают mangled-имена. Утилита \texttt{c++filt} декодирует их.
+    \item Разные компиляторы используют разные схемы mangling $\to$ объектные файлы от разных компиляторов обычно несовместимы.
+    \item В C нет mangling (нет перегрузки), поэтому \texttt{extern "C"} отключает mangling для совместимости.
+\end{itemize}
+
+%=============================================================================
+\section{Билет 3. Классы. RAII. Модификаторы. Специальные методы}
+%=============================================================================
+
+\subsection{Структура класса}
+
+\texttt{class} и \texttt{struct} --- почти одно и то же. Единственное отличие: у \texttt{struct} по умолчанию \texttt{public} доступ, у \texttt{class} --- \texttt{private}.
+
+Класс содержит:
+\begin{itemize}
+    \item \textbf{Поля} (member variables) --- данные.
+    \item \textbf{Методы} (member functions) --- функции, имеющие доступ к \texttt{this}.
+    \item \textbf{Вложенные типы}, \textbf{перечисления}, \textbf{typedef/using}.
+\end{itemize}
+
+\subsection{Конструкторы и деструкторы}
+
+\subsubsection{Конструкторы}
+Вызываются при создании объекта. Задача --- привести объект в корректное состояние.
+
+\begin{lstlisting}
+class Vector {
+    int* data_;
+    size_t size_;
+public:
+    Vector() : data_(nullptr), size_(0) {}          // default
+    Vector(size_t n) : data_(new int[n]), size_(n) {} // параметризованный
+    Vector(std::initializer_list<int> il);           // initializer_list
+};
+\end{lstlisting}
+
+\subsubsection{Списки инициализации (Member Initializer List)}
+\begin{lstlisting}
+Vector(size_t n) : data_(new int[n]), size_(n) {
+    // Тело конструктора
+}
+\end{lstlisting}
+\textbf{Почему использовать?}
+\begin{itemize}
+    \item \texttt{const} поля и ссылки \textbf{обязаны} инициализироваться в списке (нельзя присвоить позже).
+    \item Для полей-объектов: без списка вызовется конструктор по умолчанию, а потом оператор присваивания $\to$ двойная работа.
+    \item Порядок инициализации определяется \textbf{порядком объявления полей в классе}, а не порядком в списке инициализации!
+\end{itemize}
+
+\subsubsection{Деструктор}
+Вызывается при уничтожении объекта. Задача --- освободить ресурсы.
+\begin{lstlisting}
+~Vector() { delete[] data_; }
+\end{lstlisting}
+Деструктор вызывается автоматически при выходе из scope (для объектов на стеке), при \texttt{delete} (для объектов в куче), или явно (при placement new).
+
+\subsection{RAII (Resource Acquisition Is Initialization)}
+
+\textbf{Идиома}: захват ресурса привязан к времени жизни объекта.
+\begin{itemize}
+    \item Конструктор захватывает ресурс (выделяет память, открывает файл, блокирует мьютекс).
+    \item Деструктор освобождает ресурс.
+\end{itemize}
+
+\textbf{Зачем?} Гарантирует корректное освобождение ресурсов даже при исключениях. Когда исключение раскручивает стек, деструкторы всех локальных объектов вызываются.
+
+\textbf{Примеры из стандартной библиотеки}: \texttt{std::unique\_ptr}, \texttt{std::shared\_ptr}, \texttt{std::lock\_guard}, \texttt{std::fstream}.
+
+\subsection{Модификаторы доступа}
+
+\begin{itemize}
+    \item \texttt{public} --- доступен всем.
+    \item \texttt{protected} --- доступен внутри класса и его наследников.
+    \item \texttt{private} --- доступен только внутри класса.
+    \item \texttt{friend} --- предоставляет доступ внешней функции/классу к \texttt{private}/\texttt{protected} членам.
+\end{itemize}
+
+\textbf{Зачем инкапсуляция?} Позволяет контролировать инварианты класса: внешний код не может привести объект в некорректное состояние.
+
+\subsection{Ключевые слова для членов класса}
+
+\subsubsection{static}
+\begin{itemize}
+    \item \textbf{Статическое поле}: одно на весь класс (не принадлежит конкретному объекту). Хранится в сегменте данных. Определяется вне класса (до C++17) или с \texttt{inline} (C++17).
+    \item \textbf{Статический метод}: не имеет \texttt{this}, работает только со статическими полями.
+\end{itemize}
+
+\subsubsection{explicit}
+Запрещает неявные преобразования через конструктор:
+\begin{lstlisting}
+class Foo {
+public:
+    explicit Foo(int x);
+};
+Foo f = 42;   // Ошибка! (неявное преобразование запрещено)
+Foo f(42);    // OK
+Foo f{42};    // OK
+\end{lstlisting}
+\textbf{Зачем?} Предотвращает неожиданные неявные преобразования, которые могут скрывать баги.
+
+\subsubsection{const для методов}
+\begin{lstlisting}
+int getValue() const { return value_; }
+\end{lstlisting}
+В const-методе \texttt{this} имеет тип \texttt{const T*}: нельзя менять поля объекта (если поле не \texttt{mutable}).
+
+\textbf{mutable}: позволяет изменять поле даже в const-методе (пример: кэш, мьютекс).
+
+\subsection{Перегрузка операторов}
+
+Операторы можно определять как методы класса или свободные функции:
+\begin{lstlisting}
+class Vector {
+public:
+    Vector operator+(const Vector& rhs) const;  // как метод
+    Vector& operator+=(const Vector& rhs);
+    bool operator==(const Vector& rhs) const;
+    int& operator[](size_t i);             // неконстантная версия
+    const int& operator[](size_t i) const; // константная версия
+    friend std::ostream& operator<<(std::ostream& os, const Vector& v);
+};
+\end{lstlisting}
+
+\textbf{Некоторые операторы} можно определять только как методы: \texttt{=}, \texttt{[]}, \texttt{()}, \texttt{->}.
+
+\subsection{Специальные методы (Rule of 5)}
+
+Компилятор может автоматически генерировать 5 специальных методов:
+\begin{enumerate}
+    \item \textbf{Деструктор}: \texttt{\~{}T()}
+    \item \textbf{Конструктор копирования}: \texttt{T(const T\&)}
+    \item \textbf{Оператор присваивания копированием}: \texttt{T\& operator=(const T\&)}
+    \item \textbf{Конструктор перемещения}: \texttt{T(T\&\&)}
+    \item \textbf{Оператор присваивания перемещением}: \texttt{T\& operator=(T\&\&)}
+\end{enumerate}
+
+\textbf{Rule of 5}: если вы определяете хотя бы один из этих методов (обычно деструктор), скорее всего, вам нужно определить все пять. Причина: если класс вручную управляет ресурсом, автоматически сгенерированные методы (побитовое/поэлементное копирование) будут некорректны.
+
+\textbf{Rule of 0}: если класс не управляет ресурсами напрямую (использует smart pointers, контейнеры), не определяйте ни одного --- полагайтесь на автогенерацию.
+
+\textbf{\texttt{= default} и \texttt{= delete}}:
+\begin{lstlisting}
+T(const T&) = default;  // Попросить компилятор сгенерировать
+T(const T&) = delete;   // Запретить копирование
+\end{lstlisting}
+
+\textbf{Таблица автогенерации}: если пользователь объявил конструктор перемещения, конструктор копирования не генерируется автоматически (и наоборот). Если объявлен деструктор, конструктор перемещения не генерируется.
+
+\subsection{Идиома Copy-and-Swap}
+
+Безопасная реализация оператора присваивания:
+\begin{lstlisting}
+class Vector {
+    // ...
+    friend void swap(Vector& a, Vector& b) noexcept {
+        using std::swap;
+        swap(a.data_, b.data_);
+        swap(a.size_, b.size_);
+    }
+
+    Vector& operator=(Vector other) { // Принимаем по значению!
+        swap(*this, other);
+        return *this;
+    }
+};
+\end{lstlisting}
+\textbf{Почему это хорошо?} Строгая гарантия исключений: если конструктор копирования (при передаче по значению) бросает исключение, \texttt{*this} не изменён. Работает и для copy, и для move assignment.
+
+%=============================================================================
+\section{Билет 4. Работа с памятью. Стек и куча}
+%=============================================================================
+
+\subsection{Модель памяти программы}
+
+Типичная программа на C++ использует несколько областей памяти:
+\begin{enumerate}
+    \item \textbf{Сегмент кода} (text): исполняемые инструкции.
+    \item \textbf{Сегмент данных}: глобальные и статические переменные (инициализированные в \texttt{.data}, неинициализированные в \texttt{.bss}).
+    \item \textbf{Стек} (stack): локальные переменные, параметры функций, адреса возврата.
+    \item \textbf{Куча} (heap / free store): динамически выделяемая память.
+\end{enumerate}
+
+\subsection{Стек (Stack)}
+
+\textbf{Как работает?} Стек --- область памяти, работающая по принципу LIFO. При вызове функции на стеке создаётся \textbf{фрейм} (stack frame), содержащий:
+\begin{itemize}
+    \item Локальные переменные
+    \item Параметры функции
+    \item Адрес возврата
+    \item Сохранённые регистры
+\end{itemize}
+
+При выходе из функции фрейм <<снимается>> --- указатель стека (SP) сдвигается.
+
+\textbf{Характеристики}: очень быстрое выделение/освобождение ($O(1)$, это просто сдвиг регистра), ограниченный размер (обычно 1--8 МБ), автоматическое управление.
+
+\textbf{Stack overflow}: при слишком глубокой рекурсии или слишком большом массиве на стеке.
+
+\subsection{Куча (Heap / Free Store)}
+
+\textbf{Как работает?} Аллокатор (например, \texttt{ptmalloc}, \texttt{jemalloc}, \texttt{tcmalloc}) управляет большим блоком памяти, выданным ОС (через \texttt{mmap}/\texttt{sbrk}). Поддерживает списки свободных блоков. При запросе ищет подходящий блок.
+
+\textbf{Характеристики}: медленнее стека (поиск блока, возможная фрагментация), размер ограничен доступной памятью, программист управляет временем жизни.
+
+\subsection{new / delete}
+
+\begin{lstlisting}
+int* p = new int(42);      // 1) operator new (выделяет память)
+                             // 2) конструктор int(42)
+delete p;                   // 1) деструктор ~int()
+                             // 2) operator delete (освобождает память)
+
+int* arr = new int[100];    // operator new[] + конструкторы
+delete[] arr;                // деструкторы + operator delete[]
+\end{lstlisting}
+
+\textbf{Важно}: \texttt{delete} и \texttt{delete[]} --- разные операторы! Путать их --- UB.
+
+\subsection{operator new / operator delete}
+
+Это функции, которые \texttt{new}-выражение вызывает внутри:
+\begin{lstlisting}
+void* operator new(size_t size);           // глобальный
+void* operator new(size_t size, const std::nothrow_t&); // не бросает
+void operator delete(void* ptr) noexcept;
+void operator delete(void* ptr, size_t size) noexcept; // C++14
+\end{lstlisting}
+
+Можно переопределять для класса или глобально (для профилирования, пулов памяти и т.д.).
+
+\subsection{malloc / free (из C)}
+
+\begin{lstlisting}
+int* p = (int*)malloc(sizeof(int) * 10);
+free(p);
+\end{lstlisting}
+
+\textbf{Отличия от new/delete}:
+\begin{itemize}
+    \item Не вызывают конструкторы/деструкторы
+    \item Возвращают \texttt{void*} (нужен явный каст)
+    \item При ошибке \texttt{malloc} возвращает \texttt{nullptr} (не бросает исключение)
+    \item Нельзя смешивать: \texttt{malloc} + \texttt{delete} или \texttt{new} + \texttt{free} --- UB
+\end{itemize}
+
+\subsection{Placement new}
+
+Позволяет создать объект в \textbf{уже выделенной} памяти. Не выделяет память!
+
+\begin{lstlisting}
+#include <new> // placement new
+
+alignas(MyClass) char buffer[sizeof(MyClass)];
+MyClass* obj = new (buffer) MyClass(args...); // вызов конструктора
+// ...
+obj->~MyClass(); // ОБЯЗАТЕЛЬНО вызвать деструктор вручную!
+// НЕ вызывать delete obj! (память не была выделена через new)
+\end{lstlisting}
+
+\textbf{Зачем?} Используется в аллокаторах, контейнерах (\texttt{std::vector} выделяет сырую память, потом конструирует элементы), \texttt{std::optional}, \texttt{std::variant}.
+
+\subsection{std::construct\_at / std::destroy\_at (C++20)}
+
+\begin{lstlisting}
+std::construct_at(ptr, args...); // Эквивалент placement new
+std::destroy_at(ptr);           // Эквивалент ptr->~T()
+\end{lstlisting}
+Преимущество: работают в constexpr-контексте (в отличие от placement new).
+
+\subsection{Проблемы динамической памяти}
+
+\begin{itemize}
+    \item \textbf{Утечка памяти} (memory leak): забыли вызвать \texttt{delete}.
+    \item \textbf{Двойное освобождение} (double free): UB.
+    \item \textbf{Use-after-free}: обращение к памяти после \texttt{delete}. UB.
+    \item \textbf{Dangling pointer}: указатель на освобождённую память.
+\end{itemize}
+
+Решение: RAII + smart pointers (\texttt{unique\_ptr}, \texttt{shared\_ptr}).
+
+%=============================================================================
+\section{Билет 5. Исключения}
+%=============================================================================
+
+\subsection{Механизм исключений}
+
+\begin{lstlisting}
+try {
+    if (error) throw std::runtime_error("Something failed");
+    // ...
+} catch (const std::runtime_error& e) {
+    std::cerr << e.what() << std::endl;
+} catch (const std::exception& e) {
+    // Ловит любой наследник std::exception
+} catch (...) {
+    // Ловит вообще всё
+}
+\end{lstlisting}
+
+\textbf{Как работает (Zero-cost exception model)?}
+\begin{itemize}
+    \item При отсутствии исключений --- \textbf{нулевые накладные расходы} на исполнение (но увеличивается размер бинарника).
+    \item При \texttt{throw} запускается \textbf{раскрутка стека} (stack unwinding): последовательно вызываются деструкторы всех локальных объектов во всех фреймах до подходящего \texttt{catch}.
+    \item Используется таблица (exception table) в каждой функции, описывающая, какие деструкторы вызывать и какие catch-блоки проверять.
+\end{itemize}
+
+\textbf{throw;} (без аргумента) --- перебрасывает текущее исключение. Работает только внутри \texttt{catch}.
+
+\subsection{Иерархия стандартных исключений}
+
+\texttt{std::exception} --- базовый класс. Основные наследники:
+\begin{itemize}
+    \item \texttt{std::logic\_error}: \texttt{invalid\_argument}, \texttt{out\_of\_range}, \texttt{length\_error}
+    \item \texttt{std::runtime\_error}: \texttt{overflow\_error}, \texttt{underflow\_error}, \texttt{range\_error}
+    \item \texttt{std::bad\_alloc} (при неудачном \texttt{new})
+    \item \texttt{std::bad\_cast} (при неудачном \texttt{dynamic\_cast})
+\end{itemize}
+
+\subsection{noexcept}
+
+\begin{lstlisting}
+void foo() noexcept;            // Гарантирует, что не бросает
+void bar() noexcept(true);      // То же
+void baz() noexcept(false);     // Может бросать (по умолчанию)
+void qux() noexcept(noexcept(foo())); // Условный noexcept
+\end{lstlisting}
+
+\textbf{Что происходит, если noexcept-функция бросит исключение?} Вызывается \texttt{std::terminate()} $\to$ программа завершается. Стек \textbf{может не раскручиваться}.
+
+\textbf{Зачем noexcept?}
+\begin{itemize}
+    \item Оптимизации: компилятор может генерировать более эффективный код.
+    \item Контейнеры STL (например, \texttt{std::vector}) при реаллокации используют move-конструктор только если он \texttt{noexcept}. Иначе --- копирование (для строгой гарантии).
+    \item Документация: показывает пользователю, что функция безопасна.
+\end{itemize}
+
+\subsection{Гарантии безопасности исключений}
+
+\begin{enumerate}
+    \item \textbf{No-throw guarantee}: операция никогда не бросает исключений. Пример: деструкторы, \texttt{swap}, операции с \texttt{noexcept}.
+
+    \item \textbf{Strong guarantee (строгая)}: если операция бросила исключение, состояние программы откатывается к тому, что было до вызова (commit-or-rollback). Пример: \texttt{std::vector::push\_back} (если move noexcept или используется copy).
+
+    \item \textbf{Basic guarantee (базовая)}: при исключении нет утечек ресурсов, объекты остаются в \textit{валидном, но неопределённом} состоянии. Пример: присваивание без copy-and-swap.
+
+    \item \textbf{No guarantee}: никаких гарантий. Так писать не надо.
+\end{enumerate}
+
+\textbf{Исключения в деструкторах}: деструкторы неявно \texttt{noexcept}. Если деструктор бросает исключение во время раскрутки стека (когда уже летит другое исключение), вызывается \texttt{std::terminate}. \textbf{Никогда не бросайте из деструкторов.}
+
+\subsection{Альтернативы исключениям}
+
+Коды возврата, \texttt{std::expected} (C++23), \texttt{std::optional}, паттерн Result.
+
+%=============================================================================
+\section{Билет 6. Шаблоны (Templates)}
+%=============================================================================
+
+\subsection{Зачем нужны шаблоны?}
+
+Шаблоны обеспечивают \textbf{обобщённое программирование} --- написание кода, работающего с любыми типами, без потери производительности (в отличие от полиморфизма через виртуальные функции).
+
+\begin{lstlisting}
+template<typename T>
+T max(T a, T b) {
+    return (a > b) ? a : b;
+}
+// Использование:
+max(1, 2);       // T = int (вывод типа)
+max<double>(1, 2.5); // Явное указание
+\end{lstlisting}
+
+\textbf{Как работает?} Шаблон --- это не функция/класс, а \textit{рецепт} для создания функций/классов. При использовании с конкретным типом компилятор \textbf{инстанцирует} (создаёт) конкретную версию. Это происходит во время компиляции.
+
+\subsection{Шаблоны функций и классов}
+
+\begin{lstlisting}
+// Шаблон класса
+template<typename T, size_t N>
+class Array {
+    T data[N];
+public:
+    T& operator[](size_t i) { return data[i]; }
+    constexpr size_t size() const { return N; }
+};
+
+Array<int, 10> arr; // Инстанцирование
+\end{lstlisting}
+
+\textbf{Non-type template parameters}: параметрами шаблона могут быть не только типы, но и значения (целые числа, указатели, ссылки, с C++20 --- литеральные типы):
+\begin{lstlisting}
+template<int N> struct Factorial {
+    static constexpr int value = N * Factorial<N-1>::value;
+};
+template<> struct Factorial<0> {
+    static constexpr int value = 1;
+};
+\end{lstlisting}
+
+\subsection{Двухфазный поиск имён (Two-Phase Lookup)}
+
+При компиляции шаблона имена ищутся в два этапа:
+
+\textbf{Фаза 1} (при определении шаблона):
+\begin{itemize}
+    \item Проверяется синтаксис.
+    \item Ищутся \textbf{non-dependent names} (имена, не зависящие от параметров шаблона).
+\end{itemize}
+
+\textbf{Фаза 2} (при инстанцировании):
+\begin{itemize}
+    \item Ищутся \textbf{dependent names} (имена, зависящие от параметра шаблона).
+    \item Выполняется ADL для зависимых имён.
+\end{itemize}
+
+\textbf{Ключевое слово \texttt{typename}}:
+\begin{lstlisting}
+template<typename T>
+void foo() {
+    typename T::value_type x; // Нужно typename, чтобы компилятор
+    // знал, что T::value_type --- это тип, а не статическое поле
+}
+\end{lstlisting}
+
+\textbf{Ключевое слово \texttt{template}} в зависимом контексте:
+\begin{lstlisting}
+template<typename T>
+void foo(T& obj) {
+    obj.template bar<int>(); // Нужно template перед bar
+}
+\end{lstlisting}
+
+\subsection{Специализация}
+
+\subsubsection{Полная специализация}
+\begin{lstlisting}
+template<>
+class Array<bool, 8> {
+    // Специальная реализация для bool (bit packing)
+    uint8_t data;
+};
+\end{lstlisting}
+
+\subsubsection{Частичная специализация (только для классов)}
+\begin{lstlisting}
+template<typename T>
+class SmartPtr<T[]> {  // Специализация для массивов
+    // ...
+};
+
+template<typename T>
+class Container<T*> {  // Специализация для указателей
+    // ...
+};
+\end{lstlisting}
+
+\textbf{Для функций} частичная специализация \textbf{невозможна}. Вместо неё используют перегрузку.
+
+\subsection{Специализации функций и перегрузки}
+
+\begin{lstlisting}
+template<typename T>
+void process(T x) { /* общий случай */ }
+
+template<>
+void process<int>(int x) { /* полная специализация */ }
+
+// Лучше: перегрузка вместо специализации
+void process(int x) { /* перегрузка для int */ }
+\end{lstlisting}
+
+\textbf{Почему перегрузка предпочтительнее специализации для функций?} Потому что перегрузки участвуют в разрешении перегрузки (overload resolution), а специализации --- нет: сначала выбирается базовый шаблон, потом проверяются его специализации. Это может приводить к неожиданному поведению.
+
+\subsection{Variadic Templates (шаблоны с переменным числом аргументов)}
+
+\begin{lstlisting}
+// Базовый случай
+void print() {}
+
+// Рекурсивный случай
+template<typename T, typename... Args>
+void print(T first, Args... rest) {
+    std::cout << first << " ";
+    print(rest...); // Раскрытие пакета
+}
+
+print(1, 2.5, "hello"); // T=int, Args={double, const char*}
+\end{lstlisting}
+
+\texttt{sizeof...(Args)} --- количество аргументов в пакете (вычисляется при компиляции).
+
+\subsection{Fold Expressions (C++17)}
+
+Лаконичная свёртка пакетов параметров без рекурсии:
+\begin{lstlisting}
+template<typename... Args>
+auto sum(Args... args) {
+    return (args + ...);    // Правая свёртка: a1 + (a2 + (a3 + ...))
+}
+
+template<typename... Args>
+auto sum2(Args... args) {
+    return (... + args);    // Левая свёртка: ((a1 + a2) + a3) + ...
+}
+
+template<typename... Args>
+auto sum3(Args... args) {
+    return (0 + ... + args); // Бинарная левая свёртка (с init)
+}
+
+template<typename... Args>
+void printAll(Args... args) {
+    (std::cout << ... << args) << std::endl; // Бинарная левая
+}
+\end{lstlisting}
+
+Четыре формы:
+\begin{itemize}
+    \item \texttt{(pack op ...)} --- unary right fold
+    \item \texttt{(... op pack)} --- unary left fold
+    \item \texttt{(pack op ... op init)} --- binary right fold
+    \item \texttt{(init op ... op pack)} --- binary left fold
+\end{itemize}
+
+%=============================================================================
+\section{Билет 7. Трейты и SFINAE}
+%=============================================================================
+
+\subsection{Type Traits (трейты типов)}
+
+Трейты --- шаблонные структуры из \texttt{<type\_traits>}, дающие информацию о типах на этапе компиляции:
+
+\begin{lstlisting}
+#include <type_traits>
+static_assert(std::is_integral_v<int>);        // true
+static_assert(std::is_floating_point_v<double>); // true
+static_assert(std::is_same_v<int, int32_t>);    // зависит от платформы
+static_assert(std::is_pointer_v<int*>);          // true
+\end{lstlisting}
+
+\textbf{Как устроены внутри?} Через специализации шаблонов:
+\begin{lstlisting}
+// Упрощённая реализация is_pointer
+template<typename T>
+struct is_pointer : std::false_type {};
+
+template<typename T>
+struct is_pointer<T*> : std::true_type {};
+
+// std::true_type = std::integral_constant<bool, true>
+// std::false_type = std::integral_constant<bool, false>
+\end{lstlisting}
+
+\textbf{Трейты-трансформации}:
+\begin{lstlisting}
+std::remove_const_t<const int>       // int
+std::remove_reference_t<int&>        // int
+std::add_pointer_t<int>              // int*
+std::decay_t<const int&>             // int
+std::conditional_t<true, int, double> // int
+\end{lstlisting}
+
+\subsection{std::declval}
+
+Позволяет <<иметь>> объект типа \texttt{T} в невычисляемом контексте (\texttt{decltype}, \texttt{sizeof}, \texttt{noexcept}), даже если у \texttt{T} нет конструктора по умолчанию:
+
+\begin{lstlisting}
+template<typename T, typename U>
+using sum_type = decltype(std::declval<T>() + std::declval<U>());
+// Определяет тип результата T + U без создания объектов
+\end{lstlisting}
+
+\textbf{Как работает?} \texttt{std::declval<T>()} возвращает \texttt{T\&\&}. Вызвать его в рантайме --- ошибка линковки (нет определения).
+
+\subsection{SFINAE (Substitution Failure Is Not An Error)}
+
+\textbf{Принцип}: если при подстановке аргументов в шаблон возникает ошибка в \textit{непосредственном контексте} (immediate context) --- это не ошибка компиляции, а просто отбрасывание данной перегрузки.
+
+\begin{lstlisting}
+// Пример: функция только для целых типов
+template<typename T>
+typename std::enable_if<std::is_integral_v<T>, T>::type
+process(T val) {
+    return val * 2;
+}
+
+template<typename T>
+typename std::enable_if<std::is_floating_point_v<T>, T>::type
+process(T val) {
+    return val * 2.5;
+}
+\end{lstlisting}
+
+\textbf{std::enable\_if}:
+\begin{lstlisting}
+template<bool B, typename T = void>
+struct enable_if {};
+
+template<typename T>
+struct enable_if<true, T> { using type = T; };
+// Если B = false, type не существует -> SFINAE
+\end{lstlisting}
+
+\subsubsection{Техники применения SFINAE}
+
+\textbf{1. Через возвращаемый тип:}
+\begin{lstlisting}
+template<typename T>
+auto foo(T x) -> std::enable_if_t<std::is_integral_v<T>, void> { ... }
+\end{lstlisting}
+
+\textbf{2. Через дополнительный параметр шаблона:}
+\begin{lstlisting}
+template<typename T, std::enable_if_t<std::is_integral_v<T>, int> = 0>
+void foo(T x) { ... }
+\end{lstlisting}
+
+\textbf{3. Через \texttt{void\_t} (C++17 idiom):}
+\begin{lstlisting}
+template<typename, typename = void>
+struct has_size : std::false_type {};
+
+template<typename T>
+struct has_size<T, std::void_t<decltype(std::declval<T>().size())>>
+    : std::true_type {};
+\end{lstlisting}
+
+\textbf{void\_t} --- это просто:
+\begin{lstlisting}
+template<typename...>
+using void_t = void;
+\end{lstlisting}
+Если выражения внутри валидны $\to$ получаем \texttt{void} $\to$ совпадает со значением по умолчанию второго параметра $\to$ выбирается частичная специализация (true\_type). Если невалидны $\to$ SFINAE $\to$ выбирается базовый шаблон (false\_type).
+
+\subsection{if constexpr (C++17)}
+
+Ветвление на этапе компиляции. Невыбранная ветка \textbf{не инстанцируется}:
+\begin{lstlisting}
+template<typename T>
+auto process(T val) {
+    if constexpr (std::is_integral_v<T>) {
+        return val * 2;
+    } else if constexpr (std::is_floating_point_v<T>) {
+        return val * 2.5;
+    } else {
+        static_assert(false, "Unsupported type"); // C++23 workaround needed
+    }
+}
+\end{lstlisting}
+
+\textbf{Отличие от обычного \texttt{if}}: обычный \texttt{if} требует, чтобы обе ветки компилировались. \texttt{if constexpr} отбрасывает ненужную ветку.
+
+\subsection{Tag Dispatching}
+
+Выбор перегрузки на основе типа-метки:
+\begin{lstlisting}
+template<typename It>
+void advance_impl(It& it, int n, std::random_access_iterator_tag) {
+    it += n; // O(1)
+}
+
+template<typename It>
+void advance_impl(It& it, int n, std::input_iterator_tag) {
+    for (int i = 0; i < n; ++i) ++it; // O(n)
+}
+
+template<typename It>
+void advance(It& it, int n) {
+    advance_impl(it, n,
+        typename std::iterator_traits<It>::iterator_category{});
+}
+\end{lstlisting}
+
+\textbf{Зачем, если есть if constexpr и SFINAE?} Tag dispatching --- это более старая, но очень читаемая техника. Активно используется в STL.
+
+\subsection{SFINAE-friendliness}
+
+Класс/функция является SFINAE-friendly, если ошибки при невалидных типах возникают в непосредственном контексте (и потому отбрасываются SFINAE), а не глубоко внутри (что было бы hard error). Пример: \texttt{std::result\_of} (C++11) не был SFINAE-friendly, \texttt{std::invoke\_result} (C++17) --- стал.
+
+%=============================================================================
+\section{Билет 8. Контейнеры и итераторы}
+%=============================================================================
+
+\subsection{Контейнеры STL}
+
+\subsubsection{Последовательные контейнеры}
+\begin{itemize}
+    \item \textbf{std::vector<T>}: динамический массив. Элементы хранятся непрерывно. Вставка в конец --- амортизированно $O(1)$ (с реаллокацией). Вставка в середину --- $O(n)$. Доступ по индексу --- $O(1)$.
+    \item \textbf{std::deque<T>}: двусторонняя очередь. Вставка в начало и конец --- $O(1)$. Доступ по индексу --- $O(1)$. Не гарантирует непрерывность памяти (реализуется как массив указателей на блоки).
+    \item \textbf{std::list<T>}: двусвязный список. Вставка/удаление в любом месте (если есть итератор) --- $O(1)$. Доступ по индексу --- $O(n)$. Плохая cache locality.
+    \item \textbf{std::forward\_list<T>}: односвязный список.
+    \item \textbf{std::array<T, N>}: обёртка над C-массивом фиксированного размера. Нет overhead.
+\end{itemize}
+
+\subsubsection{Ассоциативные контейнеры (на деревьях)}
+\begin{itemize}
+    \item \textbf{std::set<T>}, \textbf{std::map<K,V>}: красно-чёрное дерево. Элементы отсортированы. Поиск/вставка/удаление --- $O(\log n)$.
+    \item \textbf{std::multiset}, \textbf{std::multimap}: допускают дубликаты ключей.
+\end{itemize}
+
+\subsubsection{Неупорядоченные контейнеры (хеш-таблицы)}
+\begin{itemize}
+    \item \textbf{std::unordered\_set<T>}, \textbf{std::unordered\_map<K,V>}: хеш-таблица. Поиск/вставка/удаление --- амортизированно $O(1)$, в худшем случае $O(n)$.
+\end{itemize}
+
+\subsubsection{Контейнеры-адаптеры}
+\begin{itemize}
+    \item \textbf{std::stack<T>}: LIFO (по умолчанию обёртка над \texttt{deque}).
+    \item \textbf{std::queue<T>}: FIFO.
+    \item \textbf{std::priority\_queue<T>}: куча (max-heap по умолчанию).
+\end{itemize}
+
+\subsection{Итераторы}
+
+Итератор --- обобщённый указатель: объект, позволяющий обходить элементы контейнера.
+
+\subsubsection{Категории итераторов (иерархия)}
+
+\begin{enumerate}
+    \item \textbf{Input Iterator}: чтение, только вперёд, один проход. Пример: \texttt{std::istream\_iterator}.
+    \item \textbf{Output Iterator}: запись, только вперёд, один проход. Пример: \texttt{std::ostream\_iterator}, \texttt{std::back\_insert\_iterator}.
+    \item \textbf{Forward Iterator}: чтение/запись, только вперёд, многократный проход. Пример: \texttt{std::forward\_list::iterator}.
+    \item \textbf{Bidirectional Iterator}: + движение назад (\texttt{-{}-}). Пример: \texttt{std::list::iterator}, \texttt{std::set::iterator}.
+    \item \textbf{Random Access Iterator}: + произвольный доступ (\texttt{it += n}, \texttt{it[n]}, сравнение \texttt{<}). Пример: \texttt{std::vector::iterator}, \texttt{std::deque::iterator}.
+    \item \textbf{Contiguous Iterator} (C++17/20): + элементы лежат непрерывно в памяти. Пример: \texttt{std::vector::iterator}, \texttt{std::array::iterator}, обычный указатель.
+\end{enumerate}
+
+\textbf{Чем отличаются?} Набором поддерживаемых операций:
+\begin{itemize}
+    \item Input: \texttt{*it} (чтение), \texttt{++it}, \texttt{it == it2}
+    \item Forward: + гарантия многопроходности
+    \item Bidirectional: + \texttt{-{}-it}
+    \item Random Access: + \texttt{it + n}, \texttt{it - n}, \texttt{it[n]}, \texttt{it < it2}
+    \item Contiguous: + \texttt{std::to\_address(it)} указывает на непрерывный блок
+\end{itemize}
+
+\textbf{Зачем категории?} Алгоритмы STL выбирают оптимальную реализацию в зависимости от категории: \texttt{std::distance} --- $O(1)$ для Random Access, $O(n)$ для Input. \texttt{std::sort} требует Random Access.
+
+\subsection{Range-based for}
+
+\begin{lstlisting}
+for (auto& elem : container) { ... }
+// Эквивалентно:
+{
+    auto&& __range = container;
+    auto __begin = std::begin(__range); // или __range.begin()
+    auto __end = std::end(__range);     // или __range.end()
+    for (; __begin != __end; ++__begin) {
+        auto& elem = *__begin;
+        ...
+    }
+}
+\end{lstlisting}
+
+\textbf{Как сделать свой класс совместимым?} Нужно предоставить \texttt{begin()} и \texttt{end()} (как методы или через ADL), а итератор должен поддерживать \texttt{*}, \texttt{++}, \texttt{!=}.
+
+\subsection{std::iterator\_traits}
+
+\begin{lstlisting}
+template<typename It>
+struct iterator_traits {
+    using value_type = typename It::value_type;
+    using difference_type = typename It::difference_type;
+    using pointer = typename It::pointer;
+    using reference = typename It::reference;
+    using iterator_category = typename It::iterator_category;
+};
+
+// Специализация для указателей:
+template<typename T>
+struct iterator_traits<T*> {
+    using value_type = T;
+    using difference_type = ptrdiff_t;
+    using pointer = T*;
+    using reference = T&;
+    using iterator_category = random_access_iterator_tag;
+};
+\end{lstlisting}
+
+\subsection{Инвалидация итераторов}
+
+При модификации контейнера итераторы могут стать невалидными:
+\begin{itemize}
+    \item \texttt{vector}: при реаллокации --- все итераторы. При вставке/удалении в середину --- итераторы после точки вставки.
+    \item \texttt{deque}: вставка/удаление в начало/конец инвалидирует все итераторы (но не ссылки/указатели, кроме начала/конца). Вставка в середину --- все.
+    \item \texttt{list}: инвалидируются только итераторы на удалённые элементы.
+    \item \texttt{set/map}: аналогично list.
+    \item \texttt{unordered\_*}: при рехешировании --- все итераторы.
+\end{itemize}
+
+%=============================================================================
+\section{Билет 9. Undefined Behavior (UB)}
+%=============================================================================
+
+\subsection{Что такое UB?}
+
+\textbf{Undefined Behavior} --- ситуация, при которой стандарт C++ \textbf{не определяет}, что должна делать программа. Результат может быть \textit{любым}: программа может работать ``правильно'', упасть, отформатировать диск, или (благодаря оптимизациям компилятора) вести себя совершенно неожиданно.
+
+\textbf{Почему UB существует?} Чтобы дать компилятору свободу для оптимизаций. Например, компилятор может предполагать, что UB никогда не происходит, и удалять проверки.
+
+\subsection{Примеры UB}
+
+\begin{itemize}
+    \item Разыменование \texttt{nullptr} или невалидного указателя
+    \item Переполнение знакового целого (\texttt{INT\_MAX + 1})
+    \item Выход за границы массива
+    \item Использование неинициализированной переменной
+    \item Обращение к объекту после \texttt{delete} (use-after-free)
+    \item Двойной \texttt{delete}
+    \item Нарушение strict aliasing rule
+    \item Модификация \texttt{const} объекта через отброс \texttt{const}
+    \item Гонка данных (data race) в многопоточной программе
+    \item Бесконечный цикл без побочных эффектов (с C++11, кроме \texttt{volatile})
+    \item Сдвиг на отрицательное число бит или на число $\ge$ ширины типа
+\end{itemize}
+
+\subsection{Strict Aliasing Rule}
+
+\textbf{Правило}: нельзя обращаться к объекту одного типа через указатель/ссылку на несовместимый тип.
+
+\begin{lstlisting}
+float f = 3.14f;
+int* p = reinterpret_cast<int*>(&f);
+int i = *p; // UB! Нарушение strict aliasing
+\end{lstlisting}
+
+\textbf{Исключения}: через \texttt{char*}, \texttt{unsigned char*}, \texttt{std::byte*} можно читать любой объект (но не наоборот!).
+
+\textbf{Зачем это правило?} Позволяет компилятору оптимизировать: если функция принимает \texttt{int*} и \texttt{float*}, компилятор может предполагать, что они не указывают на одну и ту же память (не нужно перечитывать).
+
+\textbf{Правильный способ} reinterpret переинтерпретации битов:
+\begin{lstlisting}
+float f = 3.14f;
+int i;
+std::memcpy(&i, &f, sizeof(i)); // OK!
+// Или в C++20: std::bit_cast<int>(f);
+\end{lstlisting}
+
+\subsection{std::unreachable() (C++23)}
+
+Подсказка компилятору, что данная точка в коде никогда не будет достигнута:
+\begin{lstlisting}
+int getValue(int x) {
+    switch (x) {
+        case 0: return 10;
+        case 1: return 20;
+        default: std::unreachable(); // UB если сюда дойдём,
+                                      // но компилятор оптимизирует
+    }
+}
+\end{lstlisting}
+
+До C++23 использовали \texttt{\_\_builtin\_unreachable()} (GCC/Clang) или \texttt{\_\_assume(false)} (MSVC).
+
+\subsection{assert}
+
+\begin{lstlisting}
+#include <cassert>
+assert(ptr != nullptr); // Если false -> abort()
+\end{lstlisting}
+
+Работает только в отладочной сборке (при \texttt{NDEBUG} отключается). Не для обработки ошибок в релизе!
+
+\subsection{Санитайзеры}
+
+Инструменты для обнаружения ошибок во время выполнения (вставляют проверки в код):
+
+\begin{itemize}
+    \item \textbf{AddressSanitizer (ASan)}: выход за границы, use-after-free, double free, утечки. Флаг: \texttt{-fsanitize=address}.
+    \item \textbf{UndefinedBehaviorSanitizer (UBSan)}: переполнение, сдвиги, null deref, и т.д. Флаг: \texttt{-fsanitize=undefined}.
+    \item \textbf{ThreadSanitizer (TSan)}: data races. Флаг: \texttt{-fsanitize=thread}.
+    \item \textbf{MemorySanitizer (MSan)}: чтение неинициализированной памяти. Флаг: \texttt{-fsanitize=memory}.
+\end{itemize}
+
+Замедляют программу в 2--10 раз. Используются при разработке и тестировании.
+
+\subsection{Отладочная версия стандартной библиотеки}
+
+Некоторые реализации STL (libstdc++ в GCC, libc++ в Clang) имеют отладочные режимы, которые проверяют валидность итераторов, выход за границы и т.д. Например: \texttt{-D\_GLIBCXX\_DEBUG} для GCC.
+
+%=============================================================================
+\section{Билет 10. Вычисления на этапе компиляции}
+%=============================================================================
+
+\subsection{constexpr}
+
+\textbf{Для переменных}: значение \textit{может} быть вычислено при компиляции (и должно быть, если используется в контексте, требующем compile-time значения: размер массива, template argument):
+\begin{lstlisting}
+constexpr int N = 42;
+int arr[N]; // OK
+\end{lstlisting}
+
+\textbf{Для функций}: функция \textit{может} вычисляться при компиляции, если все аргументы известны:
+\begin{lstlisting}
+constexpr int factorial(int n) {
+    return n <= 1 ? 1 : n * factorial(n - 1);
+}
+constexpr int f5 = factorial(5); // Вычислено при компиляции
+int x;
+std::cin >> x;
+int fx = factorial(x); // Вычислено в рантайме
+\end{lstlisting}
+
+\textbf{Ограничения constexpr функций} (ослабляются с каждым стандартом):
+\begin{itemize}
+    \item C++11: только один return, без циклов и переменных
+    \item C++14: циклы, переменные, if-else разрешены
+    \item C++20: можно использовать \texttt{new}/\texttt{delete}, \texttt{try-catch}, виртуальные функции (при условии, что вся динамическая память освобождена до конца вычисления)
+\end{itemize}
+
+\subsection{consteval (C++20)}
+
+\textbf{Immediate function} --- функция, которая \textbf{обязана} вычисляться при компиляции. Вызов с runtime-аргументами --- ошибка компиляции.
+\begin{lstlisting}
+consteval int square(int n) { return n * n; }
+constexpr int a = square(5); // OK: 25 при компиляции
+int x = 5;
+int b = square(x); // ОШИБКА! x не constexpr
+\end{lstlisting}
+
+\textbf{Зачем?} Гарантировать, что вычисление \textit{точно} произойдёт при компиляции (в отличие от \texttt{constexpr}, где компилятор может отложить на рантайм).
+
+\subsection{constinit (C++20)}
+
+Гарантирует \textbf{статическую инициализацию} переменной (при компиляции), но не делает переменную const:
+\begin{lstlisting}
+constinit int global = 42; // Инициализация при компиляции
+// global можно менять в рантайме!
+\end{lstlisting}
+
+\textbf{Зачем?} Решает проблему \textbf{Static Initialization Order Fiasco}: порядок инициализации глобальных переменных из разных единиц трансляции не определён. Если одна зависит от другой --- UB. \texttt{constinit} гарантирует, что инициализация произойдёт при компиляции, до любого рантайм-кода.
+
+\subsection{std::is\_constant\_evaluated() (C++20)}
+
+Проверяет, выполняется ли код в контексте вычислений при компиляции:
+\begin{lstlisting}
+constexpr int compute(int x) {
+    if (std::is_constant_evaluated()) {
+        // Компайл-тайм путь (может быть медленнее, но constexpr-совместимый)
+        return slow_constexpr_impl(x);
+    } else {
+        // Рантайм путь (можно использовать SIMD, asm и т.д.)
+        return fast_runtime_impl(x);
+    }
+}
+\end{lstlisting}
+
+\textbf{C++23}: \texttt{if consteval \{ ... \} else \{ ... \}} --- более удобный синтаксис.
+
+\textbf{Важно}: \texttt{if constexpr (std::is\_constant\_evaluated())} --- \textbf{антипаттерн}! Всегда вернёт \texttt{true}, потому что \texttt{if constexpr} сам является constant-evaluated контекстом. Нужно использовать обычный \texttt{if}.
+
+%=============================================================================
+\section{Билет 11. Перечислимый тип и тип-объединение}
+%=============================================================================
+
+\subsection{enum и enum class}
+
+\subsubsection{enum (C-style)}
+\begin{lstlisting}
+enum Color { Red, Green, Blue };
+// Red, Green, Blue "вытекают" в окружающее пространство имён
+int x = Red; // Неявное преобразование в int
+\end{lstlisting}
+
+\textbf{Проблемы}: загрязнение пространства имён, неявное преобразование в int (ошибки).
+
+\subsubsection{enum class (C++11, scoped enumeration)}
+\begin{lstlisting}
+enum class Color : uint8_t { Red, Green, Blue };
+Color c = Color::Red;  // OK
+// int x = Color::Red; // Ошибка! Нет неявного преобразования
+int x = static_cast<int>(Color::Red); // Явное преобразование
+\end{lstlisting}
+
+\textbf{Преимущества}: строгая типизация, нет загрязнения namespace, можно указать underlying type.
+
+\subsection{union}
+
+Все члены делят одну и ту же область памяти. Размер union = размер наибольшего члена.
+\begin{lstlisting}
+union Value {
+    int i;
+    float f;
+    char c;
+};
+Value v;
+v.i = 42;
+// v.f; // UB! Активный член --- i, а не f (кроме char)
+\end{lstlisting}
+
+\textbf{Проблемы}: нет информации о том, какой член сейчас активен. Нельзя хранить типы с нетривиальными конструкторами/деструкторами (до C++11).
+
+С C++11 можно, но нужно вручную вызывать placement new и деструкторы:
+\begin{lstlisting}
+union S {
+    std::string str;
+    int i;
+    S() : i(0) {}
+    ~S() {} // Нужно знать, какой член активен!
+};
+\end{lstlisting}
+
+\textbf{union-like class}: класс, у которого хотя бы один анонимный union как поле.
+
+\subsection{std::variant (C++17)}
+
+\textbf{Типобезопасный union}. Хранит одно из перечисленных значений и знает, какое именно.
+\begin{lstlisting}
+std::variant<int, double, std::string> v;
+v = 42;                        // Хранит int
+v = 3.14;                      // Теперь double
+v = std::string("hello");     // Теперь string
+
+// Доступ:
+std::get<int>(v);              // Бросает std::bad_variant_access
+std::get<2>(v);                // По индексу. "hello"
+auto* p = std::get_if<int>(&v); // Возвращает nullptr или указатель
+
+v.index(); // Индекс текущего типа (0, 1 или 2)
+std::holds_alternative<int>(v); // false
+\end{lstlisting}
+
+\textbf{Размер}: \texttt{sizeof(variant)} = max(sizeof(типов)) + overhead для хранения индекса (обычно 1-4 байта) + выравнивание.
+
+\subsection{std::visit}
+
+Паттерн Visitor для \texttt{variant}:
+\begin{lstlisting}
+std::variant<int, double, std::string> v = 42;
+
+std::visit([](auto&& arg) {
+    using T = std::decay_t<decltype(arg)>;
+    if constexpr (std::is_same_v<T, int>) {
+        std::cout << "int: " << arg;
+    } else if constexpr (std::is_same_v<T, double>) {
+        std::cout << "double: " << arg;
+    } else {
+        std::cout << "string: " << arg;
+    }
+}, v);
+\end{lstlisting}
+
+\textbf{Как работает?} Внутри генерируется таблица (массив указателей на функции или switch) для вызова правильной перегрузки в зависимости от текущего индекса.
+
+\textbf{Overloaded pattern} (удобный visit):
+\begin{lstlisting}
+template<typename... Ts> struct overloaded : Ts... {
+    using Ts::operator()...;
+};
+template<typename... Ts> overloaded(Ts...) -> overloaded<Ts...>;
+
+std::visit(overloaded{
+    [](int i) { std::cout << "int: " << i; },
+    [](double d) { std::cout << "double: " << d; },
+    [](const std::string& s) { std::cout << "string: " << s; }
+}, v);
+\end{lstlisting}
+
+\subsection{std::monostate}
+
+Тип без данных, defaultconstructible. Используется как первый тип в \texttt{variant}, чтобы он мог быть default-constructible, даже если ни один из ``настоящих'' типов таковым не является:
+\begin{lstlisting}
+struct NoDefault { NoDefault(int) {} };
+// std::variant<NoDefault> v; // Ошибка! NoDefault не default-constructible
+std::variant<std::monostate, NoDefault> v; // OK, по умолчанию monostate
+\end{lstlisting}
+
+\subsection{valueless\_by\_exception}
+
+Если во время присваивания нового значения в \texttt{variant} конструктор бросил исключение, variant может оказаться в состоянии ``без значения'':
+\begin{lstlisting}
+v.valueless_by_exception(); // true, если variant пуст
+v.index(); // variant::npos
+\end{lstlisting}
+
+%=============================================================================
+\section{Билет 12. Rvalue ссылки и семантика перемещения}
+%=============================================================================
+
+\subsection{Категории значений}
+
+Каждое выражение в C++ имеет две характеристики: тип и категорию значения.
+
+\begin{itemize}
+    \item \textbf{lvalue} (locator value): выражение, обозначающее объект с устойчивым местом в памяти. Можно взять адрес. Примеры: переменные (\texttt{x}), \texttt{*ptr}, \texttt{arr[i]}, вызов функции, возвращающей \texttt{T\&}.
+    \item \textbf{prvalue} (pure rvalue): ``чистое'' временное значение, не имеет адреса. Примеры: литералы (\texttt{42}), \texttt{x + y}, вызов функции, возвращающей \texttt{T} (не ссылку).
+    \item \textbf{xvalue} (eXpiring value): объект, ресурсы которого можно ``украсть''. Примеры: \texttt{std::move(x)}, вызов функции, возвращающей \texttt{T\&\&}.
+\end{itemize}
+
+\textbf{glvalue} = lvalue $\cup$ xvalue (имеет identity).\\
+\textbf{rvalue} = prvalue $\cup$ xvalue (можно перемещать).
+
+\subsection{Rvalue ссылки}
+
+\begin{lstlisting}
+int&& r = 42;       // OK: rvalue ссылка на временный объект
+int x = 10;
+// int&& r2 = x;    // Ошибка! x --- lvalue
+int&& r3 = std::move(x); // OK: std::move превращает в xvalue
+\end{lstlisting}
+
+\textbf{Важно}: сама переменная \texttt{r} (и \texttt{r3}) --- это \textbf{lvalue}! Она имеет имя и адрес. Это распространённая ловушка.
+
+\subsection{Семантика перемещения}
+
+\textbf{Зачем?} При копировании тяжёлых объектов (вектор из миллиона элементов) выполняется дорогое копирование данных. Если исходный объект больше не нужен (временный или после \texttt{std::move}), можно ``украсть'' его внутренние данные вместо копирования.
+
+\begin{lstlisting}
+class Vector {
+    int* data_;
+    size_t size_;
+public:
+    // Конструктор перемещения
+    Vector(Vector&& other) noexcept
+        : data_(other.data_), size_(other.size_) {
+        other.data_ = nullptr;  // "Обнуляем" источник
+        other.size_ = 0;
+    }
+
+    // Оператор присваивания перемещением
+    Vector& operator=(Vector&& other) noexcept {
+        if (this != &other) {
+            delete[] data_;
+            data_ = other.data_;
+            size_ = other.size_;
+            other.data_ = nullptr;
+            other.size_ = 0;
+        }
+        return *this;
+    }
+};
+\end{lstlisting}
+
+\textbf{Состояние после перемещения}: объект должен быть в \textit{валидном, но неопределённом} состоянии. Обычно --- ``пустой''. Деструктор должен корректно работать.
+
+\subsection{std::move}
+
+\texttt{std::move(x)} --- это просто \texttt{static\_cast<T\&\&>(x)}. \textbf{Не перемещает ничего}! Просто превращает lvalue в xvalue, что позволяет выбрать конструктор перемещения при перегрузке.
+
+\begin{lstlisting}
+std::vector<int> a = {1, 2, 3};
+std::vector<int> b = std::move(a);
+// Теперь b содержит {1, 2, 3}, a --- пуст (но валиден)
+\end{lstlisting}
+
+\subsection{Избегание копирования: RVO и NRVO}
+
+\textbf{RVO (Return Value Optimization)} --- компилятор конструирует возвращаемый объект непосредственно в месте вызова, минуя копирование/перемещение:
+\begin{lstlisting}
+std::vector<int> createVector() {
+    return std::vector<int>{1, 2, 3}; // RVO: нет копирования
+}
+\end{lstlisting}
+
+\textbf{NRVO (Named RVO)} --- то же для именованных переменных:
+\begin{lstlisting}
+std::vector<int> createVector() {
+    std::vector<int> v{1, 2, 3};
+    return v; // NRVO: компилятор может опустить перемещение
+}
+\end{lstlisting}
+
+С C++17 RVO для prvalue \textbf{обязательна} (mandatory copy elision): \texttt{return T(args)} гарантированно не копирует. NRVO остаётся необязательной оптимизацией.
+
+\textbf{Не пишите \texttt{return std::move(v);}!} Это \textbf{запрещает} NRVO.
+
+\subsection{Классы-агрегаты}
+
+Агрегат (C++17) --- это класс без:
+\begin{itemize}
+    \item Пользовательских конструкторов
+    \item Private/protected нестатических полей
+    \item Виртуальных функций
+    \item Виртуальных/private/protected базовых классов
+\end{itemize}
+
+Агрегаты можно инициализировать фигурными скобками:
+\begin{lstlisting}
+struct Point { int x, y; };
+Point p{1, 2}; // Aggregate initialization
+\end{lstlisting}
+
+\subsection{Ref-спецификация методов}
+
+Можно перегружать методы для lvalue и rvalue объектов:
+\begin{lstlisting}
+class Foo {
+    std::string data_;
+public:
+    const std::string& getData() const& { return data_; }      // lvalue
+    std::string getData() && { return std::move(data_); }       // rvalue
+};
+
+Foo f;
+auto s1 = f.getData();       // копирование
+auto s2 = Foo().getData();   // перемещение
+\end{lstlisting}
+
+%=============================================================================
+\section{Билет 13. Perfect Forwarding}
+%=============================================================================
+
+\subsection{Проблема}
+
+Хотим написать обёртку, которая передаёт аргументы другой функции, \textbf{сохраняя} их категорию значения (lvalue/rvalue) и cv-квалификацию:
+
+\begin{lstlisting}
+template<typename T>
+void wrapper(T arg) {     // По значению --- всегда копирует
+    foo(arg);
+}
+template<typename T>
+void wrapper(T& arg) {    // По lvalue-ссылке --- не работает с rvalue
+    foo(arg);
+}
+\end{lstlisting}
+
+\subsection{Universal Reference (Forwarding Reference)}
+
+\begin{lstlisting}
+template<typename T>
+void wrapper(T&& arg) {   // Это НЕ rvalue ссылка!
+    // Это "universal reference" (forwarding reference)
+}
+\end{lstlisting}
+
+\textbf{Forwarding reference} возникает ТОЛЬКО когда:
+\begin{enumerate}
+    \item Тип объявлен как \texttt{T\&\&}, где \texttt{T} --- \textbf{выводимый} шаблонный параметр.
+    \item Или в \texttt{auto\&\& x = ...}.
+\end{enumerate}
+
+\textbf{Не} являются forwarding references: \texttt{const T\&\&}, \texttt{vector<T>\&\&}, конкретные типы \texttt{int\&\&}.
+
+\subsection{Reference Collapsing (сворачивание ссылок)}
+
+В C++ нельзя иметь ``ссылку на ссылку'', но при выводе типов шаблонов они могут возникать. Тогда применяется сворачивание:
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{T} & \textbf{T\&\&} & \textbf{Результат} \\
+\hline
+\texttt{int\&} & \texttt{int\& \&\&} & \texttt{int\&} \\
+\texttt{int\&\&} & \texttt{int\&\& \&\&} & \texttt{int\&\&} \\
+\texttt{int} & \texttt{int\&\&} & \texttt{int\&\&} \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Правило}: если хотя бы одна ссылка --- lvalue (\texttt{\&}), результат --- \texttt{\&}. Иначе --- \texttt{\&\&}.
+
+\subsection{Правило вывода типов для forwarding reference}
+
+\begin{lstlisting}
+template<typename T>
+void foo(T&& arg);
+
+int x = 42;
+foo(x);    // x --- lvalue => T = int&,  arg : int& && = int&
+foo(42);   // 42 --- rvalue => T = int,  arg : int&&
+\end{lstlisting}
+
+\subsection{std::forward}
+
+\begin{lstlisting}
+template<typename T>
+void wrapper(T&& arg) {
+    foo(std::forward<T>(arg));
+    // Если T = int&  => forward<int&>(arg) => lvalue (int&)
+    // Если T = int   => forward<int>(arg)  => rvalue (int&&)
+}
+\end{lstlisting}
+
+\textbf{Как реализован std::forward?}
+\begin{lstlisting}
+template<typename T>
+T&& forward(std::remove_reference_t<T>& arg) noexcept {
+    return static_cast<T&&>(arg);
+}
+\end{lstlisting}
+Если \texttt{T = int\&}: \texttt{int\& \&\& = int\&} --- возвращает lvalue.\\
+Если \texttt{T = int}: \texttt{int\&\&} --- возвращает rvalue.
+
+\subsection{Perfect Backwarding}
+
+Проблема ``обратной пересылки'' --- сохранить категорию значения при \textit{возврате} из функции:
+\begin{lstlisting}
+template<typename F, typename... Args>
+decltype(auto) wrapper(F&& f, Args&&... args) {
+    return std::forward<F>(f)(std::forward<Args>(args)...);
+}
+\end{lstlisting}
+\texttt{decltype(auto)} сохраняет ссылочность: если \texttt{f} возвращает \texttt{int\&}, \texttt{wrapper} тоже вернёт \texttt{int\&}.
+
+\subsection{decltype и trailing return type}
+
+\textbf{decltype(expr)}: возвращает тип выражения.
+\begin{itemize}
+    \item Если \texttt{expr} --- имя переменной (id-expression): возвращает объявленный тип.
+    \item Если \texttt{expr} --- другое выражение: возвращает тип + ссылочность в зависимости от категории (\texttt{T} для prvalue, \texttt{T\&} для lvalue, \texttt{T\&\&} для xvalue).
+\end{itemize}
+
+\begin{lstlisting}
+int x = 0;
+decltype(x)    // int (id-expression)
+decltype((x))  // int& (lvalue expression в скобках)
+\end{lstlisting}
+
+\textbf{Trailing return type}:
+\begin{lstlisting}
+template<typename T, typename U>
+auto add(T a, U b) -> decltype(a + b) {
+    return a + b;
+}
+\end{lstlisting}
+
+\subsection{auto и decltype(auto)}
+
+\begin{itemize}
+    \item \texttt{auto}: выводит тип по правилам вывода шаблонных параметров (отбрасывает ссылки и cv-qualifiers верхнего уровня).
+    \item \texttt{decltype(auto)}: выводит тип по правилам \texttt{decltype} (сохраняет ссылки и cv-qualifiers).
+\end{itemize}
+
+\begin{lstlisting}
+int x = 0;
+int& rx = x;
+auto a = rx;           // int (ссылка отброшена)
+decltype(auto) b = rx; // int& (ссылка сохранена)
+\end{lstlisting}
+
+%=============================================================================
+\section{Билет 14. Наследование и Полиморфизм}
+%=============================================================================
+
+\subsection{Наследование}
+
+\begin{lstlisting}
+class Base {
+public:
+    int x;
+    void foo();
+};
+
+class Derived : public Base {
+public:
+    int y;
+    void bar();
+};
+\end{lstlisting}
+
+Виды наследования:
+\begin{itemize}
+    \item \texttt{public}: public $\to$ public, protected $\to$ protected.
+    \item \texttt{protected}: public, protected $\to$ protected.
+    \item \texttt{private}: public, protected $\to$ private.
+\end{itemize}
+
+Для \texttt{struct} по умолчанию \texttt{public}, для \texttt{class} --- \texttt{private}.
+
+\subsection{Slicing (срезка)}
+
+\begin{lstlisting}
+Derived d;
+Base b = d; // Срезка! Часть Derived "обрезается"
+// b содержит только поля Base
+\end{lstlisting}
+
+\textbf{Как избежать?} Работать через указатели или ссылки на базовый класс:
+\begin{lstlisting}
+Derived d;
+Base& ref = d;  // OK, нет срезки
+Base* ptr = &d; // OK
+\end{lstlisting}
+
+\subsection{Статический и динамический тип}
+
+\begin{lstlisting}
+Base* ptr = new Derived();
+// Статический тип ptr: Base*
+// Динамический тип ptr: Derived*
+\end{lstlisting}
+
+Статический тип определяет, какие методы доступны при компиляции.
+Динамический тип определяет, какой виртуальный метод будет вызван в рантайме.
+
+\subsection{Виртуальные функции}
+
+\begin{lstlisting}
+class Base {
+public:
+    virtual void speak() { std::cout << "Base\n"; }
+};
+
+class Derived : public Base {
+public:
+    void speak() override { std::cout << "Derived\n"; }
+};
+
+Base* ptr = new Derived();
+ptr->speak(); // "Derived" --- динамический полиморфизм!
+\end{lstlisting}
+
+\textbf{Как работает?} Через \textbf{VTable} (Virtual Table / таблицу виртуальных методов):
+\begin{itemize}
+    \item Каждый класс с виртуальными функциями имеет \textbf{VTable} --- массив указателей на функции.
+    \item Каждый объект такого класса содержит скрытый указатель \textbf{vptr} на VTable своего класса.
+    \item При вызове виртуальной функции: \texttt{ptr->vptr->speak()} (два уровня косвенности).
+    \item \texttt{override} --- проверяет, что функция действительно переопределяет виртуальную из базы. \texttt{final} --- запрещает дальнейшее переопределение.
+\end{itemize}
+
+\textbf{Стоимость}: один дополнительный указатель в каждом объекте (\texttt{sizeof} увеличивается), косвенный вызов (не инлайнится обычно), но overhead мал.
+
+\subsection{Чисто виртуальные функции и абстрактные классы}
+
+\begin{lstlisting}
+class Shape {
+public:
+    virtual double area() const = 0; // Чисто виртуальная
+    virtual ~Shape() = default;
+};
+// Shape --- абстрактный класс, нельзя создать экземпляр
+\end{lstlisting}
+
+Класс с хотя бы одной чисто виртуальной функцией --- \textbf{абстрактный}. Наследник должен реализовать все чисто виртуальные функции, иначе тоже абстрактный.
+
+\subsection{Виртуальный деструктор}
+
+\begin{lstlisting}
+Base* ptr = new Derived();
+delete ptr; // Если деструктор Base НЕ виртуальный --- UB!
+\end{lstlisting}
+
+\textbf{Правило}: если класс имеет хотя бы одну виртуальную функцию (т.е. предназначен для полиморфного использования), деструктор \textbf{должен} быть виртуальным.
+
+Если класс не предназначен для наследования --- можно не делать деструктор виртуальным (экономит vptr).
+
+\subsection{dynamic\_cast и RTTI}
+
+\begin{lstlisting}
+Base* ptr = getShape();
+if (Derived* d = dynamic_cast<Derived*>(ptr)) {
+    // ptr указывает на Derived (или его наследника)
+    d->derivedMethod();
+} else {
+    // ptr не указывает на Derived
+}
+
+Base& ref = getShapeRef();
+Derived& d = dynamic_cast<Derived&>(ref); // Бросает std::bad_cast при неудаче
+\end{lstlisting}
+
+\textbf{Как работает?} Использует \textbf{RTTI} (Run-Time Type Information) --- информацию о типе, хранящуюся вместе с vtable. Поэтому требует виртуальных функций.
+
+\textbf{typeid}:
+\begin{lstlisting}
+#include <typeinfo>
+Base* ptr = new Derived();
+std::cout << typeid(*ptr).name(); // Имя Derived (mangled)
+\end{lstlisting}
+
+\subsection{Empty Base Optimization (EBO)}
+
+Пустой класс имеет \texttt{sizeof} $\ge 1$ (чтобы разные объекты имели разные адреса). Но при наследовании от пустого класса, его размер может быть оптимизирован до 0:
+
+\begin{lstlisting}
+struct Empty {};
+struct Derived : Empty {
+    int x;
+};
+static_assert(sizeof(Derived) == sizeof(int)); // EBO!
+\end{lstlisting}
+
+\textbf{Зачем?} Используется в STL: аллокатор, компаратор часто --- пустые классы. Без EBO каждый контейнер был бы на 1+ байт больше.
+
+\subsection{[[no\_unique\_address]] (C++20)}
+
+Альтернатива EBO без наследования:
+\begin{lstlisting}
+struct Container {
+    [[no_unique_address]] Allocator alloc; // Может занимать 0 байт
+    int* data;
+};
+\end{lstlisting}
+
+\subsection{Множественное наследование}
+
+\begin{lstlisting}
+class A { public: int a; };
+class B { public: int b; };
+class C : public A, public B {
+    // Содержит и a, и b
+};
+\end{lstlisting}
+
+\textbf{Проблема алмаза (diamond problem)}:
+\begin{lstlisting}
+class Base { public: int x; };
+class A : public Base {};
+class B : public Base {};
+class C : public A, public B {};
+// C содержит ДВЕ копии Base::x!
+// c.x --- неоднозначно. Надо c.A::x или c.B::x
+\end{lstlisting}
+
+\subsection{Виртуальное наследование}
+
+Решение проблемы алмаза:
+\begin{lstlisting}
+class A : virtual public Base {};
+class B : virtual public Base {};
+class C : public A, public B {};
+// C содержит ОДНУ копию Base
+\end{lstlisting}
+
+\textbf{Как работает?} При виртуальном наследовании подобъект \texttt{Base} не вкладывается напрямую в \texttt{A} и \texttt{B}. Вместо этого хранится указатель/смещение к общему подобъекту \texttt{Base}. Это добавляет overhead.
+
+\textbf{Конструктор Base} при виртуальном наследовании вызывается \textbf{самым производным классом} (\texttt{C}), а не промежуточными (\texttt{A}, \texttt{B}).
+
+%=============================================================================
+\section{Билет 15. Пространства имён}
+%=============================================================================
+
+\subsection{namespace}
+
+\begin{lstlisting}
+namespace math {
+    int add(int a, int b) { return a + b; }
+    namespace detail { // Вложенный
+        void helper() {}
+    }
+}
+math::add(1, 2);
+math::detail::helper();
+
+// C++17: вложенные namespace
+namespace math::detail { ... }
+\end{lstlisting}
+
+\subsection{Namespace alias}
+
+\begin{lstlisting}
+namespace fs = std::filesystem;
+fs::path p("/home");
+\end{lstlisting}
+
+\subsection{using-объявление vs using-директива}
+
+\begin{lstlisting}
+using std::cout;     // using-объявление: вносит ОДНО имя
+cout << "hello";
+
+using namespace std; // using-директива: вносит ВСЕ имена из std
+// Не рекомендуется в заголовочных файлах!
+\end{lstlisting}
+
+\textbf{Почему \texttt{using namespace} опасен в header?} Все файлы, включающие этот header, получат загрязнённое глобальное пространство имён, что может привести к конфликтам.
+
+\subsection{ADL (Argument Dependent Lookup / Koenig Lookup)}
+
+При вызове неквалифицированной функции компилятор \textbf{дополнительно} ищет её в пространствах имён, ассоциированных с типами аргументов:
+
+\begin{lstlisting}
+namespace N {
+    struct Foo {};
+    void bar(Foo) {}
+}
+
+N::Foo f;
+bar(f); // Находит N::bar через ADL! (не нужно N::bar(f))
+\end{lstlisting}
+
+\textbf{Зачем ADL?}
+\begin{itemize}
+    \item Операторы: \texttt{std::cout << "hello"} --- \texttt{operator<<} находится в \texttt{std}, но ADL его находит через тип \texttt{std::ostream}.
+    \item \texttt{swap}: идиома \texttt{using std::swap; swap(a, b);} --- сначала ADL ищет пользовательский swap, потом std::swap как fallback.
+    \item \texttt{begin}/\texttt{end}: аналогично.
+\end{itemize}
+
+\subsection{Безымянные (анонимные) пространства имён}
+
+\begin{lstlisting}
+namespace {
+    int internal_var = 42;
+    void internal_func() {}
+}
+// internal_var и internal_func видны только в этом файле
+// Эквивалент static на уровне файла, но работает и для типов
+\end{lstlisting}
+
+\textbf{Предпочтительнее} \texttt{static} для ограничения видимости, потому что:
+\begin{itemize}
+    \item Работает для классов, enum, typedef (static --- только для функций и переменных).
+    \item Более идиоматично в C++.
+\end{itemize}
+
+%=============================================================================
+\section{Билет 16. Статический и динамический полиморфизм. Лямбды}
+%=============================================================================
+
+\subsection{Статический полиморфизм}
+
+Реализуется через шаблоны. Разрешается на этапе компиляции. Нет overhead в рантайме (нет vtable, вызовы инлайнятся).
+
+\begin{lstlisting}
+template<typename Shape>
+double getArea(const Shape& s) {
+    return s.area(); // Компилятор подставит конкретный тип
+}
+\end{lstlisting}
+
+\textbf{CRTP (Curiously Recurring Template Pattern)}:
+\begin{lstlisting}
+template<typename Derived>
+class Base {
+public:
+    void interface() {
+        static_cast<Derived*>(this)->implementation();
+    }
+};
+
+class Concrete : public Base<Concrete> {
+public:
+    void implementation() { ... }
+};
+\end{lstlisting}
+
+\subsection{Динамический полиморфизм}
+
+Через виртуальные функции. Разрешается в рантайме. Позволяет хранить объекты разных типов в одном контейнере (через указатели на базу).
+
+\subsection{Сравнение}
+
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+& \textbf{Статический} & \textbf{Динамический} \\
+\hline
+Когда разрешается & Компиляция & Рантайм \\
+Overhead & Нет & vtable, vptr \\
+Инлайнинг & Да & Обычно нет \\
+Гетерогенный контейнер & Нет & Да \\
+Время компиляции & Дольше & Короче \\
+Размер бинарника & Больше (инстанцирование) & Меньше \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Лямбда-выражения}
+
+\begin{lstlisting}
+auto lambda = [capture](params) -> ret_type { body };
+\end{lstlisting}
+
+\subsubsection{Списки захвата}
+
+\begin{lstlisting}
+int x = 10, y = 20;
+auto l1 = [x]() { return x; };        // Копирование x
+auto l2 = [&x]() { x++; };            // Ссылка на x
+auto l3 = [=]() { return x + y; };    // Все по копии
+auto l4 = [&]() { x++; y++; };        // Все по ссылке
+auto l5 = [=, &x]() { x++; return y; }; // y по копии, x по ссылке
+auto l6 = [x = std::move(vec)]() {};   // Init capture (C++14)
+auto l7 = [*this]() {};                // Копия *this (C++17)
+\end{lstlisting}
+
+\subsubsection{Как лямбда устроена внутри?}
+
+Компилятор генерирует \textbf{анонимный класс} (closure type):
+\begin{lstlisting}
+// auto lambda = [x](int y) { return x + y; };
+// Эквивалентно:
+class __lambda_42 {
+    int x;
+public:
+    __lambda_42(int x) : x(x) {}
+    int operator()(int y) const { return x + y; }
+};
+auto lambda = __lambda_42(x);
+\end{lstlisting}
+
+\subsubsection{Свойства типа лямбды}
+
+\begin{itemize}
+    \item Каждая лямбда имеет \textbf{уникальный тип} (даже две одинаковые лямбды --- разные типы).
+    \item \texttt{operator()} по умолчанию \texttt{const}. Добавьте \texttt{mutable}, чтобы изменять захваченные по копии переменные.
+    \item Лямбда без захвата может неявно преобразоваться в указатель на функцию:
+\begin{lstlisting}
+void (*fp)(int) = [](int x) { std::cout << x; }; // OK
+\end{lstlisting}
+    \item С C++20: лямбды могут быть default-constructible и assignable (если без захвата).
+\end{itemize}
+
+\subsubsection{Generic лямбды (C++14)}
+
+\begin{lstlisting}
+auto add = [](auto a, auto b) { return a + b; };
+// Эквивалентно шаблонному operator()
+\end{lstlisting}
+
+\subsubsection{Шаблонные лямбды (C++20)}
+
+\begin{lstlisting}
+auto lambda = []<typename T>(std::vector<T>& v) {
+    // Знаем тип T
+};
+\end{lstlisting}
+
+\subsubsection{Лямбды в невычисляемых контекстах (C++20)}
+
+\begin{lstlisting}
+using F = decltype([](int x) { return x; }); // OK с C++20
+\end{lstlisting}
+
+%=============================================================================
+\section{Билет 17. Библиотеки и ABI}
+%=============================================================================
+
+\subsection{Виды библиотек}
+
+\subsubsection{Header-only}
+Вся реализация в заголовочных файлах. Пользователь просто делает \texttt{\#include}.
+
+\textbf{Плюсы}: простота использования, нет проблем с линковкой, полная инлайнизация.\\
+\textbf{Минусы}: увеличивает время компиляции каждого файла, который включает header.
+
+Примеры: Eigen, nlohmann/json, Catch2.
+
+\subsubsection{Статические библиотеки (.a / .lib)}
+Архив объектных файлов. При линковке нужные объектные файлы \textbf{копируются} в исполняемый файл.
+
+\textbf{Плюсы}: нет зависимости от внешних файлов в рантайме, возможна оптимизация LTO.\\
+\textbf{Минусы}: увеличивает размер исполняемого файла, обновление библиотеки требует перекомпиляции.
+
+\subsubsection{Динамические библиотеки (.so / .dll / .dylib)}
+Загружаются в рантайме.
+
+\textbf{Плюсы}: экономия памяти (одна копия для всех процессов), обновление без перекомпиляции.\\
+\textbf{Минусы}: зависимость от наличия .so/.dll, небольшой overhead при вызове (PLT/GOT), проблемы совместимости ABI.
+
+\begin{lstlisting}
+// Windows: экспорт/импорт символов
+#ifdef MYLIB_EXPORTS
+  #define MYLIB_API __declspec(dllexport)
+#else
+  #define MYLIB_API __declspec(dllimport)
+#endif
+
+class MYLIB_API MyClass { ... };
+\end{lstlisting}
+
+На Linux по умолчанию все символы экспортируются. Можно ограничить через \texttt{-fvisibility=hidden} и \texttt{\_\_attribute\_\_((visibility("default")))}.
+
+\subsection{ABI (Application Binary Interface)}
+
+\textbf{ABI} определяет:
+\begin{itemize}
+    \item Размеры и выравнивание типов (data layout)
+    \item Порядок полей в структуре (padding)
+    \item Calling convention (как передаются аргументы: через регистры или стек, кто очищает стек)
+    \item Name mangling scheme
+    \item Формат vtable
+    \item Формат исключений
+\end{itemize}
+
+\textbf{Проблема ABI-совместимости}: если библиотека скомпилирована одним компилятором (или его версией), а клиентский код --- другим, и их ABI несовместимы, будут неопределённые ошибки в рантайме.
+
+Примеры несовместимости:
+\begin{itemize}
+    \item GCC и MSVC имеют разные ABI (разный mangling, vtable layout).
+    \item GCC 4.x и GCC 5.x поменяли ABI для \texttt{std::string} (SSO).
+\end{itemize}
+
+% \subsection{extern \texttt{\char34 C\char34}}
+\subsection{extern \texttt{``C''}}
+
+\begin{lstlisting}
+extern "C" {
+    int add(int a, int b); // Компилируется без name mangling
+}
+\end{lstlisting}
+
+\textbf{Зачем?}
+\begin{itemize}
+    \item Для совместимости с C-библиотеками (C не знает про mangling).
+    \item Для создания библиотек, которые можно вызывать из других языков (Python, Rust и т.д.).
+\end{itemize}
+
+\textbf{Ограничения}: нет перегрузки (одно имя = один символ), нет классов, шаблонов и т.д. через \texttt{extern "C"} интерфейс.
+
+\subsection{PImpl (Pointer to Implementation)}
+
+Идиома сокрытия деталей реализации. Также называется ``d-pointer'' (Qt), ``compiler firewall'', ``opaque pointer''.
+
+\begin{lstlisting}
+// widget.h
+class Widget {
+public:
+    Widget();
+    ~Widget();
+    void doSomething();
+private:
+    struct Impl;            // Forward declaration
+    std::unique_ptr<Impl> pImpl_; // Указатель на реализацию
+};
+
+// widget.cpp
+struct Widget::Impl {
+    std::string name;
+    std::vector<int> data;
+    // ... сложные зависимости
+};
+
+Widget::Widget() : pImpl_(std::make_unique<Impl>()) {}
+Widget::~Widget() = default; // Определён в .cpp, где Impl полный тип!
+void Widget::doSomething() { pImpl_->data.push_back(42); }
+\end{lstlisting}
+
+\textbf{Зачем?}
+\begin{enumerate}
+    \item \textbf{Ускорение компиляции}: изменение деталей реализации (Impl) не требует перекомпиляции клиентского кода (header не изменился).
+    \item \textbf{Бинарная совместимость}: размер Widget (один указатель) не меняется при изменении Impl $\to$ можно обновлять динамическую библиотеку без перекомпиляции клиента.
+    \item \textbf{Сокрытие зависимостей}: \texttt{<string>}, \texttt{<vector>} нужны только в .cpp, а не в header.
+\end{enumerate}
+
+\textbf{Минусы}: дополнительная аллокация в куче, косвенный доступ к данным, не инлайнятся методы.
+
+\subsection{Наследование при PImpl}
+
+Если нужен полиморфизм:
+\begin{lstlisting}
+// base.h
+class Base {
+public:
+    virtual ~Base();
+    void doSomething();
+protected:
+    struct Impl;
+    std::unique_ptr<Impl> pImpl_;
+    Base(std::unique_ptr<Impl> impl);
+};
+
+// derived.h
+class Derived : public Base {
+public:
+    Derived();
+    ~Derived() override;
+private:
+    struct DerivedImpl;
+};
+\end{lstlisting}
+
+\end{document}

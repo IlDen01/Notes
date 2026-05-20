@@ -1,6 +1,6 @@
 \documentclass[12pt]{article}
 
-\input{C:/Users/ilden/Documents/School/TeX-Cheat-Sheet/header.tex}
+\input{~/School/Notes/header.tex}
 
 \newcommand{\twoheaduparrow}{\rotatebox[origin=c]{90}{$\twoheadrightarrow$}}
 \newcommand{\twoheaddownarrow}{\rotatebox[origin=c]{-90}{$\twoheadrightarrow$}}
@@ -351,7 +351,7 @@
 		Если $\lim \limits_{x \rightarrow x_0} f(x) \not= 0$, то $\frac{1}{f(x)}$ ограничена в некоторой $\mathring{U}(x_0)$.
 	\end{corollary}
 	\begin{definition}
-		$x^{\alpha}, \alpha \in \mathbb{R}; a^x; \log_ax; \sin, \cos, \tg, \arcsin, \arccos, \arctg$~--- основные элементарные функции.
+		$x^{\alpha}, \alpha \in \mathbb{R} ; a^x; \log_ax; \sin, \cos, \tg, \arcsin, \arccos, \arctg$~--- основные элементарные функции.
 	\end{definition}
 	\begin{definition}
 		Функция называется элементарной, если она получается арифметическими операциями или композицией конечного числа основных элементарных функций.
@@ -513,7 +513,7 @@
 		Если $f$ дифференцируема, то она непрерывна.
 	\end{statement}
 	\begin{definition}
-		Производная (функция) функции $f \rightarrow g(x) = f'(x)$: $x_0 \mapsto \lim\limits_{x \rightarrow x_0} \dfrac{f(x) - f(x_0)}{x - x_0}$; $\varDelta x = x - x_0$; $x_0 \mapsto \lim\limits_{x \rightarrow \varDelta x} \dfrac{f(x + \varDelta x) - f(x)}{\varDelta x}$; $f'(x) = \lim\limits_{\varDelta x \rightarrow 0} \dfrac{f(x + \varDelta x) - f(x)}{\varDelta x}$.
+		Производная (функция) функции $f \rightarrow g(x) = f'(x)$: $x_0 \mapsto \lim\limits_{x \rightarrow x_0} \dfrac{f(x) - f(x_0)}{x - x_0} ; \varDelta x = x - x_0$; $x_0 \mapsto \lim\limits_{x \rightarrow \varDelta x} \dfrac{f(x + \varDelta x) - f(x)}{\varDelta x}$; $f'(x) = \lim\limits_{\varDelta x \rightarrow 0} \dfrac{f(x + \varDelta x) - f(x)}{\varDelta x}$.
 	\end{definition}
 	\begin{note}
 		$f(\tilde{x}) = f(x) \cdot f'(x)(\tilde{x} - x) + \overline{o}(\tilde{x} - x)$. $f(x + \varDelta x) = f(x) + f'(x) \cdot \varDelta x + \overline{o}(\varDelta x)$; $\varDelta f(x) := f(x + \varDelta x) - f(x)$. $\varDelta f(x) = f'(x) \cdot \varDelta x + \overline{o}(\varDelta x)$, $\varDelta x \rightarrow 0$.
@@ -1004,7 +1004,7 @@
 		\end{itemize}
 	\end{proof}
 	
-	\begin{theorem}[Вейерштрасса]
+		\begin{theorem}[Вейерштрасса]
 		Пусть $f \in C([a; b])$. Тогда $\exists \, \dint\limits_a^b f(x) dx$.
 	\end{theorem}
 	
@@ -1031,9 +1031,9 @@
 		\begin{proof}
 			Пусть $A = \dint\limits_a^b f(x) dx$ и $B = \dint\limits_a^b g(x) dx$. Рассмотрим модуль разности интегральной суммы и предполагаемого значения интеграла:
 			\begin{align*}
-				&\left| \sum\limits_{k=1}^n (\alpha f(\xi_k) + \beta g(\xi_k))\varDelta x_k - (\alpha A + \beta B) \right| \\
-				={}& \left| \alpha \left(\sum\limits_{k=1}^n f(\xi_k)\varDelta x_k - A\right) + \beta \left(\sum\limits_{k=1}^n g(\xi_k)\varDelta x_k - B\right) \right| \\
-				\leqslant{}& |\alpha| \cdot \left| \sum\limits_{k=1}^n f(\xi_k)\varDelta x_k - A \right| + |\beta| \cdot \left| \sum\limits_{k=1}^n g(\xi_k)\varDelta x_k - B \right|
+				&\left| \sum\limits_{k = 1}^n (\alpha f(\xi_k) + \beta g(\xi_k))\varDelta x_k - (\alpha A + \beta B) \right| \\
+				={}& \left| \alpha \left(\sum\limits_{k = 1}^n f(\xi_k)\varDelta x_k - A\right) + \beta \left(\sum\limits_{k = 1}^n g(\xi_k)\varDelta x_k - B\right) \right| \\
+				\leqslant{}& |\alpha| \cdot \left| \sum\limits_{k = 1}^n f(\xi_k)\varDelta x_k - A \right| + |\beta| \cdot \left| \sum\limits_{k = 1}^n g(\xi_k)\varDelta x_k - B \right|
 			\end{align*}
 			Fix $\varepsilon > 0$. Так как $f$ и $g$ интегрируемы, то для $\varepsilon' = \dfrac{\varepsilon}{|\alpha| + |\beta| + 1} > 0$ существуют $\delta_1 > 0$ и $\delta_2 > 0$ такие, что для любого разбиения с мелкостью $d < \delta_1$ (для $f$) и $d < \delta_2$ (для $g$) выполняется:
 			$$ \left| \sum f(\xi_k)\varDelta x_k - A \right| < \varepsilon' \quad \text{и} \quad \left| \sum g(\xi_k)\varDelta x_k - B \right| < \varepsilon' $$
@@ -1061,16 +1061,16 @@
 	
 	\begin{theorem}[О среднем значении в интегральной форме]
 		Пусть $f(x)$ непрерывна на отрезке $[a, b]$. Тогда $\exists c \in [a, b]$ такая, что
-		$$ \dint\limits_a^b f(x) dx = f(c) \cdot (b-a) $$
+		$$ \dint\limits_a^b f(x) dx = f(c) \cdot (b - a) $$
 	\end{theorem}
 	\begin{proof}
 		Т.к. $f \in C([a, b])$, по теореме Вейерштрасса она достигает на нем своих наименьшего $m$ и наибольшего $M$ значений.
 		$$ m \leqslant f(x) \leqslant M, \quad \forall x \in [a, b] $$
 		Интегрируя это неравенство от $a$ до $b$:
 		$$ \dint\limits_a^b m \,dx \leqslant \dint\limits_a^b f(x) \,dx \leqslant \dint\limits_a^b M \,dx $$
-		$$ m(b-a) \leqslant \dint\limits_a^b f(x) \,dx \leqslant M(b-a) $$
-		Разделим на $(b-a)$:
-		$$ m \leqslant \frac{1}{b-a}\dint\limits_a^b f(x) \,dx \leqslant M $$
+		$$ m(b - a) \leqslant \dint\limits_a^b f(x) \,dx \leqslant M(b - a) $$
+		Разделим на $(b - a)$:
+		$$ m \leqslant \frac{1}{b - a}\dint\limits_a^b f(x) \,dx \leqslant M $$
 		По теореме о промежуточном значении для непрерывной функции, существует точка $c \in [a, b]$, в которой функция принимает это среднее значение.
 	\end{proof}
 	
@@ -1096,12 +1096,12 @@
 	\end{theorem}
 	\begin{proof}
 		1) Докажем непрерывность. Рассмотрим $\lim_{\Delta x \to 0} (F(x_0 + \Delta x) - F(x_0))$.
-		$$ F(x_0 + \Delta x) - F(x_0) = \dint\limits_a^{x_0+\Delta x} f(t) dt - \dint\limits_a^{x_0} f(t) dt = \dint\limits_{x_0}^{x_0+\Delta x} f(t) dt $$
-		Так как $f$ непрерывна на отрезке, она на нем ограничена. $|\dint\limits_{x_0}^{x_0+\Delta x} f(t) dt| \leqslant \sup |f| \cdot |\Delta x| \to 0$ при $\Delta x \to 0$.
+		$$ F(x_0 + \Delta x) - F(x_0) = \dint\limits_a^{x_0 + \Delta x} f(t) dt - \dint\limits_a^{x_0} f(t) dt = \dint\limits_{x_0}^{x_0 + \Delta x} f(t) dt $$
+		Так как $f$ непрерывна на отрезке, она на нем ограничена. $|\dint\limits_{x_0}^{x_0 + \Delta x} f(t) dt| \leqslant \sup |f| \cdot |\Delta x| \to 0$ при $\Delta x \to 0$.
 		
 		2) Найдем производную.
-		$$ F'(x_0) = \lim_{\Delta x \to 0} \frac{F(x_0 + \Delta x) - F(x_0)}{\Delta x} = \lim_{\Delta x \to 0} \frac{1}{\Delta x} \dint\limits_{x_0}^{x_0+\Delta x} f(t) dt $$
-		По теореме о среднем, $\exists c \in [x_0, x_0+\Delta x]$ такое, что $\dint\limits_{x_0}^{x_0+\Delta x} f(t) dt = f(c) \cdot \Delta x$.
+		$$ F'(x_0) = \lim_{\Delta x \to 0} \frac{F(x_0 + \Delta x) - F(x_0)}{\Delta x} = \lim_{\Delta x \to 0} \frac{1}{\Delta x} \dint\limits_{x_0}^{x_0 + \Delta x} f(t) dt $$
+		По теореме о среднем, $\exists c \in [x_0, x_0 + \Delta x]$ такое, что $\dint\limits_{x_0}^{x_0 + \Delta x} f(t) dt = f(c) \cdot \Delta x$.
 		$$ F'(x_0) = \lim_{\Delta x \to 0} \frac{f(c) \cdot \Delta x}{\Delta x} = \lim_{\Delta x \to 0} f(c) = f(x_0) $$
 		Последний переход верен, так как при $\Delta x \to 0$ имеем $c \to x_0$, а функция $f$ непрерывна.
 	\end{proof}
@@ -1111,7 +1111,7 @@
 	\end{definition}
 	
 	\begin{statement}
-		Из теоремы Барроу следует, что если функция $f$ непрерывна на отрезке, то у нее существует хотя бы одна первообразная (а именно, $F(x)=\dint_a^x f(t)dt$).
+		Из теоремы Барроу следует, что если функция $f$ непрерывна на отрезке, то у нее существует хотя бы одна первообразная (а именно, $F(x) = \dint_a^x f(t)dt$).
 	\end{statement}
 	
 	\begin{lemma}
@@ -1177,10 +1177,46 @@
 		\item $\dint \dfrac{dx}{\sqrt{x^2 + 1}} = \ln \left( x + \sqrt{x^2 + 1} \right) + C$
 		\item $\dint \arctg x dx = x \arctg x - \dint x d (\arctg x) = x \arctg x - \dfrac{1}{2} \dint \dfrac{2}{x^2 + 1} dx = x \arctg x - \dfrac{1}{2} \ln (x^2 + 1) + C$
 	\end{enumerate}
-	
-	\subsection{Площади}
-	
-	\begin{definition}[Площадь]
-		$S = \dint_a^b (f(x) - g(x)) dx$
-	\end{definition}
+
+	\subsection{Приложения определенного интеграла}
+
+	\subsubsection{Объемы тел вращения}
+	\begin{statement}
+		Объем тела вращения, образованного вращением вокруг оси $Ox$ криволинейной трапеции, ограниченной графиком непрерывной функции $y = f(x)$, равен:
+		$$ V_{вр} = \pi \dint_a^b f^2(x) dx $$
+	\end{statement}
+	\noindent
+	Пример: $y = \sin x$ на $[0, \pi]$. Тогда $V = \pi \dint_0^\pi \sin^2 x dx = \frac{\pi^2}{2}$.
+
+	\subsubsection{Длина дуги кривой}
+	\begin{statement}
+		Пусть функция $f(x)$ непрерывно дифференцируема на $[a, b]$. Тогда длина $L$ дуги кривой $y = f(x)$ от $a$ до $b$ вычисляется по формуле:
+		$$ L = \dint_a^b \sqrt{1 + (f'(x))^2} dx $$
+	\end{statement}
+	\begin{proof}[Идея вывода]
+		Разобьем отрезок на части. Длина малого участка $\Delta L_k \approx \sqrt{\Delta x_k^2 + \Delta y_k^2} = \sqrt{1 + (\frac{\Delta y_k}{\Delta x_k})^2} \Delta x_k$. По теореме Лагранжа $\frac{\Delta y_k}{\Delta x_k} = f'(\xi_k)$. Переходя к пределу при $\max \Delta x_k \rightarrow 0$, получаем интеграл.
+	\end{proof}
+
+	\noindent
+	Если кривая в $\mathbb{R}^3$ задана параметрически $\begin{cases} x = x(t) \\ y = y(t) \\ z = z(t) \end{cases}, t \in [t_1, t_2]$, то:
+	$$ L = \dint_{t_1}^{t_2} \sqrt{(x'(t))^2 + (y'(t))^2 + (z'(t))^2} dt $$
+
+	\subsubsection{Площадь в параметрическом виде}
+	\begin{statement}
+		Пусть кривая задана параметрически $x = x(t), y = y(t), t \in [t_1, t_2]$. Тогда площадь фигуры, ограниченной этой кривой, вычисляется через криволинейный интеграл:
+		$$ S = \dint_{t_1}^{t_2} y(t) x'(t) dt \quad \text{или} \quad S = \frac{1}{2} \dint_{t_1}^{t_2} (x y' - y x') dt $$
+	\end{statement}
+	\noindent
+	Пример: Площадь эллипса $\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$. Параметризация: $x = a \cos t, y = b \sin t, t \in [0, 2\pi]$.
+	$$ S = \frac{1}{2} \dint_0^{2\pi} (ab \cos^2 t + ab \sin^2 t) dt = \frac{1}{2} ab \dint_0^{2\pi} 1 dt = \pi ab $$
+
+    \subsection{Полярные координаты}
+
+    \begin{statement}
+        Пусть у нас есть график в полярных координатах $r = r(\varphi)$. Тогда его площадь равна $$S = \dfrac{1}{2} \dint_{\varphi_1}^{\varphi_2} r^2(\varphi) d \varphi$$
+    \end{statement}
+
+    \begin{proof}[Вывод]
+        Возьмем маленькое изменение угла. Тогда у нас получился почти сектор. $S_{\text{сектор}} = \pi r_{\text{сектор}}^2 \dfrac{\varDelta \varphi}{2 \pi}$. Тогда полная площадь $S = \dfrac{1}{2} \dint_{\varphi_1}^{\varphi_2} r^2(\varphi) d \varphi$.
+    \end{proof}
 \end{document}
