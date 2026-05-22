@@ -1028,13 +1028,13 @@ void advance(It& it, int n) {
 
 \subsubsection{Ассоциативные контейнеры (на деревьях)}
 \begin{itemize}
-    \item \textbf{std::set<T>}, \textbf{std::map<K,V>}: красно-чёрное дерево. Элементы отсортированы. Поиск/вставка/удаление --- $O(\log n)$.
+    \item \textbf{std::set<T>}, \textbf{std::map<K,V>}: красно-чёрное дерево. Элементы отсортированы. Поиск / вставка / удаление --- $O(\log n)$.
     \item \textbf{std::multiset}, \textbf{std::multimap}: допускают дубликаты ключей.
 \end{itemize}
 
 \subsubsection{Неупорядоченные контейнеры (хеш-таблицы)}
 \begin{itemize}
-    \item \textbf{std::unordered\_set<T>}, \textbf{std::unordered\_map<K,V>}: хеш-таблица. Поиск/вставка/удаление --- амортизированно $O(1)$, в худшем случае $O(n)$.
+    \item \textbf{std::unordered\_set<T>}, \textbf{std::unordered\_map<K,V>}: хеш-таблица. Поиск / вставка / удаление --- амортизированно $O(1)$, в худшем случае $O(n)$.
 \end{itemize}
 
 \subsubsection{Контейнеры-адаптеры}
@@ -1053,10 +1053,10 @@ void advance(It& it, int n) {
 \begin{enumerate}
     \item \textbf{Input Iterator}: чтение, только вперёд, один проход. Пример: \texttt{std::istream\_iterator}.
     \item \textbf{Output Iterator}: запись, только вперёд, один проход. Пример: \texttt{std::ostream\_iterator}, \texttt{std::back\_insert\_iterator}.
-    \item \textbf{Forward Iterator}: чтение/запись, только вперёд, многократный проход. Пример: \texttt{std::forward\_list::iterator}.
-    \item \textbf{Bidirectional Iterator}: + движение назад (\texttt{-{}-}). Пример: \texttt{std::list::iterator}, \texttt{std::set::iterator}.
+    \item \textbf{Forward Iterator}: чтение/запись, только вперёд, многократный проход. Пример: \\\texttt{std::forward\_list::iterator}.
+    \item \textbf{Bidirectional Iterator}: + движение назад (\texttt{-{}-}). Пример: \texttt{std::list::iterator}, \\\texttt{std::set::iterator}.
     \item \textbf{Random Access Iterator}: + произвольный доступ (\texttt{it += n}, \texttt{it[n]}, сравнение \texttt{<}). Пример: \texttt{std::vector::iterator}, \texttt{std::deque::iterator}.
-    \item \textbf{Contiguous Iterator} (C++17/20): + элементы лежат непрерывно в памяти. Пример: \texttt{std::vector::iterator}, \texttt{std::array::iterator}, обычный указатель.
+    \item \textbf{Contiguous Iterator} (C++17/20): + элементы лежат непрерывно в памяти. Пример: \\\texttt{std::vector::iterator}, \texttt{std::array::iterator}, обычный указатель.
 \end{enumerate}
 
 \textbf{Чем отличаются?} Набором поддерживаемых операций:
@@ -1200,8 +1200,8 @@ assert(ptr != nullptr); // Если false -> abort()
 Инструменты для обнаружения ошибок во время выполнения (вставляют проверки в код):
 
 \begin{itemize}
-    \item \textbf{AddressSanitizer (ASan)}: выход за границы, use-after-free, double free, утечки. Флаг: \texttt{-fsanitize=address}.
-    \item \textbf{UndefinedBehaviorSanitizer (UBSan)}: переполнение, сдвиги, null deref, и т.д. Флаг: \texttt{-fsanitize=undefined}.
+    \item \textbf{AddressSanitizer (ASan)}: выход за границы, use-after-free, double free, утечки. \\Флаг: \texttt{-fsanitize=address}.
+    \item \textbf{UndefinedBehaviorSanitizer (UBSan)}: переполнение, сдвиги, null deref, и т.д. \\Флаг: \texttt{-fsanitize=undefined}.
     \item \textbf{ThreadSanitizer (TSan)}: data races. Флаг: \texttt{-fsanitize=thread}.
     \item \textbf{MemorySanitizer (MSan)}: чтение неинициализированной памяти. Флаг: \texttt{-fsanitize=memory}.
 \end{itemize}
@@ -1354,7 +1354,7 @@ v.index(); // Индекс текущего типа (0, 1 или 2)
 std::holds_alternative<int>(v); // false
 \end{lstlisting}
 
-\textbf{Размер}: \texttt{sizeof(variant)} = max(sizeof(типов)) + overhead для хранения индекса (обычно 1-4 байта) + выравнивание.
+\textbf{Размер}: \texttt{sizeof(variant)} = max(sizeof(типов)) + overhead для хранения индекса (обычно 1--4 байта) + выравнивание.
 
 \subsection{std::visit}
 
