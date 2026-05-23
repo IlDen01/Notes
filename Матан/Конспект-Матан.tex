@@ -970,41 +970,221 @@
 		$S^* = \inf \overline{S}_{\{ x_k \}}$; $S_* = \sup \underline{S}_{\{ x_k \}}$. $\inf$ и $\sup$ берутся по множеству всех разбиений $[a; b]$.
 	\end{definition}
 	
+%	\begin{lemma}
+%		$S^* = S_* \Leftrightarrow \exists \dint\limits_a^b f(x) dx$.
+%	\end{lemma}
+%	
+%	\begin{proof}
+%		\begin{itemize}
+%			\item[$\Rightarrow$]
+%			
+%			Пусть $S^* = S_* = S$. fix $\varepsilon > 0$.
+%			
+%			$\exists \{ z_l \}$: $\overline{S}_{\{ z_l \}} < S + \varepsilon$.
+%			
+%			$\exists \{ y_m \}$: $\underline{S}_{\{ y_m \}} > S - \varepsilon$.
+%			
+%			$\rightarrow \{ x_k \} := \{ z_l \} \cup \{ y_m \}$.
+%			
+%			$S - \varepsilon < \underline{S}_{\{ x_k \}} \leqslant \overline{S}_{\{ x_k \}} < S + \varepsilon$; $\delta := \max \{ \varDelta x_k \}$~--- искомая $\delta$.
+%			
+%			$\forall$ разбиения $\{ w_m \}$, мелкость $d < \delta$; $\{ \tilde{w}_m \} = \{ w_m \} \cup \{ x_k \}$.
+%			
+%			$\underline{S}_{\{ w_m \}} \leqslant \underline{S}_{\{ \tilde{w}_m \}} \leqslant \overline{S}_{\{ \tilde{w}_m \}} \leqslant \overline{S}_{\{ w_m \}}$ и $\overline{S}_{\{ \tilde{w}_m \}} - \underline{S}_{\{ \tilde{w}_m \}} \leqslant \overline{S}_{x_k} - \underline{S}_{x_k} < 2 \varepsilon$
+%			
+%			$\left| \sum\limits_{m = 1}^m f(\xi_m) \varDelta w_m - S \right| \leqslant \max \{ \left| \sum \dots - \underline{S}_{\{ w_m \}} \right|; \left| \sum \dots - \overline{S}_{\{ w_m \}} \right| \} \overset{?}{\leqslant} \overline{S}_{\{ w_m \}} - \underline{S}_{\{ w_m \}} < 2 \varepsilon$
+%			
+%			\item[$\Leftarrow$]
+%			
+%			fix $\varepsilon > 0$. $\exists \{ x_k \}$ $\forall$ выбора точек $\xi_k$ $\sum f(\xi_k) \varDelta x_k < S + \varepsilon$.
+%			
+%			Пусть $\xi_k: f(\xi_k) > \sup f_{[x_{k - 1}, x_k]} - \dfrac{\varepsilon}{2 (b - a)}$.
+%			
+%			$\sum f(\xi_k) \varDelta x_k \geqslant \sum \left( \sup f_{[x_{k - 1}, x_k]} - \dfrac{\varepsilon}{2 (b - a)} \right) \varDelta x_k$
+%		\end{itemize}
+%	\end{proof}
+
 	\begin{lemma}
-		$S^* = S_* \Leftrightarrow \exists \dint\limits_a^b f(x) dx$.
-	\end{lemma}
+        $S^* = S_* \Leftrightarrow \exists \dint\limits_a^b f(x)\,dx$.
+    \end{lemma}
+    
+    \begin{proof}
+        \begin{itemize}
+            \item[$\Rightarrow$]
+            
+            Пусть $S^* = S_* = S$. Докажем по критерию Римана, что
+            \[
+                \exists \int\limits_a^b f(x)\,dx = S.
+            \]
+            
+            Зафиксируем $\varepsilon > 0$.
+            
+            По определению точной верхней грани существует разбиение $\{z_l\}$ такое, что
+            \[
+                \overline S_{\{z_l\}} < S + \varepsilon.
+            \]
+            По определению точной нижней грани существует разбиение $\{y_m\}$ такое, что
+            \[
+                \underline S_{\{y_m\}} > S - \varepsilon.
+            \]
+            
+            Рассмотрим их общее измельчение
+            \[
+                \{x_k\} := \{z_l\} \cup \{y_m\}.
+            \]
+            Тогда, поскольку при измельчении нижняя сумма не убывает, а верхняя не возрастает,
+            \[
+                S - \varepsilon
+                < \underline S_{\{y_m\}}
+                \le \underline S_{\{x_k\}}
+                \le \overline S_{\{x_k\}}
+                \le \overline S_{\{z_l\}}
+                < S + \varepsilon.
+            \]
+            Следовательно,
+            \[
+                \overline S_{\{x_k\}} - \underline S_{\{x_k\}} < 2\varepsilon.
+            \]
+            
+            Обозначим
+            \[
+                \delta := \min_{k} (x_k - x_{k-1}) > 0.
+            \]
+            Покажем, что эта $\delta$ подходит в критерии интегрируемости.
+            
+            Пусть $\{w_j\}$ --- любое разбиение отрезка $[a,b]$ мелкости
+            \[
+                d(\{w_j\}) := \max_j (w_j - w_{j-1}) < \delta.
+            \]
+            Тогда каждое звено разбиения $\{w_j\}$ не может содержать более одной внутренней точки разбиения $\{x_k\}$; поэтому разбиение
+            \[
+                \{\widetilde w_j\} := \{w_j\} \cup \{x_k\}
+            \]
+            получается из $\{w_j\}$ добавлением точек, и на каждом промежутке разбиения $\{w_j\}$ точки разбиения $\{x_k\}$ лишь уточняют его.
+            
+            Для любого выбора отмеченных точек $\xi_j \in [w_{j-1},w_j]$ имеем
+            \[
+                \underline S_{\{w_j\}}
+                \le \sum_j f(\xi_j)\,\Delta w_j
+                \le \overline S_{\{w_j\}}.
+            \]
+            Кроме того,
+            \[
+                \underline S_{\{w_j\}}
+                \le \underline S_{\{\widetilde w_j\}}
+                \le \overline S_{\{\widetilde w_j\}}
+                \le \overline S_{\{w_j\}}.
+            \]
+            Так как $\{\widetilde w_j\}$ является измельчением разбиения $\{x_k\}$, то
+            \[
+                \overline S_{\{\widetilde w_j\}} - \underline S_{\{\widetilde w_j\}}
+                \le
+                \overline S_{\{x_k\}} - \underline S_{\{x_k\}}
+                < 2\varepsilon.
+            \]
+            Отсюда
+            \[
+                S-\varepsilon < \underline S_{\{x_k\}}
+                \le \underline S_{\{\widetilde w_j\}}
+                \le \sum_j f(\xi_j)\,\Delta w_j
+                \le \overline S_{\{\widetilde w_j\}}
+                \le \overline S_{\{x_k\}} < S+\varepsilon,
+            \]
+            то есть
+            \[
+                \left|\sum_j f(\xi_j)\,\Delta w_j - S\right| < \varepsilon.
+            \]
+            
+            Значит, по критерию Римана функция $f$ интегрируема на $[a,b]$, и
+            \[
+                \int_a^b f(x)\,dx = S.
+            \]
+            
+            \item[$\Leftarrow$]
+            
+            Пусть существует интеграл
+            \[
+                \int_a^b f(x)\,dx = S.
+            \]
+            Докажем, что $S^* = S_* = S$.
+            
+            Зафиксируем $\varepsilon > 0$. По критерию Римана существует $\delta > 0$ такое, что для всякого разбиения
+            \[
+                \{x_k\}, \qquad d(\{x_k\}) < \delta,
+            \]
+            и для любого выбора точек $\xi_k \in [x_{k-1},x_k]$ выполнено
+            \[
+                \left|\sum_k f(\xi_k)\,\Delta x_k - S\right| < \frac{\varepsilon}{2}.
+            \]
+            
+            Возьмём какое-нибудь разбиение $\{x_k\}$ мелкости $<\delta$.
+            
+            Для каждого $k$ выберем точку $\xi_k$ так, чтобы
+            \[
+                f(\xi_k) > \sup_{[x_{k-1},x_k]} f - \frac{\varepsilon}{2(b-a)}.
+            \]
+            Тогда
+            \[
+                \sum_k f(\xi_k)\,\Delta x_k
+                \ge
+                \sum_k \left(\sup_{[x_{k-1},x_k]} f - \frac{\varepsilon}{2(b-a)}\right)\Delta x_k
+                =
+                \overline S_{\{x_k\}} - \frac{\varepsilon}{2(b-a)}\sum_k \Delta x_k
+                =
+                \overline S_{\{x_k\}} - \frac{\varepsilon}{2}.
+            \]
+            С другой стороны,
+            \[
+                \sum_k f(\xi_k)\,\Delta x_k < S + \frac{\varepsilon}{2}.
+            \]
+            Поэтому
+            \[
+                \overline S_{\{x_k\}} < S + \varepsilon.
+            \]
+            Значит,
+            \[
+                S^* \le \overline S_{\{x_k\}} < S + \varepsilon.
+            \]
+            
+            Аналогично, выбирая точки $\eta_k$ так, что
+            \[
+                f(\eta_k) < \inf_{[x_{k-1},x_k]} f + \frac{\varepsilon}{2(b-a)},
+            \]
+            получаем
+            \[
+                \sum_k f(\eta_k)\,\Delta x_k
+                \le
+                \underline S_{\{x_k\}} + \frac{\varepsilon}{2}.
+            \]
+            Но одновременно
+            \[
+                \sum_k f(\eta_k)\,\Delta x_k > S - \frac{\varepsilon}{2},
+            \]
+            следовательно,
+            \[
+                \underline S_{\{x_k\}} > S - \varepsilon.
+            \]
+            Значит,
+            \[
+                S_* \ge \underline S_{\{x_k\}} > S - \varepsilon.
+            \]
+            
+            Так как для любого разбиения всегда
+            \[
+                \underline S_{\{x_k\}} \le S_* \le S^* \le \overline S_{\{x_k\}},
+            \]
+            то из полученных оценок следует
+            \[
+                S - \varepsilon < S_* \le S^* < S + \varepsilon.
+            \]
+            Поскольку $\varepsilon > 0$ произвольно, заключаем:
+            \[
+                S_* = S^* = S.
+            \]
+        \end{itemize}
+    \end{proof}
 	
-	\begin{proof}
-		\begin{itemize}
-			\item[$\Rightarrow$]
-			
-			Пусть $S^* = S_* = S$. fix $\varepsilon > 0$.
-			
-			$\exists \{ z_l \}$: $\overline{S}_{\{ z_l \}} < S + \varepsilon$.
-			
-			$\exists \{ y_m \}$: $\underline{S}_{\{ y_m \}} > S - \varepsilon$.
-			
-			$\rightarrow \{ x_k \} := \{ z_l \} \cup \{ y_m \}$.
-			
-			$S - \varepsilon < \underline{S}_{\{ x_k \}} \leqslant \overline{S}_{\{ x_k \}} < S + \varepsilon$; $\delta := \max \{ \varDelta x_k \}$~--- искомая $\delta$.
-			
-			$\forall$ разбиения $\{ w_m \}$, мелкость $d < \delta$; $\{ \tilde{w}_m \} = \{ w_m \} \cup \{ x_k \}$.
-			
-			$\underline{S}_{\{ w_m \}} \leqslant \underline{S}_{\{ \tilde{w}_m \}} \leqslant \overline{S}_{\{ \tilde{w}_m \}} \leqslant \overline{S}_{\{ w_m \}}$ и $\overline{S}_{\{ \tilde{w}_m \}} - \underline{S}_{\{ \tilde{w}_m \}} \leqslant \overline{S}_{x_k} - \underline{S}_{x_k} < 2 \varepsilon$
-			
-			$\left| \sum\limits_{m = 1}^m f(\xi_m) \varDelta w_m - S \right| \leqslant \max \{ \left| \sum \dots - \underline{S}_{\{ w_m \}} \right|; \left| \sum \dots - \overline{S}_{\{ w_m \}} \right| \} \overset{?}{\leqslant} \overline{S}_{\{ w_m \}} - \underline{S}_{\{ w_m \}} < 2 \varepsilon$
-			
-			\item[$\Leftarrow$]
-			
-			fix $\varepsilon > 0$. $\exists \{ x_k \}$ $\forall$ выбора точек $\xi_k$ $\sum f(\xi_k) \varDelta x_k < S + \varepsilon$.
-			
-			Пусть $\xi_k: f(\xi_k) > \sup f_{[x_{k - 1}, x_k]} - \dfrac{\varepsilon}{2 (b - a)}$.
-			
-			$\sum f(\xi_k) \varDelta x_k \geqslant \sum \left( \sup f_{[x_{k - 1}, x_k]} - \dfrac{\varepsilon}{2 (b - a)} \right) \varDelta x_k$
-		\end{itemize}
-	\end{proof}
-	
-		\begin{theorem}[Вейерштрасса]
+	\begin{theorem}[Вейерштрасса]
 		Пусть $f \in C([a; b])$. Тогда $\exists \, \dint\limits_a^b f(x) dx$.
 	\end{theorem}
 	
@@ -1157,26 +1337,121 @@
 	
 	\subsection{Правила интегрирования.}
 	
-	\begin{enumerate}
-		\item $\dint x^s dx = \dfrac{x^{s + 1}}{s + 1} + C$; $s \ne -1$
-		\item $\dint \dfrac{dx}{x} = \ln |x| + C$
-		\item $\dint a^x \, dx = \dfrac{a^x}{\ln a} + C$; $\dint e^x dx = e^x + C$
-		\item $\dint \sin x \, dx = - \cos x + C$
-		\item $\dint \cos x \, dx = \sin x + C$
-		\item $\dint \dfrac{dx}{\sin^2 x} = - \ctg x + C$
-		\item $\dint \dfrac{dx}{\cos^2 x} = \tg x + C$
-		\item $\dint \tg x dx = - \ln |\cos x| + C$
-		\item $\dint \ctg x dx = \ln |\sin x| + C$
-		\item $\dint \dfrac{dx}{x^2 + 1} = \arctg x + C$
-		
-		$\dint \dfrac{dx}{x^2 + a^2} = \dfrac{1}{a^2} \dint \dfrac{a d \left( \dfrac{x}{a} \right)}{\left( \dfrac{x}{a} \right)^2 + 1} = \dfrac{1}{a} \arctg \dfrac{x}{a} + C$
-		
-		\item $\dint \dfrac{dx}{x^2 - a^2} = \dfrac{1}{2 a} \left( \dint \dfrac{d (x - a)}{x - 1} - \dint \dfrac{d (x + a)}{x + a} \right) = \dfrac{1}{2 a} \left( \ln |x - a| - \ln |x + a| \right) + C = \dfrac{1}{2 a} \ln \left| \dfrac{x - a}{x + a} \right| + C$
-		\item $\dint \dfrac{dx}{\sqrt{1 - x^2}} = \arcsin x + C$
-		\item $\dint \dfrac{dx}{\sqrt{x^2 - 1}} = \arcsinh x + C$
-		\item $\dint \dfrac{dx}{\sqrt{x^2 + 1}} = \ln \left( x + \sqrt{x^2 + 1} \right) + C$
-		\item $\dint \arctg x dx = x \arctg x - \dint x d (\arctg x) = x \arctg x - \dfrac{1}{2} \dint \dfrac{2}{x^2 + 1} dx = x \arctg x - \dfrac{1}{2} \ln (x^2 + 1) + C$
-	\end{enumerate}
+    \begin{enumerate}
+        \item $\dint x^s\,dx = \dfrac{x^{s+1}}{s+1} + C$; $s \ne -1$
+        
+        \textbf{Вывод:} $\left(\dfrac{x^{s+1}}{s+1}\right)' = \dfrac{(s+1)x^s}{s+1} = x^s$. \checkmark
+        
+        \item $\dint \dfrac{dx}{x} = \ln|x| + C$
+        
+        \textbf{Вывод:} При $x > 0$: $(\ln x)' = \dfrac{1}{x}$. При $x < 0$: $(\ln(-x))' = \dfrac{-1}{-x} = \dfrac{1}{x}$. Итого $(\ln|x|)' = \dfrac{1}{x}$. \checkmark
+        
+        \item $\dint a^x\,dx = \dfrac{a^x}{\ln a} + C$; $\dint e^x\,dx = e^x + C$
+        
+        \textbf{Вывод:} $\left(\dfrac{a^x}{\ln a}\right)' = \dfrac{a^x \ln a}{\ln a} = a^x$. При $a = e$: $\ln e = 1$, поэтому $(e^x)' = e^x$. \checkmark
+        
+        \item $\dint \sin x\,dx = -\cos x + C$
+        
+        \textbf{Вывод:} $(-\cos x)' = \sin x$. \checkmark
+        
+        \item $\dint \cos x\,dx = \sin x + C$
+        
+        \textbf{Вывод:} $(\sin x)' = \cos x$. \checkmark
+        
+        \item $\dint \dfrac{dx}{\sin^2 x} = -\ctg x + C$
+        
+        \textbf{Вывод:} $(-\ctg x)' = -\left(-\dfrac{1}{\sin^2 x}\right) = \dfrac{1}{\sin^2 x}$. \checkmark
+        
+        \item $\dint \dfrac{dx}{\cos^2 x} = \tg x + C$
+        
+        \textbf{Вывод:} $(\tg x)' = \left(\dfrac{\sin x}{\cos x}\right)' = \dfrac{\cos^2 x + \sin^2 x}{\cos^2 x} = \dfrac{1}{\cos^2 x}$. \checkmark
+        
+        \item $\dint \tg x\,dx = -\ln|\cos x| + C$
+        
+        \textbf{Вывод:}
+        \[
+            \dint \tg x\,dx
+            = \dint \frac{\sin x}{\cos x}\,dx
+            = -\dint \frac{d(\cos x)}{\cos x}
+            = -\ln|\cos x| + C.
+        \]
+        
+        \item $\dint \ctg x\,dx = \ln|\sin x| + C$
+        
+        \textbf{Вывод:}
+        \[
+            \dint \ctg x\,dx
+            = \dint \frac{\cos x}{\sin x}\,dx
+            = \dint \frac{d(\sin x)}{\sin x}
+            = \ln|\sin x| + C.
+        \]
+        
+        \item $\dint \dfrac{dx}{x^2 + 1} = \arctg x + C$
+        
+        \textbf{Вывод:} $(\arctg x)' = \dfrac{1}{x^2 + 1}$. \checkmark
+        
+        Частный случай:
+        \[
+            \dint \frac{dx}{x^2 + a^2}
+            = \frac{1}{a^2}\dint \frac{dx}{\left(\tfrac{x}{a}\right)^2 + 1}
+            = \frac{1}{a^2}\dint \frac{a\,d\!\left(\tfrac{x}{a}\right)}{\left(\tfrac{x}{a}\right)^2 + 1}
+            = \frac{1}{a}\arctg\frac{x}{a} + C.
+        \]
+        
+        \item $\dint \dfrac{dx}{x^2 - a^2} = \dfrac{1}{2a}\ln\left|\dfrac{x-a}{x+a}\right| + C$
+        
+        \textbf{Вывод:} Разложим дробь на простейшие:
+        \[
+            \frac{1}{x^2 - a^2}
+            = \frac{1}{(x-a)(x+a)}
+            = \frac{1}{2a}\left(\frac{1}{x-a} - \frac{1}{x+a}\right).
+        \]
+        Следовательно,
+        \[
+            \dint \frac{dx}{x^2 - a^2}
+            = \frac{1}{2a}\left(\dint\frac{d(x-a)}{x-a} - \dint\frac{d(x+a)}{x+a}\right)
+            = \frac{1}{2a}\ln\left|\frac{x-a}{x+a}\right| + C.
+        \]
+        
+        \item $\dint \dfrac{dx}{\sqrt{1 - x^2}} = \arcsin x + C$
+        
+        \textbf{Вывод:} $(\arcsin x)' = \dfrac{1}{\sqrt{1-x^2}}$. \checkmark
+        
+        \item $\dint \dfrac{dx}{\sqrt{x^2 - 1}} = \operatorname{arcsinh} x + C$
+        
+        \textbf{Вывод:} Сделаем замену $x = \cosh t$, $dx = \sinh t\,dt$, $\sqrt{x^2-1} = \sinh t$:
+        \[
+            \dint\frac{dx}{\sqrt{x^2-1}}
+            = \dint\frac{\sinh t\,dt}{\sinh t}
+            = \dint dt
+            = t + C
+            = \operatorname{arccosh} x + C
+            = \ln\!\left(x + \sqrt{x^2 - 1}\right) + C.
+        \]
+        
+        \item $\dint \dfrac{dx}{\sqrt{x^2+1}} = \ln\!\left(x + \sqrt{x^2+1}\right) + C$
+        
+        \textbf{Вывод:} Сделаем замену $x = \sinh t$, $dx = \cosh t\,dt$, $\sqrt{x^2+1} = \cosh t$:
+        \[
+            \dint\frac{dx}{\sqrt{x^2+1}}
+            = \dint\frac{\cosh t\,dt}{\cosh t}
+            = \dint dt
+            = t + C
+            = \operatorname{arcsinh} x + C
+            = \ln\!\left(x + \sqrt{x^2+1}\right) + C.
+        \]
+        
+        \item $\dint \arctg x\,dx = x\arctg x - \dfrac{1}{2}\ln(x^2+1) + C$
+        
+        \textbf{Вывод:} Интегрируем по частям ($u = \arctg x$, $dv = dx$):
+        \[
+            \dint \arctg x\,dx
+            = x\arctg x - \dint x\,d(\arctg x)
+            = x\arctg x - \dint \frac{x\,dx}{x^2+1}
+            = x\arctg x - \frac{1}{2}\dint\frac{d(x^2+1)}{x^2+1}
+            = x\arctg x - \frac{1}{2}\ln(x^2+1) + C.
+        \]
+    \end{enumerate}
 
 	\subsection{Приложения определенного интеграла}
 
