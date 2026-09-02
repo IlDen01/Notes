@@ -5,12 +5,41 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english, russian]{babel}
 
+% === Цвета ===
+\usepackage[dvipsnames]{xcolor}
+
 % === Математика ===
 \usepackage{amsmath, amssymb, wasysym, amsthm}
 \usepackage{stmaryrd}
 \usepackage{proof}
 
-% === Теоремные окружения ===
+% === Графика и float'ы ===
+\usepackage{wrapfig, float}
+\usepackage{graphicx}
+
+% === TikZ / PGFPlots ===
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{pgfplotstable}
+\usepackage{tikz, tikz-3dplot}
+\usetikzlibrary{calc, patterns, angles, quotes, intersections, automata, positioning, arrows.meta}
+
+% === Таблицы ===
+\usepackage{tabularx}
+\usepackage{xltabular}
+\renewcommand\tabularxcolumn[1]{m{#1}}
+
+% === Разметка ===
+\usepackage{geometry}
+\geometry{margin=0.5in}
+
+% === Списки и прочее ===
+\usepackage[shortlabels]{enumitem}
+\usepackage{verbatim}
+
+% ==========================================
+% === ТЕОРЕМНЫЕ ОКРУЖЕНИЯ (amsthm) ===
+% ==========================================
 \theoremstyle{plain}
 \newtheorem{theorem}{Теорема}[section]
 \newtheorem{corollary}{Следствие}[section]
@@ -33,32 +62,90 @@
 \newtheorem{person}{Личность}[section]
 \newtheorem*{solution}{Решение}
 
-% === Графика и float'ы ===
-\usepackage{wrapfig, float}
-% \makeatletter
-% \g@addto@macro\@floatboxreset\centering
-% \makeatother
-\usepackage{graphicx}
+% ==========================================
+% === КРАСИВЫЕ РАМКИ (tcolorbox) ===
+% ==========================================
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable, theorems}
 
-% === TikZ / PGFPlots ===
-\usepackage{pgfplots}
-\pgfplotsset{compat=newest}
-\usepackage{pgfplotstable}
-\usepackage{tikz, tikz-3dplot}
-\usetikzlibrary{calc, patterns, angles, quotes, intersections}
+% Базовые стили для разных типов блоков
+\tcbset{
+    % Стиль для теорем, лемм (Синий - строгий)
+    thmstyle/.style={
+        enhanced, breakable,
+        frame hidden, boxrule=0pt,
+        colback=blue!5!white, % Фон: 5% синего, 95% белого
+        borderline west={2.5pt}{0pt}{blue!70!black}, % Вертикальная линия слева
+        before skip=10pt, after skip=10pt,
+        left=4pt, right=4pt, top=4pt, bottom=4pt
+    },
+    % Стиль для доказательств (фиолетовый - процесс рассуждения)
+    proofstyle/.style={
+        enhanced, breakable,
+        frame hidden, boxrule=0pt,
+        colback=Plum!5!white,
+        borderline west={2.5pt}{0pt}{Plum!80!black},
+        before skip=10pt, after skip=10pt,
+        left=4pt, right=4pt, top=4pt, bottom=4pt,
+        sharp corners
+    },
+    % Стиль для определений и аксиом (Зеленый - фундаментальный)
+    defstyle/.style={
+        enhanced, breakable,
+        frame hidden, boxrule=0pt,
+        colback=ForestGreen!5!white,
+        borderline west={2.5pt}{0pt}{ForestGreen!80!black},
+        before skip=10pt, after skip=10pt,
+        left=4pt, right=4pt, top=4pt, bottom=4pt
+    },
+    % Стиль для примеров и задач (Оранжевый - практический)
+    exstyle/.style={
+        enhanced, breakable,
+        frame hidden, boxrule=0pt,
+        colback=orange!5!white,
+        borderline west={2.5pt}{0pt}{orange!90!black},
+        before skip=10pt, after skip=10pt,
+        left=4pt, right=4pt, top=4pt, bottom=4pt
+    },
+    % Стиль для заметок и свойств (Серый - нейтральный)
+    remstyle/.style={
+        enhanced, breakable,
+        frame hidden, boxrule=0pt,
+        colback=gray!5!white,
+        borderline west={2.5pt}{0pt}{gray!70!black},
+        before skip=10pt, after skip=10pt,
+        left=4pt, right=4pt, top=4pt, bottom=4pt
+    }
+}
 
-% === Таблицы ===
-\usepackage{tabularx}
-\usepackage{xltabular}
-\renewcommand\tabularxcolumn[1]{m{#1}}
+% Применяем стили к существующим окружениям amsthm
+% 1. Строгая математика
+\tcolorboxenvironment{theorem}{thmstyle}
+\tcolorboxenvironment{lemma}{thmstyle}
+\tcolorboxenvironment{corollary}{thmstyle}
+\tcolorboxenvironment{statement}{thmstyle}
+\tcolorboxenvironment{law}{thmstyle}
 
-% === Разметка ===
-\usepackage{geometry}
-\geometry{margin=0.5in}
+% 2. Доказательство
+\tcolorboxenvironment{proof}{proofstyle}
+\renewcommand{\qed}{}
 
-% === Списки и прочее ===
-\usepackage[shortlabels]{enumitem}
-\usepackage{verbatim}
+% 3. Определения
+\tcolorboxenvironment{definition}{defstyle}
+\tcolorboxenvironment{axiom}{defstyle}
+
+% 4. Практика
+\tcolorboxenvironment{example}{exstyle}
+\tcolorboxenvironment{problem}{exstyle}
+\tcolorboxenvironment{method}{exstyle}
+\tcolorboxenvironment{event}{exstyle}
+
+% 5. Заметки и прочее
+\tcolorboxenvironment{note}{remstyle}
+\tcolorboxenvironment{property}{remstyle}
+\tcolorboxenvironment{principle}{remstyle}
+\tcolorboxenvironment{person}{remstyle}
+\tcolorboxenvironment{solution}{remstyle}
 
 % === Гиперссылки (почти последним!) ===
 \usepackage[

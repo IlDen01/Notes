@@ -1,764 +1,1474 @@
 \documentclass[12pt]{article}
 
-\input{C:/Users/ilden/Documents/School/TeX памятка/header.tex}
+\input{~/School/Notes/header.tex}
 
 \begin{document}
 	\tableofcontents
 	\setcounter{tocdepth}{3}
 	\newpage
-	\section{Линейная алгебра.}
-	\subsection{Введение.}
-	\textbf{Пример.} $\mathbb{R}^2 = \mathbb{R} \times \mathbb{R}$ \\
-	$A \times B = \{ (a, b) | a \in A, b \in B \}$ \\
-	$F$~--- поле, $2$ операции, обе обратимы. \\
-	\textbf{Векторное пространство} $V$ над $F$: $(V, +, *)$
-	\begin{enumerate}
-		\item $\forall v, u, w \in V$: $(v + u) + w = v + (u + w)$
-		\item $\forall v, u \in V$: $v + u = u + v$
-		\item $\exists v \in V$: $\forall v \in V$: $0 + v = v$
-		\item $\forall v \in V$: $\exists$ "$-v$": $v$ $+$ "$-v$" $= 0$
-		\item $\forall v \in V; \alpha, \beta \in F$: $\alpha * (\beta * v) = (\alpha \beta) * v$
-		\item $\forall v \in V; \alpha, \beta \in F$: $(\alpha + \beta) * v = \alpha * v + \beta * v$
-		\item $\forall v, w \in V; \alpha \in F$: $\alpha * (v + w) = \alpha * v + \alpha * w$
-		\item $\forall v \in V$: $1 * v = v$
-	\end{enumerate}
+	
+	\part{Формальные языки}
+	
+	\section{Детерминированный конечный автомат}
+	
+	\begin{definition}[Детерминированный конечный автомат]
+		ДКА~--- это набор $(\Sigma, Q, s, F, \delta)$, где $\Sigma$~--- алфавит, $Q$~--- множество состояний, $s \in Q$~--- начальное состояние, $F \subseteq Q$~--- терминальные (принимающие) состояния, $\delta: Q \times \Sigma \rightarrow Q$~--- функция перехода.
+	\end{definition}
+	
+	\begin{definition}
+		Продолжим $\delta$ до функции на строках $\hat\delta: Q \times \Sigma^* \rightarrow Q$:
+		
+		$\hat\delta(q, e) = q$
+		
+		$\hat\delta(q, wc) = \delta(\hat\delta(q, w), c)$, где $w \in \Sigma^*, c \in \Sigma$.
+		
+		Автомат принимает строку $w$, если $\hat\delta(s, w) \in F$. Язык, распознаваемый автоматом: $L(A) = \{ w \in \Sigma^* \mid \hat\delta(s, w) \in F \}$.
+	\end{definition}
+	
+	\section{Регулярные выражения}
+	
+	\begin{definition}
+		$A, B \subseteq \Sigma^*$
+		
+		$AB = \{ xy \mid x \in A, y \in B \}$~--- конкатенация.
+		
+		$A \cup B$~--- объединение, $A \cap B$~--- пересечение.
+		
+		$A^* = \bigcup\limits_{n = 0}^\infty A^n$
+		
+		$A^0 = \{ e \}, A^1 = A$
+		
+		$A^n = AA^{n - 1}$
+	\end{definition}
+	
+	\begin{definition}
+		$Reg_0 = \{ \emptyset, \{ e \}, \{ c \} \mid c \in \Sigma \}$
+		
+		$Reg_{n + 1} = Reg_n \cup \{ AB, A \cup B, A^* \mid A, B \in Reg_n \}$
+		
+		$Reg = \bigcup\limits_{n = 0}^\infty Reg_n$
+	\end{definition}
+	
+	\begin{problem}
+		\begin{enumerate}
+			\item $\# 1 \equiv \# 0 \pmod 2$
+			\item Нет $000$, нет $111$
+			\item Нет $000$, есть $111$
+			\item $\Sigma = \{ a, b, c \}; \; a \geqslant 2, b \geqslant 1$
+			\item Целое число $\geqslant 73$ в 2-ичном виде
+			\item Описать Regexp строк, у которых $k$-тый символ с начала равен $k$-тому символу с конца
+			\item[*] Числа $\vdots \, 3$
+		\end{enumerate}
+	\end{problem}
+	
+	\begin{solution}
+		\begin{enumerate}
+			\item $((0 \mid 1)(0 \mid 1))^*$
+			\item $((0 \mid 00)(1 \mid 11))^* (e \mid 0 \mid 00) \mid ((1 \mid 11)(0 \mid 00))^* (e \mid 1 \mid 11)$
+			\item $(1 \mid 01 \mid 001)^* (e \mid 0 \mid 00) \, 111 \, (1 \mid 01 \mid 001)^* (e \mid 0 \mid 00)$
+			\item $(a \mid b \mid c)^* a (a \mid b \mid c)^* a (a \mid b \mid c)^* b (a \mid b \mid c)^* \mid (a \mid b \mid c)^* a (a \mid b \mid c)^* b (a \mid b \mid c)^* a (a \mid b \mid c)^* \mid (a \mid b \mid c)^* b (a \mid b \mid c)^* a (a \mid b \mid c)^* a (a \mid b \mid c)^*$
+			\item $1(0 \mid 1)^{\geqslant 7} \mid \ldots$ %TODO: решение не дописано в исходном конспекте
+		\end{enumerate}
+	\end{solution}
+	
+	\section{Недетерминированный конечный автомат}
+	
+	\begin{definition}[Недетерминированный конечный автомат]
+		Недетерминированный конечный автомат~--- это набор $(\Sigma, Q, S, F, \delta)$, где $\Sigma$~--- алфавит, $Q$~--- множество состояний, $S \subseteq Q$~--- стартовые вершины, $F \subseteq Q$~--- терминальные вершины, $\delta$~--- функция перехода. НКА отличается от обычного тем, что $\delta: Q \times \Sigma \rightarrow 2^Q$, а в ДКА $\delta: Q \times \Sigma \rightarrow Q$.
+	\end{definition}
+	
 	\begin{statement}
-		Если $v, w$~--- векторное пространство над $F$, то и $v \times w$~--- тоже векторное пространство над $F$.
-	\end{statement}
-	\noindent
-	$V$~--- векторное пространство над $F$.
-	\begin{definition}
-		$W \subseteq V$~--- подпространство.
-		\begin{enumerate}
-			\item $\forall w_1, w_2 \in W$: $w_1 + w_2 \in W$
-			\item $\forall w \in W; \alpha \in F$: $\alpha w \in W$
-		\end{enumerate}
-	\end{definition}
-	\noindent
-	$V = R \times R$, $W = \{ v \in V | x + y = 0 \}$
-	\begin{definition}
-		Линейное отображение:
-		\begin{enumerate}
-			\item $f(x) + f(y) = f(x + y)$
-			\item $f(\alpha x) = \alpha f(x)$
-		\end{enumerate}
-	\end{definition} 
-	\subsection{Фактор-пространства.}
-	\begin{definition}
-		Поле $F$, $W \subseteq V$~--- векторное пространство; $V / W$~--- факторизация. Отношение $\sim$ на $V$: $v \sim u \Leftrightarrow u - v \in W$.
-		\begin{enumerate}
-			\item $u - u = 0 \in W$
-			\item $u - v \in W \Leftrightarrow v - u \in W$
-			\item $(u - v) \in W \wedge (v - w) \in W \Rightarrow (u - v) + (v - w) \in W \Rightarrow u - w \in W$
-		\end{enumerate}
-	\end{definition}
-	\noindent
-	$[v]$~--- класс эквивалентности вектора $v$.
-	\begin{enumerate}
-		\item $[v] + [u] = [v + u]$
-		\item $\alpha [v] = [\alpha v]$
-	\end{enumerate}
-	$v_1 \sim v_2 \Rightarrow u + v_1 \sim u + v_2$ \\
-	$v_1 \sim v_2 \Rightarrow \alpha v_1 ~ \alpha v_2$ \\
-	\textbf{Отображение векторного пространства.}
-	\begin{quote}
-		$V, W$~--- векторные пространства над $F$. \\
-		$f: V \rightarrow W$~--- линейная, если
-		\begin{enumerate}
-			\item $\forall v_1, v_2 \in V: f(v_1) + f(v_2) = f(v_1 + v_2)$
-			\item $\forall v \in V, \alpha \in F: \alpha f(v) = f(\alpha v)$
-		\end{enumerate}
-		Если $f$~--- биекция, то $f$~--- изоморфизм, $V$ и $W$~--- изоморфны.
-		\begin{enumerate}
-			\item Рефлективна $f = id$ $V \rightarrow V: v \rightarrow v$
-			\item Симметрична $V \xrightarrow{f} W$ $f^{-1}$~--- обратное отображение: $f^{-1}(x) + f^{-1}(y) = f^{-1}(x + y)$
-			\item $V \xrightarrow{f} W$, $W \xrightarrow{g} U$. $f, g$~--- линейная биекция, $f \circ g$~--- линейная биекция.
-		\end{enumerate}
-	\end{quote}
-	$\mathbb{R}^n = (x_1, x_2, \dots, x_n)$, $\mathbb{R}^m = (y_1, y_2, \dots, y_m)$ \\
-	Табличка $n \times m$: $\left(
-	\begin{smallmatrix}
-		a_{11} & \dots & a_{1n} \\
-		\vdots &  & \vdots \\
-		a_{m1} & \dots & a_{mn}
-	\end{smallmatrix}
-	\right)$ \\
-	Отображение $\mathbb{R}^n \rightarrow \mathbb{R}^m$ (линейное): \\
-	$(x_1, \dots, x_n) \rightarrow \left(
-	\begin{smallmatrix}
-		a_{11}x_1 + \dots + a_{1n}x_n \\
-		a_{21}x_1 + \dots + a_{2n}x_n \\
-		\vdots \\
-		a_{m1}x_1 + \dots + a_{mn}x_n
-	\end{smallmatrix}
-	\right)$
-	\begin{definition}
-		$V$~--- векторное пространство над $F$. Набор $v_1, \dots, v_k$. $\sum \alpha_i v_i, \alpha_i \in F \rightarrow$ конечное число $\alpha_i \not= 0$. Все линейные комбинации образуют векторное подпространство $span(v_1, \dots, v_k, \dots)$.
-	\end{definition}
-	\begin{definition}
-		$v_1, \dots, v_k, \dots$~--- линейно независимая $\Leftrightarrow$ $\nexists$ нетривиальных линейных комбинаций (не все коэффициенты равны $0$), те все коэффициенты равны $0$, и других решений нет. Линейно зависимая иначе.
-	\end{definition}
-	\begin{definition}
-		$v_1, \dots, v_k, \dots$~--- порождающая система, если $span(v_1, \dots, v_k, \dots) = V$ ($span()$~--- множество всех возможных линейных комбинаций).
-	\end{definition}
-	\begin{definition}
-		Базис $=$ линейно независимая $+$ порождающая система. Базис~--- максимальная линейно независимая система векторов в пространстве $V$.
-	\end{definition}
-	\begin{definition}
-		$V$~--- конечномерное $\Leftrightarrow$ $\exists$ конечная порождающая система.
-	\end{definition}
-	\noindent
-	Возьмем минимальную (по включению) порождающую систему. $v_1, \dots, v_e$. Пусть оказалась линейно зависимой. $\sum \alpha_i v_i = 0$. НУО $\alpha_1 \not= 0$. $v_1 = \sum \frac{-d_j}{d_1} v_j$. Тогда можем выкинуть. \\
-	$(!)$ Любой базис одинакового размера. $e_1, \dots, e_k$; $f_1, \dots, f_m$. $m > k$. Хотим $e_i$: $(e_i, f_2, \dots, f_m)$~--- линейно независимая система. Пусть нет. Тогда $\forall i \exists \alpha_1, \dots, \alpha_m: \alpha_1e_i + \alpha_2f_2 + \dots + \alpha_mf_m = 0 \Rightarrow e_i = \sum \beta_{ij} f_j \Rightarrow$ $f_2$ -- $f_m$~--- порождают все ?! Значит $(e_1, f_2, \dots, f_m)$~--- линейно независимая система. $e_1 = \sum \alpha_j f_j \Rightarrow \alpha \not= 0 \Rightarrow f_1 = \frac{1}{\alpha_1}e_1 - \sum\limits_{j \not= 1} \frac{\alpha_j}{\alpha_1} f_j \Rightarrow (e_1, f_2, \dots, f_m)$~--- базис.
-	\begin{definition}
-		$\dim V = $ количество элементов базиса.
-	\end{definition}
-	\noindent
-	$A \xrightarrow{f} B$: $f(A)$~--- векторное подпространство в $B$.
-	\begin{statement}
-		Линейное независимые системы не бывают больше, чем базис.
-	\end{statement}
-	\begin{proof}
-		$e_1, \dots, e_k$; $f_1, \dots, f_{k + 1}$. Рассмотрим наборы $(e_1, f_2, \dots, f_{k + 1})$; $(e_1, \dots, e_k, f_{k + 1})$~--- линейно независимая система.
-	\end{proof}
-	\begin{theorem}
-		$V$~--- векторное пространство над полем $F \Rightarrow V \cong F^{\dim V}$.
-	\end{theorem}
-	\begin{proof}
-		fix базис $e_1, \dots, e_n$, где $n = \dim V$.
-		\begin{lemma}
-			$\forall v \in V$ $\exists! (\alpha_1, \dots, \alpha_k)$: $V = \sum \alpha_k e_k$.
-		\end{lemma}
-		\begin{proof}
-			Пусть есть два набора $(\alpha_1, \dots, \alpha_k)$ и $(\beta_1, \dots, \beta_k)$. $0 = V - V = \sum (\alpha_k - \beta_k)e_k \Rightarrow \alpha_k = \beta_k \forall k$.
-		\end{proof}
-		\noindent
-		$f: F^n \rightarrow V$ \\
-		$(x_1, \dots, x_n) \rightarrow \sum x_i e_i$ \\
-		$(y_1, \dots, y_n) \rightarrow \sum y_i e_i$ \\
-		$(x_1 + y_1, \dots, x_n + y_n) \rightarrow \sum (x_i + y_i) e_i$ \\
-		$f(\lambda (x_1, \dots, x_n)) = \sum (\lambda x_i) e_i = \lambda (\sum x_i e_i)$ \\
-		\underline{Инекция.} $f(x_1, \dots, x_n) = f(y_1, \dots, y_n) \Rightarrow (x_1, \dots, x_n) = (y_1, \dots, y_n)$ \\
-		\underline{Сюръекция.} $V = \sum \alpha_i e_i \Rightarrow v = f(\alpha_1, \dots, \alpha_n)$
-	\end{proof}
-	\subsection{Матрицы.}
-	\underline{$\mathbb{R}^n \xrightarrow{f} \mathbb{R}^m$}
-	\begin{quote}
-		$\left(
-		\begin{smallmatrix}
-			a_{11} & \dots & a_{1n} \\
-			\vdots &  & \vdots \\
-			a_{m1} & \dots & a_{mn}
-		\end{smallmatrix}
-		\right)$ \\
-		$(x_1, \dots, x_n) \rightarrow \left(
-		\begin{smallmatrix}
-			a_{11}x_1 + \dots + a_{1n}x_n \\
-			a_{21}x_1 + \dots + a_{2n}x_n \\
-			\vdots \\
-			a_{m1}x_1 + \dots + a_{mn}x_n
-		\end{smallmatrix}
-		\right)$ \\
-		$e_1 = (1, 0, \dots, 0) \rightarrow (b_{11}, b_{21}, \dots, b_{m1})$ \\
-		$e_2 = (0, 1, \dots, 0) \rightarrow (b_{12}, b_{22}, \dots, b_{m2})$ \\
-		$\vdots$ \\
-		$e_n = (0, 0, \dots, 1) \rightarrow (b_{1n}, b_{2n}, \dots, b_{mn})$ \\
-		$f((x_1, x_2, \dots, x_n)) = x_1 f(e_1) + x_2 f(e_2) + \dots + x_n f(e_n) = x_1 (b_{11}, b_{21}, \dots, b_{m1}) + x_2 (b_{12}, \dots, b_{m2}) + \dots =$ \\
-		$(x_1 b_{11} + x_2 b_{12} + \dots + x_n b_{1n},$ \\
-		$x_1 b_{21} + x_2 b_{22} + \dots + x_n b_{2n},$ \\
-		$\dots,$ \\
-		$x_1 b_{m1} + \dots + x_n b_{mn})$
-	\end{quote}
-	\textbf{Сложение матриц.}
-	\begin{quote}
-		$A = \left(
-		\begin{smallmatrix}
-			a_{11} & \dots & a_{1n} \\
-			\vdots &  & \vdots \\
-			a_{m1} & \dots & a_{mn}
-		\end{smallmatrix}
-		\right)$, $B = \left(
-		\begin{smallmatrix}
-			b_{11} & \dots & b_{1n} \\
-			\vdots &  & \vdots \\
-			b_{m1} & \dots & b_{mn}
-		\end{smallmatrix}
-		\right)$; $X$~--- матрица, $f_X$~--- линейное отображение. \\
-		$f_A: (x_1, \dots, x_n) \rightarrow
-		\left( \begin{smallmatrix}
-			a_{11}x_1 + \dots + a_{1n}x_n \\
-			\vdots \\
-			a_{m1}x_1 + \dots + a_{mn}x_n
-		\end{smallmatrix} \right)
-		$, $f_B: (x_1, \dots, x_n) \rightarrow \left(
-		\begin{smallmatrix}
-			b_{11}x_1 + \dots + b_{1n}x_n \\
-			\vdots \\
-			b_{m1}x_1 + \dots + b_{mn}x_n
-		\end{smallmatrix}
-		\right)$ \\
-		$f_A + f_B: (x_1, \dots, x_n) \rightarrow \left(
-		\begin{smallmatrix}
-			(a_{11} + b_{11})x_1 + \dots + (a_{1n} + b_{1n})x_n \\
-			\vdots \\
-			(a_{m1} + b_{m1})x_1 + \dots + (a_{mn} + b_{mn})x_n
-		\end{smallmatrix}
-		\right)$ \\
-		$A + B := (a_{ij} + b_{ij})$ \\
-		$\lambda A := (\lambda a_{ij})$
-	\end{quote}
-	\textbf{Произведение матриц (композиция).}
-	\begin{quote}
-		$\mathbb{R}^n \xrightarrow{f_A} \mathbb{R}^m \xrightarrow{f_B} \mathbb{R}^k$ \\
-		$f_A$ и $f_B$ построены по матрицам $A = \left(
-		\begin{smallmatrix}
-			a_{11} & \dots & a_{1n} \\
-			\vdots &  & \vdots \\
-			a_{m1} & \dots & a_{mn}
-		\end{smallmatrix}
-		\right)$ и $B = \left(
-		\begin{smallmatrix}
-			b_{11} & \dots & b_{1n} \\
-			\vdots &  & \vdots \\
-			b_{m1} & \dots & b_{mn}
-		\end{smallmatrix}
-		\right)$ \\
-		$f_C (V) = f_B (f_A (V))$ \\
-		$C := B \cdot A$ \\
-		$e_1 = (1, 0, \dots, 0)$; $f_A (e_1) = (a_{11}, \dots, a_{m1})$ \\
-		$1$ столбец: $f_B (a_{11}, \dots, a_{m1}) =$ \\
-		$(b_{11} a_{11} + b_{12} a_{21} + \dots + b_{1m}a_{m1},$ \\
-		$b_{21}a_{11} + b_{22} a_{21} + \dots + b_{2m} a_{m1},$ \\
-		$\vdots,$ \\
-		$b_{k1} a_{11} + b_{k2} a_{21} + \dots + b_{km} a_{m1})$ \\
-		$f_A (e_i) = (a_{1i}, \dots, a_{mi})$ \\
-		$i$ столбец: $f_B (f_A (e_i)) =$ \\
-		$(b_{11} a_{1i} + b_{12} a_{2i} + \dots + b_{1m}a_{mi},$ \\
-		$b_{21}a_{1i} + b_{22} a_{2i} + \dots + b_{2m} a_{mi},$ \\
-		$\vdots,$ \\
-		$b_{k1} a_{1i} + b_{k2} a_{2i} + \dots + b_{km} a_{mi})$ \\
-		$C = \left(
-		\begin{smallmatrix}
-			c_{11} & \dots & c_{1n} \\
-			\vdots &  & \vdots \\
-			c_{k1} & \dots & c_{kn}
-		\end{smallmatrix}
-		\right)$ \\
-		$c_{ij} = b_{i1} a_{1j} + b_{i2} a_{2j} + \dots + b_{im} a_{mj} = \sum\limits_{\alpha = 1}^{m}b_{i \alpha} a_{\alpha j}$
-	\end{quote}
-	\begin{definition}
-		$F^n \xrightarrow{f_a} F^m$, $f_a (v) = Av$. $Im f = \{ u \in F^m | \exists v \in F^n : u = f(v) \}$. $Ker f = \{ u \in F^n | f(u) = 0 \}$.
-	\end{definition}
-	\begin{statement}
-		$Im f$ и $Ker f$~--- линейные подпространства.
+		Из ДКА можно получить НКА, и наоборот.
 	\end{statement}
 	
-	%\textbf{Теорема о гомоморфизме.} $V / Ker f \cong Im f$; $V = F^n$. \\
-	%Доказательство:
-	%\begin{quote}
-	%	$e_1, \dots, e_k$~--- базис в $Ker f$. Дополним его до базиса в $V$: $e_{k + 1}, \dots, e_n$. \\
-	%	Базис переходит:
-	%	\begin{quote}
-	%		$e_1 \rightarrow 0$ \\
-	%		$e_2 \rightarrow 0$ \\
-	%		$\vdots$ \\
-	%		$e_k \rightarrow 0$ \\
-	%		$e_{k + 1} \rightarrow g_{k + 1}$ \\
-	%		$\vdots$ \\
-	%		$e_n \rightarrow g_n$
-	%	\end{quote}
-	%	$g$~--- линейно независимая система, тк $\sum \beta_i g_i = 0$ и $f(\sum \beta_i g_i) = 0$. Тогда $\sum \beta_i e_i \in Ker f$. \\
-	%	$Im f = Lin(g_{k + 1}, \dots, g_n)$, тк $Im f \Leftrightarrow X = f (\sum \alpha_i e_i) = \sum \alpha_i g_i$.
-	%\end{quote}
+	\begin{proof}
+		\begin{itemize}
+			\item ДКА $\rightarrow$ НКА. Очевидно, т.к. НКА~--- это расширенный ДКА.
+			\item НКА $\rightarrow$ ДКА. $\left( \Sigma, 2^Q, S, F', \delta' \right)$, где $F' = \{ V \mid V \in 2^Q, V \cap F \neq \emptyset \}$, $\delta' (V, c) = \bigcup\limits_{q \in V} \delta(q, c)$.
+		\end{itemize}
+	\end{proof}
 	
-	\begin{theorem}[Теорема о гомоморфизме]
-		Для любого линейного отображения $f: V \rightarrow W$ между векторными пространствами факторпространство пространства $V$ по ядру $f$ изоморфно образу $f$: $V / Ker f \cong Im f$.
-	\end{theorem}
+	\subsection{$\varepsilon$-НКА}
+	
+	\begin{definition}[$\varepsilon$-НКА]
+		$\varepsilon$-НКА~--- это набор $(\Sigma, Q, S, F, \delta)$, где $\Sigma, Q, S, F$ определены так же, как для НКА, а функция перехода допускает переходы по пустой строке: $\delta: Q \times (\Sigma \cup \{ \varepsilon \}) \rightarrow 2^Q$.
+	\end{definition}
+	
+	\begin{definition}[$\varepsilon$-замыкание]
+		Для $q \in Q$ определим $\varepsilon\text{-closure}(q)$~--- множество состояний, достижимых из $q$ только по $\varepsilon$-переходам:
+		
+		$q \in \varepsilon\text{-closure}(q)$
+		
+		Если $p \in \varepsilon\text{-closure}(q)$ и $r \in \delta(p, \varepsilon)$, то $r \in \varepsilon\text{-closure}(q)$.
+		
+		Для $V \subseteq Q$: $\varepsilon\text{-closure}(V) = \bigcup\limits_{q \in V} \varepsilon\text{-closure}(q)$.
+	\end{definition}
+	
+	\begin{definition}
+		Продолженная функция перехода $\hat\delta: Q \times \Sigma^* \rightarrow 2^Q$:
+		
+		$\hat\delta(q, e) = \varepsilon\text{-closure}(q)$
+		
+		$\hat\delta(q, wc) = \varepsilon\text{-closure}\left( \bigcup\limits_{p \in \hat\delta(q, w)} \delta(p, c) \right)$, где $w \in \Sigma^*, c \in \Sigma$.
+		
+		Язык, распознаваемый автоматом: $L(A) = \{ w \in \Sigma^* \mid \hat\delta(S, w) \cap F \neq \emptyset \}$, где $\hat\delta(S, w) = \bigcup\limits_{q \in S} \hat\delta(q, w)$.
+	\end{definition}
+	
+	\begin{statement}
+		Из $\varepsilon$-НКА можно получить эквивалентный (обычный) НКА.
+	\end{statement}
+	
 	\begin{proof}
-		 Построение отображения: определим отображение $\phi: V / Ker f \rightarrow Im f$, $\phi (v + Ker f) = f(V)$; $v + Ker f$~--- это класс эквивалентности в фактропространстве $V / Ker f$. Корректность определения: пусть $v_1 + Ker f = v_2 + Ker f \Rightarrow v_1 - v_2 \in Ker f \Rightarrow f(v_1 - v_2) = 0 \Rightarrow f(v_1) - f(v_2) = 0 \Rightarrow f(v_1) = f(v_2)$. Линейность отображения $\phi$: очевидно, остается для доказательство читателю. Сюръективность $\phi$: докажем, что для любого элемента $w \in Im f$ найдется прообраз в $V / Ker f$; по определению образа, если $w \in Im f$, то существует такой вектор $v \in V$, что $f(v) = w \Rightarrow$ для класса $v + Ker f$ верно: $\phi (v + Ker f) = f(v) = w \Rightarrow \phi$~--- сюръективно. Инъективность $\phi$: докажем, что если $\phi (v + Ker f) = 0$, то весь класс $v + Ker f$ является нулевым элементом в $V / Ker f$ (то есть $v + Ker f = 0 + Ker f$); пусть $\phi (v + Ker f) = 0 \Rightarrow$ по определению $\phi$: $f(v) = 0$; это означает, что $v \in Ker f \Rightarrow v + Ker f = 0 + Ker f$ (так как в классе эквивалентности $v + Ker f$ лежит сам вектор $v$, а если $v \in Ker f$, то этот класс совпадает с ядром, которое является нулевым элементом в факторпространстве).
+		Строим НКА $(\Sigma, Q, S, F', \delta')$ с теми же состояниями, где:
+		
+		$\delta'(q, c) = \varepsilon\text{-closure}\left( \bigcup\limits_{p \in \varepsilon\text{-closure}(q)} \delta(p, c) \right)$ для $c \in \Sigma$~--- то есть $\varepsilon$-переходы «встраиваются» в переходы по символам.
+		
+		$F' = \begin{cases} F \cup S, & \varepsilon\text{-closure}(q) \cap F \neq \emptyset \text{ хотя бы для одного } q \in S \\ F & \text{иначе} \end{cases}$
+		
+		(если из стартового состояния можно по $\varepsilon$-переходам попасть в терминальное, стартовое состояние тоже нужно сделать терминальным, чтобы не потерять $e \in L(A)$).
+		
+		По индукции на длине строки $\hat\delta_{\varepsilon}(q, w) = \hat\delta'(q, w)$ для всех $q, w$, откуда $L(\varepsilon\text{-НКА}) = L(\text{НКА})$.
 	\end{proof}
+	
 	\begin{statement}
-		$V / Ker f \xrightarrow{g} Im f$, $[v] \xrightarrow{g} f(v)$. Тогда:
-		\begin{itemize}
-			\item $[v] \xrightarrow{g} f(v)$~--- корректно заданное отображение.
-			\item $v_1 - v_2 \in Ker f \Rightarrow f(v_1) = f(v_2) \Leftrightarrow f(v_1 - v_2) = 0$, тк $g([v]) = 0 \Rightarrow v \in Ker f \Rightarrow [v]$.
-			\item $u \in Im f \Rightarrow \exists u = f(v) \Rightarrow u = g([v])$.
-		\end{itemize}
+		По регулярному выражению можно построить эквивалентный $\varepsilon$-НКА.
 	\end{statement}
-	\begin{definition}
-		$rank A := \dim(Im A)$, где $A$~--- матрица. Также это размерность линейного замыкания пространства столбцов матрицы. $Im A = $ линейное замыкания пространства столбцов, тк $u \in Im A = f(\sum \alpha_i e_i) = \sum \alpha_i f(e_i)$. $f(e_i)$~--- $i$-ый столбец матрицы.
-	\end{definition}
-	\begin{definition}
-		 Множество всех матриц $n \times m$ над полем $F$ обозначается $M_{n \times m}(F)$. Это множество кольцо с $1$ (ассоциативность сложение, нейтральный элемент сложения, обратимость сложения, коммутативность сложения, ассоциативность умножения, дистрибутивность, нейтральный элемент умножения).
-	\end{definition}
-	\begin{definition}
-		Верхне-треугольная матрица~--- матрица, в которой под диагональю все нули. Аналогично нижне-треугольная. Они образуют линейное подпространство. Матрица, которая и верхне-треугольная, и нижне-треугольная~--- диагональная.
-	\end{definition}
-	\begin{definition}
-		Симметричная матрица~--- $a_{ij} = a_{ji}$.
-	\end{definition}
-	\begin{statement}
-		$\dim(Lin(U \cup W)) + \dim(u \cap w) = \dim(u) + \dim(v)$.
-	\end{statement}
-	\begin{statement}
-		$rank(AB) = \min(rank A, rank B)$.
-	\end{statement}
-	\begin{statement}
-		$T^{-1} A T T^{-1} B T = T^{-1} (A B) T$.
-	\end{statement}
-	\begin{definition}
-		Матрица перехода $A$ из базиса $e$ в базис $f$ такова, что $\forall v \in V: v = \sum \alpha_i e_i \Rightarrow v = \sum \beta_i f_i$, где верно, что $A
-		\left( \begin{smallmatrix}
-			\alpha_1 \\
-			\vdots \\
-			\alpha_n
-		\end{smallmatrix} \right) =
-		\left( \begin{smallmatrix}
-			\beta_1 \\
-			\vdots \\
-			\beta_n
-		\end{smallmatrix} \right)
-		$
-	\end{definition}
-	\subsection{Системы линейных уравнений.}
-	\begin{definition}
-		Система линейных уравнений~--- $
-		\begin{cases}
-			a_{11}x_1 + \dots + a_{1n}x_n = b_1 \\
-			\vdots \\
-			a_{m1}x_1 + \dots + a_{mn}x_n = b_m
-		\end{cases}
-		\Leftrightarrow Av = b$, $v =
-		\left( \begin{smallmatrix}
-			x_0 \\
-			\vdots \\
-			x_n
-		\end{smallmatrix} \right)
-		$. Как устроенно множество решений:
-		\begin{itemize}
-			\item $\emptyset$
-			\item $v_0$~--- единственное решение.
-			\item Решений много $\Rightarrow$ это $v_0 + L := \{ v_0 + l | l \in L \}$, где $v_0$~--- какое-то решение, $L$~--- линейное подпространство ($L = Ker A$). \\
-			$Av_0 = b$; $Av_1 = b \Leftrightarrow A(v_1 - v_0) = 0 \Leftrightarrow (v_1 - v_0) \in Ker A$
-		\end{itemize}
-	\end{definition}
-	\begin{definition}
-		Присоединение матриц. $(A | b) = 
-		\left( \begin{smallmatrix}
-			a_{11} & \dots & a_{1n} & | b_1 \\
-			a_{21} & \dots & a_{2n} & | b_2 \\
-			\vdots &  & \vdots \\
-			a_{m1} & \dots & a_{mn} & | b_n
-		\end{smallmatrix} \right)
-		$
-	\end{definition}
-	\begin{theorem}[Теорема Кронекера-Капелли]
-		Система имеет решение $\Leftrightarrow rank(A) = rank(A|b)$.
-	\end{theorem}
+	
 	\begin{proof}
-		$\Leftarrow$: $ImA = \{ Av | v \in F^n \}$; $Im(A | b) = \{ Av + \alpha b | v \in F^n, \alpha \in F \}$; В $ImA$ есть базис $u_1, \dots, u_k$; $u_1, \dots, u_k \in Im(A | b) \Rightarrow u_1, \dots, u_k$~--- базис в $Im(A | b)$; $A(\sum \beta_i u_i) = \sum \beta_i (Av_i) = \sum \beta_i u_i = b$. \\
-		$\Rightarrow$: $b = Av_0 \Rightarrow \{ Av + \alpha b | v \in F^n, \alpha \in F \} = \{ Av | v \in F^n \}$, тк $Av + \alpha b = Av + \alpha (Av_0) = A(v + \alpha v_0) \in ImA$.
+		Построение~--- индукцией по структуре регулярного выражения. Базовые случаи ($\emptyset$, $\{ e \}$, $\{ c \}$ для $c \in \Sigma$) тривиальны~--- очевидно строятся автоматы с одним или двумя состояниями. Пусть для $A$ и $B$ автоматы уже построены; построим автомат для операции над ними. Старые стартовые и терминальные состояния блоков в новом автомате перестают быть стартовыми/терминальными~--- их роль берут на себя новые вершины.
+		
+		$A \mid B$. Добавляем новую стартовую вершину, из неё~--- $\varepsilon$-переходы во все стартовые вершины обоих блоков. Добавляем новую терминальную вершину, из всех терминальных вершин обоих блоков~--- $\varepsilon$-переходы в неё.
+		
+		$AB$ (конкатенация). Из всех терминальных вершин блока $A$ строим $\varepsilon$-переходы во все стартовые вершины блока $B$. Стартовые вершины блока $A$ остаются стартовыми у результата, терминальные вершины блока $B$~--- терминальными.
+		
+		$A^*$. Добавляем новую вершину, которая одновременно и стартовая, и терминальная. Из неё~--- $\varepsilon$-переходы во все стартовые вершины блока $A$. Из всех терминальных вершин блока $A$~--- $\varepsilon$-переход обратно в эту новую вершину (что позволяет повторять блок $A$ произвольное число раз, включая ноль).
 	\end{proof}
-	\begin{method}[Гаусса]
-		Приводит матрицу к виду, в котором понятно, решается она или нет. Можно:
-		\begin{enumerate}
-			\item Умножать строку на ненулевое число.
-			\item Переставить две строчки.
-			\item Заменить строку на сумму ее и какой-то другой.
-			\item Прибавить ко второй строке $\alpha \cdot$ первую.
-		\end{enumerate}
-	\end{method}
-	\subsection{Определитель.}
-	\begin{definition}
-		Матрица~--- $n$ строк размера $m$ ($v_i = (a_1, \dots, a_m)$). Тогда функция det~--- это такая функция $(v_1, \dots, v_n) \xrightarrow{\det} F$ ($char F \not= 2$), что она:
+	
+	\section{Построение регулярного выражения по ДКА}
+	
+	\begin{statement}
+		По ДКА можно построить Regex.
+	\end{statement}
+	
+	\begin{proof}
+		Пусть дан ДКА $(\Sigma, Q, s, F, \delta)$, $Q = \{ q_1, \ldots, q_n \}$, $s = q_{i_0}$.
+		
+		Для $1 \leqslant i, j \leqslant n$ и $0 \leqslant k \leqslant n$ определим $R^k_{ij}$~--- регулярное выражение, задающее множество строк $w$, переводящих автомат из $q_i$ в $q_j$ (т.е. $\hat\delta(q_i, w) = q_j$), причём все промежуточные состояния на этом пути (не считая, возможно, самих $q_i$ и $q_j$, если путь через них проходит несколько раз) имеют номер $\leqslant k$.
+		
+		\textbf{База ($k = 0$).} Промежуточных состояний нет вообще, то есть переход должен быть по одному символу (или по пустой строке, если $i = j$):
+		
+		$$R^0_{ij} = \bigcup \{ c \in \Sigma \mid \delta(q_i, c) = q_j \} \cup \begin{cases} \{ e \} & i = j \\ \emptyset & i \neq j \end{cases}$$
+		
+		(объединение по всем подходящим символам $c$; если такого $c$ нет и $i \neq j$, полагаем $R^0_{ij} = \emptyset$).
+		
+		\textbf{Переход ($k \to k$).} Путь из $q_i$ в $q_j$ с промежуточными состояниями $\leqslant k$ либо вообще не проходит через $q_k$ как промежуточное состояние, либо проходит через него один или несколько раз. В первом случае это путь с промежуточными состояниями $\leqslant k - 1$. Во втором~--- его можно разбить на: путь из $q_i$ в $q_k$ (промежуточные $\leqslant k-1$), затем ноль или более раз путь из $q_k$ в $q_k$ (промежуточные $\leqslant k-1$), затем путь из $q_k$ в $q_j$ (промежуточные $\leqslant k-1$). Отсюда рекуррентная формула:
+		
+		$$R^k_{ij} = R^{k-1}_{ij} \mid R^{k-1}_{ik} \left( R^{k-1}_{kk} \right)^* R^{k-1}_{kj}$$
+		
+		Индукцией по $k$ получаем, что $R^k_{ij}$~--- корректно построенное регулярное выражение (по определению $Reg$: объединение, конкатенация и $*$ применены конечное число раз к базовым выражениям).
+		
+		\textbf{Итог.} Строка $w \in L(A)$ тогда и только тогда, когда $\hat\delta(s, w) \in F$, то есть $w$ переводит $q_{i_0}$ в некоторое $q_j \in F$, причём промежуточные состояния на пути~--- это состояния из $Q$, то есть с номерами $\leqslant n$. Значит:
+		
+		$$L(A) = \bigcup_{q_j \in F} R^n_{i_0 j}$$
+		
+		Это выражение конечно (сумма по конечному $F$ конечных выражений $R^n_{i_0 j}$), то есть $L(A) \in Reg$.
+	\end{proof}
+	
+	\section{Метод Ардена}
+	
+	\begin{lemma}[Лемма Ардена]
+		Пусть $\alpha, \beta \subseteq \Sigma^*$ и $L$ удовлетворяет уравнению
+		\[
+		L = \alpha L \cup \beta.
+		\]
+		Тогда:
 		\begin{itemize}
-			\item Полилинейная: $\det(v_1 + u_1, v_2, \dots, v_n) = \det(v_1, v_2, \dots, v_n) + \det(u_1, v_2, \dots, v_n)$, $\det(\alpha v_1, v_2, \dots, v_n) = \alpha \det(v_1, v_2, \dots, v_n)$.
-			\item Кососимметричная: $\det(v_1, \dots, v_{i - 1}, v_j, v_{i + 1}, \dots, v_{j - 1}, v_i, v_{j + 1}, \dots, v_n) = -\det(v_1, \dots, v_n)$.
+			\item $L = \alpha^* \beta$~--- решение уравнения всегда;
+			\item если $e \notin \alpha$, то это решение единственно;
+			\item если $e \in \alpha$, то $L = \alpha^*\beta \cup N$ является решением при \emph{любом} $N \subseteq \Sigma^*$, то есть решение не единственно.
 		\end{itemize}
+	\end{lemma}
+	
+	\begin{proof}
+		\textbf{$\alpha^*\beta$ есть решение.} Проверим $\alpha^*\beta = \alpha(\alpha^*\beta) \cup \beta$. Пусть $x \in \alpha^*\beta$.
+		\begin{itemize}
+			\item Если $x \in \beta$, то $x \in \beta \subseteq \alpha(\alpha^*\beta) \cup \beta$ (так как $e \in \alpha^*$, то $\beta \subseteq \alpha^*\beta$, и включение в правую часть очевидно).
+			\item Если $x \notin \beta$, то $x \in \alpha L$ в смысле разложения $\alpha^* = \{e\} \cup \alpha\alpha^*$: $x = yz$, $y \in \alpha$, $z \in \alpha^*\beta$. Индукцией по длине $x$ (используя, что при переходе к $z$ длина строго уменьшается, если $y \neq e$, а случай $y = e$ поглощается предыдущим пунктом) получаем $x \in \alpha(\alpha^*\beta)$.
+		\end{itemize}
+		Обратное включение $\alpha(\alpha^*\beta)\cup\beta \subseteq \alpha^*\beta$ следует прямо из $\alpha \alpha^* \subseteq \alpha^*$.
+		
+		\textbf{Единственность при $e \notin \alpha$.} Пусть $L$~--- любое решение, $L = \alpha L \cup \beta$. Индукцией по длине $w$ докажем $w \in L \Leftrightarrow w \in \alpha^*\beta$. Если $w \in N \setminus \alpha^*\beta$ для решения $L = \alpha^*\beta \cup N$, то из $L = \alpha L \cup \beta$ следует, что либо $w \in \beta$ (противоречие, $w \notin \alpha^*\beta \supseteq \beta$), либо $w = yz$, $y \in \alpha$, $y \neq e$ (так как $e \notin \alpha$), $z \in L$, $|z| < |w|$; по индукции $z \in \alpha^*\beta$, откуда $w = yz \in \alpha \alpha^*\beta \subseteq \alpha^*\beta$~--- противоречие. Значит $N = \emptyset$, решение единственно.
+		
+		\textbf{Неединственность при $e \in \alpha$.} Если $e \in \alpha$, то для любого $N \subseteq \Sigma^*$: $\alpha(\alpha^*\beta \cup N) \cup \beta = \alpha\alpha^*\beta \cup \alpha N \cup \beta = \alpha^*\beta \cup \alpha N$. Поскольку $e \in \alpha$, имеем $N \subseteq \alpha N$, а тогда несложно проверить, что $\alpha^*\beta \cup \alpha N = \alpha^*\beta \cup N$ (лишние элементы $\alpha N \setminus N$ уже содержатся в $\alpha^*\beta$, так как $\alpha \subseteq \alpha^*$). Значит $\alpha^*\beta \cup N$~--- тоже решение при любом $N$.
+	\end{proof}
+	
+	\subsection{Построение regex по ДКА методом системы уравнений}
+	
+	Пусть $A = (\Sigma, Q, s, F, \delta)$~--- ДКА, $Q = \{ q_0, \ldots, q_{n-1} \}$. Введём переменную $X_i$ для каждого состояния $q_i$~--- регулярное выражение, задающее множество строк, переводящих $q_i$ в какое-либо принимающее состояние:
+	\[
+	X_i = \bigcup_{c \in \Sigma} c \, X_{j(i,c)} \ \cup \ \begin{cases} \{e\}, & q_i \in F \\ \emptyset, & q_i \notin F \end{cases}, \qquad \text{где } \delta(q_i, c) = q_{j(i,c)}.
+	\]
+	Тогда $L(A) = X_{i_0}$, где $q_{i_0} = s$. Получаем систему из $n$ уравнений на $n$ переменных; решаем её, последовательно исключая переменные с помощью леммы Ардена: если уравнение имеет вид $X_i = \gamma X_i \cup \eta$ (после подстановки всех уже выраженных переменных), то по лемме Ардена (с $e \notin \gamma$, что обычно проверяется по построению) $X_i = \gamma^* \eta$.
+	
+	\begin{example}[Числа, кратные $3$, в двоичной записи]
+		ДКА: состояния~--- остатки $0,1,2$ от деления на $3$; при чтении бита $b$ остаток $r$ переходит в $(2r+b) \bmod 3$; старт и единственное принимающее состояние~--- $q_0$ (остаток $0$).
+		\[
+		X_0 = 0X_0 + 1X_1 + e, \qquad X_1 = 0X_2 + 1X_0, \qquad X_2 = 0X_1 + 1X_2.
+		\]
+		
+		По Ардену из третьего уравнения: $X_2 = 1^*0X_1$.
+		
+		Подставляем во второе: $X_1 = 0(1^*0X_1) + 1X_0 = (01^*0)X_1 + 1X_0$, по Ардену: $X_1 = (01^*0)^*1X_0$.
+		
+		Подставляем в первое: $X_0 = 0X_0 + (1X_1 + e)$, по Ардену: $X_0 = 0^*(1X_1 + e)$.
+		
+		Подставляем $X_1$: $X_0 = 0^*\left(1(01^*0)^*1\,X_0 \cup \{e\}\right) = \underbrace{0^*1(01^*0)^*1}_{=: \gamma}\, X_0 \ \cup \ 0^*$.
+		
+		Здесь $e \notin \gamma$ (кратчайшая строка в $\gamma$~--- «$11$»), поэтому ещё раз по Ардену:
+		\[
+		X_0 = \gamma^* \cdot 0^* = \left( 0^*1(01^*0)^*1 \right)^* 0^*.
+		\]
+		Это и есть искомый regex для чисел, кратных $3$, в двоичной записи (включая пустую строку и строки с ведущими нулями).
+	\end{example}
+	
+	\section{Лемма о накачке}
+	
+	\begin{lemma}[О накачке]
+		\[
+		\forall L \in Reg \; \exists n \in \mathbb{N} \; \forall s \in L,\ |s| \geqslant n \; \exists x, y, z:\ s = xyz,\ |xy| \leqslant n,\ |y| > 0,\ xy^k z \in L \; \forall k \in \mathbb{N}_0
+		\]
+	\end{lemma}
+	
+	\begin{proof}
+		Так как $L \in Reg$, по доказанному ранее существует ДКА $A = (\Sigma, Q, s_0, F, \delta)$ с $L(A) = L$. Положим $n = |Q|$~--- число состояний автомата.
+		
+		Пусть $s \in L$, $|s| \geqslant n$, $s = c_1 c_2 \ldots c_m$, $m \geqslant n$. Рассмотрим последовательность состояний, которые автомат проходит при чтении первых $n$ символов строки $s$:
+		\[
+		p_0 = s_0,\quad p_i = \hat\delta(s_0, c_1 \ldots c_i),\quad i = 0, 1, \ldots, n.
+		\]
+		
+		Всего в этой последовательности $n + 1$ состояние (от $p_0$ до $p_n$), а различных состояний в автомате всего $n = |Q|$. По принципу Дирихле среди $p_0, \ldots, p_n$ найдутся два одинаковых: $p_i = p_j$ для некоторых $0 \leqslant i < j \leqslant n$.
+		
+		Определим:
+		\[
+		x = c_1 \ldots c_i, \qquad y = c_{i+1} \ldots c_j, \qquad z = c_{j+1} \ldots c_m.
+		\]
+		
+		Тогда:
+		\begin{itemize}
+			\item $s = xyz$ по построению;
+			\item $|xy| = j \leqslant n$, так как $j \leqslant n$ по выбору индексов;
+			\item $|y| = j - i > 0$, так как $i < j$;
+			\item $xy^k z \in L$ для всех $k \in \mathbb{N}_0$: автомат идёт из $s_0$ в $p_i$ по строке $x$; поскольку $p_i = p_j$, чтение $y$ переводит автомат из $p_i$ обратно в $p_i$ (то есть $y$ можно вставлять любое число раз, включая ноль, не меняя, в какое состояние автомат придёт после $x y^k$); значит, автомат после $xy^k$ всегда оказывается в состоянии $p_i$, а далее по $z$ приходит в то же состояние $\hat\delta(p_j, z) = \hat\delta(p_i, z)$, в котором он оказывался после исходной строки $s = xyz$, то есть в некотором $f \in F$. Следовательно, $xy^k z \in L$ для любого $k \geqslant 0$.
+		\end{itemize}
+	\end{proof}
+	
+	\section{Минимальные автоматы}
+	
+	\begin{definition}[Достижимое состояние]
+		Состояние $q \in Q$ ДКА $(\Sigma, Q, s, F, \delta)$ называется достижимым, если существует строка $w \in \Sigma^*$ такая, что $\hat\delta(s, w) = q$. Автомат называется приведённым (по достижимости), если все его состояния достижимы.
 	\end{definition}
-	\noindent
-	Свойства:
+	
+	\begin{definition}[Различимые состояния]
+		Состояния $p, q \in Q$ называются различимыми, если существует строка $w \in \Sigma^*$ такая, что ровно одно из $\hat\delta(p, w), \hat\delta(q, w)$ лежит в $F$ (то есть автомат, запущенный из $p$ и из $q$, по-разному реагирует на $w$: принимает в одном случае и не принимает в другом). В противном случае состояния называются неразличимыми (эквивалентными), $p \sim q$.
+	\end{definition}
+	
+	\begin{statement}
+		Отношение $\sim$~--- отношение эквивалентности на $Q$.
+	\end{statement}
+	
+	\begin{definition}[Минимальный автомат]
+		ДКА называется минимальным, если он приведён (все состояния достижимы) и в нём нет различных неразличимых состояний (то есть $p \sim q \Rightarrow p = q$).
+	\end{definition}
+	
+	\subsection{Алгоритм минимизации}
+	
+	Строим $\sim$ индукцией, уточняя разбиение состояний на классы:
+	
 	\begin{itemize}
-		\item Если есть нулевая строка, то $\det A = 0$.
-		\item Если есть две равные (или пропорциональные) строки, то $\det A = 0$ (если $char F \not= 2$).
-		\item $4$-ая операция метода Гаусса не меняет определитель.
+		\item \textbf{База.} $p \sim_0 q \Leftrightarrow (p \in F \Leftrightarrow q \in F)$~--- состояния неразличимы строкой длины $0$, если оба терминальные или оба нет.
+		\item \textbf{Шаг.} $p \sim_{k+1} q \Leftrightarrow p \sim_k q$ и $\forall c \in \Sigma:\ \delta(p, c) \sim_k \delta(q, c)$~--- состояния неразличимы строками длины $\leqslant k+1$, если сами неразличимы строками длины $\leqslant k$, и после чтения любого символа переходят в состояния, неразличимые строками длины $\leqslant k$.
 	\end{itemize}
+	
+	Поскольку $\sim_{k+1}$ всегда мельче или равно $\sim_k$ (уточняет разбиение), а число состояний конечно, процесс стабилизируется: найдётся $k_0 \leqslant |Q|$ такое, что $\sim_{k_0} \, = \, \sim_{k_0 + 1}$, и тогда $\sim \, = \, \sim_{k_0}$.
+	
 	\begin{statement}
-		Определитель не более чем один.
+		$\sim \, = \bigcap\limits_{k = 0}^\infty \sim_k$, и процесс стабилизируется не более чем за $|Q| - 1$ шаг.
 	\end{statement}
+	
+	\subsection{Построение минимального автомата}
+	
+	\begin{definition}[Фактор-автомат]
+		Пусть $A = (\Sigma, Q, s, F, \delta)$~--- приведённый ДКА. Определим $A / \sim \, = (\Sigma, Q/\sim, [s], F/\sim, \bar\delta)$, где:
+		
+		$Q/\sim$~--- множество классов эквивалентности отношения $\sim$;
+		
+		$[s]$~--- класс, содержащий начальное состояние;
+		
+		$F/\sim \, = \{ [q] \mid q \in F \}$;
+		
+		$\bar\delta([q], c) = [\delta(q, c)]$.
+	\end{definition}
+	
+	\begin{statement}
+		Определение $\bar\delta$ корректно (не зависит от выбора представителя класса), и $A / \sim$~--- минимальный автомат с $L(A/\sim) = L(A)$.
+	\end{statement}
+	
 	\begin{proof}
-		Все операции метода Гаусса контролируемо меняют определитель. Тогда есть два варианта, когда мы дошли до конца алгоритма:
-		\begin{enumerate}
-			\item Нижняя строка $0$. Тогда определитель $0$. Тогда он и был $0$, тк мы только умножаем его. Отсюда следует, что если определитель $0$, то матрица не обратима.
-			\item Все строки не $0$. Тогда делаем из матрицы единичную. У нее определитель $1$. Идя в обратную сторону мы однозначно восстанавливаем определитель.
-		\end{enumerate}
+		Корректность $\bar\delta$ следует прямо из определения $\sim$ (шаг индукции): если $p \sim q$, то для любого $c$ выполнено $\delta(p, c) \sim \delta(q, c)$, то есть $[\delta(p,c)] = [\delta(q,c)]$.
+		
+		По индукции на длине строки $w$ получаем $\hat{\bar\delta}([s], w) = [\hat\delta(s, w)]$, откуда $\hat{\bar\delta}([s], w) \in F/\sim \, \Leftrightarrow \hat\delta(s, w) \in F$, то есть $L(A/\sim) = L(A)$.
+		
+		Приведённость $A/\sim$ следует из приведённости $A$ (образ достижимого состояния достижим). Отсутствие различимых состояний: если бы $[p] \neq [q]$ были неразличимы в $A/\sim$, то по построению $p$ и $q$ были бы неразличимы и в $A$, то есть $p \sim q$, откуда $[p] = [q]$~--- противоречие.
 	\end{proof}
-	\begin{statement}
-		$\det(AB) = \det(A) \cdot \det(B)$.
-	\end{statement}
-	\subsection{Метод Крамера.}
-	\begin{method}[Крамера]
-		Дана матрица $A$ размера $n \times n$ с $\det(A) \not= 0$, $X$~--- столбец неизвестных $(x_1, \dots, x_n)$ и $B$~--- столбец свободных членов $(b_1, \dots, b_n)$. Тогда решение по методу Крамера выглядит вот так:
-		\begin{quote}
-			Каждый неизвестный $x_i$ вычисляется по формуле $x_i = \frac{\det(A_i)}{\det(A)}$, где $\det(A)$~--- определитель основной матрицы, $\det(A_i)$~--- определитель матрицы, полученной заменой $i$-го столбца матрицы $A$ на столбец $B$.
-		\end{quote}
-	\end{method}
-	\subsection{Ранговый метод в комбинаторике.}
-	Вершины~--- $\{ 0, 1, 2 \}^n$. Ребра~--- соединяем вершину со всеми, которые получаются прибавлением единицы.
-	\subsection{Определенные и полу-определенные матрицы.}
-	\begin{definition}[Определенная матрица]
-		Квадратная матрица $A$ размера $n \times n$ называется положительно определенной, если для любого ненулевого вектора $x \in R^n$ выполняется условие: $x^T A x > 0$.
+	
+	\subsection{Теорема Майхилла--Нероуда}
+	
+	\begin{definition}
+		Для языка $L \subseteq \Sigma^*$ определим отношение $\equiv_L$ на $\Sigma^*$: $x \equiv_L y$, если
+		\[
+		\forall z \in \Sigma^* : \ xz \in L \Leftrightarrow yz \in L.
+		\]
 	\end{definition}
-	\begin{definition}[Полу-определенная матрица]
-		Квадратная матрица $A$ размера $n \times n$ называется положительно полу-определенной, если для любого вектора $x \in R^n$ выполняется условие: $x^T A x \geqslant 0$.
-	\end{definition}
+	
+	\begin{theorem}[Майхилл--Нероуд]
+		Следующие условия эквивалентны:
+		\begin{enumerate}
+			\item $L$~--- регулярный язык;
+			\item $\equiv_L$ имеет конечное число классов эквивалентности;
+			\item $L$~--- объединение некоторых классов эквивалентности отношения конечного индекса, согласованного с конкатенацией.
+		\end{enumerate}
+		Более того, число классов эквивалентности $\equiv_L$ равно числу состояний минимального ДКА для $L$.
+	\end{theorem}
+	
+	\begin{proof}
+		$(1) \Rightarrow (2)$. Пусть $A = (\Sigma, Q, s, F, \delta)$~--- приведённый ДКА для $L$. Определим отображение $\varphi: \Sigma^* \rightarrow Q$, $\varphi(w) = \hat\delta(s, w)$. Если $\varphi(x) = \varphi(y)$, то $\hat\delta(s, x) = \hat\delta(s, y)$, откуда для любого $z$ имеем $\hat\delta(s, xz) = \hat\delta(\hat\delta(s,x), z) = \hat\delta(\hat\delta(s,y), z) = \hat\delta(s, yz)$, то есть $xz \in L \Leftrightarrow yz \in L$. Значит, $\varphi(x) = \varphi(y) \Rightarrow x \equiv_L y$, то есть классов $\equiv_L$ не больше, чем $|Q|$~--- конечное число.
+		
+		$(2) \Rightarrow (1)$. Пусть $\equiv_L$ имеет конечное число классов. Построим ДКА, состояниями которого будут классы $\equiv_L$: $Q = \Sigma^*/{\equiv_L}$, $s = [e]$, $\delta([x], c) = [xc]$ (корректно определено, так как $\equiv_L$ согласовано с приписыванием справа: $x \equiv_L y \Rightarrow xc \equiv_L yc$), $F = \{ [x] \mid x \in L \}$ (корректно определено, так как $x \equiv_L y$ и $x \in L \Rightarrow y \in L$, подставляя $z = e$). По индукции $\hat\delta([e], w) = [w]$, откуда $w \in L(A) \Leftrightarrow [w] \in F \Leftrightarrow w \in L$, то есть $L(A) = L$.
+		
+		$(1) \Leftrightarrow (3)$ и равенство числа классов числу состояний минимального автомата следуют из того, что построенный в $(2) \Rightarrow (1)$ автомат по классам $\equiv_L$ и есть минимальный автомат для $L$: он приведён (каждый класс $[x]$ достижим строкой $x$), и в нём нет неразличимых состояний, так как для различных классов $[x] \neq [y]$ по определению $\equiv_L$ найдётся $z$, различающее $xz \in L$ и $yz \in L$.
+	\end{proof}
+	
 	\begin{statement}
-		$(AB)^T=B^TA^T$.
-	\end{statement}
-	\begin{statement}
-		Пусть $A$~--- матрица смежности $G$; $\det A \equiv^2$ \# совершенных паросочетаний $G$. \\
-		Пусть в $G$ все степени $\vdots$ $2$; тогда в $G$ четное число совершенных паросочетаний.
-	\end{statement}
-	\begin{statement}
-		Пусть $S$~--- конечное множество натуральных чисел. $A \subseteq S$~--- хорошее, если $\Pi_{x \in A} x = m^2$. Тогда \# хороших множеств $= 2^k$.
-	\end{statement}
-	\begin{statement}
-		Пусть $G$~--- связный граф на $100$ вершинах. $E$~--- его ребра. $A \subseteq F$~--- хорошее, если $\forall v$ \# $\{ uv \in A \}$ $\vdots$ $2$. \# хороших множеств $= 2^{|E| - 100 + 1}$.
+		Минимальный ДКА для регулярного языка $L$ единствен с точностью до переименования состояний (изоморфизма).
 	\end{statement}
 	
-	
-	
-	
-	
+	\section{Контекстно-свободные грамматики}
+
+    \begin{definition}[КС-грамматика]
+    	КС-грамматика~--- это набор $(N, \Sigma, P, S)$, где $N$~--- конечное множество нетерминальных символов, $\Sigma$~--- конечное множество терминальных символов ($N \cap \Sigma = \emptyset$), $P \subseteq N \times (N \cup \Sigma)^*$~--- конечное множество правил вывода (пишем $A \rightarrow \alpha$ вместо $(A, \alpha) \in P$), $S \in N$~--- стартовый символ. Язык, порождаемый грамматикой: $L(G) = \{ w \in \Sigma^* \mid S \Rightarrow^* w \}$, где $\Rightarrow^*$~--- возможность за несколько шагов заменить $S$ на $w$, подставляя на каждом шаге правую часть какого-то правила вместо одного из нетерминалов в текущей строке.
+    \end{definition}
+    
+    \begin{example}[$0^n1^n$]
+    	$S \rightarrow 0S1 \mid e$.
+    	
+    	Каждое применение первого правила добавляет по одному символу $0$ слева и $1$ справа, второе правило завершает вывод; отсюда $L(G) = \{ 0^n1^n \mid n \geqslant 0 \}$.
+    \end{example}
+    
+    \begin{example}[ПСП~--- правильные скобочные последовательности]
+    	$S \rightarrow SS \mid (S) \mid e$.
+    	
+    	Правило $(S)$ заключает уже правильную последовательность в скобки, $SS$~--- склеивает две правильные последовательности подряд, $e$~--- база (пустая последовательность тоже правильная).
+    \end{example}
+    
+    \begin{problem}
+    	Построить КС-грамматики для языков:
+    	\begin{enumerate}
+    		\item $\{ 0^n1^n2^m3^m \mid n, m \geqslant 0 \}$
+		    \item $\{ 0^n1^m2^m3^n \mid n, m \geqslant 0 \}$
+		    \item Палиндромы над $\Sigma = \{ 0, 1, 2 \}$
+		    \item Не палиндромы над $\Sigma = \{ 0, 1 \}$
+    	\end{enumerate}
+    \end{problem}
+    
+    \begin{solution}
+    	\begin{enumerate}
+    		\item $S \rightarrow AB, \qquad A \rightarrow 0A1 \mid e, \qquad B \rightarrow 2B3 \mid e$.
+			\item $S \rightarrow 0S3 \mid A, \qquad A \rightarrow 1A2 \mid e$.
+			\item $S \rightarrow 0S0 \mid 1S1 \mid 2S2 \mid 0 \mid 1 \mid 2 \mid e$.
+			\item $S \rightarrow 0S0 \mid 1S1 \mid 0T1 \mid 1T0, \qquad T \rightarrow 0T \mid 1T \mid e$.
+    	\end{enumerate}
+    \end{solution}
+    
+    \section{Автоматы с магазинной памятью}
+
+    \begin{definition}[МП-автомат]
+    	Автомат с магазинной памятью (МП-автомат)~--- это набор $(\Sigma, Q, s, F, \Gamma, z_0, \delta)$, где $\Sigma$~--- алфавит, $Q$~--- множество состояний, $s \in Q$~--- начальное состояние, $F \subseteq Q$~--- принимающие состояния, $\Gamma$~--- стековый алфавит, $z_0 \in \Gamma$~--- символ дна стека (в начале работы на стеке лежит только он), $\delta: Q \times (\{e\} \cup \Sigma) \times \Gamma \rightarrow 2^{Q \times \Gamma^*}$~--- функция перехода: по текущему состоянию, читаемому символу (либо $e$, если переход не потребляет вход) и символу на вершине стека сопоставляет множество пар (новое состояние, строка, которой заменяется снятый со стека символ~--- первый символ строки становится новой вершиной стека).
+    \end{definition}
+    
+    \begin{definition}[Конфигурация и вычисление]
+    	Конфигурация МПсутомата~--- тройка $(q, w, \gamma) \in Q \times \Sigma^* \times \Gamma^*$: текущее состояние, непрочитанный остаток входа, содержимое стека (первый символ $\gamma$~--- вершина стека).
+    	
+    	Один шаг вычисления: $(q, cw, Z\gamma) \vdash (q', w, \eta\gamma)$, если $c \in \Sigma \cup \{e\}$ и $(q', \eta) \in \delta(q, c, Z)$.
+    	
+    	$\vdash^*$~--- рефлексивно-транзитивное замыкание $\vdash$.
+    	
+    	Автомат принимает строку $w$, если $(s, w, z_0) \vdash^* (q, e, \gamma)$ для некоторого $q \in F$ и произвольного $\gamma \in \Gamma^*$ (принятие по допускающему состоянию). Язык, распознаваемый автоматом: $L(P) = \{ w \in \Sigma^* \mid$ автомат принимает $w \}$.
+    \end{definition}
+    
+    \begin{example}[$0^n1^n$]
+    	$\Sigma = \{0, 1\}$, $\Gamma = \{z_0, 0\}$, $Q = \{s, q_1, q_2, f\}$, начальное состояние~--- $s$, единственное принимающее~--- $f$. Переходы:
+    	\begin{itemize}
+    		\item $\delta(s, 0, z_0) = \{ (q_1, 0z_0) \}$~--- первый $0$ кладём на стек поверх $z_0$;
+    		\item $\delta(q_1, 0, 0) = \{ (q_1, 00) \}$~--- каждый следующий $0$ тоже кладём на стек (петля);
+    		\item $\delta(q_1, 1, 0) = \{ (q_2, e) \}$~--- первая $1$ снимает верхний $0$ и переводит в $q_2$;
+    		\item $\delta(q_2, 1, 0) = \{ (q_2, e) \}$~--- каждая следующая $1$ снимает по одному $0$ (петля);
+    		\item $\delta(q_2, e, z_0) = \{ (f, z_0) \}$~--- когда на вершине стека снова $z_0$, по $\varepsilon$-переходу принимаем;
+    		\item $\delta(s, e, z_0) = \{ (f, z_0) \}$~--- отдельный переход для пустой строки ($n = 0$).
+    	\end{itemize}
+    	
+    	\begin{figure}[H]
+    		\centering
+    		\begin{tikzpicture}[
+    			>=Stealth,
+    			shorten >=1pt,
+    			node distance=3.2cm,
+    			auto,
+    			every state/.style={draw, circle, minimum size=1cm}
+    		]
+    			\node[state, initial, initial text=] (s) {$s$};
+    			\node[state, right of=s] (q1) {$q_1$};
+    			\node[state, below of=q1] (q2) {$q_2$};
+    			\node[state, accepting, below of=s] (f) {$f$};
+    			
+    			\path[->]
+    				(s) edge node {$0,\, z_0/0z_0$} (q1)
+    				(q1) edge [loop above] node {$0,\, 0/00$} (q1)
+    				(q1) edge node {$1,\, 0/e$} (q2)
+    				(q2) edge [loop right] node {$1,\, 0/e$} (q2)
+    				(q2) edge node {$e,\, z_0/z_0$} (f)
+    				(s) edge node {$e,\, z_0/z_0$} (f);
+    		\end{tikzpicture}
+    		\caption{МП-автомат для $0^n1^n$}
+    	\end{figure}
+    	
+    	Идея: автомат кладёт по одному $0$ на стек за каждый прочитанный $0$, а затем снимает по одному $0$ за каждый прочитанный $1$; строка принимается, если ровно к моменту, когда вход закончился, стек опустел до дна~--- это и означает, что число $0$ и число $1$ совпало.
+    	
+    	Трассировка на строке $000111$:
+    	\[
+    	(s,\, 000111,\, z_0) \vdash (q_1,\, 00111,\, 0z_0) \vdash (q_1,\, 0111,\, 00z_0) \vdash (q_1,\, 111,\, 000z_0)\ \vdash
+    	\]
+    	\[
+    	\vdash\ (q_2,\, 11,\, 00z_0) \vdash (q_2,\, 1,\, 0z_0) \vdash (q_2,\, e,\, z_0) \vdash (f,\, e,\, z_0).
+    	\]
+    	Стек последовательно заполняется тремя $0$, затем опустошается тремя $1$; вход прочитан полностью, стек содержит только $z_0$~--- строка принимается.
+    \end{example}
+    
+    \begin{example}[ПСП~--- правильные скобочные последовательности]
+    	$\Sigma = \{ (,\, ) \}$, $\Gamma = \{ z_0, ( \}$, $Q = \{ p, f \}$, начальное состояние~--- $p$, принимающее~--- $f$. Переходы:
+    	\begin{itemize}
+    		\item $\delta(p, (, X) = \{ (p, (X) \}$ для любого $X \in \Gamma$~--- открывающая скобка кладётся на стек независимо от того, что было на вершине;
+    		\item $\delta(p, ), () = \{ (p, e) \}$~--- закрывающая скобка снимает верхнюю открывающую;
+    		\item $\delta(p, e, z_0) = \{ (f, z_0) \}$~--- если стек опустел до дна, строка принимается.
+    	\end{itemize}
+    	
+    	\begin{figure}[H]
+    		\centering
+    		\begin{tikzpicture}[
+    			>=Stealth,
+    			shorten >=1pt,
+    			node distance=4cm,
+    			auto,
+    			every state/.style={draw, circle, minimum size=1cm}
+    		]
+    			\node[state, initial, initial text=] (p) {$p$};
+    			\node[state, accepting, right of=p] (f) {$f$};
+    			
+    			\path[->]
+    				(p) edge [loop above] node {$($,\, $X/(X$} (p)
+    				(p) edge [loop below] node {$)$,\, $(/e$} (p)
+    				(p) edge node {$e,\, z_0/z_0$} (f);
+    		\end{tikzpicture}
+    		\caption{МП-автомат для ПСП}
+    	\end{figure}
+    	
+    	Например, строка $(()(()))()$: каждая открывающая скобка кладётся на стек, каждая закрывающая снимает верхнюю открывающую. Строка правильная тогда и только тогда, когда в любой момент чтения число ещё не закрытых открывающих скобок неотрицательно, а к концу строки стек опустошается до $z_0$~--- ровно это и проверяет автомат.
+    \end{example}
+    
+    \begin{problem}
+    	Построить МП-автоматы для языков:
+    	\begin{enumerate}
+    		\item $\{ 0^n1^{2n} \mid n \geqslant 0 \}$
+    		\item $\{ 0^{2n}1^n \mid n \geqslant 0 \}$
+    		\item $\{ 0^n1^n \mid n \geqslant 0 \} \cup \{ 0^n1^{2n} \mid n \geqslant 0 \}$
+    		\item $\{ w \in \{0,1\}^* \mid \#0(w) = \#1(w) \}$
+    		\item $\{ 0^n1^m2^m3^n \mid n, m \geqslant 0 \}$
+    		\item $\{ 0^n1^n2^m3^m \mid n, m \geqslant 0 \}$
+    	\end{enumerate}
+    \end{problem}
+    
+    \section{Лемма о накачке для КС-грамматик}
+    
+    \begin{lemma}[О накачке для КС-языков]
+    	Пусть $L$~--- КС-язык. Тогда существует число $p \geqslant 1$ (длина накачки) такое, что для любой строки $s \in L$ с $|s| \geqslant p$ найдётся разбиение $s = uvxyz$, удовлетворяющее:
+    	\[
+    	|vxy| \leqslant p, \qquad |vy| > 0, \qquad uv^kxy^kz \in L \quad \forall k \geqslant 0.
+    	\]
+    \end{lemma}
+    
+    \begin{proof}
+    	Пусть $G$~--- грамматика в нормальной форме Хомского для $L$ (с точностью до конечного набора коротких строк), $t = |N|$~--- число нетерминалов. Положим $p = 2^{t+1}$.
+    	
+    	Рассмотрим $s \in L$, $|s| \geqslant p$, и дерево вывода $T$ минимальной высоты для $s$. Так как в НФХ каждое внутреннее правило бинарно, дерево бинарно; в бинарном дереве высоты $h$ результат имеет длину $\leqslant 2^{h-1}$ (индукция по $h$). Из $|s| \geqslant 2^t$ следует $h \geqslant t+1$.
+    	
+    	На самом длинном пути от корня до листа~--- не менее $t+1$ внутренних узлов, помеченных нетерминалами, при всего $t$ различных нетерминалах. По принципу Дирихле среди последних $t+1$ узлов пути найдутся два с одинаковой меткой $A$, один~--- предок другого, причём поддерево верхнего $A$ целиком укладывается в глубину $\leqslant t+1$ (откуда $|vxy| \leqslant 2^t \leqslant p$).
+    	
+    	Пусть поддерево верхнего $A$ даёт подстроку $vxy$ (то есть $s = u\,(vxy)\,z$), а поддерево нижнего $A$~--- подстроку $x$ внутри неё. Так как между двумя вхождениями $A$ есть хотя бы один шаг бинарного правила, $|vy| > 0$. Из $A \Rightarrow^* vAy$ и $A \Rightarrow^* x$ индукцией по $k$ получаем $A \Rightarrow^* v^kxy^k$ для любого $k \geqslant 0$, а вместе с $S \Rightarrow^* uAz$~--- $uv^kxy^kz \in L$ для всех $k \geqslant 0$.
+    \end{proof}
+    
+    \subsection{Применение леммы}
+    
+    \begin{problem}
+    	С помощью леммы о накачке доказать, что следующие языки не являются КС:
+    	\begin{enumerate}
+    		\item $\{ 0^n1^{n^2} \mid n \geqslant 0 \}$
+    		\item $\{ 0^n1^m2^n3^m \mid n, m \geqslant 0 \}$
+    		\item $\{ 0^n1^m2^n \mid n, m \geqslant 0,\ n \neq m \}$
+    		\item $\{ 0^n1^n2^m \mid n, m \geqslant 0,\ m > n \}$
+			\item $0^p$, $p$~--- простое
+			\item $ww$~--- тандемные повторы
+    	\end{enumerate}
+    \end{problem}
+    
+    \section{Нормальная форма Хомского}
+    
+    \begin{definition}[КС-грамматика в НФХ]
+    	КС-грамматика находится в нормальной форме Хомского (НФХ), если каждое правило имеет один из трёх видов:
+    	\[
+    	A \rightarrow a, \quad a \in \Sigma; \qquad\qquad A \rightarrow BC, \quad B, C \in N;
+    	\]
+    	\[
+    	S \rightarrow e
+    	\]
+		разрешено, только если $e \in L(G)$, и только при условии, что $S$ не встречается в правых частях никаких правил.
+    \end{definition}
+    
+    \begin{theorem}
+    	Для любой КС-грамматики $G$ существует эквивалентная грамматика $G'$ в НФХ.
+    \end{theorem}
+    
+    \begin{proof}
+    	Приведение выполняется пятью шагами.
+    	
+    	\textbf{Шаг 0 (новый старт).} Если $S$ встречается в правой части каких-либо правил, вводим новый стартовый символ $S'$ с правилом $S' \rightarrow S$~--- это гарантирует, что старый $S$ можно будет безопасно избавить от $e$-правила на шаге 2.
+    	
+    	\textbf{Шаг 1 (удаление длинных правил).} Пусть правило $A \rightarrow B_1B_2 \ldots B_n$, $n \geqslant 3$. Вводим новые нетерминалы $C_1, \ldots, C_{n-2}$ и заменяем правило цепочкой:
+    	\[
+    	A \rightarrow B_1C_1, \qquad C_1 \rightarrow B_2C_2, \qquad \ldots, \qquad C_{n-2} \rightarrow B_{n-1}B_n.
+    	\]
+    	Применяем ко всем правилам длины $\geqslant 3$.
+    	
+    	\textbf{Шаг 2 (удаление $e$-правил).} Находим множество нуллифицируемых нетерминалов ($A$ такой, что $A \Rightarrow^* e$) итеративным пересчётом: $A$ нуллифицируем, если $A \rightarrow e \in P$, или все символы правой части какого-то правила для $A$ нуллифицируемы. Для каждого правила, где встречается нуллифицируемый символ, добавляем версию правила без этого символа (кроме случая, когда правая часть становится пустой). После этого убираем все правила вида $X \rightarrow e$, кроме, возможно, $S' \rightarrow e$ (оставляем, только если $e \in L(G)$).
+    	
+    	\textbf{Шаг 3 (удаление цепных правил).} Правило вида $A \rightarrow B$ ($B \in N$)~--- цепное. Пока есть цепочка $A_1 \rightarrow A_2 \rightarrow \ldots \rightarrow A_n \rightarrow \gamma$ (где $\gamma$~--- уже не одиночный нетерминал), заменяем весь путь одним прямым правилом $A_1 \rightarrow \gamma$ и убираем промежуточные цепные правила.
+    	
+    	\textbf{Шаг 4 (удаление бесполезных символов).} Нетерминал $A$ называется \emph{порождающим}, если $A \Rightarrow^* w$ для некоторой $w \in \Sigma^*$; \emph{достижимым}, если $S \Rightarrow^* \alpha A \beta$ для некоторых $\alpha, \beta$. Символ, не являющийся порождающим или недостижимый,~--- бесполезен и удаляется вместе со всеми правилами, где участвует. Порядок важен: \textbf{сначала} убираем непорождающие символы, \textbf{затем}~--- среди оставшихся ищем недостижимые из $S$ (в обратном порядке можно ошибочно оставить символы, ссылающиеся друг на друга, но никогда не порождающие терминальную строку).
+    	
+    	\textbf{Шаг 5 (вынос терминалов).} Если терминал $c \in \Sigma$ встречается в правиле длины $\geqslant 2$, вводим новый нетерминал $N_c$ с правилом $N_c \rightarrow c$ и заменяем $c$ на $N_c$ во всех таких правилах (например, $A \rightarrow Bc$ становится $A \rightarrow BN_c$).
+    	
+    	После всех пяти шагов каждое правило имеет вид $A \rightarrow a$, $A \rightarrow BC$ или $S' \rightarrow e$~--- это и есть НФХ. Каждый шаг по построению сохраняет порождаемый язык.
+    \end{proof}
+    
+    \begin{example}[Приведение грамматики ПСП к НФХ]
+    	Рассмотрим грамматику $S \rightarrow (S)S \mid e$ над $\Sigma = \{(, )\}$ (язык правильных скобочных последовательностей).
+    	
+    	\textbf{Шаг 0.} Так как $S$ встречается в правой части, вводим $S' \rightarrow S$.
+    	
+    	\textbf{Шаг 1.} Правило $S \rightarrow (S)S$ имеет длину $4$. Вводим $A_1, A_2$:
+    	\[
+    	S \rightarrow A_1S, \qquad A_1 \rightarrow A_2), \qquad A_2 \rightarrow (S.
+    	\]
+    	Текущая грамматика:
+    	\[
+    	S' \rightarrow S, \qquad S \rightarrow A_1S, \qquad A_1 \rightarrow A_2), \qquad A_2 \rightarrow (S, \qquad S \rightarrow e.
+    	\]
+    	
+    	\textbf{Шаг 2.} Нуллифицируемы $S$ (правило $S \rightarrow e$) и транзитивно $S'$. Добавляем версии правил без $S$:
+    	\[
+    	S \rightarrow A_1S \mid A_1, \qquad A_2 \rightarrow (S \mid (.
+    	\]
+    	Убираем $S \rightarrow e$; так как $S'$ не встречается в правых частях, оставляем $S' \rightarrow e$. Текущая грамматика:
+    	\[
+    	S' \rightarrow S, \qquad S' \rightarrow e, \qquad S \rightarrow A_1S \mid A_1, \qquad A_1 \rightarrow A_2), \qquad A_2 \rightarrow (S \mid (.
+    	\]
+    	
+    	\textbf{Шаг 3.} Единственное цепное правило~--- $S' \rightarrow S$. Заменяем его на нецепные правила $S$: $S' \rightarrow A_1S \mid A_1$. Убираем $S' \rightarrow S$. Текущая грамматика:
+    	\[
+    	S' \rightarrow A_1S \mid A_1 \mid e, \qquad S \rightarrow A_1S \mid A_1, \qquad A_1 \rightarrow A_2), \qquad A_2 \rightarrow (S \mid (.
+    	\]
+    	
+    	\textbf{Шаг 4.} Все символы $S', S, A_1, A_2$ уже порождающие и достижимые из $S'$~--- бесполезных символов нет, грамматика не меняется.
+    	
+    	\textbf{Шаг 5.} Терминалы $($ и $)$ встречаются в правилах длины $2$ ($A_1 \rightarrow A_2)$ и $A_2 \rightarrow (S$). Вводим $L \rightarrow ($ и $R \rightarrow )$:
+    	\[
+    	\boxed{
+    	\begin{aligned}
+    		S' &\rightarrow A_1S \mid A_1 \mid e \\
+    		S &\rightarrow A_1S \mid A_1 \\
+    		A_1 &\rightarrow A_2R \\
+    		A_2 &\rightarrow LS \mid L \\
+    		L &\rightarrow ( \\
+    		R &\rightarrow )
+    	\end{aligned}
+    	}
+    	\]
+    	(Правило $A_2 \rightarrow ($~--- уже вида $A \rightarrow a$, его выносить не нужно.) Все правила теперь имеют вид $A \rightarrow a$, $A \rightarrow BC$ или $S' \rightarrow e$~--- грамматика в НФХ.
+    	
+    	\textit{Проверка} на строке $(())$: $S' \Rightarrow A_1 \Rightarrow A_2R \Rightarrow LSR \Rightarrow (SR \Rightarrow (A_1R \Rightarrow (A_2RR \Rightarrow (LRR \Rightarrow (())$.
+    \end{example}
+    
+    \section{Алгоритм Кока--Янгера--Касами (CYK)}
+    
+    \begin{definition}[Постановка задачи]
+    	Дана КС-грамматика $G$ в нормальной форме Хомского и строка $w = w_1w_2\ldots w_n \in \Sigma^*$. Требуется определить, верно ли $w \in L(G)$.
+    \end{definition}
+    
+    \begin{definition}[Таблица CYK]
+    	Для $1 \leqslant l \leqslant r \leqslant n$ определим
+    	\[
+    	dp[A][l][r] = 1 \ \Longleftrightarrow\ A \Rightarrow^* w_l w_{l+1} \ldots w_r
+    	\]
+    	--- достижимо ли из нетерминала $A$ подслово строки $w$ с позиции $l$ по позицию $r$ включительно.
+    \end{definition}
+    
+    \begin{statement}[Рекуррентная формула]
+    	База (подслова длины $1$):
+    	\[
+    	dp[A][l][l] = 1 \ \Longleftrightarrow\ (A \rightarrow w_l) \in P.
+    	\]
+    	Переход (подслова длины $\geqslant 2$):
+    	\[
+    	dp[A][l][r] = \bigvee_{(A \rightarrow BC) \in P} \ \bigvee_{l \leqslant k < r} \bigl( dp[B][l][k] \ \wedge\ dp[C][k+1][r] \bigr).
+    	\]
+    	То есть подслово $w_l \ldots w_r$ выводится из $A$ тогда и только тогда, когда найдётся правило $A \rightarrow BC$ и точка разбиения $k$, разрезающая подслово на две части, левая из которых выводится из $B$, а правая~--- из $C$.
+    \end{statement}
+    
+    \begin{corollary}
+    	$w \in L(G) \Longleftrightarrow dp[S][1][n] = 1$ (с поправкой на отдельную проверку $w = e$ через правило $S \rightarrow e$, если оно есть).
+    \end{corollary}
+    
+    \begin{method}[Алгоритм CYK]
+    	Таблицу $dp$ заполняют по возрастанию длины подслова $r - l$: сначала все базовые значения (длина $1$), затем длины $2, 3, \ldots, n$, на каждом шаге используя уже вычисленные значения для более коротких подслов (динамическое программирование по отрезкам).
+    	
+    	Время работы: подслов $O(n^2)$, для каждого перебираются точка разреза $k$ ($O(n)$ вариантов) и правило грамматики ($O(|P|)$ вариантов)~--- итого $O(n^3 |P|)$, то есть кубическая сложность по длине строки при фиксированной грамматике.
+    \end{method}
+    
+    \section{Машины Тьюринга}
+    
+    \begin{definition}[Машина Тьюринга]
+    	Машина Тьюринга (МТ)~--- это набор $(\Sigma, \Pi, Q, \delta, q_0, Y, N)$, где:
+    	\begin{itemize}
+    		\item $\Sigma$~--- входной алфавит;
+    		\item $\Pi \supseteq \Sigma$~--- ленточный алфавит (множество всех символов, которые могут быть записаны на ленте);
+    		\item $\varepsilon \in \Pi \setminus \Sigma$~--- специальный символ (пробел/пустота), обозначающий незаполненную ячейку ленты;
+    		\item $Q$~--- конечное множество состояний, $q_0 \in Q$~--- начальное состояние;
+    		\item $Y \subset Q$~--- множество допускающих состояний;
+    		\item $N \subset Q$~--- множество недопускающих (отвергающих) состояний, $Y \cap N = \emptyset$;
+    		\item $\delta: Q \times \Pi \rightarrow \{+1,-1\} \times \Pi \times Q$~--- функция перехода: по текущему состоянию и символу под головкой определяет направление сдвига головки ($+1$~--- вправо, $-1$~--- влево), символ, который записывается в текущую ячейку, и новое состояние.
+    	\end{itemize}
+    \end{definition}
+    
+    \begin{definition}[Конфигурация и вычисление]
+    	Конфигурация МТ~--- это содержимое ленты, текущее состояние и позиция головки. Один шаг вычисления определяется функцией $\delta$: если головка стоит на ячейке с символом $a$ в состоянии $q$ и $\delta(q, a) = (d, b, q')$, то $a$ заменяется на $b$, головка сдвигается на $d$, состояние становится $q'$.
+    	
+    	Вычисление останавливается, как только машина попадает в состояние из $Y \cup N$ (допускающее или отвергающее)~--- дальнейших шагов нет.
+    \end{definition}
+    
+    \begin{definition}[Язык, распознаваемый машиной]
+    	$L(M)$~--- множество слов $w \in \Sigma^*$ таких, что если запустить $M$ на ленте, содержащей $w$ (остальная лента заполнена $\varepsilon$), то $M$ останавливается в допускающем состоянии. Язык, для которого существует распознающая его МТ, называется формальным языком (более точно~--- рекурсивно перечислимым, если требуется только принятие; рекурсивным/разрешимым, если машина к тому же гарантированно останавливается на любом входе).
+    \end{definition}
+    
+    \begin{note}
+    	Помимо распознавания языков, МТ можно использовать как вычислитель функций: машина запускается на ленте, содержащей вход $x$, и если она останавливается, результатом вычисления считается содержимое ленты в момент остановки~--- значение $f(x)$. В этом случае интересует не факт остановки в $Y$ или $N$, а само итоговое содержимое ленты.
+    \end{note}
+    
+    \begin{example}[МТ, вычисляющая $f(x) = xx$]
+    	Построим машину, которая по входному слову $x \in \{0,1\}^*$ дописывает на ленте вторую его копию, то есть вычисляет $f(x) = xx$.
+    	
+    	\textit{Идея.} Используем «маркировку»: помеченные версии символов $\dot 0, \dot 1 \in \Pi$ обозначают те позиции исходного слова $x$, которые уже скопированы. Машина циклически: находит крайний слева непомеченный символ исходного блока, помечает его и запоминает его значение в состоянии; идёт вправо до конца уже написанного (до первого $\varepsilon$) и дописывает там копию запомненного символа; возвращается влево к началу, чтобы найти следующий непомеченный символ. Когда непомеченных символов в исходном блоке не остаётся~--- работа завершена, машина останавливается в $Y$.
+    	
+    	Состояния: $Q = \{ S, L_0, L_1, R_0, R_1, B, Y, N \}$, где $S$~--- старт (поиск первого непомеченного символа), $L_0/L_1$~--- «нашли непомеченный $0$/$1$, идём вправо до конца записанного», $R_0/R_1$~--- «дописали копию $0$/$1$ в конце, возвращаемся влево искать следующий непомеченный символ», $B$~--- «непомеченных символов больше нет, снимаем пометки», $Y$~--- допускающее (работа успешно завершена), $N$~--- отвергающее (используется, если на вход подано слово не над $\{0,1\}$).
+    	
+    	\begin{center}
+    		\begin{tabular}{c|c|c|c|c}
+    			состояние & читаем & пишем & сдвиг & новое состояние \\
+    			\hline
+    			$S$ & $0$ & $\dot 0$ & $+1$ & $L_0$ \\
+    			$S$ & $1$ & $\dot 1$ & $+1$ & $L_1$ \\
+    			$S$ & $\varepsilon$ & $\varepsilon$ & $+1$ & $Y$ \\
+    			\hline
+    			$L_0$ & $0,\, 1,\, \dot 0,\, \dot 1$ & (без изменений) & $+1$ & $L_0$ \\
+    			$L_0$ & $\varepsilon$ & $0$ & $-1$ & $R_0$ \\
+    			$L_1$ & $0,\, 1,\, \dot 0,\, \dot 1$ & (без изменений) & $+1$ & $L_1$ \\
+    			$L_1$ & $\varepsilon$ & $1$ & $-1$ & $R_1$ \\
+    			\hline
+    			$R_0$ & $0,\, 1,\, \dot 0,\, \dot 1$ & (без изменений) & $-1$ & $R_0$ \\
+    			$R_0$ & $\varepsilon$ & $\varepsilon$ & $+1$ & $S$ \\
+    			$R_1$ & $0,\, 1,\, \dot 0,\, \dot 1$ & (без изменений) & $-1$ & $R_1$ \\
+    			$R_1$ & $\varepsilon$ & $\varepsilon$ & $+1$ & $S$ \\
+    			\hline
+    			$B$ & $\dot 0$ & $0$ & $+1$ & $B$ \\
+    			$B$ & $\dot 1$ & $1$ & $+1$ & $B$ \\
+    			$B$ & $\varepsilon$ & $\varepsilon$ & $-1$ & $Y$ \\
+    		\end{tabular}
+    	\end{center}
+    	
+    	Начальная позиция головки~--- на левом конце слова $x$; на ленте до старта: $x\,\varepsilon\varepsilon\varepsilon\ldots$; после остановки в $Y$: $xx\,\varepsilon\varepsilon\ldots$ (все пометки $\dot0,\dot1$ снова стали обычными $0,1$).
+    \end{example}
+    
+    \begin{problem}
+    	Построить МТ для:
+    	\begin{enumerate}
+			\item $0^n1^n$
+			\item $0^n1^n2^m3^m$
+			\item Описать МТ для тандемных повторов
+		\end{enumerate}
+    \end{problem}
+    
+    \section{Машины Тьюринга, вычислимость, разрешимость}
+    
+    \subsection{Тезис Чёрча--Тьюринга}
+    
+    \begin{definition}[Тьюринг-полнота]
+    	Модель вычислений называется тьюринг-полной, если на ней можно реализовать любой алгоритм, вычислимый на машине Тьюринга (то есть модель по вычислительной силе не слабее МТ).
+    \end{definition}
+    
+    \begin{note}[Тезис Чёрча--Тьюринга]
+    	Любая интуитивно вычислимая функция (то есть функция, для которой существует какой-либо алгоритм её нахождения в общечеловеческом понимании) вычислима на машине Тьюринга. Это не математическая теорема (понятие «интуитивно вычислимая функция» не формализовано), а тезис~--- эмпирическое наблюдение, подтверждённое тем, что все известные на сегодня модели вычислений (лямбда-исчисление, рекурсивные функции, RAM-машины, реальные языки программирования и т.\,д.) оказались равносильны машине Тьюринга по вычислительной силе.
+    \end{note}
+    
+    \subsection{Универсальная машина Тьюринга}
+    
+    \begin{definition}[UTM]
+    	Универсальная машина Тьюринга (UTM)~--- это одна фиксированная машина Тьюринга $U$, которая на вход принимает пару $(\ulcorner M \urcorner, w)$~--- описание (код) произвольной машины Тьюринга $M$ и слово $w$~--- и симулирует работу $M$ на входе $w$: $U$ останавливается на $(\ulcorner M \urcorner, w)$ тогда и только тогда, когда $M$ останавливается на $w$, причём с тем же результатом (допуск/отказ/вычисленное значение).
+    \end{definition}
+    
+    \begin{note}
+    	Существование UTM~--- ключевой факт теории вычислимости: он означает, что не нужно строить отдельное «железо» под каждый алгоритм~--- одна универсальная машина, получив на вход описание любой другой машины, способна воспроизвести её поведение. Это прямой прообраз идеи программируемого компьютера (в отличие от вычислителя, «зашитого» под одну конкретную задачu).
+    \end{note}
+    
+    \subsection{Busy Beaver}
+    
+    \begin{definition}[Функция Busy Beaver]
+    	Пусть $M$~--- МТ с $n$ состояниями (не считая $Y, N$) над двухсимвольным алфавитом $\{ \sqcup, \boxminus \}$ (пустой символ и «единица»), которая, будучи запущена на пустой ленте, останавливается. Обозначим через $\sigma(M)$ число единиц, оставшихся на ленте после остановки $M$. Тогда
+    	\[
+    	BB(n) = \max \{ \sigma(M) \mid M~\text{--- МТ с $n$ состояниями, останавливающаяся на пустой ленте} \}.
+    	\]
+    \end{definition}
+    
+    \begin{note}
+    	$BB(n)$~--- это максимальное число единиц, которое способна напечатать на пустой ленте \emph{останавливающаяся} машина с $n$ состояниями («самый трудолюбивый бобёр» среди всех машин такого размера). Функция $BB$ растёт быстрее любой вычислимой функции и сама является невычислимой: не существует алгоритма, который по $n$ вычислял бы $BB(n)$ (иначе с его помощью можно было бы решить проблему остановки~--- для любой МТ $M$ с $n$ состояниями достаточно было бы запустить $M$ на $BB(n)$ шагов: если она не остановилась к этому моменту, она не остановится никогда).
+    \end{note}
+    
+    \subsection{Вычислимые функции}
+    
+    \begin{definition}[Вычислимая (частичная) функция]
+    	Функция $f: \Sigma^* \rightarrow \Sigma^*$ называется вычислимой, если существует МТ $M$ такая, что для любого $x \in \Sigma^*$:
+    	\begin{itemize}
+    		\item если $f(x)$ определено, $M$ на входе $x$ останавливается, и на ленте после остановки записано $f(x)$;
+    		\item если $f(x)$ не определено, $M$ на входе $x$ не останавливается (уходит в бесконечный цикл).
+    	\end{itemize}
+    	Такую функцию называют частичной (определённой не для всех $x$), так как для части входов машина попросту никогда не завершает работу.
+    \end{definition}
+    
+    \subsection{Перечислимые и разрешимые языки}
+    
+    \begin{definition}[Перечислимый язык]
+    	Язык $L$ называется рекурсивно перечислимым, если $L = L(M)$ для некоторой МТ $M$, то есть $L$~--- это в точности множество слов, которые $M$ принимает (останавливается на них в допускающем состоянии $Y$). Про слова вне $L$ гарантируется только, что $M$ не примет их~--- она может либо явно отвергнуть (остановиться в $N$), либо вообще не остановиться.
+    \end{definition}
+    
+    \begin{definition}[Разрешимый язык]
+    	Язык $L$ называется разрешимым (рекурсивным), если существует МТ $M$, которая для \emph{любого} входного слова $w \in \Sigma^*$ останавливается (либо в $Y$, если $w \in L$, либо в $N$, если $w \notin L$)~--- то есть $M$ не только принимает слова из $L$, но и явно, за конечное время, отвергает все слова не из $L$.
+    \end{definition}
+    
+    \begin{statement}
+    	Всякий разрешимый язык является перечислимым (достаточно взять ту же машину $M$ и «забыть» про состояние $N$, интерпретируя остановку в нём просто как отсутствие допуска). Обратное неверно: существуют перечислимые, но не разрешимые языки (классический пример~--- язык, кодирующий проблему остановки).
+    \end{statement}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\newpage
-	\section{Теория типов.}
-	\subsection{Основы математической логики. Классическое исчисление высказываний.}
-	Приоритет операций: $\urcorner \wedge \vee \rightarrow$. \\
-	$f: P \rightarrow \{ \text{True, False} \}$. $\llbracket \alpha \rrbracket^f =
-	\begin{cases}
-		f(X) & \alpha = X \\
-		\text{True} & \alpha = \beta \wedge \gamma, \llbracket \beta \rrbracket = \llbracket \gamma \rrbracket = \text{True} \\
-		\text{True} & \alpha = \beta \vee \gamma, \llbracket \beta \rrbracket = \text{True} / \llbracket \gamma \rrbracket = \text{True}
-	\end{cases}$
-	\begin{definition}
-		$\alpha$~--- общезначимое, если при любой $f: \llbracket \alpha \rrbracket^f = \text{True}$. $\vDash \alpha$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	\part{Квадратичные формы}
+	\section{Основные определения}
+    
+    Пусть $F$~--- поле, $1+1 \neq 0$ (то есть $\operatorname{char} F \neq 2$).
+    
+    \begin{definition}[Квадратичная форма]
+        Квадратичная форма от $n$ переменных над полем $F$~--- это функция
+        \[
+        f(x_1, \dots, x_n) = \sum\limits_{i, j} a_{ij}\, x_i x_j, \qquad a_{ij} \in F.
+        \]
+    \end{definition}
+    
+    \begin{definition}[Квадратичное пространство]
+    	Пару $(V, q)$, где $V$~--- векторное пространство, а $q$~--- квадратичная форма на нём, называют квадратичным пространством.
+    \end{definition}
+    
+    \begin{definition}[Универсальная форма]
+    	Форма, которая принимает все значения, но нулевое~--- не обязательно.
 	\end{definition}
-	\noindent
-	\textbf{Аксиомы:}
-	\begin{enumerate}
-		\item $\alpha \rightarrow \beta \rightarrow \alpha$
-		\item $(\alpha \rightarrow \beta) \rightarrow (\alpha \rightarrow \beta \rightarrow \gamma) \rightarrow \alpha \rightarrow \gamma$
-		\item $\alpha \rightarrow \beta \rightarrow \alpha \wedge \beta$
-		\item $\alpha \wedge \beta \rightarrow \alpha$
-		\item $\alpha \wedge \beta \rightarrow \beta$
-		\item $\alpha \rightarrow \alpha \vee \beta$
-		\item $\beta \rightarrow \alpha \vee \beta$
-		\item $(\alpha \rightarrow \gamma) \rightarrow (\beta \rightarrow \gamma) \rightarrow \alpha \vee \beta \rightarrow \gamma$
-		\item $(\alpha \rightarrow \beta) \rightarrow (\alpha \rightarrow \urcorner \beta) \rightarrow \urcorner \alpha$
-		\item $\urcorner \urcorner \alpha \rightarrow \alpha$
-	\end{enumerate}
+    
+    \subsection{Диагональный вид}
+    
+    В подходящем базисе форма приводится к диагональному виду:
+    \[
+    f \cong a_1 x_1^2 + a_2 x_2^2 + \cdots + a_n x_n^2 =: \langle a_1, \dots,a_n \rangle.
+    \]
+    
+    \begin{definition}[Эквивалентность диагональных форм]
+        Две диагональные формы эквивалентны, если наборы коэффициентов совпадают с точностью до перестановки и умножения на квадраты:
+        \[
+        \langle a_1, \dots, a_n \rangle \cong \langle b_1, \dots, b_n \rangle.
+        \]
+    \end{definition}
+    
+    \section{Эквивалентность квадратичных форм}
+    
+    \begin{definition}[Эквивалентность]
+        Формы $f$ и $g$ называются эквивалентными ($f \cong g$), если существует обратимая матрица $C$ такая, что
+        \[
+        f(x) = g(C \cdot x).
+        \]
+    \end{definition}
+    
+    Геометрически это означает, что $f$ и $g$ задают ту же квадратичную функцию после невырожденной замены координат.
+    
+    \section{Изотропные и анизотропные формы}
+    
+    \begin{definition}[Изотропная и анизотропная формы]
+        Форма $q$ называется изотропной, если
+        \[
+        \exists\, v \neq 0: \quad q(v) = 0.
+        \]
+        В противном случае форма называется анизотропной.
+    \end{definition}
+    
+    \subsection{Разложение по вектору}
+    
+    Пусть $v\in V$.
+    
+    \begin{enumerate}
+        \item Если $q(v) = d \neq 0$, то
+        \[
+        q \cong \langle d \rangle \perp q_1
+        \]
+        для некоторой формы $q_1$ (ортогональное дополнение к $v$).
+        
+        \item Если $q(v) = 0$ (то есть $q$ изотропна), то в подпространстве, порождённом $v$ и подходящим вторым вектором, форма выделяет \textbf{гиперболическую плоскость}
+        \[
+        \mathbb{H} = \langle 1, -1 \rangle,
+        \]
+        и
+        \[
+        q \cong \mathbb{H} \perp q_1,
+        \]
+        где $q_1 \perp q_2$ означает ортогональную сумму форм.
+    \end{enumerate}
+    
+    Таким образом, любую квадратичную форму можно разложить в ортогональную сумму гиперболических плоскостей и анизотропной части (\emph{разложение Витта}).
+    
+    \section{Определитель формы}
+    
+    \begin{definition}[Определитель]
+        Определитель диагональной формы $q \cong \langle a_1, \dots, a_n \rangle$:
+        \[
+        d(q) = \prod_i a_i \ \in F^*/F^{*2}.
+        \]
+    \end{definition}
+    
+    Детерминант определён с точностью до умножения на квадрат элемента поля, поскольку класс
+    \[
+    x^2 \equiv \prod_i b_i \quad \text{в } F^*/F^{*2}
+    \]
+    не меняет значения формы.
+    
+    \begin{example}
+        \[
+        q = x^2 + y^2 + z^2 + t^2, \qquad d(q) = 1.
+        \]
+    \end{example}
+    
+    \section{Примеры разложений и тождеств}
+    
+    \begin{example}[Гиперболическая плоскость в явном виде]
+        \[
+        x^2 - y^2 = (x - y)(x + y) = 2t \cdot (\dots)
+        \]
+        демонстрирует, как форма $\langle 1, -1 \rangle$ переходит в гиперболическую форму $2xy$ заменой координат $x = u + v, \ y = u - v$.
+    \end{example}
+    
+    \begin{example}[Полный квадрат]
+        \[
+        x^2 + 2xy + y^2 = (x + y)^2.
+        \]
+    \end{example}
+    
+    \section{Матричная запись}
+    
+    Форме $f(x_1, \dots, x_n)=\sum\limits_{i, j} a_{ij} x_i x_j$ сопоставляется симметрическая матрица $A=(a_{ij})$, $a_{ij} \in F$. Эквивалентность форм $f \cong g$ соответствует конгруэнтности матриц:
+    \[
+    A = C^{\mathsf T} B\, C
+    \]
+    для некоторой обратимой матрицы $C$.
+    
+    \section{Способы решения}
+	
+	\begin{definition}[Множество значений формы]
+		$D(q) = \{ d \in F^* \mid \exists\, v \in V,\ q(v) = d \}$~--- множество ненулевых элементов поля, представимых формой $q$.
+	\end{definition}
+	
 	\begin{statement}
-		$A \rightarrow A$.
+		Пусть $d \in F$. Тогда $d \in D(q) \Leftrightarrow$ форма $q \perp \langle -d \rangle$ изотропна.
 	\end{statement}
+	
+	\begin{statement}
+		Если $x \in D(q)$, то $q \cong \langle x \rangle \perp q_1$ для некоторой формы $q_1$.
+	\end{statement}
+	
+	\section{Кольцо Витта и фундаментальный идеал}
+	
+	\begin{definition}[Витта эквивалентность]
+		Формы $q_1$ и $q_2$ называются Витта эквивалентными, если
+		\[
+		q_1 \perp m \mathbb{H} \cong q_2 \perp n \mathbb{H}
+		\]
+		для некоторых $m, n \geqslant 0$, где $\mathbb{H} = \langle 1, -1 \rangle$~--- гиперболическая плоскость.
+	\end{definition}
+	
+	По теореме Витта о разложении (см. выше) каждая форма однозначно (с точностью до изометрии) раскладывается в ортогональную сумму анизотропной части и нескольких копий $\mathbb{H}$. Поэтому Витта эквивалентность~--- это в точности совпадение анизотропных частей, и каждый класс эквивалентности однозначно представлен анизотропной формой.
+	
+	\begin{definition}[Кольцо Витта]
+		Множество классов Витта эквивалентности квадратичных форм над $F$ с операциями
+		\[
+		[q_1] + [q_2] = [q_1 \perp q_2], \qquad [q_1] \cdot [q_2] = [q_1 \otimes q_2]
+		\]
+		образует коммутативное кольцо~--- кольцо Витта $W(F)$.
+		
+		Нулём служит класс $[\mathbb{H}]$ (и вообще класс любой гиперболической формы), единицей~--- класс $\langle 1 \rangle$, противоположный элемент к $[q]$~--- это $[-q] = [\langle -1 \rangle \otimes q]$.
+	\end{definition}
+	
+	\begin{statement}
+		Отображение $\dim \pmod 2 : W(F) \rightarrow \mathbb{Z}/2$, $[q] \mapsto \dim q \pmod 2$, корректно определено (не зависит от выбора представителя класса) и является гомоморфизмом колец.
+	\end{statement}
+	
 	\begin{proof}
-		\begin{enumerate}
-			\item $A \rightarrow A \rightarrow A$
-			\item $(A \rightarrow A \rightarrow A) \rightarrow (A \rightarrow (A \rightarrow A) \rightarrow A) \rightarrow (A \rightarrow A)$ \\
-			$\alpha = A$, $\beta = A \rightarrow A$, $\gamma = A$
-			\item $(A \rightarrow (A \rightarrow A) \rightarrow A) \rightarrow A \rightarrow A$. Modus Ponens из 1 и 2.
-			\item $A \rightarrow (A \rightarrow A) \rightarrow A $ \\
-			$\alpha = A$, $\beta = A \rightarrow A$
-			\item $A \rightarrow A$
-		\end{enumerate}
+		Корректность: добавление $\mathbb{H}$ меняет размерность на $2$, то есть не меняет её чётность. Аддитивность и мультипликативность очевидны из $\dim(q_1 \perp q_2) = \dim q_1 + \dim q_2$ и $\dim(q_1 \otimes q_2) = \dim q_1 \cdot \dim q_2$.
 	\end{proof}
-	\begin{definition}
-		$\vdash \alpha$~--- есть доказательство $\alpha$. $\gamma_1, \gamma_2, \dots \vdash \alpha$~--- есть доказательство $\alpha$ из $\gamma_1, \gamma_2, \dots$.
+	
+	\begin{definition}[Фундаментальный идеал]
+		$IF = \ker \left( \dim \pmod 2 : W(F) \rightarrow \mathbb{Z}/2 \right)$~--- идеал в $W(F)$, состоящий из классов форм чётной размерности.
 	\end{definition}
-	\begin{theorem}[Теорема о дедукции]
-		$\Gamma$, $\alpha \vdash \beta$ ттт $\Gamma \vdash \alpha \rightarrow \beta$.
-	\end{theorem}
-	\begin{statement}
-		$\vdash \alpha$ ттт $\vDash \alpha$.
-	\end{statement}
-	\begin{statement}
-		Если из $\vDash \alpha$ следует $\vdash \alpha$, то оценка полна. Если из $\vdash \alpha$ следует $\vDash \alpha$, то оценка корректна.
-	\end{statement}
-	\begin{proof}
-		Доказательство корректности:
-		\begin{quote}
-			Индукция по длине доказательства $\Gamma \vdash \alpha$. \\
-			Если $\alpha$~--- гипотеза, то очевидно, что следует $\Gamma \vDash \alpha$. \\
-			Если $\alpha$~--- аксиома, то нужно проверить все аксиомы. На примере 9 аксиомы:
-			\begin{quote}
-				$(\alpha \rightarrow \beta) \rightarrow (\alpha \rightarrow \urcorner \beta) \rightarrow \urcorner \alpha$ \\
-				Если $\llbracket \alpha \rrbracket = \text{False}$, то True, тк в конце $\urcorner \alpha$. \\
-				Если $\llbracket \alpha \rrbracket = \text{True}$, то либо первая либо вторая скобка~--- False.
-			\end{quote}
-			Переход:
-			\begin{quote}
-				Аксиома~--- понятно, тк она аксиома. Гипотеза~--- тоже понятно, тк доказана по ИП. Modus Ponens~--- понятно, тк то, из чего он получен~--- истино.
-			\end{quote}
-		\end{quote}
-		Доказательство полноты:
-		\begin{quote}
-			Используем: $A \vee \urcorner A$, $(\alpha \rightarrow \beta) \rightarrow (\urcorner \alpha \rightarrow \beta) \rightarrow \beta$, и если $\Gamma, \alpha \vdash \beta$ и $\Gamma, \urcorner \alpha \vdash \beta$, то $\Gamma \vdash \beta$ \\
-			fix $f$: $x_1 := \text{True}, x_2 := \text{False}, x_3 := \text{False}, \dots$ \\
-			$x_1, x_2, x_3, \dots \vdash \alpha$ \\
-			$\begin{cases}
-				x_1, x_2, \dots, x_n \vdash \alpha \\
-				x_1, x_2, \dots, \urcorner x_n \vdash \alpha \\
-				\vdots
-			\end{cases}$ \\
-			$\Leftcircle \gamma \Rightcircle =
-			\begin{cases}
-				\gamma & \llbracket \gamma \rrbracket = \text{True} \\
-				\urcorner \gamma & \llbracket \gamma \rrbracket = \text{False}
-			\end{cases}
-			$ Это надо, чтобы либо утверждение, либо его отрицание точно были доказуемые. \\
-		\end{quote}
-	\end{proof}
-	\textbf{Внимание!} Какие-то челики поменяли $10$ аксиому на эту: $\alpha \rightarrow \urcorner \alpha \rightarrow \beta$. \\
-	Новая оценка: $] X \subset \mathbb{R}$. $X$~--- открыто, если $\forall x \in X \exists r > 0: (x - r; x + r) \subset X$. $Int X = \{ x \in X | \exists r > 0 (x - r; x + r) \subset X \}$ \\
-	$\llbracket \alpha \wedge \beta \rrbracket = \llbracket \alpha \rrbracket \cap \llbracket \beta \rrbracket$ \\
-	$\llbracket \alpha \vee \beta \rrbracket = \llbracket \alpha \rrbracket \cup \llbracket \beta \rrbracket$ \\
-	$\llbracket \alpha \rightarrow \beta \rrbracket = Int(\mathbb{R} \setminus \llbracket \alpha \rrbracket \cup \llbracket \beta \rrbracket)$ \\
-	$\llbracket \urcorner \alpha \rrbracket = Int(\mathbb{R} \setminus \llbracket \alpha \rrbracket)$
-	\subsection{Интуиционистское исчисление высказываний. Естественный вывод.}
-	\textbf{Правила вывода:}
-	\begin{enumerate}
-		\item $\infer{\Gamma, \alpha \vdash \alpha}{}$
-		\item $\infer{\Gamma \vdash \alpha \rightarrow \beta}{\Gamma, \alpha \vdash \beta}$
-		\item $\infer{\Gamma \vdash \beta}{\Gamma \vdash \alpha \rightarrow \beta & \Gamma \vdash \alpha}$
-		\item $\infer{\Gamma \vdash \alpha \wedge \beta}{\Gamma \vdash \alpha & \Gamma \vdash \beta}$
-		\item $\infer{\Gamma \vdash \alpha}{\Gamma \vdash \alpha \wedge \beta}$
-		\item $\infer{\Gamma \vdash \beta}{\Gamma \vdash \alpha \wedge \beta}$
-		\item $\infer{\Gamma \vdash \gamma}{\Gamma \vdash \alpha \rightarrow \gamma & \Gamma \vdash \beta \rightarrow \gamma & \Gamma \vdash \alpha \vee \beta}$
-		\item $\infer{\Gamma \vdash \alpha \vee \beta}{\Gamma \vdash \alpha}$
-		\item $\infer{\Gamma \vdash \alpha \vee \beta}{\Gamma \vdash \beta}$
-		\item $\infer{\Gamma \vdash \alpha}{\Gamma \vdash \perp}$ в ИИВ; $\infer{\Gamma \vdash \alpha}{\Gamma, \alpha \rightarrow \perp \vdash \perp}$ в КИВ
-	\end{enumerate}
-	\subsection{Исчисление предикатов.}
-	Логические переменные~--- пропозициональные. Численные~--- предметные. \\
-	Квантор~--- $\forall a.$; функция~--- $f(a)$; предикат~--- принимает не логическое выражение, возвращает логическое. \\
-	Если $\varphi$~--- функциональный символ, нужно $F\varphi: D^n \rightarrow D$. \\
-	Если $p$~--- предикатный символ, нужно $Tp: D^n \rightarrow \{ \text{True}, \text{False} \}$. \\
-	Если $x$~--- переменная, то $E(x) \in D$. \\
-	$\llbracket p(\theta_1, \dots, \theta_n) \rrbracket = Tp(\llbracket \theta_1 \rrbracket, \dots, \llbracket \theta_n \rrbracket)$ \\
-	$\llbracket \varphi (\theta_1, \dots, \theta_n) \rrbracket = F\varphi(\llbracket \theta_1 \rrbracket, \dots, \llbracket \theta_n \rrbracket)$ \\
-	$\llbracket \forall x. \alpha \rrbracket =$ True, если для всех $d \in D: E(x) = d$, то $\llbracket \alpha \rrbracket =$ True. \\
-	$\alpha [ x := \theta ]$~--- заменяет все свободные $x$ на $\theta$.
+	
 	\begin{definition}
-		$\theta$ называется свободным для подстановки в $\alpha$ вместо $x$, если $\alpha [x := \theta]$ не сделает свободные вхождения в $\theta$ связанными.
+		$I^n F$~--- $n$-я степень идеала $IF$ (то есть $I^n F$ порождён произведениями $n$ элементов из $IF$), $I^0 F = W(F)$.
 	\end{definition}
-	\begin{enumerate}
-		\item $x \not\in FV(\Gamma)$ | $\infer{\Gamma \vdash \forall x. \alpha}{\Gamma \vdash \alpha}$
-		\item Нужна свобода для подстановки | $\infer{\Gamma \vdash \alpha [x := \theta]}{\Gamma \vdash \forall x. \alpha}$
-		\item Нужна свобода для подстановки | $\infer{\Gamma \vdash \exists x. \alpha}{\Gamma \vdash \alpha [x := \theta]}$
-		\item $x \not\in FV(\Gamma, \beta)$ | $\infer{\Gamma \vdash \beta}{\Gamma \vdash \exists x. \alpha & \Gamma, \alpha \vdash \beta}$
-	\end{enumerate}
+	
+	\begin{definition}[Форма Пфистера]
+		$n$-кратная форма Пфистера для $a_1, \dots, a_n \in F^*$:
+		\[
+		\langle\langle a_1, \dots, a_n \rangle\rangle = \langle 1, -a_1 \rangle \otimes \langle 1, -a_2 \rangle \otimes \cdots \otimes \langle 1, -a_n \rangle,
+		\]
+		форма размерности $2^n$.
+	\end{definition}
+	
+	\begin{statement}
+		Классы $n$-кратных форм Пфистера порождают $I^n F$ как группу (по сложению).
+	\end{statement}
+	
+	\section{Регулярные формы}
+	
+	\begin{definition}[Регулярная форма]
+		Форма называется регулярной, если в её диагонализации нет нулевых коэффициентов.
+	\end{definition}
+	
 	\begin{theorem}
-		Если $\Gamma \vdash \alpha$ в классическом исчислении предикатов, то $\Gamma \vDash \alpha$ в двоичной оценки для предикатов.
+		Если $q \in I^n F$ анизотропна, то $\dim q \geqslant 2^n$.
 	\end{theorem}
+	
+	\begin{theorem}
+		Форма Пфистера гиперболична тогда и только тогда, когда она изотропна.
+	\end{theorem}
+	
+	\begin{definition}[Группа множителей]
+		$G(q) := \{ a \in F^* \mid aq \cong q \}$
+	\end{definition}
+	
+	\begin{definition}[Круглая форма]
+		Форму $q$ будем называть круглой, если $G(q) = D(q)$.
+	\end{definition}
+	
+	\begin{theorem}
+		Форма Пфистера изотропна $\Leftrightarrow$ гиперболична.
+	\end{theorem}
+	
+	\section{Дискриминант}
+	
+	\begin{definition}[Дискриминант]
+		Пусть $q \in IF$, тогда $\dim q = 2m$ для некоторого $m \in \mathbb{N}_0$ (размерность формы из фундаментального идеала чётна). Дискриминантом формы $q$ называется
+		\[
+		\delta(q) := (-1)^m d(q) \ \in F^* / F^{*2}.
+		\]
+	\end{definition}
+	
+	\begin{theorem}
+		$q \in I^2 F \Leftrightarrow \delta(q) = 1$.
+	\end{theorem}
+	
+	\section{Инварианты поля}
+	
+	\begin{definition}[Уровень поля]
+		Уровень поля $F$:
+		\[
+		S(F) := \min \left\{ n \in \mathbb{N} \; \middle| \; -1 \in D \left( \langle \underbrace{1, \dots, 1}_{n} \rangle \right) \right\}.
+		\]
+		Если такого $n$ не существует, полагаем $S(F) = +\infty$.
+	\end{definition}
+	
+	\begin{definition}[Формально вещественное поле]
+		Поле $F$ называется формально вещественным, если $S(F) = +\infty$.
+	\end{definition}
+	
+	\begin{theorem}[Пфистер]
+		Для любого поля $F$ уровень $S(F)$ равен либо $0$, либо степени двойки $2^k$ ($k \in \mathbb{N}_0$), либо $+\infty$.
+	\end{theorem}
+	
+	\begin{definition}[$u$-инвариант]
+		\[
+		U(F) := \min \{ n \mid \forall q, \ \dim q > n \Rightarrow q \text{~--- изотропна} \}.
+		\]
+		Равносильно: $U(F) = \min \{ n \mid$ всякая форма $q$ с $\dim q = n$ универсальна$ \}$.
+	\end{definition}
+	
+	\begin{theorem}
+		$U(F) \neq 3, 5, 7$ ни для какого поля $F$.
+	\end{theorem}
+	
+	\begin{theorem}
+		Если $I^3 F = 0$, то $U(F)$ чётен (делится на $2$).
+	\end{theorem}
+	
+	\begin{example}[Поле рядов Лорана]
+		Поле формальных рядов Лорана над $F$:
+		\[
+		F((t)) = \left\{ \sum_{i \geqslant N} a_i t^i \; \middle| \; N \in \mathbb{Z}, \ a_i \in F \right\},
+		\]
+		то есть формальные ряды по степеням $t$, ограниченные снизу (конечное число отрицательных степеней, вверх~--- без ограничений). Это поле относительно естественных операций сложения и умножения рядов.
+	\end{example}
+	
+	\begin{lemma}
+		Если $U(F) = K$, то $U(F((t))) = 2K$.
+	\end{lemma}
+	
+	\section{Расширение полей}
+	
+	\begin{definition}[Конечное расширение]
+		$K / F$~--- конечное расширение, если $\dim_F K = n < +\infty$ (то есть $K$ как векторное пространство над $F$ конечномерно). Число $n$ называется степенью расширения и обозначается $[K : F] = n$.
+	\end{definition}
+	
+	\begin{definition}[Алгебраическое и трансцендентное расширение]
+		Элемент $x \in K$ называется алгебраическим над $F$, если существует ненулевой многочлен $f \in F[t]$, $f \neq 0$, такой что $f(x) = 0$. Расширение $K / F$ называется алгебраическим, если каждый элемент $x \in K$ алгебраичен над $F$. В противном случае (если существует элемент, не являющийся алгебраическим) расширение называется трансцендентным.
+	\end{definition}
+	
+	\begin{statement}
+		Всякое конечное расширение алгебраично.
+	\end{statement}
+	
+	\begin{definition}[Алгебраическое замыкание]
+		Поле $F$ называется алгебраически замкнутым, если всякий многочлен $f \in F[t]$ положительной степени имеет корень в $F$ (равносильно~--- раскладывается на линейные множители над $F$).
+		
+		Алгебраическим замыканием поля $F$ называется поле $\overline{F} \supseteq F$ такое, что:
+		\begin{itemize}
+			\item $\overline{F}$ алгебраически замкнуто;
+			\item расширение $\overline{F} / F$ алгебраическое.
+		\end{itemize}
+		
+		Алгебраическое замыкание существует и единственно с точностью до изоморфизма, тождественного на $F$.
+	\end{definition}
+	
+	\begin{definition}[Простое расширение]
+		Пусть $K / F$~--- расширение полей, $\alpha \in K$. Тогда $F(\alpha)$~--- минимальное подполе поля $K$, содержащее $F$ и $\alpha$ (то есть пересечение всех подполей $K$, содержащих $F \cup \{ \alpha \}$). Такое расширение $F(\alpha) / F$ называется простым.
+	\end{definition}
+	
+	\section{Цепная эквивалентность квадратичных форм}
+	
+	\begin{definition}[Цепная эквивалентность]
+		Две диагональные квадратичные формы
+		\[
+		q = \langle a_1, \ldots, a_n \rangle, \qquad q' = \langle b_1, \ldots, b_n \rangle
+		\]
+		называются цепно эквивалентными ($q \approx q'$), если существует последовательность диагональных форм
+		\[
+		q = q_0 \to q_1 \to \ldots \to q_m = q',
+		\]
+		где каждый шаг имеет вид
+		\[
+		\langle a_1, \ldots, a_i, \ldots, a_j, \ldots, a_n \rangle \longmapsto \langle a_1, \ldots, b_i, \ldots, b_j, \ldots, a_n \rangle, \qquad \langle a_i, a_j \rangle \cong \langle b_i, b_j \rangle,
+		\]
+		то есть на каждом шаге меняются ровно два коэффициента, причём соответствующая двумерная подформа заменяется на изометричную.
+	\end{definition}
+	
+	\begin{theorem}
+		$q \cong q' \Leftrightarrow q \approx q'$.
+	\end{theorem}
+	
+	\begin{definition}[$P$-цепная эквивалентность]
+		Две формы Пфистера
+		\[
+		q = \langle\langle a_1, \ldots, a_n \rangle\rangle, \qquad q' = \langle\langle b_1, \ldots, b_n \rangle\rangle
+		\]
+		называются $P$-цепно эквивалентными ($q \approx q'$), если существует последовательность форм Пфистера
+		\[
+		q = q_0 \to q_1 \to \ldots \to q_m = q',
+		\]
+		где каждый шаг имеет вид
+		\[
+		\langle\langle a_1, \ldots, a_i, \ldots, a_j, \ldots, a_n \rangle\rangle \longmapsto \langle\langle a_1, \ldots, b_i, \ldots, b_j, \ldots, a_n \rangle\rangle, \qquad \langle\langle a_i, a_j \rangle\rangle \cong \langle\langle b_i, b_j \rangle\rangle.
+		\]
+	\end{definition}
+	
+	\begin{theorem}
+		Для форм Пфистера $\pi$ и $\tau$:
+		\[
+		\pi \cong \tau \Leftrightarrow \pi \approx \tau.
+		\]
+	\end{theorem}
+	
+	\begin{definition}[Чистая подформа]
+		Пусть $\pi$~--- форма Пфистера. Чистой подформой формы $\pi$ называется форма $\pi'$ такая, что
+		\[
+		\pi \cong \langle 1 \rangle \perp \pi'.
+		\]
+	\end{definition}
+	
+	\begin{lemma}
+		Пусть
+		\[
+		\rho = \langle\langle a_1, \ldots, a_n \rangle\rangle, \qquad \sigma = \langle\langle b_1, \ldots, b_s \rangle\rangle,
+		\]
+		и $\sigma'$~--- чистая подформа формы $\sigma$. Тогда для $-x \in D(\rho \otimes \sigma')$ существуют такие $e_1, \ldots, e_{s-1} \in F$, что
+		\[
+		\rho \otimes \sigma \approx \langle\langle e_1, \ldots, e_{s-1}, x \rangle\rangle \otimes \rho.
+		\]
+	\end{lemma}
+	
+	\section{Поведение анизотропных форм при квадратичном расширении}
+	
+	\begin{theorem}
+		Пусть $q$~--- анизотропна над $F$, $a \in F^* \setminus F^{*2}$, $K = F(\sqrt{a})$, и $q_K$ (форма $q$, рассматриваемая над $K$) изотропна. Тогда
+		\[
+		q \cong b \langle 1, -a \rangle \perp q_1
+		\]
+		для некоторого $b \in F^*$ и некоторой формы $q_1$ над $F$.
+	\end{theorem}
+	
 	\begin{proof}
-		Индукция по длине доказательства. \\
-		База.
-		\begin{quote}
-			$\infer{\Gamma, \alpha \vdash \alpha}{}$ очевидно $\Gamma, \alpha \vDash \alpha$
-		\end{quote}
-		Переход.
-		\begin{quote}
-			$\infer{\Gamma \vdash \alpha}{\Gamma \vdash \alpha \wedge \beta}$. Есть $\Gamma \vDash \alpha \wedge \beta$, надо $\Gamma \vDash \alpha$. \\
-			$\infer{\Gamma \vdash \alpha}{\Gamma, \alpha \rightarrow \perp \vdash \perp}$. Есть $\Gamma, \alpha \rightarrow \perp \vDash \perp$, надо $\Gamma \vDash \alpha$.
-		\end{quote}
+		Пусть $q$ действует на пространстве $V \cong F^n$ с ассоциированной билинейной формой $B(u, v) = \tfrac{1}{2}\left( q(u+v) - q(u) - q(v) \right)$ (корректно определена, так как $\operatorname{char} F \neq 2$); в частности, $B(u, u) = q(u)$.
+		
+		Так как $q_K$ изотропна, найдётся ненулевой вектор $v \in V \otimes_F K = V_K$ с $q(v) = 0$. Всякий элемент $K = F(\sqrt a)$ однозначно записывается в виде $p + t\sqrt a$, $p, t \in F$ (так как $[K:F]=2$ и $\sqrt a \notin F$); соответственно $v = x + y\sqrt{a}$ для некоторых $x, y \in V$ (координаты $v$ в базисе $V$ раскладываются по $1, \sqrt a$), причём $(x, y) \neq (0,0)$.
+		
+		Вычислим, используя билинейность $q$ на $V_K$:
+		\[
+		0 = q(x + y\sqrt a) = q(x) + a\, q(y) + 2\sqrt a \, B(x, y).
+		\]
+		Так как $\sqrt a \notin F$ (то есть $1, \sqrt a$ линейно независимы над $F$), а $q(x) + a q(y) \in F$ и $2B(x,y) \in F$, из равенства нулю следует, что обе "координаты" по отдельности равны нулю:
+		\[
+		q(x) + a\, q(y) = 0, \qquad B(x, y) = 0.
+		\]
+		
+		\textbf{Утверждение: $x \neq 0$ и $y \neq 0$.} Если $y = 0$, то из $(x,y)\neq 0$ следует $x \neq 0$, а из первого равенства $q(x) = 0$~--- противоречие с анизотропностью $q$ над $F$. Если $x = 0$, то аналогично $y \neq 0$ и $a\, q(y) = 0$, откуда $q(y) = 0$ (так как $a \neq 0$)~--- снова противоречие. Значит, $x, y \in V \setminus \{0\}$.
+		
+		\textbf{Утверждение: $x, y$ линейно независимы над $F$.} Если $x = cy$ для некоторого $c \in F$, то $B(x,y) = c\, B(y,y) = c\, q(y)$. Так как $q$ анизотропна и $y \neq 0$, $q(y) \neq 0$, и из $B(x,y)=0$ получаем $c = 0$, то есть $x = 0$~--- противоречие с предыдущим пунктом. Значит, $x, y$ линейно независимы, и $\operatorname{span}(x, y)$~--- двумерное подпространство $V$.
+		
+		Положим $b := q(y) \neq 0$. Тогда из $q(x) + a\,q(y) = 0$ получаем $q(x) = -ab$. Поскольку $B(x, y) = 0$, векторы $x, y$ ортогональны относительно $q$, значит, в базисе $x, y$ форма $q|_{\operatorname{span}(x,y)}$ диагональна:
+		\[
+		q|_{\operatorname{span}(x,y)} \cong \langle q(x), q(y) \rangle = \langle -ab, b \rangle \cong b\langle -a, 1 \rangle \cong b \langle 1, -a \rangle.
+		\]
+		
+		Наконец, дополним ортогональный базис $x, y$ до ортогонального базиса всего $V$ (что всегда возможно для невырожденной формы над полем характеристики $\neq 2$) и обозначим через $q_1$ форму, которую $q$ индуцирует на ортогональном дополнении к $\operatorname{span}(x,y)$. Тогда
+		\[
+		q \cong b\langle 1, -a \rangle \perp q_1.
+		\]
 	\end{proof}
-	\subsection{$\lambda$~--- исчисления.}
-	\textbf{Опр.} $\lambda$~--- исчисления~--- способ описать математику в программировании. \\
-	\textbf{Тезис 1.} Функции больше одного агрумента не нужны. \\
-	\textbf{Опр.} $\lambda x. P$~--- принимает $x$ и делает $P$. \\
-	\textbf{Опр.} $FV(\alpha)$~--- множество свободных переменных $\alpha$. \\
-	\textbf{Опр.} $\theta$ называется свободным для подстановки в $\alpha$ вместо $x$, если $\alpha [x := \theta]$ не сделает свободные вхождения в $\theta$ связанными. \\
-	\textbf{Опр.} $P =_{\alpha} Q$, если одно из следующего:
-	\begin{itemize}
-		\item $P$ и $Q$~--- одна и та же формула
-		\item $P = A_1 B_1$, $Q = A_2 B_2$; $A_1 =_{\alpha} A_2$ и $B_1 =_{\alpha} B_2$
-		\item $P = \lambda x. A_1$, $Q = \lambda y. A_2$; $A_1[x := t] =_{\alpha} A_2 [y := t]$
-	\end{itemize}
-	С этого момента любое $=$~--- это $=_{\alpha}$. \\
-	\textbf{Опр.} $(\lambda x. P)Q$~--- $\beta$~--- редекс. $A \rightarrow_{\beta} B$, если:
-	\begin{itemize}
-		\item $A = (\lambda x. P)Q$, $B = P[x := Q]$, есть свобода
-		\item $A = P_1Q_1$, $B = P_2Q_2$; $(P_1 = P_2$ и $Q_1 \rightarrow_{\beta} Q_2)$ или $(Q_1 = Q_2$ и $P_1 \rightarrow_{\beta} P_2)$
-		\item $A = \lambda x. P_1$, $B = \lambda x. P_2$; $P_1 \rightarrow_{\beta} P_2$
-	\end{itemize}
-	\textbf{Опр.} $\omega = (\lambda y. yy)(\lambda x. xx)$ \\
-	\textbf{Опр.} $A \twoheadrightarrow_{\beta} B$ за несколь (в том числе $0$) шагов. \\
-	\textbf{Опр.} Нормальный порядок~--- редуцируем самый левый $\beta$~--- редекс. Аппликативный порядок~--- из самых вложенных берем левый $\beta$~--- редекс. \\
-	\textbf{Опр.} $A \rightrightarrows_{\beta} B$, если:
-	\begin{itemize}
-		\item $A = B$
-		\item $A = \lambda x. P_1$, $B = \lambda x. P_2$; $P_1 \rightrightarrows_{\beta} P_2$
-		\item $A = P_1Q_2$, $B = P_2Q_2$; $P_1 \rightrightarrows_{\beta} P_2$ и $Q_1 \rightrightarrows_{\beta} Q_2$
-		\item $A = (\lambda x. P_1)Q_1$, $B = P_2[x := Q_2]$; $P_1 \rightrightarrows_{\beta} P_2$ и $Q_1 \rightrightarrows_{\beta} Q_2$
-	\end{itemize}
-	\textbf{Теорема Черча~--- Россера.} Если $A \twoheadrightarrow_{\beta} B$, $A \twoheadrightarrow_{\beta} C$ и $B \not= C$, то существует $D$, такое что $B \twoheadrightarrow_{\beta} D$ и $C \twoheadrightarrow_{\beta} D$. \\
-	Доказательство:
-	\begin{quote}
-		\textbf{Лемма.} Если $P_1 \rightrightarrows_{\beta} P_2$ и $Q_1 \rightrightarrows_{\beta} Q_2$, то $P_1 [x := Q_1] \rightrightarrows_{\beta} P_2 [x := Q_2]$~--- свобода есть.
-		\begin{quote}
-			\begin{itemize}
-				\item Случай $P_1 = P_2$~--- ясно.
-				\item Индукция по длине $P_1$.
-				\begin{itemize}
-					\item $P_1 = A_1 B_1$ \\
-					$P_2 = A_2 B_2$ \\
-					$A_1 \rightrightarrows_{\beta} A_2$ \\
-					$B_1 \rightrightarrows_{\beta} B_2$ \\
-					$A_1 [x := Q_1] \rightrightarrows_{\beta} A_2 [x := Q_2]$ \\
-					$B_1 [x := Q_1] \rightrightarrows_{\beta} B_2 [x := Q_2]$ \\
-					$P_1 [x := Q_1] = (A_1[x := Q_1])(B_1 [x:= Q_1])$ \\
-					$P_2 [x := Q_2] = (A_2[x := Q_2])(B_2 [x:= Q_2])$ \\
-					$P_1 [x := Q_1] \rightrightarrows_{\beta} P_2 [x := Q_2]$
-					\item $P_1 = \lambda y. A_1$ \\
-					$P_2 = \lambda y. A_2$ \\
-					$A_1 \rightrightarrows_{\beta} A_2$ \\
-					$A_1 [x := Q_1] \rightrightarrows_{\beta} A_2 [x := Q_2]$ \\
-					$P_1 [x := Q_1] = \lambda y. (A_1 [x := Q_1])$ \\
-					$P_2 [x := Q_2] = \lambda y. (A_2 [x := Q_2])$ \\
-					$P_1 [x := Q_1] \rightrightarrows_{\beta} P_2 [x := Q_2]$
-					\item $P_1 = (\lambda y. A_1) B_1$ \\
-					$P_2 = A_2 [y := B_2]$ \\
-					$A_1 \rightrightarrows_{\beta} A_2$ \\
-					$B_1 \rightrightarrows_{\beta} B_2$ \\
-					$A_1 [x := Q_1] \rightrightarrows_{\beta} A_2 [x := Q_2]$ \\
-					$B_1 [x := Q_1] \rightrightarrows_{\beta} B_2 [x := Q_2]$ \\
-					$(\lambda y. A_1 [x := Q_1])(B_1 [x := Q_1]) \rightrightarrows_{\beta} ? A_2 [y := B_2][x := Q_2]$ \\
-					$y \in ? FV(Q_2)$, если да, то $y \in FV(Q_1)$ \\
-					$y \in FV(A_1)$~--- иначе ясно. \\
-					$y \not\in FV(Q_2)$ \\
-					$A_2 [y := B_2][x := Q_2] = A [x := Q_2][y := B_2 [x := Q_2]]$ \\
-					$y = x$ аналогично
-				\end{itemize}
-			\end{itemize}
-		\end{quote}
-		\textbf{Лемма.} Если $P \rightrightarrows_{\beta} P_1$, $P \rightrightarrows_{\beta} P_2$ и $P_1 \not= P_2$, то существует $P_3$, такое что $P_1 \rightrightarrows_{\beta} P_3$ и $P_2 \rightrightarrows_{\beta} P_3$.
-		\begin{quote}
-			Индукция по элементам $P$.
-			\begin{itemize}
-				\item $P = P_1$~--- $P_3 = P_2$
-				\item $P = \lambda x. A$, $P_1 = \lambda x. A_1 \Rightarrow P_2 = \lambda x. A_2$. $P_3 = \lambda x. A_3$. $A \rightrightarrows_{\beta} A_1$, $A \rightrightarrows_{\beta} A_2$, $A_1 \rightrightarrows_{\beta} A_3$, $A_2 \rightrightarrows_{\beta} A_3$
-				\item $P = AB$, $P_1 = A_1B_1$
-				\begin{enumerate}[(I)]
-					\item $P_2 = A_2B_2$ \\
-					$A \rightrightarrows_{\beta} A_1$, $A \rightrightarrows_{\beta} A_2$; $B \rightrightarrows_{\beta} B_1$, $B \rightrightarrows_{\beta} B_2$. \\
-					$\exists A_3, B_3; P_3 = A_3B_3$
-					\item $P = (\lambda x. C)B$, $P_2 = C_2 [x := B_2]$, $P_1 (\lambda x. C_1) B_1$ \\
-					$A \rightrightarrows_{\beta} A_1$~--- тогда $A_1 = \lambda x. C_1$ \\
-					$B \rightrightarrows_{\beta} B_1$, $B \rightrightarrows_{\beta} B_2$; $C \rightrightarrows_{\beta} C_1$, $C \rightrightarrows_{\beta} C_2$ \\
-					$C_3, B_3$: $C_1 \rightrightarrows_{\beta} C_3$, $C_2 \rightrightarrows_{\beta} C_3$; $B_1 \rightrightarrows_{\beta} B_3$, $B_2 \rightrightarrows_{\beta} B_3$. $P_3 = C_3 [x := B_3]$
-				\end{enumerate}
-				\item $P = (\lambda x. C)B$, $P_1 = C_1 [x := B_1]$
-				\begin{enumerate}[(I)]
-					\item $P_2 = A_2B_2$. $(?)C \rightrightarrows_{\beta} A_2$, $B \rightrightarrows_{\beta} B_2$ \\
-					$C \rightrightarrows_{\beta} C_1$, $C \rightrightarrows_{\beta} C_2$; $B \rightrightarrows_{\beta} B_1$, $B \rightrightarrows_{\beta} B_2$
-					\item $P_2 = C_2 [x := B_2]$ \\
-					$\exists C_3, B_3$: $C_1 \rightrightarrows_{\beta} C_3$, $C_2 \rightrightarrows_{\beta} C_3$; $B_1 \rightrightarrows_{\beta} B_3$, $B_2 \rightrightarrows_{\beta} B_3$. $P_3 = C_3 [x := B_3]$
-				\end{enumerate}
-			\end{itemize}
-		\end{quote}
-		$P \rightrightarrows_{\beta} \dots \rightrightarrows_{\beta} P_1 \rightrightarrows_{\beta} \dots \rightrightarrows_{\beta} P_3$, $P \rightrightarrows_{\beta} \dots \rightrightarrows_{\beta} P_2 \rightrightarrows_{\beta} \dots \rightrightarrows_{\beta} P_3$ \\
-		Двойной параллельный $\beta$~--- редекс $= \twoheadrightarrow_{\beta}$
-	\end{quote}
-	\subsection{Просто~--- типизированное $\lambda$~--- исчисление.}
-	\textbf{Опр.} $\alpha \rightarrow \beta$~--- тип функции, которая принимает объект типа $\alpha$ и возвращает объект типа $\beta$. \\
-	\textbf{Правила вывода:}
-	\begin{enumerate}
-		\item $\infer{\Gamma, x : \alpha \vdash x : \alpha}{}$, $x \not\in \Gamma$
-		\item $\infer{\Gamma \vdash P Q : \beta}{\Gamma \vdash P : \alpha \rightarrow \beta & \Gamma \vdash Q : \alpha}$
-		\item $\infer{\Gamma \vdash \lambda x. P : \alpha \rightarrow \beta}{\Gamma, x : \alpha \vdash P : \beta}$, $x \not\in \Gamma$~--- по Карри. \\
-		$\infer{\Gamma \vdash \lambda x^{\alpha}. P : \alpha \rightarrow \beta}{\Gamma, x : \alpha \vdash P : \beta}$~--- по Черчу.
-	\end{enumerate}
-	\textbf{Теорема о редукции.} Если $A \twoheadrightarrow_{\beta} B$ и $\vdash A : \sigma$, то $\vdash B : \sigma$. \\
-	\textbf{Теорема об ограниченном свойстве распространения типизации.} Если $A \twoheadrightarrow_{\beta} B$, $\vdash A : \sigma$ и $\vdash B : \tau$, то $\tau = \sigma$. Верно только в Черче. \\
-	\textbf{Утв.} Полное свойство распространения типизации. $A \twoheadrightarrow_{\beta} B$ и $\vdash B : \sigma$, то $A : \sigma$. Неверно нигде. \\
-	\textbf{Теорема о равносильности исчисления по Карри и по Черчу.}
-	\begin{itemize}
-		\item $\Gamma \vdash P : \alpha$~--- Черч, стираем аннотацию и получаем доказуемое в Карри.
-		\item $\Gamma \vdash P : \alpha$~--- Карри, то есть способ приписать типовые аннотации и получить доказуемое в Черче.
-	\end{itemize}
-	\textbf{Теорема.} Изоморфизм Карри~--- Ховард.
-	\subsection{Нормализуемость $\lambda_{\rightarrow}$. Система F.}
-	\textbf{Опр.} Выражение называется сильно нормализуемым, если нет способа редуцировать его бесконечно. \\
-	\textbf{Опр.} $SN$~--- множество всех сильно нормализуемых выражений. $X \subset SN$ насыщенно, если
-	\begin{itemize}
-		\item Если $m_1, \dots, m_n \in SN$, то $x m_1 m_2 \dots m_n \in X$
-		\item Если $m_1, \dots, m_n \in SN$, $M \in SN$, $N$~--- любое и $N [x := M] m_1, \dots, m_n \in X$, то $(\lambda x. N) m m_1, \dots, m_n \in X$
-	\end{itemize}
-	\textbf{Лемма.} $SN$~--- насыщенно. \\
-	$A, B$~--- множество выражений. $A \rightarrow B = \{ X | \forall Y \in A. XY \in B \}$. Если $A, B$~--- насыщенные, то $A \rightarrow B$~--- насыщенное. \\
-	$\sigma$~--- тип. $[\sigma] = \begin{cases}
-		SN & \sigma \text{~--- переменная} \\
-		[\tau_1] \rightarrow [\tau_2] & \sigma = \tau_1 \rightarrow \tau_2
-	\end{cases}$ \\
-	$[\alpha \rightarrow \alpha \rightarrow \alpha] = SN \rightarrow SN \rightarrow SN$. \\
-	\textbf{Лемма.} $[\sigma]$~--- насыщенно из предыдущего. \\
-	\textbf{Опр.} $\rho$ из переменных в $\lambda$-выражениях~--- оценка. \\
-	\textbf{Опр.} $M [x := \rho (x), y := \rho (xy), ...] = \llbracket M \rrbracket ^{\rho}$. \\
-	\textbf{Утв.} Для любой $\rho$ такой что для всех $x : \tau \in \Gamma$ верно $\rho (x) \in [\tau]$. \\
-	\textbf{Утв.} $\Gamma \vDash M : \sigma$, если выполнено $\llbracket M \rrbracket ^{\rho} \in [\sigma]$ \\
-	\textbf{Теорема.} Если $\Gamma \vdash M : \sigma$, то $\Gamma \vDash M : \sigma$. \\
-	Доказательство:
-	\begin{quote}
-		Индукция по размеру дерева вывода $\Gamma \vdash M : \sigma$
-	\end{quote}
-	\textbf{Опр.} $\Lambda$~--- принимает типовую переменную. \\
-	\textbf{Новые правила вывода}:
-	\begin{itemize}
-		\item $\infer{\Gamma \vdash \Lambda x. P : \forall x. \alpha}{\Gamma \vdash P : \alpha}$, $x \not\in FV(\Gamma)$
-		\item $\infer{\Gamma \vdash P \beta : \alpha [x := \beta]}{\Gamma \vdash P : \forall x. \alpha}$~--- есть свобода.
-	\end{itemize}
-	\subsection{Экзистенциальные типы. Система HM.}
-	\textbf{Опр.} $\exists p. p \wedge (\nu \wedge p \rightarrow p) \wedge (p \rightarrow \nu \wedge p)$, $\nu$~--- тип натурального числа. Это стек из программирования (обозначим $\sigma$). После квантора существования~--- набор методов стека. \\
-	$\infer{\Gamma \vdash ?? N ?? : \exists p. \sigma}{\Gamma \vdash : \sigma [p := \alpha]}$ \\
-	$\infer{\Gamma \vdash ?? N, M ??: \tau}{\Gamma \vdash N : \exists p. \sigma & \Gamma, x : \sigma \vdash M : \tau}$ \\
-	$rank \sigma =
-	\begin{cases}
-		1 & \sigma \text{ без кванторов} \\
-		\max(rank \tau, 1) & \sigma = \forall x. \tau \\
-		\max((rank \tau_1) + 1, rank \tau_2) & \sigma = \tau_1 \rightarrow \tau_2
-	\end{cases}
-	$ \\
-	\textbf{Опр.} Тип в HM~--- тип в просто-типизированном $\lambda$-исчислении. Типовая схема в HM~--- тип с поверхностными кванторами в просто-типизированном $\lambda$-исчислении. Далее в этой теме: $\sigma$~--- схемы, $\tau$~--- типы. \\
-	\textbf{Правила вывода в системе HM:}
-	\begin{itemize}
-		\item $\infer{\Gamma, x : \sigma \vdash x : \sigma}{}$
-		\item $\infer{\Gamma \vdash \lambda x. P : \tau_1 \rightarrow \tau_2}{\Gamma, x : \tau_1 \vdash P : \tau_2}$, $x \not\in \Gamma$
-		\item $\infer{\Gamma \vdash PQ : \tau_2}{\Gamma \vdash P : \tau_1 & \Gamma \vdash Q : \tau_1 \rightarrow \tau_2}$
-		\item $\infer{\Gamma \vdash \text{let } x := P \text{ in } Q : \tau}{\Gamma \vdash P : \sigma & \Gamma, x : \sigma \vdash Q : \tau}$, $x \not\in \Gamma$
-		\item $\infer{\Gamma \vdash P : \sigma_2}{\Gamma \vdash P : \sigma_1}$, $\sigma_1 \sqsubseteq \sigma_2$
-		\item $\infer{\Gamma \vdash P : \forall \alpha. \sigma}{\Gamma \vdash P : \sigma}$, $\alpha \not\in FV(\Gamma)$
-	\end{itemize}
-	\textbf{Правила вывода эквирекурсивных типов:}
-	\begin{itemize}
-		\item $\infer{\Gamma \vdash P : \tau [\alpha := \mu \alpha. \tau]}{\Gamma \vdash P : \mu \alpha. \tau}$
-		\item $\infer{\Gamma \vdash P : \mu \alpha. \tau}{\Gamma \vdash P : \tau [\alpha := \mu \alpha. \tau]}$
-	\end{itemize}
-	\textbf{Правила вывода изорекурсивных типов:}
-	\begin{itemize}
-		\item $\infer{\Gamma \vdash \text{unroll } P : \tau [\alpha := \mu \alpha. \tau]}{\Gamma \vdash \mu \alpha. \tau}$
-		\item $\infer{\Gamma \vdash \text{roll } P : \mu \alpha. \tau}{\Gamma \vdash P : \tau [\alpha := \mu \alpha. \tau]}$
-	\end{itemize}
-	\subsection{Обобщенная система типов.}
-	\textbf{Опр.} int~--- тип, $\bigstar$~--- род, $\bigstar \rightarrow \bigstar$~--- род, $\square$~--- сорт. \\
-	\textbf{Правила вывода:}
-	\begin{itemize}
-		\item $\infer{\vdash \bigstar : \square}{}$
-		\item $\infer{\Gamma, x : \alpha \vdash x : \alpha}{\Gamma \vdash \alpha : \sigma}$, $x \not\in \Gamma$
-		\item $\infer{\Gamma \vdash FG : \beta [x := \sigma]}{\Gamma \vdash F : \Pi x^{\alpha}. \beta & \Gamma \vdash \sigma : \alpha}$
-		\item $\infer{\Gamma \vdash A : \alpha'}{\Gamma \vdash A : \alpha & \Gamma \vdash \alpha' : \sigma}$, $\alpha =_{\beta} \alpha'$
-		\item $\infer{\Gamma, x : \alpha \vdash A : \beta}{\Gamma \vdash A : \beta & \Gamma \vdash \alpha : \sigma}$, $x \not\in \Gamma$
-		\item $\infer{\Gamma \vdash \lambda x^{\alpha}. P : \Pi x^{\alpha}. \beta}{\Gamma \vdash \alpha : \sigma_1 & \Gamma, x : \alpha \vdash P : \beta & \Gamma, x : \alpha \vdash \beta : \sigma_2}$, $\sigma_1, \sigma_2 \in S \subset \{ \langle \bigstar, \square \rangle, \langle \bigstar, \bigstar \rangle, \langle \square, \square \rangle, \langle \square, \bigstar \rangle \}$
-		\item $\infer{\Gamma \vdash \Pi x^{\alpha}. \beta : \sigma_2}{\Gamma \vdash \alpha : \sigma_1 & \Gamma, x : \alpha \vdash \beta : \sigma_2}$, $\sigma_1, \sigma_2 \in S \subset \{ \langle \bigstar, \square \rangle, \langle \bigstar, \bigstar \rangle, \langle \square, \square \rangle, \langle \square, \bigstar \rangle \}$
-	\end{itemize}
-	\subsection{Гомотопическая теория типов.}
-	\subsection{Иерархия универсумов. $\backslash Prop$ и $\backslash Set$.}
+	
+	\section{Теорема Спрингера}
+	
+	\begin{theorem}[Спрингера]
+		Пусть $[K : F]$~--- нечётное. Если $q$~--- анизотропна над $F$, то $q_K$~--- тоже анизотропна.
+	\end{theorem}
+	
+	\subsection{Следствие}
+	
+	\begin{corollary}
+		$U(K) \geqslant U(F)$.
+	\end{corollary}
+	
+	\section{Трансфер Шарлау}
+	
+	\begin{definition}[Линейный функционал]
+		Пусть $(V, F)$~--- векторное пространство над полем $F$. Отображение $S: V \rightarrow F$ называется линейным функционалом, если:
+		\begin{enumerate}
+			\item $S(\lambda v) = \lambda S(v)$ для всех $\lambda \in F$, $v \in V$;
+			\item $S(x + y) = S(x) + S(y)$ для всех $x, y \in V$.
+		\end{enumerate}
+	\end{definition}
+	
+	\begin{statement}
+		Линейный функционал однозначно задаётся своими значениями на базисе. Если $e_1, \ldots, e_n$~--- базис $V$ и $S(e_1) = a_1, \ldots, S(e_n) = a_n$, то для любого $v = \sum_i b_i e_i \in V$:
+		\[
+		S(v) = S\left( \sum_i b_i e_i \right) = \sum_i b_i a_i.
+		\]
+	\end{statement}
+	
+	\begin{definition}[Трансфер Шарлау]
+		Пусть $K / F$~--- расширение полей, $S: K \rightarrow F$~--- ненулевой линейный функционал (где $K$ рассматривается как векторное пространство над $F$). Пусть $q$~--- квадратичная форма над $K$ на пространстве $V_K$ с ассоциированной билинейной формой $B_q: V_K \times V_K \rightarrow K$.
+		
+		Рассмотрим $V_K$ как векторное пространство $V_F$ над $F$ (то же множество векторов, но со скалярами, ограниченными до $F \subseteq K$). Определим форму $B': V_F \times V_F \rightarrow F$:
+		\[
+		B'(u, v) := S\bigl( B_q(u, v) \bigr).
+		\]
+	\end{definition}
+	
+	\begin{statement}
+		$B'$~--- билинейная форма над $F$.
+	\end{statement}
+	
+	\begin{proof}
+		Проверим аддитивность по первому аргументу (по второму~--- аналогично, симметричность $B'$ следует из симметричности $B_q$ и того, что $S$ действует уже после вычисления $B_q$): $ B'(u_1 + u_2, v) = S\bigl( B_q(u_1 + u_2, v) \bigr) = S\bigl( B_q(u_1, v) + B_q(u_2, v) \bigr) = S\bigl( B_q(u_1, v) \bigr) + S\bigl( B_q(u_2, v) \bigr) = B'(u_1, v) + B'(u_2, v)$, где второе равенство~--- билинейность $B_q$ над $K$, а третье~--- аддитивность $S$ как линейного функционала. Линейность по скалярам из $F$ проверяется аналогично, используя $F$-линейность $S$ и $K$-билинейность (в частности $F$-билинейность, так как $F \subseteq K$) $B_q$.
+		
+		Тем самым получаем квадратичную форму $S_* q$ над $F$ на пространстве $V_F$ с билинейной формой $B' = S \circ B_q$~--- это и есть трансфер Шарлау формы $q$ вдоль $S$. Обозначается $S_* q$ или $\operatorname{Tr}_S(q)$.
+	\end{proof}
+	
+	\begin{theorem}
+		$\dfrac{3}{2} U(F) \geqslant U(K)$, $K = F(\sqrt{a})$.
+	\end{theorem}
+	
+    \section{Трансцендентные расширения}
+    
+    \begin{definition}[Поле рациональных функций]
+    	Пусть $F$~--- поле. Кольцо многочленов $F[x]$~--- целостное кольцо (не имеет делителей нуля): если $f, g \in F[x] \setminus \{0\}$, то $\deg(fg) = \deg f + \deg g$, в частности $fg \neq 0$. У целостного кольца есть поле частных
+    	\[
+    	F(x) = \left\{ \frac{f}{g} \ \middle|\ f, g \in F[x],\ g \neq 0 \right\}
+    	\]
+    	--- поле рациональных функций от $x$ над $F$ (со стандартными операциями сложения и умножения дробей). Расширение $F(x)/F$ называется (чисто) трансцендентным.
+    \end{definition}
+    
+    \begin{definition}[Представимые значения]
+    	Пусть $K/F$~--- расширение полей, $\varphi$~--- квадратичная форма над $F$ от $n$ переменных. Обозначим
+    	\[
+    	D_K(\varphi) = \{ \varphi(v) \mid v \in K^n \} \setminus \{ 0 \}
+    	\]
+    	--- множество ненулевых значений, представимых формой $\varphi$, рассматриваемой над $K$ (то есть $\varphi_K$). В частности, $\varphi$ изотропна над $K$ тогда и только тогда, когда $0$ представляется ненулевым вектором из $K^n$, что не то же самое, что $0 \in D_K(\varphi)$ по определению (в $D_K$ нулевое значение сознательно исключено).
+    \end{definition}
+    
+    \begin{theorem}[Теорема Касселса]
+    	Пусть $\varphi$~--- квадратичная форма над $F$. Тогда
+    	\[
+    	D_F(\varphi) = F^* \cap D_{F(x)}(\varphi).
+    	\]
+    \end{theorem}
+    
+    \begin{proof}
+    	($\subseteq$) Если $a \in D_F(\varphi)$, то $a = \varphi(c_1, \ldots, c_n)$ для некоторых $c_1, \ldots, c_n \in F \subseteq F(x)$, и $a \in F^*$ по определению $D_F(\varphi)$~--- значит, $a \in F^* \cap D_{F(x)}(\varphi)$.
+    	
+    	($\supseteq$, содержательная часть~--- лемма Касселса о спуске) Пусть $a \in F^* \cap D_{F(x)}(\varphi)$, то есть $a = \varphi(f_1/g, \ldots, f_n/g)$ для некоторых $f_1, \ldots, f_n, g \in F[x]$, $g \neq 0$ (приводя все координаты к общему знаменателю $g$). Домножая на $g^2$, получаем тождество многочленов
+    	\[
+    	ag^2 = \varphi(f_1, \ldots, f_n).
+    	\]
+    	Среди всех таких представлений числа $a$ (по всем $n$-кам $f_1, \ldots, f_n \in F[x]$ и $g \in F[x] \setminus \{0\}$) выберем представление с наименьшим $\deg g$.
+    	
+    	Если $\deg g = 0$, то $g \in F^*$, и $a = \varphi(f_1/g, \ldots, f_n/g)$ с координатами $f_i/g \in F$~--- то есть $a \in D_F(\varphi)$.
+    	
+    	Если $\deg g > 0$, то поделим с остатком $f_i = q_i g + r_i$, $\deg r_i < \deg g$. Подставляя это в тождество $ag^2 = \varphi(f_1, \ldots, f_n)$ и оценивая старшие коэффициенты по $x$, можно построить представление того же $a$ с меньшей степенью знаменателя~--- в противоречие с минимальностью $\deg g$ (технические детали оценки степеней опускаем, см. Cassels, \emph{On the representation of rational functions as sums of squares}, 1964). Значит, случай $\deg g > 0$ невозможен, откуда $a \in D_F(\varphi)$.
+    \end{proof}
+    
+    \begin{theorem}
+    	Если $\varphi$~--- анизотропна над $F$, то $\varphi$~--- анизотропна над $F(x)$.
+    \end{theorem}
+    
+    \begin{proof}
+    	Предположим противное: $\varphi$ изотропна над $F(x)$. Тогда найдётся ненулевой вектор $(f_1, \ldots, f_n) \in F[x]^n$ (координаты~--- многочлены: приводим к общему знаменателю и умножаем на него, что не меняет изотропности) с
+    	\[
+    	\varphi(f_1, \ldots, f_n) = 0 \quad \text{тождественно по } x.
+    	\]
+    	
+    	Пусть $d = \max_i \deg f_i$ (не все $f_i$ нулевые, так как вектор ненулевой, значит $d \geqslant 0$ корректно определено). Для каждого $i$ обозначим через $c_i \in F$ коэффициент при $x^d$ в многочлене $f_i$ (это $0$, если $\deg f_i < d$, и старший коэффициент $f_i$, если $\deg f_i = d$). Так как $d$~--- это максимум степеней, хотя бы для одного $i$ выполнено $\deg f_i = d$, то есть соответствующий $c_i \neq 0$; значит, $(c_1, \ldots, c_n) \neq 0$.
+    	
+    	С другой стороны, $\varphi(f_1, \ldots, f_n) = \sum_{i,j} a_{ij} f_i f_j$ имеет степень $\leqslant 2d$ (каждое слагаемое $f_if_j$~--- степени $\leqslant 2d$), и коэффициент при $x^{2d}$ в этом многочлене равен в точности $\sum_{i,j} a_{ij} c_i c_j = \varphi(c_1, \ldots, c_n)$ (вклад в $x^{2d}$ даёт только произведение старших по степени $d$ слагаемых из $f_i$ и $f_j$). Поскольку $\varphi(f_1, \ldots, f_n) \equiv 0$ как многочлен, все его коэффициенты равны нулю, в частности
+    	\[
+    	\varphi(c_1, \ldots, c_n) = 0.
+    	\]
+    	
+    	Итак, $(c_1, \ldots, c_n) \in F^n \setminus \{0\}$~--- изотропный вектор для $\varphi$ над $F$, что противоречит анизотропности $\varphi$ над $F$.
+    \end{proof}
+    
+    \begin{theorem}[Кассела-Пфистера]
+    	$\varphi$~--- квадратная форма над $F$. $p(x) \in D_{F(x)} \cap F[x]$. Тогда $p(x) \in D_{F[x]}(\varphi)$.
+    \end{theorem}
+    
+    \begin{corollary}
+    	$\gamma = \langle a_1, \dots, a_n \rangle \quad \varphi = \langle a_1, \dots, a_n \rangle \quad d \in F^*$. $d \in D_F (\varphi) \Leftrightarrow a_1x^2 + d \in F_{F(x)}(\gamma)$.
+    \end{corollary}
+    
+    \begin{corollary}
+    	$p(e) \ne 0 \Rightarrow p(e) \in D_F(\varphi)$.
+    \end{corollary}
+    
+    \section{Лемма Цорна}
+    
+    \begin{definition}[Частично упорядоченное множество (ЧУМ)]
+    	Множество $M$ с бинарным отношением $\leqslant$ называется частично упорядоченным, если отношение рефлексивно ($a \leqslant a$), транзитивно ($a \leqslant b,\, b \leqslant c \Rightarrow a \leqslant c$) и антисимметрично ($a \leqslant b,\, b \leqslant a \Rightarrow a = b$), причём не любые два элемента обязаны быть сравнимы (то есть не всегда $a \leqslant b$ или $b \leqslant a$).
+    \end{definition}
+    
+    \begin{definition}[Цепь]
+    	Подмножество $A \subseteq M$ частично упорядоченного множества называется цепью, если оно линейно упорядочено отношением $\leqslant$, то есть любые два его элемента сравнимы.
+    \end{definition}
+    
+    \begin{definition}[Верхняя грань]
+    	Пусть $A \subseteq M$. Элемент $u \in M$ называется верхней гранью множества $A$, если $a \leqslant u$ для всех $a \in A$ (сам $u$ не обязан принадлежать $A$).
+    \end{definition}
+    
+    \begin{definition}[Максимальный элемент]
+    	Элемент $m \in M$ называется максимальным, если не существует элемента $M$, строго превосходящего $m$: для всех $a \in M$ из $a \geqslant m$ следует $a = m$ (максимальный элемент не обязан быть сравним со всеми остальными элементами $M$, в отличие от наибольшего).
+    \end{definition}
+    
+    \begin{lemma}[Цорна]
+    	Пусть $(M, \leqslant)$~--- непустое частично упорядоченное множество, в котором каждая цепь имеет верхнюю грань. Тогда в $M$ существует хотя бы один максимальный элемент.
+    \end{lemma}
+    
+    \begin{note}
+    	Лемма Цорна эквивалентна аксиоме выбора (в рамках остальных аксиом ZF), поэтому доказательство здесь не приводится~--- по существу, лемма принимается как аксиома.
+    \end{note}
+    
+    \subsection{Теорема Хана--Банаха}
+    
+    \begin{definition}[Сублинейный функционал]
+    	Пусть $X$~--- векторное пространство над $\mathbb{R}$. Функция $q: X \rightarrow \mathbb{R}$ называется сублинейным функционалом, если:
+    	\begin{enumerate}
+    		\item $q(x + y) \leqslant q(x) + q(y)$ для всех $x, y \in X$ (субаддитивность);
+    		\item $q(tx) = t\, q(x)$ для всех $x \in X$, $t \geqslant 0$ (положительная однородность).
+    	\end{enumerate}
+    \end{definition}
+    
+    \begin{theorem}[Хана--Банаха]
+    	Пусть $X$~--- векторное пространство над $\mathbb{R}$, $p$~--- сублинейный функционал на $X$, $Y \subseteq X$~--- подпространство, $f: Y \rightarrow \mathbb{R}$~--- линейный функционал, удовлетворяющий $f(y) \leqslant p(y)$ для всех $y \in Y$. Тогда существует линейный функционал $F: X \rightarrow \mathbb{R}$, продолжающий $f$ (то есть $F(y) = f(y)$ для всех $y \in Y$) и удовлетворяющий $F(x) \leqslant p(x)$ для всех $x \in X$.
+    \end{theorem}
+    
+    \begin{proof}
+    	\textbf{Шаг 1 (продолжение на одну размерность).} Пусть $Y \subsetneq X$, $z \in X \setminus Y$. Покажем, что $f$ можно продолжить с $Y$ на $Y' = Y \oplus \mathbb{R}z$, сохранив неравенство $\leqslant p$. Продолжение однозначно определяется числом $c := F(z)$ (каждый элемент $Y'$ единственным образом представим как $y + tz$, $y \in Y$, $t \in \mathbb{R}$, и $F(y+tz) = f(y) + tc$ по линейности). Нужно подобрать $c$ так, чтобы для всех $y \in Y$, $t \in \mathbb{R}$:
+    	\[
+    	f(y) + tc \leqslant p(y + tz).
+    	\]
+    	При $t = 0$ это условие на $f$, уже выполненное. Разберём $t > 0$ и $t < 0$, поделив неравенство на $|t|$ (при этом $y/t$ или $-y/t$ пробегает всё $Y$, пока $y$ пробегает $Y$, так как $Y$~--- подпространство):
+    	\begin{itemize}
+    		\item $t > 0$: $c \leqslant p(y' + z) - f(y')$ для всех $y' \in Y$;
+    		\item $t < 0$: $c \geqslant f(y') - p(y' - z)$ для всех $y' \in Y$.
+    	\end{itemize}
+    	Такое $c$ существует тогда и только тогда, когда
+    	\[
+    	\sup_{y_1 \in Y} \bigl( f(y_1) - p(y_1 - z) \bigr) \ \leqslant\ \inf_{y_2 \in Y} \bigl( p(y_2 + z) - f(y_2) \bigr),
+    	\]
+    	что равносильно неравенству $f(y_1) + f(y_2) \leqslant p(y_1 - z) + p(y_2 + z)$ для любых $y_1, y_2 \in Y$. Это действительно верно:
+    	\[
+    	f(y_1) + f(y_2) = f(y_1 + y_2) \leqslant p(y_1 + y_2) = p\bigl( (y_1 - z) + (y_2 + z) \bigr) \leqslant p(y_1 - z) + p(y_2 + z),
+    	\]
+    	где первое неравенство~--- условие на $f$, второе~--- субаддитивность $p$. Значит, нужный $c$ существует (любое число из непустого отрезка между $\sup$ и $\inf$), и продолжение $F$ на $Y'$ с сохранением $F \leqslant p$ построено.
+    	
+    	\textbf{Шаг 2 (применение леммы Цорна).} Рассмотрим множество $M$ пар $(Z, g)$, где $Y \subseteq Z \subseteq X$~--- подпространство, $g: Z \rightarrow \mathbb{R}$~--- линейный функционал, продолжающий $f$ и удовлетворяющий $g \leqslant p$ на $Z$. Порядок: $(Z_1, g_1) \leqslant (Z_2, g_2)$, если $Z_1 \subseteq Z_2$ и $g_2|_{Z_1} = g_1$. Множество $M$ непусто, так как $(Y, f) \in M$.
+    	
+    	Для цепи $\{ (Z_i, g_i) \}_{i \in I}$ в $M$ положим $Z = \bigcup_i Z_i$ (подпространство, так как цепь линейно упорядочена по включению~--- любые два элемента $Z$ лежат в общем $Z_i$) и $g(x) = g_i(x)$ при $x \in Z_i$ (корректно определено, так как на пересечении $Z_i \subseteq Z_j$ функционалы согласованы по определению порядка). Пара $(Z, g)$~--- верхняя грань цепи.
+    	
+    	По лемме Цорна в $M$ существует максимальный элемент $(X_0, F)$. Если $X_0 \neq X$, по шагу 1 функционал $F$ продолжается на большее подпространство с сохранением $\leqslant p$~--- противоречие с максимальностью. Значит, $X_0 = X$, и $F$~--- искомое продолжение $f$ на всё $X$.
+    \end{proof}
+    
+    \section{Поля}
+    
+    \begin{definition}[Порядок]
+    	$P$~--- порядок на $F$, если $P \subsetneq F$:
+		\begin{enumerate}
+			\item $P + P \subseteq P$
+			\item $P \cdot P \subseteq P$
+			\item $P \cup (-P) = F$
+		\end{enumerate}
+    \end{definition}
+    
+    \begin{definition}
+    	$\sigma(F) :=$ элементы, которые являются суммой квадратов.
+    \end{definition}
+    
+    \begin{statement}
+    	\begin{enumerate}
+			\item $\sigma(F) \subseteq P$
+			\item $-1 \notin P$. $a \in P$. $\underbrace{\left( \dfrac{a + 1}{2} \right)^2}_{\in P} - \underbrace{\left( \dfrac{a - 1}{2} \right)^2}_{\in P} = a$
+			\item $P \cap (-D) = \{ 0 \}$
+		\end{enumerate}
+    \end{statement}
+    
+    \begin{theorem}
+    	$-1 \notin \sigma(F) \Leftrightarrow \exists \ P$ на $F$.
+    \end{theorem}
+    
+    \begin{statement}
+    	$\sigma(F)$~--- группа.
+    \end{statement}
+    
+    \begin{theorem}[Артина-Шрайера]
+    	$x \in F$~--- абсолютно положительное $\Leftrightarrow x \in \sigma(F)$.
+    \end{theorem}
+    
+    \begin{lemma}
+    	$(F, P)$~--- упорядочено, $K = F(\sqrt{a})$, $a \in F$. $a \notin \sigma(F) \Leftrightarrow k$~--- формально вещественное. Иначе $k$~--- неформально вещественное.
+    \end{lemma}
+    
+    \section{Соседи Пфистера}
+    
+    \begin{definition}[Соседи Пфистера]
+    	$\varphi = \langle \langle a_1, \dots, a_n \rangle \rangle$, $\dim \varphi = 2^n$. Фомрма $\sigma$ называется соседом Пфистера для $\varphi$, если $\exists \ c \in F: \varphi \cong c \sigma \perp q_1$, $\dim \sigma > 2^{n - 1}$.
+    \end{definition}
+    
+    \section{Теоремка}
+    
+    \begin{theorem}
+    	$q \in I^nF$~--- анизотропна $\Leftrightarrow \dim q \geqslant 2^n$.
+    \end{theorem}
+    
+    \begin{definition}
+    	Форма $\gamma$ доминирует $\varphi$ над $F$, если $\varphi \in D_{F(x)}(\gamma)$
+    \end{definition}
+    
+    \begin{corollary}
+    	$\varphi$ подформа $\gamma$, те $\gamma \cong \varphi \perp \dots$, $\varphi \leqslant \gamma$. $\varphi \subseteq \gamma \Leftrightarrow \gamma$ доминирует $\varphi$.
+    \end{corollary}
+    
+    \begin{corollary}
+    	$\gamma$~--- анизотропна, $\dim \varphi = n$, $\varphi(x) \in F(x)$. $\varphi(x) \cdot \gamma_{F(x)} \cong \gamma_{F(x)}$. $\forall a \in D_F(\gamma) \quad a \cdot \varphi \subseteq \gamma \quad \dim \gamma \geqslant \dim \varphi$.
+    \end{corollary}
+    
+    \begin{definition}
+    	$q > \varphi$, если $q$~--- изотропна над $F[\varphi]$.
+		
+		$q >> \varphi$, если $q$~--- гиперболична над $F[\varphi]$.
+    \end{definition}
+    
+    \begin{theorem}
+    	$q >> \varphi \quad 1 \in D_F(\varphi)$. Тогда $\varphi(x) q \cong q$.
+    \end{theorem}
 \end{document}
