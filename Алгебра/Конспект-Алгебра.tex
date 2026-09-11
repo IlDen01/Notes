@@ -322,4 +322,171 @@
 		\end{cases}$\\
 		\hline
 	\end{xltabular}
+	
+    \section{Полиномиальные уравнения и системы уравнений}
+    
+    \begin{definition}[Кольцо многочленов]
+    	$K[x]$~--- кольцо многочленов над полем коэффициентов $K$.
+    \end{definition}
+    
+    \subsection{Кубические уравнения}
+    
+    \begin{statement}[Теорема Виета для кубического многочлена]
+    	Пусть $x_1, x_2, x_3$~--- корни многочлена $x^3 - px^2 + qx - r = 0$ (с учётом кратности, в $\mathbb{C}$). Тогда
+    	\[
+    		\begin{cases}
+    			x_1 + x_2 + x_3 = p, \\
+    			x_1 x_2 + x_1 x_3 + x_2 x_3 = q, \\
+    			x_1 x_2 x_3 = r.
+    		\end{cases}
+    	\]
+    \end{statement}
+    
+    \begin{definition}[Кубический дискриминант]
+    	Пусть $x_1, x_2, x_3$~--- корни многочлена $f(x) = x^3 - px^2 + qx - r$. Определим
+    	\[
+    		D = (x_1 - x_2)^2 (x_2 - x_3)^2 (x_3 - x_1)^2.
+    	\]
+    	
+    	Выразим $D$ через $p, q, r$. Обозначим
+    	\[
+    		A = x_1^2x_3 + x_2^2x_1 + x_3^2x_2, \qquad B = x_1x_3^2 + x_2x_1^2 + x_3x_2^2.
+    	\]
+    	Тогда $(x_1-x_2)(x_2-x_3)(x_3-x_1) = A - B$, а значит
+    	\[
+    		D = (A - B)^2 = (A+B)^2 - 4AB.
+    	\]
+    	
+    	\textbf{Сумма $A+B$.} По теореме Виета,
+    	\[
+    		A + B = \sum_{i \ne j} x_i^2 x_j = \Big( \sum_i x_i \Big) \Big( \sum_{i<j} x_i x_j \Big) - 3x_1x_2x_3 = pq - 3r.
+    	\]
+    	
+    	\textbf{Произведение $AB$.} Раскрывая скобки,
+    	\[
+    		AB = (x_1x_2)^3 + (x_1x_3)^3 + (x_2x_3)^3 + x_1^4x_2x_3 + x_2^4x_3x_1 + x_3^4x_1x_2 + 3x_1^2x_2^2x_3^2.
+    	\]
+    	Используя $x_1^3+x_2^3+x_3^3 = p^3 - 3pq + 3r$ и стандартные тождества для сумм/произведений пар $x_ix_j$, получаем
+    	\[
+    		(x_1x_2)^3 + (x_1x_3)^3 + (x_2x_3)^3 = q^3 - 3pqr + 3r^2,
+    	\]
+    	\[
+    		x_1^4x_2x_3 + x_2^4x_3x_1 + x_3^4x_1x_2 = x_1x_2x_3(x_1^3+x_2^3+x_3^3) = p^3r - 3pqr + 3r^2,
+    	\]
+    	откуда
+    	\[
+    		AB = p^3r + q^3 - 6pqr + 9r^2.
+    	\]
+    	
+    	\textbf{Итог.}
+    	\[
+    		D = (A+B)^2 - 4AB = (pq - 3r)^2 - 4(p^3r + q^3 - 6pqr + 9r^2) = p^2q^2 - 4p^3r - 4q^3 + 18pqr - 27r^2.
+    	\]
+    \end{definition}
+    
+    \begin{statement}
+    	Дан многочлен $x^3 - px^2 + qx - r = 0$, $p, q, r \in \mathbb{R}$. Тогда число его вещественных корней равно 1 или 3.
+    	
+    	Как определить, сколько корней~--- 1 или 3?
+    	
+    	\begin{enumerate}
+    		\item \textbf{Через экстремумы.} Найдём локальные экстремумы многочлена (то есть точки $x_1, x_2$, в которых производная обращается в ноль).
+    		\begin{itemize}
+    			\item Если экстремумов нет, корень один.
+    			\item Если экстремумы есть, подставим их значения в исходный многочлен и посмотрим на знаки $f(x_1)$ и $f(x_2)$. Если $f(x_1) \cdot f(x_2) > 0$, корень один; если $< 0$, корней три.
+    		\end{itemize}
+    		\item \textbf{Геометрически.} Рассмотрим случай трёх вещественных корней на числовой прямой. Чтобы остался только один корень, а два других "разошлись" в комплексную плоскость (вертикально), они должны сначала слиться в одну точку~--- то есть пройти через случай кратного корня, где $f(x_1) \cdot f(x_2) = 0$.
+    		\item \textbf{Через дискриминант.}
+    		\begin{itemize}
+    			\item $D < 0 \Leftrightarrow$ 1 корень.
+    			\item $D > 0 \Leftrightarrow$ 3 корня.
+    			\item $D = 0 \Leftrightarrow$ есть кратный корень (граничный случай между 1 и 3).
+    		\end{itemize}
+    	\end{enumerate}
+    	
+    	Как определить, есть ли кратный корень?
+    	
+    	\begin{enumerate}
+    		\item $\gcd(f, f') \ne 1 \Leftrightarrow$ у $f$ есть кратный корень.
+    		\item Вычислим кубический дискриминант $D$ многочлена $f$.
+    		\begin{itemize}
+    			\item Если $D = 0$, есть кратный корень.
+    			\item Если $D \ne 0$, все корни различны.
+    		\end{itemize}
+    	\end{enumerate}
+    \end{statement}
+    
+    \subsubsection{Отступление}
+    
+    \begin{definition}[Результант]
+    	Пусть $f(x) = a_0x^n + a_1x^{n-1} + \dots + a_n$ и $g(x) = b_0x^m + b_1x^{m-1} + \dots + b_m$~--- многочлены степеней $n$ и $m$ соответственно, $a_0, b_0 \ne 0$. Результантом $f$ и $g$ называется определитель матрицы Сильвестра размера $(n+m) \times (n+m)$:
+    	\[
+    		\mathrm{Res}(f, g) = \det
+    		\begin{pmatrix}
+    			a_0 & a_1 & \dots & a_n &        &        &        \\
+    			    & a_0 & a_1 & \dots & a_n &        &        \\
+    			    &     & \ddots &     &     & \ddots &        \\
+    			    &     &     & a_0 & a_1 & \dots & a_n     \\
+    			b_0 & b_1 & \dots & b_m &        &        &        \\
+    			    & b_0 & b_1 & \dots & b_m &        &        \\
+    			    &     & \ddots &     &     & \ddots &        \\
+    			    &     &     & b_0 & b_1 & \dots & b_m
+    		\end{pmatrix},
+    	\]
+    	где первые $m$ строк заполнены коэффициентами $f$ (со сдвигом на 1 позицию вправо в каждой следующей строке), а последние $n$ строк~--- коэффициентами $g$ аналогичным образом.
+    \end{definition}
+    
+    \begin{statement}
+    	$\mathrm{Res}(f, g) = 0 \Leftrightarrow \gcd(f, g) \ne 1$.
+    \end{statement}
+    
+    \begin{statement}
+    	$\gcd(f, g) \ne 1 \Leftrightarrow \mathrm{lcm}(f, g) \ne fg$.
+    \end{statement}
+    
+    \begin{proof}
+    	Для любых двух многочленов $f, g \in K[x]$ выполняется тождество
+    	\[
+    		\gcd(f, g) \cdot \mathrm{lcm}(f, g) = fg
+    	\]
+    	(с точностью до умножения на константу из $K^*$, поскольку $\gcd$ и $\mathrm{lcm}$ определены однозначно лишь с точностью до обратимого множителя).
+    	
+    	Отсюда сразу получаем эквивалентность:
+    	\begin{itemize}
+    		\item Если $\gcd(f, g) = 1$, то $\mathrm{lcm}(f, g) = fg$.
+    		\item Если $\gcd(f, g) \ne 1$, то $\mathrm{lcm}(f,g) = \dfrac{fg}{\gcd(f,g)}$ имеет степень строго меньше $\deg f + \deg g$, а значит $\mathrm{lcm}(f,g) \ne fg$.
+    	\end{itemize}
+    	
+    	Таким образом, $\gcd(f,g) \ne 1 \Leftrightarrow \mathrm{lcm}(f,g) \ne fg$.
+    \end{proof}
+    
+    \begin{statement}
+    	У $f$ есть кратные корни $\Leftrightarrow \mathrm{Res}(f, f') = 0$.
+    \end{statement}
+    
+    \begin{statement}
+    	$\mathrm{Res}(f, f') = a_0 D(f)$.
+    \end{statement}
+    
+    \subsubsection{Симметрические многочлены}
+    
+    \begin{definition}[Симметрический многочлен]
+    	Многочлен $f(x_1, \dots, x_n)$ называется \textit{симметрическим}, если для любой перестановки $\pi \in S_n$
+    	\[
+    		f(x_1, \dots, x_n) = f(x_{\pi(1)}, x_{\pi(2)}, \dots, x_{\pi(n)}).
+    	\]
+    \end{definition}
+    
+    \begin{definition}[Элементарные симметрические многочлены]
+    	\[
+    		f_i = \sum_{k_1 < k_2 < \dots < k_i} x_{k_1} x_{k_2} \cdots x_{k_i}, \qquad i = 1, \dots, n.
+    	\]
+    \end{definition}
+    
+    \begin{theorem}
+    	Любой симметрический многочлен $f(x_1, \dots, x_n)$ выражается (единственным образом) через элементарные симметрические многочлены $f_1, \dots, f_n$, то есть существует многочлен $g$ такой, что
+    	\[
+    		f(x_1, \dots, x_n) = g(f_1, \dots, f_n).
+    	\]
+    \end{theorem}
 \end{document}
