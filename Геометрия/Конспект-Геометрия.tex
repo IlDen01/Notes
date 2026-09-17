@@ -404,4 +404,52 @@
 			\end{cases}
 		\]
 	\end{statement}
+	
+	\subsection{Вектора}
+	
+	\subsubsection{Скалярное произведение векторов}
+	
+	\begin{definition}
+		$\vec{a} \cdot \vec{b} = |a| |b| \cos \bigl( \widehat{\vec{a}\vec{b}} \bigr) = x_1x_2 + y_1y_2 + z_1z_2$
+	\end{definition}
+	
+	\subsubsection{Векторное произведение векторов}
+	
+	\begin{definition}[Коллинеарльные вектора]
+		Два ненулевых вектора называются коллинеарными, если они лежат на одной прямой или на параллельных прямых.
+	\end{definition}
+	
+	\begin{definition}[Компланарные вектора]
+		Три ненулевых вектора называются компланарными, если они лежат в одной плоскости и параллельны какой-то одной плоскости.
+	\end{definition}
+	
+	\begin{definition}[Правая и левая тройки]
+		$\vec{a}, \vec{b}, \vec{c}$~--- некпомпланарные. Возьмем упорядоченную тройку $(\vec{a}, \vec{b}, \vec{c})$.
+		
+		Тогда \textbf{правая} тройка~--- это когда из конца третьего вектора $\vec{c}$ кратчайший поворот от первого вектора $\vec{a}$ ко второму вектору $\vec{b}$ виден \textbf{против} часовой стрелки.
+		
+		Тогда \textbf{левая} тройка~--- это когда из конца третьего вектора $\vec{c}$ кратчайший поворот от первого вектора $\vec{a}$ ко второму вектору $\vec{b}$ виден \textbf{по} часовой стрелки.
+	\end{definition}
+	
+	\begin{definition}[Векторное произведение векторов]
+		$\vec{a} \times \vec{b} = \vec{c}$:
+		\begin{enumerate}
+			\item Если $\vec{a} = 0$, или $\vec{b} = 0$, или $\vec{a} \parallel \vec{b}$, то $\vec{c} = 0$
+			\item
+			\begin{itemize}
+				\item $|\vec{c}| = |\vec{a}| |\vec{b}| \sin \bigl( \widehat{\vec{a}\vec{b}} \bigr)$
+				\item $(\vec{a}, \vec{b}, \vec{c})$~--- правая тройка
+				\item $\vec{c} \perp$ плоскости векторов $\vec{a}$ и $\vec{b}$
+			\end{itemize}
+		\end{enumerate}
+	\end{definition}
+	
+	\begin{properties}[векторного произведения]
+		\begin{enumerate}
+    		\item $\vec{a} \parallel \vec{b} \Leftrightarrow \vec{a} \times \vec{b} = 0$
+    		\item $\vec{a} \times \vec{b} = - \vec{b} \times \vec{a}$
+    		\item $(\lambda \vec{a}) \times \vec{b} = \lambda (\vec{a} \times \vec{b})$
+    		\item $(\vec{a} + \vec{b}) \times \vec{c} = \vec{a} \times \vec{c} + \vec{b} \times \vec{c}$
+    	\end{enumerate}
+	\end{properties}
 \end{document}
