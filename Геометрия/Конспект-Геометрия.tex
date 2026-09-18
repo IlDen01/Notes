@@ -452,4 +452,21 @@
     		\item $(\vec{a} + \vec{b}) \times \vec{c} = \vec{a} \times \vec{c} + \vec{b} \times \vec{c}$
     	\end{enumerate}
 	\end{properties}
+	
+	\begin{statement}
+		Есть $\vec{a}(a_1, a_2, a_3), \vec{b}(b_1, b_2, b_3)$. Тогда
+		\[
+			\vec{a} \times \vec{b} = (a_2b_3 - a_3b_2, -(a_1b_3 - a_3b_1), a_1b_2 - a_2b_1)
+		\]
+	\end{statement}
+	
+	\begin{proof}
+		Взять матрицу
+		$\begin{pmatrix}
+			i & j & k \\
+			a_1 & a_2 & a_3 \\
+			b_1 & b_2 & b_3
+		\end{pmatrix}$
+		и посчитать через нее $\vec{a}$ и $\vec{b}$.
+	\end{proof}
 \end{document}
