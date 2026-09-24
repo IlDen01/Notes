@@ -469,4 +469,31 @@
 		\end{pmatrix}$
 		и посчитать через нее $\vec{a}$ и $\vec{b}$.
 	\end{proof}
+	
+	\subsection{Смешанное произведение векторов}
+	
+	\begin{definition}[Смешанное произведение]
+		\[
+			\vec{a} \cdot \left( \vec{b} \times \vec{c} \right)
+		\]
+		
+		Численно равно объему параллелепипеда, построенного на $\vec{a}$, $\vec{b}$, $\vec{c}$.
+		
+		$\vec{a} \cdot \left( \vec{b} \times \vec{c} \right) =
+		\begin{cases}
+			v, \qquad \text{если } \left( \vec{a}, \vec{b}, \vec{c} \right) \text{~--- правая тройка} \\
+			-v, \qquad \text{если } \left( \vec{a}, \vec{b}, \vec{c} \right) \text{~--- левая тройка} \\
+			0, \qquad \text{если } \left( \vec{a}, \vec{b}, \vec{c} \right) \text{~--- компланарные}
+		\end{cases}$
+	\end{definition}
+	
+	\begin{statement}
+		Если $\vec{a} \cdot \left( \vec{b} \times \vec{c} \right) = 0$, то векторы $\vec{a}$, $\vec{b}$, $\vec{c}$ компланарны.
+	\end{statement}
+	
+	\begin{statement}
+		\[
+			\vec{a} \cdot \left( \vec{b} \times \vec{c} \right) = \left( \vec{a} \times \vec{b} \right) \cdot \vec{c}
+		\]
+	\end{statement}
 \end{document}
