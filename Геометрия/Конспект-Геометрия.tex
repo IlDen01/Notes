@@ -405,95 +405,104 @@
 		\]
 	\end{statement}
 	
-	\subsection{Вектора}
-	
-	\subsubsection{Скалярное произведение векторов}
-	
-	\begin{definition}
-		$\vec{a} \cdot \vec{b} = |a| |b| \cos \bigl( \widehat{\vec{a}\vec{b}} \bigr) = x_1x_2 + y_1y_2 + z_1z_2$
-	\end{definition}
-	
-	\subsubsection{Векторное произведение векторов}
-	
-	\begin{definition}[Коллинеарльные вектора]
-		Два ненулевых вектора называются коллинеарными, если они лежат на одной прямой или на параллельных прямых.
-	\end{definition}
-	
-	\begin{definition}[Компланарные вектора]
-		Три ненулевых вектора называются компланарными, если они лежат в одной плоскости и параллельны какой-то одной плоскости.
-	\end{definition}
-	
-	\begin{definition}[Правая и левая тройки]
-		$\vec{a}, \vec{b}, \vec{c}$~--- некпомпланарные. Возьмем упорядоченную тройку $(\vec{a}, \vec{b}, \vec{c})$.
-		
-		Тогда \textbf{правая} тройка~--- это когда из конца третьего вектора $\vec{c}$ кратчайший поворот от первого вектора $\vec{a}$ ко второму вектору $\vec{b}$ виден \textbf{против} часовой стрелки.
-		
-		Тогда \textbf{левая} тройка~--- это когда из конца третьего вектора $\vec{c}$ кратчайший поворот от первого вектора $\vec{a}$ ко второму вектору $\vec{b}$ виден \textbf{по} часовой стрелки.
-	\end{definition}
-	
-	\begin{definition}[Векторное произведение векторов]
-		$\vec{a} \times \vec{b} = \vec{c}$:
-		\begin{enumerate}
-			\item Если $\vec{a} = 0$, или $\vec{b} = 0$, или $\vec{a} \parallel \vec{b}$, то $\vec{c} = 0$
-			\item
-			\begin{itemize}
-				\item $|\vec{c}| = |\vec{a}| |\vec{b}| \sin \bigl( \widehat{\vec{a}\vec{b}} \bigr)$
-				\item $(\vec{a}, \vec{b}, \vec{c})$~--- правая тройка
-				\item $\vec{c} \perp$ плоскости векторов $\vec{a}$ и $\vec{b}$
-			\end{itemize}
-		\end{enumerate}
-	\end{definition}
-	
-	\begin{properties}[векторного произведения]
-		\begin{enumerate}
-    		\item $\vec{a} \parallel \vec{b} \Leftrightarrow \vec{a} \times \vec{b} = 0$
-    		\item $\vec{a} \times \vec{b} = - \vec{b} \times \vec{a}$
-    		\item $(\lambda \vec{a}) \times \vec{b} = \lambda (\vec{a} \times \vec{b})$
-    		\item $(\vec{a} + \vec{b}) \times \vec{c} = \vec{a} \times \vec{c} + \vec{b} \times \vec{c}$
+    \subsection{Векторы}
+    
+    \subsubsection{Скалярное произведение векторов}
+    
+    \begin{definition}[Скалярное произведение]
+    	Пусть $\vec{a} = (x_1, y_1, z_1)$, $\vec{b} = (x_2, y_2, z_2)$. Тогда
+    	\[
+    		\vec{a} \cdot \vec{b} = |\vec{a}| \, |\vec{b}| \cos \bigl( \widehat{\vec{a}, \vec{b}} \bigr) = x_1x_2 + y_1y_2 + z_1z_2.
+    	\]
+    \end{definition}
+    
+    \subsubsection{Векторное произведение векторов}
+    
+    \begin{note}
+    	Определения коллинеарных и компланарных векторов даны выше, в разделе <<Координаты>>. Напомним, что векторы компланарны, если они параллельны некоторой плоскости.
+    \end{note}
+    
+    \begin{definition}[Правая и левая тройки]
+    	Пусть $\vec{a}$, $\vec{b}$, $\vec{c}$~--- некомпланарные векторы. Рассмотрим упорядоченную тройку $(\vec{a}, \vec{b}, \vec{c})$ и посмотрим на неё из конца вектора $\vec{c}$. Тройка называется:
+    	\begin{itemize}
+    		\item \textbf{правой}, если кратчайший поворот от $\vec{a}$ к $\vec{b}$ виден \textbf{против} часовой стрелки;
+    		\item \textbf{левой}, если этот поворот виден \textbf{по} часовой стрелке.
+    	\end{itemize}
+    \end{definition}
+    
+    \begin{definition}[Векторное произведение]
+    	Векторным произведением $\vec{a} \times \vec{b}$ называется вектор $\vec{c}$, удовлетворяющий условиям:
+    	\begin{enumerate}
+    		\item если $\vec{a} \parallel \vec{b}$ (в частности, если один из векторов нулевой), то $\vec{c} = \vec{0}$;
+    		\item если $\vec{a} \nparallel \vec{b}$, то
+    		\begin{itemize}
+    			\item $|\vec{c}| = |\vec{a}| \, |\vec{b}| \sin \bigl( \widehat{\vec{a}, \vec{b}} \bigr)$;
+    			\item $\vec{c} \perp \vec{a}$ и $\vec{c} \perp \vec{b}$, то есть $\vec{c}$ перпендикулярен плоскости векторов $\vec{a}$ и $\vec{b}$;
+    			\item $(\vec{a}, \vec{b}, \vec{c})$~--- правая тройка.
+    		\end{itemize}
     	\end{enumerate}
-	\end{properties}
-	
-	\begin{statement}
-		Есть $\vec{a}(a_1, a_2, a_3), \vec{b}(b_1, b_2, b_3)$. Тогда
-		\[
-			\vec{a} \times \vec{b} = (a_2b_3 - a_3b_2, -(a_1b_3 - a_3b_1), a_1b_2 - a_2b_1)
-		\]
-	\end{statement}
-	
-	\begin{proof}
-		Взять матрицу
-		$\begin{pmatrix}
-			i & j & k \\
-			a_1 & a_2 & a_3 \\
-			b_1 & b_2 & b_3
-		\end{pmatrix}$
-		и посчитать через нее $\vec{a}$ и $\vec{b}$.
-	\end{proof}
-	
-	\subsection{Смешанное произведение векторов}
-	
-	\begin{definition}[Смешанное произведение]
-		\[
-			\vec{a} \cdot \left( \vec{b} \times \vec{c} \right)
-		\]
-		
-		Численно равно объему параллелепипеда, построенного на $\vec{a}$, $\vec{b}$, $\vec{c}$.
-		
-		$\vec{a} \cdot \left( \vec{b} \times \vec{c} \right) =
-		\begin{cases}
-			v, \qquad \text{если } \left( \vec{a}, \vec{b}, \vec{c} \right) \text{~--- правая тройка} \\
-			-v, \qquad \text{если } \left( \vec{a}, \vec{b}, \vec{c} \right) \text{~--- левая тройка} \\
-			0, \qquad \text{если } \left( \vec{a}, \vec{b}, \vec{c} \right) \text{~--- компланарные}
-		\end{cases}$
-	\end{definition}
-	
-	\begin{statement}
-		Если $\vec{a} \cdot \left( \vec{b} \times \vec{c} \right) = 0$, то векторы $\vec{a}$, $\vec{b}$, $\vec{c}$ компланарны.
-	\end{statement}
-	
-	\begin{statement}
-		\[
-			\vec{a} \cdot \left( \vec{b} \times \vec{c} \right) = \left( \vec{a} \times \vec{b} \right) \cdot \vec{c}
-		\]
-	\end{statement}
+    \end{definition}
+    
+    \begin{properties}[векторного произведения]
+    	\begin{enumerate}
+    		\item $\vec{a} \parallel \vec{b} \Leftrightarrow \vec{a} \times \vec{b} = \vec{0}$.
+    		\item $\vec{a} \times \vec{b} = - \vec{b} \times \vec{a}$.
+    		\item $(\lambda \vec{a}) \times \vec{b} = \lambda (\vec{a} \times \vec{b})$.
+    		\item $(\vec{a} + \vec{b}) \times \vec{c} = \vec{a} \times \vec{c} + \vec{b} \times \vec{c}$.
+    	\end{enumerate}
+    \end{properties}
+    
+    \begin{statement}
+    	Пусть $\vec{a} = (a_1, a_2, a_3)$, $\vec{b} = (b_1, b_2, b_3)$. Тогда
+    	\[
+    		\vec{a} \times \vec{b} = (a_2b_3 - a_3b_2, \; a_3b_1 - a_1b_3, \; a_1b_2 - a_2b_1).
+    	\]
+    	Формально это раскрытие определителя
+    	$\begin{vmatrix}
+    		\vec{i} & \vec{j} & \vec{k} \\
+    		a_1 & a_2 & a_3 \\
+    		b_1 & b_2 & b_3
+    	\end{vmatrix}$ по первой строке.
+    \end{statement}
+    
+    \begin{proof}
+    	Пусть $\vec{i}, \vec{j}, \vec{k}$~--- правый ортонормированный базис. Из определения $\vec{i} \times \vec{j} = \vec{k}$, $\vec{j} \times \vec{k} = \vec{i}$, $\vec{k} \times \vec{i} = \vec{j}$, а также $\vec{i} \times \vec{i} = \vec{j} \times \vec{j} = \vec{k} \times \vec{k} = \vec{0}$. Из антикоммутативности $\vec{j} \times \vec{i} = -\vec{k}$, $\vec{k} \times \vec{j} = -\vec{i}$, $\vec{i} \times \vec{k} = -\vec{j}$.
+    
+    	Из свойств 2--4 векторное произведение линейно по каждому аргументу, поэтому
+    	\begin{multline*}
+    		(a_1\vec{i} + a_2\vec{j} + a_3\vec{k}) \times (b_1\vec{i} + b_2\vec{j} + b_3\vec{k}) = \\
+    		= a_1b_2 \vec{k} - a_1b_3 \vec{j} - a_2b_1 \vec{k} + a_2b_3 \vec{i} + a_3b_1 \vec{j} - a_3b_2 \vec{i} = \\
+    		= (a_2b_3 - a_3b_2)\vec{i} + (a_3b_1 - a_1b_3)\vec{j} + (a_1b_2 - a_2b_1)\vec{k}.
+    	\end{multline*}
+    \end{proof}
+    
+    \subsubsection{Смешанное произведение векторов}
+    
+    \begin{definition}[Смешанное произведение]
+    	Смешанным произведением векторов $\vec{a}$, $\vec{b}$, $\vec{c}$ называется число
+    	\[
+    		\vec{a} \cdot \left( \vec{b} \times \vec{c} \right).
+    	\]
+    	Его модуль равен объему $v$ параллелепипеда, построенного на $\vec{a}$, $\vec{b}$, $\vec{c}$, а знак определяется ориентацией тройки:
+    	\[
+    		\vec{a} \cdot \left( \vec{b} \times \vec{c} \right) =
+    		\begin{cases}
+    			v, & \text{если } (\vec{a}, \vec{b}, \vec{c}) \text{~--- правая тройка}, \\
+    			-v, & \text{если } (\vec{a}, \vec{b}, \vec{c}) \text{~--- левая тройка}, \\
+    			0, & \text{если } \vec{a}, \vec{b}, \vec{c} \text{ компланарны}.
+    		\end{cases}
+    	\]
+    \end{definition}
+    
+    \begin{statement}
+    	Векторы $\vec{a}$, $\vec{b}$, $\vec{c}$ компланарны тогда и только тогда, когда $\vec{a} \cdot \left( \vec{b} \times \vec{c} \right) = 0$.
+    \end{statement}
+    
+    \begin{statement}
+    	$\vec{a} \cdot \left( \vec{b} \times \vec{c} \right) = \left( \vec{a} \times \vec{b} \right) \cdot \vec{c}$.
+    \end{statement}
+    
+    \begin{proof}
+    	Смешанное произведение~--- это объем параллелепипеда со знаком ориентации тройки. Тройки $(\vec{a}, \vec{b}, \vec{c})$ и $(\vec{c}, \vec{a}, \vec{b})$ отличаются циклической перестановкой, поэтому имеют одну ориентацию и задают один и тот же параллелепипед. Значит, $\vec{a} \cdot (\vec{b} \times \vec{c}) = \vec{c} \cdot (\vec{a} \times \vec{b})$, а скалярное произведение коммутативно.
+    \end{proof}
 \end{document}
