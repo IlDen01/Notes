@@ -1,9 +1,9 @@
 *.aux
+*.fdb_latexmk
+*.fls
 *.log
 *.out
 *.synctex.gz
 *.toc
 /Экспа/*
-ДЗ*
-/Английский/*
 .DS_Store

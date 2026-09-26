@@ -1,0 +1,215 @@
+\documentclass[12pt,a4paper]{article}
+
+\input{~/School/Notes/header.tex}
+\newcommand{\orb}{\text{orb}}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\cycl}{\text{cycl}}
+\newcommand{\Img}[1]{\text{Im}(#1)}
+\newcommand{\Ker}[1]{\text{Ker}(#1)}
+\newcommand{\Aut}[1]{\text{Aut}(#1)}
+\newcommand{\st}[1]{\text{st}(#1)}
+
+\title{Домашнее задание по спецмату}
+\author{}
+\date{}
+
+\begin{document}
+	\maketitle
+	
+	\section*{Домашнее задание: поля $\mathbb{F}_8$ и $\mathbb{F}_9$}
+    
+    \subsection*{Поле $\mathbb{F}_8$}
+    
+    \begin{example}[Построение $\mathbb{F}_8$]
+    	Многочлен $f(x) = x^3+x+1$ неприводим над $\mathbb{F}_2$: $f(0)=1$, $f(1)=1$, корней нет, а степень $3$~--- значит, разложение на множители меньшей степени невозможно. $\mathbb{F}_8 := \mathbb{F}_2[x]/(f)$, $a := \bar x$, тогда $a^3 = a+1$.
+    
+    	Проверим, что $a$~--- примитивный элемент, то есть $\ord(a) = 7 = |\mathbb{F}_8^*|$:
+    	\[
+    		a^0=1,\quad a^1=a,\quad a^2=a^2,\quad a^3=a+1,\quad a^4=a^2+a,
+    	\]
+    	\[
+    		a^5=a\cdot a^4=a^3+a^2=a^2+a+1,\quad a^6=a\cdot a^5=a^3+a^2+a=a^2+1,\quad a^7=a\cdot a^6=a^3+a=1.
+    	\]
+    	Все восемь степеней $a^0,\dots,a^6$ различны и исчерпывают все ненулевые элементы поля, значит $a$~--- примитивный элемент.
+    \end{example}
+    
+    \begin{center}
+    	\begin{xltabular}{0.7\textwidth}{|c|X|}
+    		\hline
+    		\textbf{Степень} & \textbf{Многочлен}\\
+    		\hline
+    		$a^0$ & $1$\\
+    		\hline
+    		$a^1$ & $a$\\
+    		\hline
+    		$a^2$ & $a^2$\\
+    		\hline
+    		$a^3$ & $a+1$\\
+    		\hline
+    		$a^4$ & $a^2+a$\\
+    		\hline
+    		$a^5$ & $a^2+a+1$\\
+    		\hline
+    		$a^6$ & $a^2+1$\\
+    		\hline
+    	\end{xltabular}
+    \end{center}
+    
+    \noindent\textbf{Таблица сложения.} Так как $\operatorname{char}\mathbb{F}_8 = 2$, сложение~--- это покомпонентное сложение коэффициентов по модулю $2$.
+    
+    \begin{center}
+    	{\footnotesize
+    	\begin{xltabular}{\textwidth}{|c|X|X|X|X|X|X|X|X|}
+    		\hline
+    		$+$ & $0$ & $1$ & $a$ & $a+1$ & $a^2$ & $a^2+1$ & $a^2+a$ & $a^2+a+1$\\
+    		\hline
+    		$0$ & $0$ & $1$ & $a$ & $a+1$ & $a^2$ & $a^2+1$ & $a^2+a$ & $a^2+a+1$\\
+    		\hline
+    		$1$ & $1$ & $0$ & $a+1$ & $a$ & $a^2+1$ & $a^2$ & $a^2+a+1$ & $a^2+a$\\
+    		\hline
+    		$a$ & $a$ & $a+1$ & $0$ & $1$ & $a^2+a$ & $a^2+a+1$ & $a^2$ & $a^2+1$\\
+    		\hline
+    		$a+1$ & $a+1$ & $a$ & $1$ & $0$ & $a^2+a+1$ & $a^2+a$ & $a^2+1$ & $a^2$\\
+    		\hline
+    		$a^2$ & $a^2$ & $a^2+1$ & $a^2+a$ & $a^2+a+1$ & $0$ & $1$ & $a$ & $a+1$\\
+    		\hline
+    		$a^2+1$ & $a^2+1$ & $a^2$ & $a^2+a+1$ & $a^2+a$ & $1$ & $0$ & $a+1$ & $a$\\
+    		\hline
+    		$a^2+a$ & $a^2+a$ & $a^2+a+1$ & $a^2$ & $a^2+1$ & $a$ & $a+1$ & $0$ & $1$\\
+    		\hline
+    		$a^2+a+1$ & $a^2+a+1$ & $a^2+a$ & $a^2+1$ & $a^2$ & $a+1$ & $a$ & $1$ & $0$\\
+    		\hline
+    	\end{xltabular}
+    	}
+    \end{center}
+    
+    \noindent\textbf{Таблица умножения.} Пользуясь примитивностью $a$, для ненулевых элементов $a^i \cdot a^j = a^{(i+j) \bmod 7}$; умножение на $0$ всегда дает $0$.
+    
+    \begin{center}
+    	{\footnotesize
+    	\begin{xltabular}{\textwidth}{|c|X|X|X|X|X|X|X|X|}
+    		\hline
+    		$\times$ & $0$ & $1$ & $a$ & $a^2$ & $a^3$ & $a^4$ & $a^5$ & $a^6$\\
+    		\hline
+    		$0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$\\
+    		\hline
+    		$1$ & $0$ & $1$ & $a$ & $a^2$ & $a^3$ & $a^4$ & $a^5$ & $a^6$\\
+    		\hline
+    		$a$ & $0$ & $a$ & $a^2$ & $a^3$ & $a^4$ & $a^5$ & $a^6$ & $1$\\
+    		\hline
+    		$a^2$ & $0$ & $a^2$ & $a^3$ & $a^4$ & $a^5$ & $a^6$ & $1$ & $a$\\
+    		\hline
+    		$a^3$ & $0$ & $a^3$ & $a^4$ & $a^5$ & $a^6$ & $1$ & $a$ & $a^2$\\
+    		\hline
+    		$a^4$ & $0$ & $a^4$ & $a^5$ & $a^6$ & $1$ & $a$ & $a^2$ & $a^3$\\
+    		\hline
+    		$a^5$ & $0$ & $a^5$ & $a^6$ & $1$ & $a$ & $a^2$ & $a^3$ & $a^4$\\
+    		\hline
+    		$a^6$ & $0$ & $a^6$ & $1$ & $a$ & $a^2$ & $a^3$ & $a^4$ & $a^5$\\
+    		\hline
+    	\end{xltabular}
+    	}
+    \end{center}
+    
+    \subsection*{Поле $\mathbb{F}_9$}
+    
+    \begin{example}[Построение $\mathbb{F}_9$]
+    	Многочлен $g(x) = x^2+1$ неприводим над $\mathbb{F}_3$: квадраты в $\mathbb{F}_3$~--- это $0^2=0$, $1^2=1$, $2^2=1$, значит $-1=2$ не является квадратом, и уравнение $x^2=-1$ решений не имеет. $\mathbb{F}_9 := \mathbb{F}_3[x]/(g)$, $i := \bar x$, тогда $i^2 = -1 = 2$; элементы поля~--- $a+bi$, $a,b \in \{0,1,2\}$.
+    
+    	В качестве примитивного элемента возьмем $u := 1+i$ (порядок группы $\mathbb{F}_9^*$ равен $8$):
+    	\[
+    		u^2 = (1+i)^2 = 1+2i+i^2 = 2i,\qquad u^3 = u^2 \cdot u = 2i(1+i) = 2i+2i^2 = 1+2i,
+    	\]
+    	\[
+    		u^4 = u^3\cdot u = (1+2i)(1+i) = 1+3i+2i^2 = 2,\qquad u^5 = 2u = 2+2i,
+    	\]
+    	\[
+    		u^6 = u^5\cdot u = (2+2i)(1+i)=2+4i+2i^2=i,\qquad u^7 = u^6 \cdot u = i(1+i)=i+i^2=2+i,\qquad u^8=1.
+    	\]
+    	Все семь степеней различны, значит $u=1+i$~--- примитивный элемент.
+    \end{example}
+    
+    \begin{center}
+    	\begin{xltabular}{0.7\textwidth}{|c|X|}
+    		\hline
+    		\textbf{Степень} & \textbf{Элемент}\\
+    		\hline
+    		$u^0$ & $1$\\
+    		\hline
+    		$u^1$ & $1+i$\\
+    		\hline
+    		$u^2$ & $2i$\\
+    		\hline
+    		$u^3$ & $1+2i$\\
+    		\hline
+    		$u^4$ & $2$\\
+    		\hline
+    		$u^5$ & $2+2i$\\
+    		\hline
+    		$u^6$ & $i$\\
+    		\hline
+    		$u^7$ & $2+i$\\
+    		\hline
+    	\end{xltabular}
+    \end{center}
+    
+    \noindent\textbf{Таблица сложения.} $(a+bi)+(c+di) = (a+c \bmod 3) + (b+d \bmod 3)i$~--- покомпонентное сложение по модулю $3$.
+    
+    \begin{center}
+    	{\footnotesize
+    	\begin{xltabular}{\textwidth}{|c|X|X|X|X|X|X|X|X|X|}
+    		\hline
+    		$+$ & $0$ & $1$ & $2$ & $i$ & $1+i$ & $2+i$ & $2i$ & $1+2i$ & $2+2i$\\
+    		\hline
+    		$0$ & $0$ & $1$ & $2$ & $i$ & $1+i$ & $2+i$ & $2i$ & $1+2i$ & $2+2i$\\
+    		\hline
+    		$1$ & $1$ & $2$ & $0$ & $1+i$ & $2+i$ & $i$ & $1+2i$ & $2+2i$ & $2i$\\
+    		\hline
+    		$2$ & $2$ & $0$ & $1$ & $2+i$ & $i$ & $1+i$ & $2+2i$ & $2i$ & $1+2i$\\
+    		\hline
+    		$i$ & $i$ & $1+i$ & $2+i$ & $2i$ & $1+2i$ & $2+2i$ & $0$ & $1$ & $2$\\
+    		\hline
+    		$1+i$ & $1+i$ & $2+i$ & $i$ & $1+2i$ & $2+2i$ & $2i$ & $1$ & $2$ & $0$\\
+    		\hline
+    		$2+i$ & $2+i$ & $i$ & $1+i$ & $2+2i$ & $2i$ & $1+2i$ & $2$ & $0$ & $1$\\
+    		\hline
+    		$2i$ & $2i$ & $1+2i$ & $2+2i$ & $0$ & $1$ & $2$ & $i$ & $1+i$ & $2+i$\\
+    		\hline
+    		$1+2i$ & $1+2i$ & $2+2i$ & $2i$ & $1$ & $2$ & $0$ & $1+i$ & $2+i$ & $i$\\
+    		\hline
+    		$2+2i$ & $2+2i$ & $2i$ & $1+2i$ & $2$ & $0$ & $1$ & $2+i$ & $i$ & $1+i$\\
+    		\hline
+    	\end{xltabular}
+    	}
+    \end{center}
+    
+    \noindent\textbf{Таблица умножения.} Для ненулевых элементов $u^i \cdot u^j = u^{(i+j)\bmod 8}$; умножение на $0$~--- всегда $0$.
+    
+    \begin{center}
+    	{\footnotesize
+    	\begin{xltabular}{\textwidth}{|c|X|X|X|X|X|X|X|X|X|}
+    		\hline
+    		$\times$ & $0$ & $1$ & $2$ & $i$ & $1+i$ & $2+i$ & $2i$ & $1+2i$ & $2+2i$\\
+    		\hline
+    		$0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$\\
+    		\hline
+    		$1$ & $0$ & $1$ & $2$ & $i$ & $1+i$ & $2+i$ & $2i$ & $1+2i$ & $2+2i$\\
+    		\hline
+    		$2$ & $0$ & $2$ & $1$ & $2i$ & $2+2i$ & $1+2i$ & $i$ & $2+i$ & $1+i$\\
+    		\hline
+    		$i$ & $0$ & $i$ & $2i$ & $2$ & $2+i$ & $2+2i$ & $1$ & $1+i$ & $1+2i$\\
+    		\hline
+    		$1+i$ & $0$ & $1+i$ & $2+2i$ & $2+i$ & $2i$ & $1$ & $1+2i$ & $2$ & $i$\\
+    		\hline
+    		$2+i$ & $0$ & $2+i$ & $1+2i$ & $2+2i$ & $1$ & $i$ & $1+i$ & $2i$ & $2$\\
+    		\hline
+    		$2i$ & $0$ & $2i$ & $i$ & $1$ & $1+2i$ & $1+i$ & $2$ & $2+2i$ & $2+i$\\
+    		\hline
+    		$1+2i$ & $0$ & $1+2i$ & $2+i$ & $1+i$ & $2$ & $2i$ & $2+2i$ & $i$ & $1$\\
+    		\hline
+    		$2+2i$ & $0$ & $2+2i$ & $1+i$ & $1+2i$ & $i$ & $2$ & $2+i$ & $1$ & $2i$\\
+    		\hline
+    	\end{xltabular}
+    	}
+    \end{center}
+\end{document}
