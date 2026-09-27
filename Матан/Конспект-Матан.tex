@@ -24,7 +24,7 @@
 		$M_0 = \sup f_n$, если $M_0$~--- верхняя грань и $\forall \varepsilon > 0$ $\exists n_0: f_{n0} > M_0 - \varepsilon$. $m_0 = \inf f_n$, если $m_0$~--- нижняя грань и $\forall \varepsilon > 0$ $\exists n_0: f_{n0} < m_0 + \varepsilon$.
 	\end{definition}
 	\begin{axiom}[Вещественных чисел]
-		Если множество $X$ ограничено сверху, то $\exists sup X$. Если $f_n$ неограничено сверху, то $sup f_n =: + \infty$. Если снизу, то $inf f_n =: - \infty$.
+		Если множество $X$ ограничено сверху, то $\exists sup X$. Если $f_n$ неограниченно сверху, то $sup f_n =: + \infty$. Если снизу, то $inf f_n =: - \infty$.
 	\end{axiom}
 	\begin{definition}
 		$f_n$~--- бесконечно большая (бб), если $\forall \varepsilon > 0$ $\exists N = N(\varepsilon): |f_n| > \frac{1}{\varepsilon}$ $\forall n \geqslant N$. $f_n$~--- не бб, $\exists \varepsilon > 0: \forall N \exists n > N: |f_n| \leqslant \frac{1}{\varepsilon}$.
@@ -336,7 +336,7 @@
 		Пусть $f(x) \leqslant g(x)$ в некоторой окрестности точки $x_0$ (передельная точка $D(f), D(g)$). Если $\exists \lim \limits_{x \rightarrow x_0} f(x) = a$; $\exists \lim \limits_{x \rightarrow x_0} g(x) = b$, то $a \leqslant b$.
 	\end{lemma}
 	\begin{lemma}[Об ограниченности]
-		Если $\exists \lim \limits_{x \rightarrow x_0} f(x) = a \in \mathbb{R}$. Тогда $f$ ограничена в некотром $\mathring{U}(x_0)$.
+		Если $\exists \lim \limits_{x \rightarrow x_0} f(x) = a \in \mathbb{R}$. Тогда $f$ ограничена в некотором $\mathring{U}(x_0)$.
 	\end{lemma}
 	\begin{proof}
 		$\varepsilon = 1$: $\exists \delta > 0$: $|f(x) - a| < 1$ $\forall x \in \mathring{U}_{\delta}(x_0) \Rightarrow |f(x)| \leqslant |a| + 1$ $\forall x \in \mathring{U}_{\delta}(x_0)$
@@ -460,14 +460,14 @@
 	\end{theorem}
 	\begin{proof}
 		НУО докажем, что $f$ ограничена сверху. \\
-		$\#$ $f$ неограничена сверху.	$\exists x_n \in [a, b]$: $f(x_n) > n$.	$\{ x_n \} \in [a, b]$. $\exists$ $x_{n_k} \rightarrow x_0 \in [a, b]$. $f(x_0) = \lim\limits_{x_{n_k} \rightarrow x_0} f(x_{n_k}) = \infty$ $\#$.
+		$\#$ $f$ неограниченна сверху.	$\exists x_n \in [a, b]$: $f(x_n) > n$.	$\{ x_n \} \in [a, b]$. $\exists$ $x_{n_k} \rightarrow x_0 \in [a, b]$. $f(x_0) = \lim\limits_{x_{n_k} \rightarrow x_0} f(x_{n_k}) = \infty$ $\#$.
 	\end{proof}
 	\subsection{Вторая Теорема Вейерштрасса.}
 	\begin{theorem}[Вторая Теорема Вейерштрасса]
 		Пусть $f \in C([a, b])$. Тогда $\exists \overline{x}, \underline{x} \in [a, b]$: $f(\overline{x}) = \min\limits_{[a, b]} f(x), f(\underline{x}) = \max\limits_{[a, b]} f(x)$.
 	\end{theorem}
 	\begin{proof}
-		$\# \inf\limits_{[a, b]} f(x) = m$ и не достигается. $f(x) > m$ $\forall x \in [a, b] \Rightarrow g(x) := \dfrac{1}{f(x) - m}$ неограничена на $[a, b]$. Но $\forall \varepsilon > 0$ $\exists$ $x_{\varepsilon} \in [a, b]$: $f(x_{\varepsilon}) < m + \varepsilon \Rightarrow g(x_{\varepsilon}) > \dfrac{1}{\varepsilon} \Rightarrow g$ неограничена сверху на $[a, b]$ $\#$.
+		$\# \inf\limits_{[a, b]} f(x) = m$ и не достигается. $f(x) > m$ $\forall x \in [a, b] \Rightarrow g(x) := \dfrac{1}{f(x) - m}$ неограниченна на $[a, b]$. Но $\forall \varepsilon > 0$ $\exists$ $x_{\varepsilon} \in [a, b]$: $f(x_{\varepsilon}) < m + \varepsilon \Rightarrow g(x_{\varepsilon}) > \dfrac{1}{\varepsilon} \Rightarrow g$ неограниченна сверху на $[a, b]$ $\#$.
 	\end{proof}
 	\subsection{Теорема Больцано-Коши.}
 	\begin{theorem}[Больцано-Коши]
@@ -653,7 +653,7 @@
 			\[
 			\frac{f(x_0) - f(x_0 - h)}{h} \leqslant \frac{f(x_0 + h) - f(x_0)}{h};
 			\]
-			при убывании $h$ левая часть неравенства неубывает в силу $\dfrac{f(x_2) - f(x_1)}{x_2 - x_1} \leqslant \dfrac{f(x_2) - f(x)}{x_2 - x}$, правая — невозрастает в силу $\dfrac{f(x) - f(x_1)}{x - x_1} \leqslant \dfrac{f(x_2) - f(x_1)}{x_2 - x_1}$. Следовательно при $h \to +0$ существуют оба предела, равные $f'_-(x_0)$ и $f'_+(x_0)$, а из неравенства получаем $f'_-(x_0) \leqslant f'_+(x_0)$.
+			при убывании $h$ левая часть неравенства не убывает в силу $\dfrac{f(x_2) - f(x_1)}{x_2 - x_1} \leqslant \dfrac{f(x_2) - f(x)}{x_2 - x}$, правая — не возрастает в силу $\dfrac{f(x) - f(x_1)}{x - x_1} \leqslant \dfrac{f(x_2) - f(x_1)}{x_2 - x_1}$. Следовательно при $h \to +0$ существуют оба предела, равные $f'_-(x_0)$ и $f'_+(x_0)$, а из неравенства получаем $f'_-(x_0) \leqslant f'_+(x_0)$.
 			\item Из существования односторонних производных имеем для любого $x_0 \in (a, b)$
 			\[
 			f(x_0 + h) = 
@@ -919,7 +919,7 @@
 	Рассмотрим ограниченную функцию $f: [a, b] \rightarrow \mathbb{R}, \, m \leqslant f(x) \leqslant M$. Возьмем точки $\{ x_0 = a < x_1 < x_2 < \dots < x_n = b \}$. $\xi_k \in [x_{k - 1}, x_k], \, \forall k = 1 \dots n$.
 	
 	\begin{definition}[Разбиение отрезка с выбранными точками]
-		Набор $x_k$ с набором $\xi_k$ ($\forall k = 1 \dots n$) называется разбиеним отрезка с выбранными точками.
+		Набор $x_k$ с набором $\xi_k$ ($\forall k = 1 \dots n$) называется разбиением отрезка с выбранными точками.
 	\end{definition}
 	
 	\begin{definition}[Интегральная сумма функции $f$ для разбиения отрезка с выбранными точками]
@@ -1458,7 +1458,7 @@
 	\subsubsection{Объемы тел вращения}
 	\begin{statement}
 		Объем тела вращения, образованного вращением вокруг оси $Ox$ криволинейной трапеции, ограниченной графиком непрерывной функции $y = f(x)$, равен:
-		$$ V_{вр} = \pi \dint_a^b f^2(x) dx $$
+		$$ V_{\text{вр}} = \pi \dint_a^b f^2(x) dx $$
 	\end{statement}
 	\noindent
 	Пример: $y = \sin x$ на $[0, \pi]$. Тогда $V = \pi \dint_0^\pi \sin^2 x dx = \frac{\pi^2}{2}$.
