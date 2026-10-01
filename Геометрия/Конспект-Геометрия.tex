@@ -505,4 +505,201 @@
     \begin{proof}
     	Смешанное произведение~--- это объем параллелепипеда со знаком ориентации тройки. Тройки $(\vec{a}, \vec{b}, \vec{c})$ и $(\vec{c}, \vec{a}, \vec{b})$ отличаются циклической перестановкой, поэтому имеют одну ориентацию и задают один и тот же параллелепипед. Значит, $\vec{a} \cdot (\vec{b} \times \vec{c}) = \vec{c} \cdot (\vec{a} \times \vec{b})$, а скалярное произведение коммутативно.
     \end{proof}
+
+	\subsection{Основные формулы векторного метода}
+    
+    \begin{note}
+    	Во всех формулах ниже координаты векторов заданы в правом ортонормированном базисе.
+    \end{note}
+    
+    \subsubsection{Определители порядка 2 и 3}
+    
+    \begin{definition}[Определитель]
+    	Определители порядка $2$ и $3$ вычисляются по формулам
+    	\[
+    		\begin{vmatrix}
+    			a & b \\
+    			c & d
+    		\end{vmatrix} = ad - bc,
+    	\]
+    	\[
+    		\begin{vmatrix}
+    			a_1 & a_2 & a_3 \\
+    			b_1 & b_2 & b_3 \\
+    			c_1 & c_2 & c_3
+    		\end{vmatrix}
+    		= a_1 \begin{vmatrix} b_2 & b_3 \\ c_2 & c_3 \end{vmatrix}
+    		- a_2 \begin{vmatrix} b_1 & b_3 \\ c_1 & c_3 \end{vmatrix}
+    		+ a_3 \begin{vmatrix} b_1 & b_2 \\ c_1 & c_2 \end{vmatrix}
+    		\quad \text{(разложение по первой строке).}
+    	\]
+    \end{definition}
+    
+    \subsubsection{Длина вектора и углы}
+    
+    \begin{statement}[Длина вектора]
+    	Пусть $\vec{a} = (x_1, y_1, z_1)$. Тогда
+    	\[
+    		|\vec{a}| = \sqrt{\vec{a}^2} = \sqrt{x_1^2 + y_1^2 + z_1^2}.
+    	\]
+    \end{statement}
+    
+    \begin{proof}
+    	По определению скалярного произведения $\vec{a} \cdot \vec{a} = |\vec{a}|^2 \cos 0 = |\vec{a}|^2$, а в координатах $\vec{a} \cdot \vec{a} = x_1^2 + y_1^2 + z_1^2$.
+    \end{proof}
+    
+    \begin{statement}[Угол между векторами]
+    	Для ненулевых векторов $\vec{a}$ и $\vec{b}$
+    	\[
+    		\cos \widehat{\vec{a}, \vec{b}} = \dfrac{\vec{a} \cdot \vec{b}}{|\vec{a}| \cdot |\vec{b}|}.
+    	\]
+    \end{statement}
+    
+    \begin{proof}
+    	Следует из определения скалярного произведения $\vec{a} \cdot \vec{b} = |\vec{a}| \, |\vec{b}| \cos \widehat{\vec{a}, \vec{b}}$ делением на $|\vec{a}| \, |\vec{b}| \ne 0$.
+    \end{proof}
+    
+    \begin{statement}[Угол между прямыми]
+    	Угол между прямыми $AB$ и $CD$ находится по формуле
+    	\[
+    		\cos \angle (AB, CD) = \left| \dfrac{\vec{AB} \cdot \vec{CD}}{|\vec{AB}| \cdot |\vec{CD}|} \right|.
+    	\]
+    \end{statement}
+    
+    \begin{proof}
+    	Угол между прямыми лежит в промежутке $[0^\circ, 90^\circ]$, поэтому его косинус неотрицателен. Угол между направляющими векторами $\vec{AB}$ и $\vec{CD}$ может быть как острым, так и тупым~--- разные направления векторов на одной прямой дают углы $\varphi$ и $180^\circ - \varphi$ с противоположными по знаку косинусами. Модуль убирает эту неоднозначность.
+    \end{proof}
+    
+    \subsubsection{Перпендикуляры к векторам и плоскости}
+    
+    \begin{corollary}
+    	Пусть $\vec{a} \nparallel \vec{b}$. Тогда вектор
+    	\[
+    		\vec{n} = \vec{a} \times \vec{b} = \begin{vmatrix}
+    			\vec{i} & \vec{j} & \vec{k} \\
+    			x_1 & y_1 & z_1 \\
+    			x_2 & y_2 & z_2
+    		\end{vmatrix}
+    	\]
+    	ненулевой и перпендикулярен обоим векторам $\vec{a}$ и $\vec{b}$.
+    \end{corollary}
+    
+    \begin{proof}
+    	Следует из определения векторного произведения и его координатной формулы (см. выше).
+    \end{proof}
+    
+    \begin{corollary}
+    	Вектор, перпендикулярный плоскости $ABC$ (точки $A$, $B$, $C$ не лежат на одной прямой):
+    	\[
+    		\vec{n} = \vec{AB} \times \vec{AC}.
+    	\]
+    \end{corollary}
+    
+    \begin{proof}
+    	Векторы $\vec{AB}$ и $\vec{AC}$ неколлинеарны и лежат в плоскости $ABC$, а их векторное произведение перпендикулярно обоим, то есть перпендикулярно плоскости.
+    \end{proof}
+    
+    \subsubsection{Углы между плоскостями и между прямой и плоскостью}
+    
+    \begin{statement}[Угол между плоскостями]
+    	Пусть $\vec{n}_1$ и $\vec{n}_2$~--- ненулевые векторы, перпендикулярные плоскостям $ABC$ и $MNP$ соответственно. Тогда
+    	\[
+    		\cos \angle (ABC; MNP) = \left| \dfrac{\vec{n}_1 \cdot \vec{n}_2}{|\vec{n}_1| \cdot |\vec{n}_2|} \right|.
+    	\]
+    \end{statement}
+    
+    \begin{proof}
+    	Угол между плоскостями равен углу между их нормалями (или дополняет его до $180^\circ$, в зависимости от выбора направлений нормалей). Так как угол между плоскостями не превосходит $90^\circ$, берём модуль.
+    \end{proof}
+    
+    \begin{statement}[Угол между прямой и плоскостью]
+    	Пусть $\vec{n}$~--- ненулевой вектор, перпендикулярный плоскости $MNP$. Тогда
+    	\[
+    		\sin \angle (AB; MNP) = \left| \cos \widehat{\vec{AB}, \vec{n}} \right| = \left| \dfrac{\vec{AB} \cdot \vec{n}}{|\vec{AB}| \cdot |\vec{n}|} \right|.
+    	\]
+    \end{statement}
+    
+    \begin{proof}
+    	Угол между прямой и плоскостью равен $90^\circ$ минус угол между прямой и нормалью к плоскости, откуда синус первого угла равен косинусу второго. Модуль нужен по той же причине, что и в формуле для угла между прямыми.
+    \end{proof}
+    
+    \subsubsection{Проекция и расстояния}
+    
+    \begin{definition}[Проекция вектора на вектор]
+    	Длина проекции вектора $\vec{a}$ на ненулевой вектор $\vec{b}$:
+    	\[
+    		\operatorname{Pr}_{\vec{b}} \vec{a} = \left| \dfrac{\vec{a} \cdot \vec{b}}{|\vec{b}|} \right|.
+    	\]
+    \end{definition}
+    
+    \begin{note}
+    	Без модуля величина $\dfrac{\vec{a} \cdot \vec{b}}{|\vec{b}|} = |\vec{a}| \cos \widehat{\vec{a}, \vec{b}}$~--- это проекция со знаком: она отрицательна, если угол между $\vec{a}$ и $\vec{b}$ тупой.
+    \end{note}
+    
+    \begin{statement}[Расстояние от точки до плоскости]
+    	Пусть $\vec{n}$~--- ненулевой вектор, перпендикулярный плоскости $MNP$. Тогда
+    	\[
+    		\rho(A; MNP) = \left| \operatorname{Pr}_{\vec{n}} \vec{AM} \right| = \left| \dfrac{\vec{AM} \cdot \vec{n}}{|\vec{n}|} \right|.
+    	\]
+    \end{statement}
+    
+    \begin{proof}
+    	Расстояние до плоскости~--- длина перпендикуляра из $A$ на плоскость, то есть длина проекции вектора $\vec{AM}$ (где $M$~--- любая точка плоскости) на направление нормали.
+    \end{proof}
+    
+    \begin{note}
+    	Эта формула согласуется с координатной (см. раздел <<Расстояние от точки до плоскости>>). Для плоскости $ax + by + cz + d = 0$ возьмём $\vec{n} = (a, b, c)$ и точку $M(x_M, y_M, z_M)$ плоскости. Тогда $\vec{AM} \cdot \vec{n} = a(x_M - x_A) + b(y_M - y_A) + c(z_M - z_A) = -d - (ax_A + by_A + cz_A)$, так как $ax_M + by_M + cz_M = -d$.
+    \end{note}
+    
+    \begin{statement}[Расстояние между скрещивающимися прямыми]
+    	Пусть $AB$ и $MN$~--- скрещивающиеся прямые, $\vec{n}$~--- ненулевой вектор, перпендикулярный векторам $\vec{AB}$ и $\vec{MN}$ (например, $\vec{n} = \vec{AB} \times \vec{MN}$). Тогда
+    	\[
+    		\rho(AB; MN) = \left| \operatorname{Pr}_{\vec{n}} \vec{AM} \right| = \left| \dfrac{\vec{AM} \cdot \vec{n}}{|\vec{n}|} \right|.
+    	\]
+    \end{statement}
+    
+    \begin{proof}
+    	Расстояние между скрещивающимися прямыми~--- длина их общего перпендикуляра, который параллелен $\vec{n}$. Вектор $\vec{AM}$ соединяет точки двух прямых, поэтому его проекция на направление общего перпендикуляра равна расстоянию между прямыми.
+    \end{proof}
+    
+    \subsubsection{Площадь и объём}
+    
+    \begin{statement}[Площадь треугольника]
+    	\[
+    		S_{ABC} = \dfrac{1}{2} \left| \vec{AB} \times \vec{AC} \right|.
+    	\]
+    \end{statement}
+    
+    \begin{proof}
+    	Модуль векторного произведения равен $|\vec{AB}| \, |\vec{AC}| \sin \widehat{\vec{AB}, \vec{AC}}$, то есть площади параллелограмма, построенного на $\vec{AB}$ и $\vec{AC}$. Треугольник $ABC$ составляет его половину.
+    \end{proof}
+    
+    \begin{statement}[Смешанное произведение в координатах]
+    	Пусть $\vec{a} = (x_1, y_1, z_1)$, $\vec{b} = (x_2, y_2, z_2)$, $\vec{c} = (x_3, y_3, z_3)$. Тогда
+    	\[
+    		(\vec{a}, \vec{b}, \vec{c}) = \vec{a} \cdot (\vec{b} \times \vec{c}) = \begin{vmatrix}
+    			x_1 & y_1 & z_1 \\
+    			x_2 & y_2 & z_2 \\
+    			x_3 & y_3 & z_3
+    		\end{vmatrix}.
+    	\]
+    \end{statement}
+    
+    \begin{proof}
+    	По координатной формуле векторного произведения $\vec{b} \times \vec{c} = (y_2z_3 - z_2y_3, \; z_2x_3 - x_2z_3, \; x_2y_3 - y_2x_3)$. Тогда
+    	\[
+    		\vec{a} \cdot (\vec{b} \times \vec{c}) = x_1 (y_2z_3 - z_2y_3) - y_1 (x_2z_3 - z_2x_3) + z_1 (x_2y_3 - y_2x_3),
+    	\]
+    	что в точности равно разложению определителя по первой строке.
+    \end{proof}
+    
+    \begin{statement}[Объём тетраэдра]
+    	\[
+    		V_{PABC} = \dfrac{1}{6} \left| (\vec{PA}, \vec{PB}, \vec{PC}) \right|.
+    	\]
+    \end{statement}
+    
+    \begin{proof}
+    	Модуль смешанного произведения равен объёму параллелепипеда, построенного на $\vec{PA}$, $\vec{PB}$, $\vec{PC}$. Тетраэдр $PABC$ составляет $\dfrac{1}{6}$ этого объёма: треугольная призма с основанием $PAB$ и боковым ребром $PC$ вдвое меньше параллелепипеда, а пирамида $PABC$ составляет треть объёма этой призмы.
+    \end{proof}
 \end{document}
