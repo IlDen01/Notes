@@ -1292,4 +1292,102 @@
 	\[
 		T = 2\pi\sqrt{\frac{m/2}{mg/2l}} = 2\pi\sqrt{\frac{l}{g}}.
 	\]
+
+	\subsection{Затухающие колебания}
+	
+	\begin{definition}[Затухающие колебания]
+		Свободные колебания в системе, где, кроме возвращающей силы, действует сила сопротивления, пропорциональная скорости: $\vec{F}_{\text{сопр}} = -r\vec{V}$, где $r > 0$~--- коэффициент сопротивления, $[r] = \dfrac{\text{кг}}{\text{с}}$. Энергия при этом убывает, и амплитуда со временем уменьшается.
+	\end{definition}
+	
+	\subsubsection{Уравнение затухающих колебаний}
+	
+	Рассмотрим пружинный маятник (вертикальный или горизонтальный~--- как и раньше, при отсчёте $x$ от положения равновесия сила тяжести из уравнения выпадает). Проекция второго закона Ньютона на ось $Ox$:
+	\[
+		ma_x = -kx - rV_x \quad \Longleftrightarrow \quad mx'' = -kx - rx'.
+	\]
+	Введём обозначения
+	\[
+		\omega_0 = \sqrt{\dfrac{k}{m}}, \qquad \beta = \dfrac{r}{2m}.
+	\]
+	Здесь $\omega_0$~--- собственная частота системы без затухания, $\beta$~--- коэффициент затухания, $[\beta] = \text{с}^{-1}$.
+	
+	\subsubsection{Решение уравнения}
+	
+	\begin{statement}
+		Пусть $\beta < \omega_0$. Тогда функция
+		\[
+			x(t) = A_0 e^{-\beta t} \cos (\omega t + \varphi_0), \qquad \omega = \sqrt{\omega_0^2 - \beta^2},
+		\]
+		является решением уравнения $mx'' = -kx - rx'$ при любых $A_0$ и $\varphi_0$.
+	\end{statement}
+	\begin{proof}[Вывод]
+		Будем искать решение в виде колебания с медленно меняющейся амплитудой:
+		\[
+			x = A(t) \cos (\omega t + \varphi_0),
+		\]
+		где $A(t)$ и $\omega$ нужно найти. Дифференцируем:
+		\[
+			x' = A' \cos (\omega t + \varphi_0) - A \omega \sin (\omega t + \varphi_0),
+		\]
+		\[
+			x'' = A'' \cos (\omega t + \varphi_0) - 2A' \omega \sin (\omega t + \varphi_0) - A \omega^2 \cos (\omega t + \varphi_0).
+		\]
+		Подставим в $mx'' + rx' + kx = 0$ и сгруппируем слагаемые при $\sin$ и $\cos$:
+		\[
+			-\omega \sin (\omega t + \varphi_0) \bigl( 2mA' + rA \bigr) + \cos (\omega t + \varphi_0) \bigl( mA'' - mA\omega^2 + rA' + kA \bigr) = 0.
+		\]
+		Это равенство выполнено для всех $t$, если обращаются в нуль обе скобки:
+		\[
+			\begin{cases}
+				2mA' + rA = 0, \\
+				mA'' - mA\omega^2 + rA' + kA = 0.
+			\end{cases}
+		\]
+		\textit{Первое уравнение} (с разделяющимися переменными, $A \ne 0$):
+		\[
+			2m \dfrac{dA}{dt} = -rA \quad \Longrightarrow \quad \dfrac{dA}{A} = -\dfrac{r}{2m}\,dt = -\beta\,dt \quad \Longrightarrow \quad \ln |A| = C - \beta t.
+		\]
+		Значит, $A(t) = A_0 e^{-\beta t}$, где $A_0 = e^C$ (или $-e^C$ для отрицательной амплитуды~--- знак поглощается фазой $\varphi_0$).
+		
+		\textit{Второе уравнение.} Из $A' = -\beta A$ получаем $A'' = -\beta A' = \beta^2 A$. Подставим в него $A' = -\beta A$ и $A'' = \beta^2 A$:
+		\[
+			m\beta^2 A - mA\omega^2 - r\beta A + kA = 0.
+		\]
+		Сократим на $A \ne 0$ и разделим на $m$, учитывая $\dfrac{k}{m} = \omega_0^2$ и $r = 2m\beta$:
+		\[
+			\beta^2 - \omega^2 - 2\beta^2 + \omega_0^2 = 0 \quad \Longrightarrow \quad \omega^2 = \omega_0^2 - \beta^2.
+		\]
+		Такое $\omega$ вещественно только при $\beta < \omega_0$, откуда и условие в утверждении. В явном виде:
+		\[
+			\omega = \sqrt{\dfrac{k}{m} - \dfrac{r^2}{4m^2}}.
+		\]
+	\end{proof}
+	
+	\begin{statement}[Итог]
+		Затухающие колебания (при $\beta < \omega_0$) описываются законом
+		\[
+			\boxed{x(t) = A_0 e^{-\frac{r}{2m}t} \cos (\omega t + \varphi_0), \qquad \omega = \omega_0^2 - \beta^2 = \sqrt{\dfrac{k}{m} - \dfrac{r^2}{4m^2}}}
+		\]
+		Здесь $A_0$ и $\varphi_0$ определяются начальными условиями (как и в случае гармонических колебаний).
+	\end{statement}
+	
+	\subsubsection{Характеристики затухающих колебаний}
+	
+	\begin{itemize}
+		\item Амплитуда убывает по экспоненциальному закону: $A(t) = A_0 e^{-\beta t}$. За время $\tau = \dfrac{1}{\beta} = \dfrac{2m}{r}$ (время релаксации) амплитуда уменьшается в $e$ раз.
+		\item Колебания не являются периодическими в строгом смысле (не повторяются точно), но условным периодом называют
+		\[
+			T = \dfrac{2\pi}{\omega} = \dfrac{2\pi}{\sqrt{\omega_0^2 - \beta^2}}.
+		\]
+		Он больше периода $T_0 = \dfrac{2\pi}{\omega_0}$ колебаний без затухания: сопротивление замедляет колебания.
+		\item Отношение амплитуд, разделённых одним периодом, постоянно:
+		\[
+			\dfrac{A(t)}{A(t + T)} = e^{\beta T}.
+		\]
+		Его логарифм $\delta = \beta T$ называется логарифмическим декрементом затухания.
+	\end{itemize}
+	
+	\begin{note}
+		При $\beta \geqslant \omega_0$ (сильное сопротивление) выражение $\omega_0^2 - \beta^2$ неположительно, и решение вида $A(t)\cos(\omega t + \varphi_0)$ не существует~--- система колебаний не совершает. При $\beta > \omega_0$ решение имеет вид $x = e^{-\beta t}\bigl( C_1 e^{\gamma t} + C_2 e^{-\gamma t} \bigr)$, $\gamma = \sqrt{\beta^2 - \omega_0^2}$ (апериодическое движение); при $\beta = \omega_0$ (критическое затухание)~--- $x = (C_1 + C_2 t)e^{-\beta t}$. Оба случая нужно проверять подстановкой отдельно.
+	\end{note}
 \end{document}

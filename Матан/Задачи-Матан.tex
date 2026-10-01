@@ -2,22 +2,200 @@
 
 \input{~/School/Notes/header.tex}
 
-\newcommand{\dint}{\displaystyle\int}
-\newcommand{\arcsinh}{\text{arcsinh} \,}
-\newcommand{\arccosh}{\text{arccosh} \,}
-\newcommand{\arctgh}{\text{arctgh} \,}
-\newcommand{\arcctgh}{\text{arcctgh} \,}
+\title{Домашнее задание по математическому анализу}
+\author{Денисов Илья}
+\date{}
 
 \begin{document}
-	\begin{enumerate}
-		\item $(x^2 - 1)y' + 2xy^2 = 0$
-		
-		$y' = - \dfrac{2xy^2}{x^2 - 1}, x \ne \pm 1$
-		
-		$\dfrac{dy}{y^2} = -\dfrac{2xdx}{x^2 - 1}$
-		
-		$- \dfrac{1}{y} = - \ln |x^2 - 1| + C$
-		
-		Итого решение: $\dfrac{1}{y} = \ln |x^2 - 1| + C$ и $y = 0$.
-	\end{enumerate}
+	\maketitle
+
+	\section*{Задача 2}
+
+	\noindent
+	\textbf{Условие.} Решить уравнение $(2x+1)y' = 4x + 2y$.
+
+	\noindent
+	\textbf{Решение.} Приводим к линейному виду ($x \ne -\tfrac{1}{2}$):
+	\[
+		y' - \frac{2y}{2x+1} = \frac{4x}{2x+1}.
+	\]
+	Полагаем $y = uv$, $y' = u'v + uv'$:
+	\[
+		u'v + u\left( v' - \frac{2v}{2x+1} \right) = \frac{4x}{2x+1}.
+	\]
+	Берём частное решение уравнения в скобках:
+	\[
+		v' - \frac{2v}{2x+1} = 0 \quad \Longrightarrow \quad \frac{dv}{v} = \frac{2\,dx}{2x+1} \quad \Longrightarrow \quad v = 2x+1.
+	\]
+	Подставляем во второе уравнение:
+	\[
+		u'(2x+1) = \frac{4x}{2x+1} \quad \Longrightarrow \quad u' = \frac{4x}{(2x+1)^2}.
+	\]
+	Делаем замену $t = 2x+1$, $x = \dfrac{t-1}{2}$:
+	\[
+		\int \frac{4x\,dx}{(2x+1)^2} = \int \frac{t-1}{t^2}\,dt = \ln|t| + \frac{1}{t} + C = \ln|2x+1| + \frac{1}{2x+1} + C.
+	\]
+	Значит $u = \ln|2x+1| + \dfrac{1}{2x+1} + C$, и
+	\[
+		y = uv = (2x+1)\left( \ln|2x+1| + C \right) + 1.
+	\]
+
+	\medskip
+	\noindent
+	\textbf{Ответ.}
+	\[
+		\boxed{y = (2x+1)\bigl(\ln|2x+1| + C\bigr) + 1}
+	\]
+
+	%==================================================
+	\section*{Задача 3}
+
+	\noindent
+	\textbf{Условие.} Решить уравнение $x^2y' + xy + 1 = 0$.
+
+	\noindent
+	\textbf{Решение.} Приводим к линейному виду ($x \ne 0$):
+	\[
+		y' + \frac{y}{x} = -\frac{1}{x^2}.
+	\]
+	Ищем $y = uv$:
+	\[
+		u'v + u\left( v' + \frac{v}{x} \right) = -\frac{1}{x^2}.
+	\]
+	Частное решение уравнения в скобках:
+	\[
+		v' + \frac{v}{x} = 0 \quad \Longrightarrow \quad \frac{dv}{v} = -\frac{dx}{x} \quad \Longrightarrow \quad v = \frac{1}{x}.
+	\]
+	Тогда
+	\[
+		\frac{u'}{x} = -\frac{1}{x^2} \quad \Longrightarrow \quad u' = -\frac{1}{x} \quad \Longrightarrow \quad u = -\ln|x| + C.
+	\]
+	Итого
+	\[
+		y = uv = \frac{C - \ln|x|}{x}.
+	\]
+
+	\medskip
+	\noindent
+	\textbf{Ответ.}
+	\[
+		\boxed{y = \dfrac{C - \ln|x|}{x}}
+	\]
+
+	%==================================================
+	\section*{Задача 4}
+
+	\noindent
+	\textbf{Условие.} Решить задачу Коши $xy^2y' = x^2 + y^3$, $y(1) = 0$.
+
+	\noindent
+	\textbf{Решение.} Уравнение нелинейно относительно $y$, но становится линейным после замены $t = y^3$, так как $t' = 3y^2y'$:
+	\[
+		\frac{x}{3}t' = x^2 + t \quad \Longrightarrow \quad t' - \frac{3}{x}t = 3x.
+	\]
+	Решаем это линейное уравнение подстановкой $t = pq$, $t' = p'q + pq'$:
+	\[
+		p'q + p\left( q' - \frac{3q}{x} \right) = 3x.
+	\]
+	Частное решение уравнения в скобках:
+	\[
+		q' - \frac{3q}{x} = 0 \quad \Longrightarrow \quad \frac{dq}{q} = \frac{3\,dx}{x} \quad \Longrightarrow \quad q = x^3.
+	\]
+	Подставляем:
+	\[
+		p'x^3 = 3x \quad \Longrightarrow \quad p' = \frac{3}{x^2} \quad \Longrightarrow \quad p = -\frac{3}{x} + C.
+	\]
+	Значит
+	\[
+		t = pq = \left( C - \frac{3}{x} \right)x^3 = Cx^3 - 3x^2,
+	\]
+	и, возвращаясь к исходной функции,
+	\[
+		y^3 = Cx^3 - 3x^2.
+	\]
+	Из условия $y(1) = 0$: $C - 3 = 0 \Rightarrow C = 3$.
+
+	\medskip
+	\noindent
+	\textbf{Ответ.}
+	\[
+		\boxed{y^3 = 3x^2(x-1)}
+	\]
+
+	%==================================================
+	% \section*{Задача 5}
+
+	% \noindent
+	% \textbf{Условие.} Решить уравнение $x(e^y - y') = 2$.
+
+	% \noindent
+	% \textbf{Решение.} Перепишем уравнение как $xe^y - xy' = 2$. Оно нелинейно относительно $y$, но становится линейным после замены $z = e^{-y}$: тогда $z' = -e^{-y}y'$, откуда $y' = -\dfrac{z'}{z}$, $e^y = \dfrac{1}{z}$. Подставляя,
+	% \[
+	% 	\frac{x}{z} + \frac{xz'}{z} = 2 \quad \Longrightarrow \quad xz' - 2z = -x \quad \Longrightarrow \quad z' - \frac{2z}{x} = -1.
+	% \]
+	% Решаем подстановкой $z = pq$, $z' = p'q + pq'$:
+	% \[
+	% 	p'q + p\left( q' - \frac{2q}{x} \right) = -1.
+	% \]
+	% Частное решение уравнения в скобках:
+	% \[
+	% 	q' - \frac{2q}{x} = 0 \quad \Longrightarrow \quad \frac{dq}{q} = \frac{2\,dx}{x} \quad \Longrightarrow \quad q = x^2.
+	% \]
+	% Подставляем:
+	% \[
+	% 	p'x^2 = -1 \quad \Longrightarrow \quad p' = -\frac{1}{x^2} \quad \Longrightarrow \quad p = \frac{1}{x} + C.
+	% \]
+	% Значит
+	% \[
+	% 	z = pq = \left( C + \frac{1}{x} \right)x^2 = Cx^2 + x,
+	% \]
+	% и, возвращаясь к $y$,
+	% \[
+	% 	e^{-y} = x + Cx^2.
+	% \]
+
+	% \medskip
+	% \noindent
+	% \textbf{Ответ.}
+	% \[
+	% 	\boxed{y = -\ln\bigl|x + Cx^2\bigr|}
+	% \]
+
+	% %==================================================
+	% \section*{Задача 6}
+
+	% \noindent
+	% \textbf{Условие.} Решить уравнение $y(x) = \displaystyle\int_0^x y(t)\,dt + x + 1$.
+
+	% \noindent
+	% \textbf{Решение.} По теореме Барроу продифференцируем обе части по $x$:
+	% \[
+	% 	y'(x) = y(x) + 1.
+	% \]
+	% Начальное условие получаем, подставив $x = 0$ в исходное уравнение: $y(0) = 0 + 0 + 1 = 1$.
+
+	% Решаем линейное уравнение $y' - y = 1$ подстановкой $y = uv$, $y' = u'v + uv'$:
+	% \[
+	% 	u'v + u(v' - v) = 1.
+	% \]
+	% Частное решение уравнения в скобках:
+	% \[
+	% 	v' - v = 0 \quad \Longrightarrow \quad v = e^x.
+	% \]
+	% Подставляем:
+	% \[
+	% 	u'e^x = 1 \quad \Longrightarrow \quad u' = e^{-x} \quad \Longrightarrow \quad u = -e^{-x} + C.
+	% \]
+	% Итого
+	% \[
+	% 	y = uv = \left( C - e^{-x} \right)e^x = Ce^x - 1.
+	% \]
+	% Из условия $y(0) = 1$: $C - 1 = 1 \Rightarrow C = 2$.
+
+	% \medskip
+	% \noindent
+	% \textbf{Ответ.}
+	% \[
+	% 	\boxed{y = 2e^x - 1}
+	% \]
 \end{document}

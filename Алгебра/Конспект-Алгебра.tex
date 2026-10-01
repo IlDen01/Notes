@@ -513,4 +513,19 @@
     \begin{definition}
     	$f$~--- минимальный многочлен $a$ над $\mathbb{Q}$, если $f(a) = 0$ и минимальной степени ($\Rightarrow$ неприводим).
     \end{definition}
+
+	\subsection{Формула Ньютона}
+
+	\begin{definition}[Формула Ньютона]
+		Как выразить $x_1^k + x_2^k + \dots + x_n^k$, если знаем аналогичную сумму для предыдущих степеней.
+		\[
+			x_1^k + x_2^k + \dots + x_n^k = (x_1^{k-1} + x_2^{k-1} + \dots + x_n^{k-1})(x_1 + x_2 + \dots + x_n) - (x_1^{k-2} + x_2^{k-2} + \dots + x_n^{k-2})(\sum x_ix_j) + \dots
+		\]
+	\end{definition}
+
+	\subsection{Теорема о первообразном корне}
+
+	\begin{theorem}[о первообразном корне]
+		$\exists \varepsilon \in \mathbb{Z}/p\mathbb{Z}: \, \{ 1, 2, \dots, p-1 \} = \{ \varepsilon^f \}$
+	\end{theorem}
 \end{document}
