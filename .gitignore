@@ -6,4 +6,6 @@
 *.synctex.gz
 *.toc
 
+/Английский/*
+
 .DS_Store
