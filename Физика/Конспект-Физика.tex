@@ -1366,7 +1366,7 @@
 	\begin{statement}[Итог]
 		Затухающие колебания (при $\beta < \omega_0$) описываются законом
 		\[
-			\boxed{x(t) = A_0 e^{-\frac{r}{2m}t} \cos (\omega t + \varphi_0), \qquad \omega = \omega_0^2 - \beta^2 = \sqrt{\dfrac{k}{m} - \dfrac{r^2}{4m^2}}}
+			\boxed{x(t) = A_0 e^{-\frac{r}{2m}t} \cos (\omega t + \varphi_0), \qquad \omega = \sqrt{\omega_0^2 - \beta^2} = \sqrt{\dfrac{k}{m} - \dfrac{r^2}{4m^2}}}
 		\]
 		Здесь $A_0$ и $\varphi_0$ определяются начальными условиями (как и в случае гармонических колебаний).
 	\end{statement}
@@ -1447,14 +1447,140 @@
 	\end{definition}
 
 	\begin{statement}[Скорость поперечной волны]
+		В натянутой струне (шнуре) с силой натяжения $F$, площадью сечения $S$ и плотностью $\rho$ скорость распространения поперечной волны равна
 		\[
-		V = \sqrt{\frac{F}{\rho S}}
+			V = \sqrt{\frac{F}{\rho S}}.
 		\]
 	\end{statement}
+	\begin{proof}[Вывод]
+		Перейдём в систему отсчёта, движущуюся вместе с волной со скоростью $V$. В ней профиль волны неподвижен, а вещество струны движется вдоль него со скоростью $V$. Рассмотрим малый участок у гребня: его можно считать дугой окружности радиуса $R$ с центральным углом $2\alpha$ (рис.~\ref{fig:transverse-wave}). Тогда участок движется по окружности со скоростью $V$ и центростремительным ускорением $a = \dfrac{V^2}{R}$.
+
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}[scale=0.9, line join=round, line cap=round, >=Stealth]
+				% Волна
+				\begin{scope}[xshift=-7.6cm, yshift=0.2cm]
+					\draw[domain=0:7, samples=100, smooth, thick] plot (\x, {0.6*sin(deg(1.8*\x))});
+					\draw[->] (0, -1) -- (7.3, -1) node[below left] {$x$};
+					\draw[->, thick] (4.2, 1.1) -- (5.7, 1.1) node[midway, above] {$\vec V$};
+						% окружность кривизны в гребне: R = 1/y'' = 1/(0.6*1.8^2)
+					\draw[gray] (0.8727, 0.0857) circle (0.5144);
+					\fill[gray] (0.8727, 0.0857) circle (1pt);
+				\end{scope}
+				% Увеличенный участок
+				\coordinate (O) at (0, 0);
+				\def\R{3}
+				\def\al{25}
+				\coordinate (T) at (90:\R);
+				\coordinate (A) at ({90+\al}:\R);
+				\coordinate (B) at ({90-\al}:\R);
+				\draw[thick] (A) arc ({90+\al}:{90-\al}:\R);
+				\draw[dashed] (O) -- (A);
+				\draw[dashed] (O) -- (B);
+				\draw[dashed] (O) -- (T);
+				\node[right] at ($(O)!0.55!(B)$) {$R$};
+				\fill (O) circle (1.5pt) node[below] {$O$};
+				\draw[->, thick, blue!70!black] (B) -- ++({sin(90-\al)}, {-cos(90-\al)}) node[right] {$\vec F$};
+				\draw[->, thick, blue!70!black] (A) -- ++({-sin(90+\al)}, {cos(90+\al)})
+					node[left] {$\vec F$};
+				\pic[draw, angle radius=1.2cm, pic text=$\alpha$, pic text options={shift={(0.05, 0.3)}}] {angle = B--O--T};
+				\pic[draw, angle radius=1.2cm, pic text=$\alpha$, pic text options={shift={(-0.05, 0.3)}}] {angle = T--O--A};
+				\node[above=1pt] at (T) {\small $\varDelta l = 2\alpha R$};
+			\end{tikzpicture}
+			\caption{Малый участок струны на гребне волны}
+			\label{fig:transverse-wave}
+		\end{figure}
+
+		На концы участка действуют силы натяжения $F$, направленные по касательным. Их горизонтальные составляющие компенсируются, а вертикальные складываются и направлены к центру окружности. Второй закон Ньютона в проекции на радиус:
+		\[
+			2F\sin\alpha = \varDelta m \cdot a = \varDelta m\,\frac{V^2}{R}.
+		\]
+		Масса участка длиной $\varDelta l = 2\alpha R$:
+		\[
+			\varDelta m = \rho\,\varDelta l\,S = \rho \cdot 2\alpha R \cdot S.
+		\]
+		Угол $\alpha$ мал, поэтому $\sin\alpha \approx \alpha$. Подставляем:
+		\[
+			2F\alpha = \rho \cdot 2\alpha R S \cdot \frac{V^2}{R} \quad \Longrightarrow \quad F = \rho S V^2 \quad \Longrightarrow \quad V = \sqrt{\frac{F}{\rho S}}.
+		\]
+	\end{proof}
 
 	\begin{statement}[Скорость продольной волны]
+		В стержне с модулем Юнга $E$ и плотностью $\rho$ скорость распространения продольной волны (малых деформаций) равна
 		\[
-		V = \sqrt{\frac{E}{\rho}}
+			V = \sqrt{\frac{E}{\rho}}.
 		\]
 	\end{statement}
+	\begin{proof}[Вывод]
+		Пусть левый конец стержня сечением $S$ начинает двигаться с постоянной скоростью $u$ под действием постоянной силы $F$ (рис.~\ref{fig:longitudinal-wave}). За время $\varDelta t$ возмущение распространяется на расстояние $l = V\varDelta t$. Эта часть стержня сжата и движется со скоростью $u$, остальная часть ещё покоится. Левый конец за это время сместился на $\varDelta l = u\varDelta t$.
+
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}[scale=1.1, line join=round, line cap=round, >=Stealth]
+				% Стержень
+				\draw (0, 0) -- (10, 0);
+				\draw (0, 1.2) -- (10, 1.2);
+				% Сжатая часть
+				\fill[blue!10] (0.8, 0) rectangle (5.2, 1.2);
+				\draw[thick] (0.8, 0) -- (0.8, 1.2);
+				\draw[thick] (5.2, 0) -- (5.2, 1.2);
+				% Начальное положение конца
+				\draw[dashed] (0, -0.2) -- (0, 1.4);
+				% Скорости
+				\draw[->, thick] (0.8, 0.6) -- (2.0, 0.6) node[midway, above] {$\vec u$};
+				\draw[->, thick, red!70!black] (5.2, 0.6) -- (6.6, 0.6) node[midway, above] {$\vec V$};
+				% Сечение
+				\node at (3.0, 0.15) {\small $S$};
+				% Скобки
+				\draw[decorate, decoration={brace, mirror, amplitude=4pt}] (0, -0.3) -- (0.8, -0.3)
+					node[midway, below=4pt] {$u\varDelta t$};
+				\draw[decorate, decoration={brace, mirror, amplitude=4pt}] (0.8, -0.3) -- (5.2, -0.3)
+					node[midway, below=4pt] {$l = V\varDelta t$};
+			\end{tikzpicture}
+			\caption{Распространение сжатия в стержне}
+			\label{fig:longitudinal-wave}
+		\end{figure}
+
+		Деформация сжатой части и сила по закону Гука ($\sigma = E|\varepsilon|$):
+		\[
+			|\varepsilon| = \frac{\varDelta l}{l} = \frac{u\varDelta t}{V\varDelta t} = \frac{u}{V}, \qquad F = \sigma S = E S\,\frac{\varDelta l}{l}.
+		\]
+		Импульс силы равен изменению импульса сжатой части (масса $\varDelta m = \rho S l$, скорость менялась от $0$ до $u$):
+		\[
+			F\varDelta t = \varDelta p \quad \Longrightarrow \quad E S\,\frac{\varDelta l}{l}\,\varDelta t = \rho S l u.
+		\]
+		Подставим $u = \dfrac{\varDelta l}{\varDelta t}$ и сократим на $S$ и $\varDelta l$:
+		\[
+			E\,\frac{\varDelta t}{l} = \rho\,\frac{l}{\varDelta t} \quad \Longrightarrow \quad E = \rho \left( \frac{l}{\varDelta t} \right)^2 = \rho V^2 \quad \Longrightarrow \quad V = \sqrt{\frac{E}{\rho}}.
+		\]
+	\end{proof}
+
+	% \begin{statement}[Стоячие волны в струне]
+	% 	Пусть струна длиной $l$ закреплена на концах. Тогда на ней устанавливаются колебания, для которых на длине струны укладывается целое число $k$ полуволн:
+	% 	\[
+	% 		l = k\,\frac{\lambda}{2}, \qquad \lambda = \frac{2l}{k}, \qquad k = 1, 2, 3, \dots
+	% 	\]
+	% 	Соответствующие частоты (собственные частоты струны):
+	% 	\[
+	% 		\nu_k = \frac{V}{\lambda} = \frac{kV}{2l} = \frac{k}{2l}\sqrt{\frac{F}{\rho S}}.
+	% 	\]
+	% \end{statement}
+	% \begin{proof}
+	% 	На закреплённых концах находятся узлы (смещение равно нулю). Расстояние между соседними узлами равно $\dfrac{\lambda}{2}$, поэтому между концами их укладывается целое число $k$. Частота находится из $\lambda = VT = \dfrac{V}{\nu}$.
+
+	% 	\begin{figure}[H]
+	% 		\centering
+	% 		\begin{tikzpicture}[scale=1.1, >=Stealth]
+	% 			\draw[thick] (0, 0) -- (0, 0.3);
+	% 			\draw[thick] (6, 0) -- (6, 0.3);
+	% 			\draw[dashed] (0, 0) -- (6, 0);
+	% 			\draw[domain=0:6, samples=120, smooth, thick] plot (\x, {0.8*sin(deg(3.14159265*3*\x/6))});
+	% 			\draw[domain=0:6, samples=120, smooth, thick, dotted] plot (\x, {-0.8*sin(deg(3.14159265*3*\x/6))});
+	% 			\draw[decorate, decoration={brace, mirror, amplitude=4pt}] (0, -1.0) -- (2, -1.0)
+	% 				node[midway, below=4pt] {$\lambda/2$};
+	% 			\draw[<->] (0, 1.3) -- (6, 1.3) node[midway, above] {$l = 3\cdot\dfrac{\lambda}{2}$};
+	% 		\end{tikzpicture}
+	% 		\caption{Стоячая волна при $k = 3$}
+	% 	\end{figure}
+	% \end{proof}
 \end{document}
