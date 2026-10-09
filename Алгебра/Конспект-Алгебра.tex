@@ -528,4 +528,39 @@
 	\begin{theorem}[о первообразном корне]
 		$\exists \varepsilon \in \mathbb{Z}/p\mathbb{Z}: \, \{ 1, 2, \dots, p-1 \} = \{ \varepsilon^f \}$
 	\end{theorem}
+
+	\section{Группы и множества}
+
+	\begin{definition}
+		Действие $G$ на $M$: $G \times M \to M$, $(g; m) \mapsto g \cdot m$
+
+		При этом:
+		\begin{enumerate}
+			\item $e \cdot m = m \quad \forall m \in M$
+			\item $(g_1 \cdot g_2) \cdot m = g_1 \cdot (g_2 \cdot m)$
+		\end{enumerate}
+	\end{definition}
+
+	\begin{statement}
+		При fix $g$:
+		\begin{itemize}
+			\item $M \to M$ биекция, так как есть $g^{-1}$
+			\item $m \to g \cdot m$
+		\end{itemize}
+	\end{statement}
+
+	\begin{definition}[Орбита]
+		$m \in M$ орбита $G \cdot m = \{ g \cdot m | g \in G \}$
+
+		$G \cdot m_1 \cap G \cdot m_2 \ne 0 \Longrightarrow Gm_1 = Gm_2$
+	\end{definition}
+
+	\begin{definition}[Стабилизатор]
+		$m \in M$. $G_m = \{ g \in G | g \cdot m = m \}$
+	\end{definition}
+
+	\begin{statement}
+		$|G_m| \cdot |G \cdot m| = |G|$
+	\end{statement}
+
 \end{document}

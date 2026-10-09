@@ -7,5 +7,6 @@
 *.toc
 
 /Английский/*
+/Tests/*
 
 .DS_Store
