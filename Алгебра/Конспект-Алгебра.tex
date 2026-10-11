@@ -508,11 +508,53 @@
     	Такой многочлен существует и единственный среди многочленов степени меньше $n$.
     \end{theorem}
     
-    \subsection{Минимальные многочлены}
-    
-    \begin{definition}
-    	$f$~--- минимальный многочлен $a$ над $\mathbb{Q}$, если $f(a) = 0$ и минимальной степени ($\Rightarrow$ неприводим).
-    \end{definition}
+	\subsection{Минимальные многочлены}
+
+	\begin{definition}[Алгебраическое число]
+		Число $a \in \mathbb{C}$ называется \emph{алгебраическим} над $\mathbb{Q}$, если $f(a) = 0$ для некоторого ненулевого $f \in \mathbb{Q}[x]$.
+	\end{definition}
+
+	\begin{definition}[Минимальный многочлен]\label{def:min-poly}
+		\emph{Минимальным многочленом} алгебраического числа $a$ над $\mathbb{Q}$ называется унитарный многочлен $f \in \mathbb{Q}[x]$ наименьшей степени, для которого $f(a) = 0$ ($\Rightarrow$ неприводим, см. теорему~\ref{thm:min-poly}).
+	\end{definition}
+
+	\begin{theorem}[о минимальном многочлене]\label{thm:min-poly}
+		Пусть $a$ алгебраично над $\mathbb{Q}$, $m$~--- его минимальный многочлен. Тогда
+		\begin{enumerate}
+			\item если $g \in \mathbb{Q}[x]$ и $g(a) = 0$, то $m \mid g$;
+			\item $m$ определён однозначно и неприводим над $\mathbb{Q}$;
+			\item если $f \in \mathbb{Q}[x]$ неприводим и $f(a) = 0$, то $f = c\,m$ для некоторого $c \in \mathbb{Q}^*$.
+		\end{enumerate}
+	\end{theorem}
+
+	\begin{proof}
+		\begin{enumerate}
+			\item Поделим с остатком: $g = mq + r$, где $r = 0$ или $\deg r < \deg m$. Подставляя $x = a$, получаем $r(a) = 0$. Из минимальности степени $m$ следует $r = 0$.
+			\item Если $m_1$~--- ещё один минимальный многочлен, то $m \mid m_1$ по п.~1; степени равны и оба многочлена унитарны, значит $m_1 = m$. Если $m = uv$ с $\deg u, \deg v < \deg m$, то $u(a)v(a) = 0$, то есть $u(a) = 0$ или $v(a) = 0$, что противоречит минимальности $\deg m$.
+			\item По п.~1 $m \mid f$. Так как $f$ неприводим, а $\deg m \geqslant 1$, получаем $f = c\,m$.
+		\end{enumerate}
+	\end{proof}
+
+	\begin{corollary}[сопряжённые корни]\label{cor:conjugates}
+		Пусть $f \in \mathbb{Q}[x]$ неприводим, $f(a) = 0$, $g \in \mathbb{Q}[x]$ и $g(a) = 0$. Тогда $f \mid g$, а значит, $g(\beta) = 0$ для \emph{каждого} корня $\beta \in \mathbb{C}$ многочлена $f$.
+	\end{corollary}
+
+	\begin{proof}
+		По теореме~\ref{thm:min-poly} $f = c\,m$ и $m \mid g$. Если $f(\beta) = 0$, то $g(\beta) = f(\beta)h(\beta) = 0$ для $h = g/f$.
+	\end{proof}
+
+	\begin{statement}
+		Неприводимый над $\mathbb{Q}$ многочлен $f$ не имеет кратных корней.
+	\end{statement}
+
+	\begin{proof}
+		Многочлен $f'$ ненулевой и $\deg f' < \deg f$. Так как $\gcd(f, f')$ делит неприводимый $f$, он равен $1$ или $f$ (с точностью до константы), а $f \nmid f'$ по степени. Значит, $\gcd(f, f') = 1$, и по критерию из раздела о кубических уравнениях кратных корней нет.
+	\end{proof}
+
+	\begin{example}[приём $f \mid f(x^2)$]\label{ex:f-divides-f-x2}
+		Пусть $f \in \mathbb{Q}[x]$ неприводим и $f(a) = f(a^2) = 0$. Положим $g(x) = f(x^2)$. Тогда $g(a) = f(a^2) = 0$, и по следствию~\ref{cor:conjugates} $f \mid f(x^2)$. Отсюда для каждого корня $\beta$ многочлена $f$ имеем $f(\beta^2) = 0$: \emph{квадрат любого корня $f$ снова является корнем $f$}.
+	\end{example}
+
 
 	\subsection{Формула Ньютона}
 
@@ -529,38 +571,322 @@
 		$\exists \varepsilon \in \mathbb{Z}/p\mathbb{Z}: \, \{ 1, 2, \dots, p-1 \} = \{ \varepsilon^f \}$
 	\end{theorem}
 
+	\subsection{Корни из единицы}
+
+	\begin{definition}[Корень из единицы]
+		Число $\varepsilon \in \mathbb{C}$ называется \emph{корнем из единицы}, если $\varepsilon^N = 1$ для некоторого $N \in \mathbb{N}$. Наименьшее такое $N$ называется \emph{порядком} $\varepsilon$.
+	\end{definition}
+
+	\begin{lemma}[о повторе степеней]\label{lem:power-repeat}
+		Пусть $\alpha \in \mathbb{C}$, $\alpha \ne 0$.
+		\begin{enumerate}
+			\item Если $\alpha^k = \alpha^l$ для натуральных $k < l$, то $\alpha^{l - k} = 1$, то есть $\alpha$~--- корень из единицы.
+			\item Если бесконечно много различных степеней $\alpha^{k}$ лежат в некотором конечном множестве, то $\alpha$~--- корень из единицы.
+		\end{enumerate}
+	\end{lemma}
+
+	\begin{proof}
+		\begin{enumerate}
+			\item Разделим равенство $\alpha^l = \alpha^k$ на $\alpha^k \ne 0$.
+			\item По принципу Дирихле найдутся два разных показателя $k < l$ с $\alpha^k = \alpha^l$; применим п.~1.
+		\end{enumerate}
+	\end{proof}
+
+	\begin{example}
+		Пусть $f \in \mathbb{Q}[x]$ неприводим, $f \ne cx$, и $f(\alpha) = f(\alpha^2) = 0$. Тогда $\alpha$~--- корень из единицы.
+
+		Так как $f \ne cx$, имеем $f(0) \ne 0$ (иначе $x \mid f$, и $f = cx$ из неприводимости); значит, $\alpha \ne 0$. По примеру~\ref{ex:f-divides-f-x2} из $\alpha \in R$ следует $\alpha^2 \in R$, $\alpha^4 \in R$, \dots, где $R$~--- конечное множество корней $f$. Тогда все степени $\alpha^{2^k}$ лежат в $R$, и по лемме~\ref{lem:power-repeat} $\alpha$~--- корень из единицы.
+	\end{example}
+
+	\subsection{Многочлен с заданным корнем}
+
+	Пусть $f \in K[x]$ унитарный, $\deg f = n$, $f(a) = 0$. Требуется построить многочлен над $K$, одним из корней которого является число $b$, выражающееся через $a$ (например, $b = \frac{1}{a + 1}$ или $b = a^2 + a + 1$), причём $a$ в коэффициентах не должно участвовать. Ниже $f = x^3 + px^2 + qx + r$ (в обозначениях раздела о кубических уравнениях это соответствует замене $p \to -p$, $r \to -r$).
+
+	\begin{method}[подстановка]\label{met:substitution}
+		Если можно выразить $a = \dfrac{u(b)}{v(b)}$, где $u, v \in K[y]$ и $v(b) \ne 0$, то $b$~--- корень многочлена
+		\[
+			F(y) = v(y)^n f\!\left( \frac{u(y)}{v(y)} \right) = \sum_{k = 0}^{n} c_k\, u(y)^k v(y)^{n - k}, \qquad f(x) = \sum_{k=0}^{n} c_kx^k.
+		\]
+		Действительно, $F(b) = v(b)^n f(a) = 0$. Нужно лишь убедиться, что $F \ne 0$.
+	\end{method}
+
+	\begin{example}
+		$b = \dfrac{1}{a + 1}$ при $a \ne -1$. Из $b(a + 1) = 1$ имеем $a = \dfrac{1 - b}{b}$, то есть $u = 1 - y$, $v = y$:
+		\[
+			F(y) = (1 - y)^3 + p\,y(1 - y)^2 + q\,y^2(1 - y) + r\,y^3 = (p - q + r - 1)\,y^3 + (q - 2p + 3)\,y^2 + (p - 3)\,y + 1.
+		\]
+		Свободный член равен $1$, поэтому $F \ne 0$; старший коэффициент равен $f(-1)$.
+	\end{example}
+
+	\begin{theorem}[о матрице умножения]\label{thm:mult-matrix}
+		Пусть $f \in K[x]$ унитарный, $\deg f = n$, $f(a) = 0$, $c = g(a)$ для некоторого $g \in K[x]$. Для $j = 0, \dots, n - 1$ обозначим через $r_j(x) = \sum_{i=0}^{n-1} m_{ji}x^i$ остаток от деления $g(x)x^j$ на $f$, и пусть $M = (m_{ji})$. Тогда $c$~--- корень характеристического многочлена
+		\[
+			\chi_M(x) = \det(xE - M) \in K[x],
+		\]
+		причём $\chi_M$ унитарный степени $n$.
+	\end{theorem}
+
+	\begin{proof}
+		Подставляя $x = a$ в $g(x)x^j = q_j(x)f(x) + r_j(x)$, получаем $c \cdot a^j = \sum_i m_{ji}a^i$. Пусть $w = (1, a, \dots, a^{n-1})^T$. Тогда $Mw = c\,w$, то есть $(cE - M)w = 0$. Вектор $w \ne 0$ (его первая координата равна $1$), поэтому $\det(cE - M) = 0$.
+	\end{proof}
+
+	\begin{note}
+		Метод даёт многочлен степени $n$ с коэффициентами в $K$, вообще говоря, не минимальный для $c$: он может быть приводимым. Другой способ~--- рассмотреть $\prod_i (x - g(a_i))$ по всем корням $a_i$ многочлена $f$: коэффициенты симметричны по $a_i$, и по теореме о симметрических многочленах выражаются через коэффициенты $f$. Можно показать, что при различных корнях получится тот же многочлен $\chi_M$.
+	\end{note}
+
+	\begin{example}
+		$f = x^3 + px^2 + qx + r$, $c = a^2 + a + 1$. Используя $a^3 = -pa^2 - qa - r$, найдём
+		\begin{align*}
+			c \cdot 1 &= 1 + a + a^2,\\
+			c \cdot a &= -r + (1 - q)\,a + (1 - p)\,a^2,\\
+			c \cdot a^2 &= (pr - r) + (pq - q - r)\,a + (p^2 - p - q + 1)\,a^2.
+		\end{align*}
+		Следовательно,
+		\[
+			M = \begin{pmatrix}
+				1 & 1 & 1\\
+				-r & 1 - q & 1 - p\\
+				pr - r & pq - q - r & p^2 - p - q + 1
+			\end{pmatrix},
+		\]
+		\[
+			\chi_M(x) = x^3 - (p^2 - p - 2q + 3)\,x^2 + (2p^2 - 2p - pq + q^2 - 2pr - 3q + 3r + 3)\,x - (p^2 + q^2 + r^2 - pq - pr - qr - p - q + 2r + 1).
+		\]
+		\emph{Проверка.} Для $f = x^3 - 2$ получаем $\chi_M = x^3 - 3x^2 - 3x - 1$, и при $a^3 = 2$ действительно $c^3 - 3c^2 - 3c - 1 = 0$, так как $c^2 = 3a^2 + 4a + 5$, $c^3 = 12a^2 + 15a + 19$.
+	\end{example}
+
 	\section{Группы и множества}
 
-	\begin{definition}
-		Действие $G$ на $M$: $G \times M \to M$, $(g; m) \mapsto g \cdot m$
+	\subsection{Группы и подгруппы}
 
-		При этом:
+	\begin{definition}[Группа]\label{def:group}
+		\emph{Группой} называется множество $G$ с операцией $G \times G \to G$, $(g, h) \mapsto gh$, для которой выполнены условия:
 		\begin{enumerate}
-			\item $e \cdot m = m \quad \forall m \in M$
-			\item $(g_1 \cdot g_2) \cdot m = g_1 \cdot (g_2 \cdot m)$
+			\item $(g_1g_2)g_3 = g_1(g_2g_3)$ для любых $g_1, g_2, g_3 \in G$;
+			\item существует \emph{нейтральный элемент} $e \in G$: $eg = ge = g$ для любого $g \in G$;
+			\item для любого $g \in G$ существует \emph{обратный элемент} $g^{-1} \in G$: $gg^{-1} = g^{-1}g = e$.
+		\end{enumerate}
+		Число элементов $|G|$ называется \emph{порядком} группы.
+	\end{definition}
+
+	\begin{definition}[Подгруппа]
+		Подмножество $H \subset G$ называется \emph{подгруппой} (обозначение $H \leqslant G$), если $e \in H$ и для любых $g, h \in H$ выполнено $gh \in H$ и $g^{-1} \in H$.
+	\end{definition}
+
+	\begin{definition}[Группа перестановок]\label{def:perm-group}
+		\emph{Перестановкой} множества $X$ называется биекция $X \to X$. Все перестановки $X$ образуют группу относительно композиции $(\pi\sigma)(x) = \pi(\sigma(x))$; для $X = \{1, \dots, n\}$ она обозначается $S_n$. Подгруппы $S_n$ называются \emph{группами перестановок}.
+
+		Точка $x$ называется \emph{неподвижной точкой} перестановки $\pi$, если $\pi(x) = x$.
+	\end{definition}
+
+	\subsection{Смежные классы и теорема Лагранжа}
+
+	\begin{definition}[Смежный класс]
+		Пусть $H \leqslant G$. \emph{Левым смежным классом} элемента $x \in G$ по $H$ называется множество $xH = \{ xh \mid h \in H \}$. Множество всех левых смежных классов обозначается $G/H$.
+	\end{definition}
+
+	\begin{lemma}\label{lem:cosets}
+		Пусть $H \leqslant G$ и $x, y \in G$. Тогда
+		\begin{enumerate}
+			\item $xH = yH \Longleftrightarrow x^{-1}y \in H$;
+			\item два смежных класса либо совпадают, либо не пересекаются, то есть $G$ разбивается на смежные классы;
+			\item $|xH| = |H|$.
+		\end{enumerate}
+	\end{lemma}
+
+	\begin{proof}
+		\begin{enumerate}
+			\item ($\Rightarrow$) Если $xH = yH$, то $y = ye \in yH = xH$, то есть $y = xh$ при некотором $h \in H$, и $x^{-1}y = h \in H$.
+
+			($\Leftarrow$) Пусть $x^{-1}y = h \in H$, то есть $y = xh$. Тогда $yh' = x(hh') \in xH$ для любого $h' \in H$, поэтому $yH \subset xH$. Аналогично, $x = yh^{-1}$ даёт $xH \subset yH$.
+			\item Пусть $z \in xH \cap yH$, то есть $z = xh_1 = yh_2$. Тогда $x^{-1}y = h_1h_2^{-1} \in H$, и по п.~1 $xH = yH$.
+			\item Отображение $h \mapsto xh$ является биекцией $H \to xH$ (обратное~--- $g \mapsto x^{-1}g$).
+		\end{enumerate}
+	\end{proof}
+
+	\begin{definition}[Индекс]
+		Пусть $G$ конечна, $H \leqslant G$. Число левых смежных классов $|G/H|$ называется \emph{индексом} $H$ в $G$ и обозначается $[G : H]$.
+	\end{definition}
+
+	\begin{theorem}[Лагранжа]\label{thm:lagrange}
+		Пусть $G$~--- конечная группа, $H \leqslant G$. Тогда
+		\[
+			|G| = |H| \cdot [G : H].
+		\]
+		В частности, $|H|$ делит $|G|$.
+	\end{theorem}
+
+	\begin{proof}
+		По лемме~\ref{lem:cosets} группа $G$ разбивается ровно на $[G : H]$ смежных классов, и в каждом из них по $|H|$ элементов.
+	\end{proof}
+
+	\subsection{Действие группы на множестве}
+
+	\begin{definition}[Действие]\label{def:action}
+		Пусть $G$~--- группа, $M$~--- множество. \emph{Действием} $G$ на $M$ называется отображение $G \times M \to M$, $(g, m) \mapsto g \cdot m$ (или просто $gm$), такое что
+		\begin{enumerate}
+			\item $e \cdot m = m$ для любого $m \in M$;
+			\item $(g_1g_2) \cdot m = g_1 \cdot (g_2 \cdot m)$ для любых $g_1, g_2 \in G$, $m \in M$.
 		\end{enumerate}
 	\end{definition}
 
-	\begin{statement}
-		При fix $g$:
+	\begin{statement}\label{st:action-bijection}
+		При фиксированном $g \in G$ отображение $M \to M$, $m \mapsto g \cdot m$, является биекцией. Поэтому действие $G$ на $M$~--- это то же самое, что гомоморфизм $G \to S_M$.
+	\end{statement}
+
+	\begin{proof}
+		Обратным к $m \mapsto g \cdot m$ служит $m \mapsto g^{-1} \cdot m$: по аксиомам действия $g^{-1} \cdot (g \cdot m) = (g^{-1}g) \cdot m = e \cdot m = m$, и аналогично в другом порядке. Второе утверждение следует из того, что отображение $g \mapsto (m \mapsto g \cdot m)$ согласовано с умножением в силу аксиомы~2.
+	\end{proof}
+
+	\begin{example}
+		\begin{enumerate}
+			\item Любая группа перестановок $G \leqslant S_n$ действует на $\{1, \dots, n\}$ по формуле $\pi \cdot m = \pi(m)$. Аксиомы выполнены: $\mathrm{id}(m) = m$ и $(\pi\sigma)(m) = \pi(\sigma(m))$.
+			\item Группа $G$ действует на себе левыми сдвигами: $g \cdot x = gx$.
+			\item Группа $G$ действует на $G/H$ (см. ниже).
+		\end{enumerate}
+	\end{example}
+
+	\subsection{Орбиты и стабилизаторы}
+
+	\begin{definition}[Орбита и стабилизатор]\label{def:orbit-stab}
+		Пусть $G$ действует на $M$, $m \in M$.
 		\begin{itemize}
-			\item $M \to M$ биекция, так как есть $g^{-1}$
-			\item $m \to g \cdot m$
+			\item \emph{Орбита} $m$: $G \cdot m = \{ g \cdot m \mid g \in G \}$.
+			\item \emph{Стабилизатор} $m$: $G_m = \{ g \in G \mid g \cdot m = m \}$.
+			\item Точка $m$ называется \emph{неподвижной}, если $g \cdot m = m$ для всех $g \in G$. Это равносильно $G_m = G$ и равносильно $G \cdot m = \{ m \}$.
 		\end{itemize}
-	\end{statement}
-
-	\begin{definition}[Орбита]
-		$m \in M$ орбита $G \cdot m = \{ g \cdot m | g \in G \}$
-
-		$G \cdot m_1 \cap G \cdot m_2 \ne 0 \Longrightarrow Gm_1 = Gm_2$
 	\end{definition}
 
-	\begin{definition}[Стабилизатор]
-		$m \in M$. $G_m = \{ g \in G | g \cdot m = m \}$
+	\begin{statement}\label{st:orbits-partition}
+		Орбиты либо совпадают, либо не пересекаются: $M$ разбивается в объединение непересекающихся орбит.
+	\end{statement}
+
+	\begin{proof}
+		Положим $m_1 \sim m_2$, если $m_2 = g \cdot m_1$ для некоторого $g \in G$. Это отношение эквивалентности: рефлексивность~--- $g = e$; симметричность~--- $m_1 = g^{-1} \cdot m_2$; транзитивность~--- из $m_2 = g \cdot m_1$, $m_3 = h \cdot m_2$ следует $m_3 = (hg) \cdot m_1$. Классы эквивалентности~--- в точности орбиты.
+	\end{proof}
+
+	\begin{statement}\label{st:stabilizer-subgroup}
+		$G_m \leqslant G$.
+	\end{statement}
+
+	\begin{proof}
+		$e \in G_m$ по аксиоме~1. Если $g, h \in G_m$, то $(gh) \cdot m = g \cdot (h \cdot m) = g \cdot m = m$ и $g^{-1} \cdot m = g^{-1} \cdot (g \cdot m) = m$.
+	\end{proof}
+
+	\begin{theorem}[об орбите и стабилизаторе]\label{thm:orbit-stabilizer}
+		Пусть $G$ действует на $M$, $m \in M$. Отображение
+		\[
+			G/G_m \to G \cdot m, \qquad gG_m \mapsto g \cdot m,
+		\]
+		корректно определено и является биекцией. Если $G$ конечна, то
+		\[
+			|G \cdot m| = [G : G_m] = \frac{|G|}{|G_m|}, \qquad\text{то есть}\qquad |G_m| \cdot |G \cdot m| = |G|.
+		\]
+	\end{theorem}
+
+	\begin{proof}
+		Для $g, g' \in G$ имеем
+		\[
+			g \cdot m = g' \cdot m \iff (g^{-1}g') \cdot m = m \iff g^{-1}g' \in G_m \iff gG_m = g'G_m,
+		\]
+		где первая равносильность получается применением $g^{-1}$ (или $g$), а последняя~--- это лемма~\ref{lem:cosets}, п.~1. Слева направо это даёт корректность определения, справа налево~--- инъективность. Сюръективность очевидна. Формула для конечной $G$ следует из теоремы Лагранжа.
+	\end{proof}
+
+	\begin{corollary}\label{cor:orbit-divides}
+		Если $G$ конечна, то размер каждой орбиты делит $|G|$.
+	\end{corollary}
+
+	\begin{corollary}[разбиение на орбиты]\label{cor:orbit-sum}
+		Если $M$ конечно, то $|M| = \sum |G \cdot m_i|$, где суммирование идёт по всем различным орбитам.
+	\end{corollary}
+
+	\begin{example}
+		Группа $G$ порядка $55$ действует на множестве $M$ из $39$ элементов. Тогда есть неподвижная точка.
+
+		По следствию~\ref{cor:orbit-divides} размер орбиты~--- делитель $55$, то есть $1$, $5$, $11$ или $55$, причём $55 > 39$ невозможно. Допустим, орбит размера $1$ нет. Тогда $39 = 5a + 11b$ при целых $a, b \geqslant 0$. По модулю $5$ получаем $b \equiv 39 \equiv 4$, значит $b \geqslant 4$ и $11b \geqslant 44 > 39$. Противоречие. Следовательно, есть орбита $\{m\}$ из одной точки~--- неподвижная точка.
+	\end{example}
+
+	\begin{statement}[стабилизаторы в одной орбите]\label{st:conjugate-stabilizers}
+		$G_{g \cdot m} = gG_mg^{-1}$ для любых $g \in G$, $m \in M$.
+	\end{statement}
+
+	\begin{proof}
+		Для $h \in G$:
+		\[
+			h \cdot (g \cdot m) = g \cdot m \iff (g^{-1}hg) \cdot m = m \iff g^{-1}hg \in G_m \iff h \in gG_mg^{-1}.
+		\]
+	\end{proof}
+
+	\subsection{Действие на смежных классах}
+
+	\begin{theorem}\label{thm:action-on-cosets}
+		Пусть $H \leqslant G$. Формула
+		\[
+			g \cdot (xH) = (gx)H
+		\]
+		задаёт действие $G$ на $G/H$, причём стабилизатор точки $xH$ равен $xHx^{-1}$. В частности, $G_{eH} = H$.
+	\end{theorem}
+
+	\begin{proof}
+		\emph{Корректность.} Если $xH = yH$, то $y = xh$ при некотором $h \in H$, и $(gy)H = (gxh)H = (gx)H$, так как $hH = H$.
+
+		\emph{Аксиомы.} $e \cdot (xH) = xH$ и $(g_1g_2) \cdot (xH) = (g_1g_2x)H = g_1 \cdot (g_2 \cdot (xH))$.
+
+		\emph{Стабилизатор.} По лемме~\ref{lem:cosets}, п.~1,
+		\[
+			g \cdot (xH) = xH \iff (gx)H = xH \iff x^{-1}g^{-1}x \in H \iff x^{-1}gx \in H \iff g \in xHx^{-1}.
+		\]
+		При $x = e$ получаем $G_{eH} = H$.
+	\end{proof}
+
+	\begin{corollary}\label{cor:any-subgroup-stabilizer}
+		Любая подгруппа $H \leqslant G$ является стабилизатором некоторой точки при подходящем действии $G$.
+	\end{corollary}
+
+	\begin{note}
+		Верно и обратное: если действие транзитивно (одна орбита $M = G \cdot m$), то по теореме~\ref{thm:orbit-stabilizer} множество $M$ находится в биекции с $G/G_m$, и эта биекция согласована с действием. Поэтому действия на $G/H$ описывают все транзитивные действия.
+	\end{note}
+
+	\subsection{Группы перестановок с условием на пары}
+
+	\begin{definition}[Транзитивность]
+		Действие $G$ на $M$ называется \emph{транзитивным}, если для любых $m_1, m_2 \in M$ найдётся $g \in G$ с $g \cdot m_1 = m_2$ (то есть орбита всего одна).
 	\end{definition}
 
-	\begin{statement}
-		$|G_m| \cdot |G \cdot m| = |G|$
-	\end{statement}
+	\begin{definition}[Точно двукратно транзитивная группа]\label{def:sharply-2-transitive}
+		Группа перестановок $G \leqslant S_n$, $n \geqslant 2$, называется \emph{точно двукратно транзитивной}, если для любых $a \ne b$, $c \ne d$ существует \emph{единственная} $\pi \in G$ такая, что $\pi(a) = c$, $\pi(b) = d$. Это условие будем обозначать $(\ast)$.
+	\end{definition}
+
+	\begin{lemma}\label{lem:one-fixed-point}
+		В точно двукратно транзитивной группе любая $\pi \ne \mathrm{id}$ имеет не более одной неподвижной точки.
+	\end{lemma}
+
+	\begin{proof}
+		Если $\pi(a) = a$ и $\pi(b) = b$ при $a \ne b$, то $\pi$ и $\mathrm{id}$ удовлетворяют условию $(\ast)$ при $c = a$, $d = b$. По единственности $\pi = \mathrm{id}$.
+	\end{proof}
+
+	\begin{theorem}\label{thm:sharply-2-transitive}
+		Пусть $G \leqslant S_n$~--- точно двукратно транзитивная группа. Тогда
+		\begin{enumerate}
+			\item $|G| = n(n - 1)$, $G$ действует на $\{1, \dots, n\}$ транзитивно, и $|G_a| = n - 1$ для любой точки $a$;
+			\item множество
+			\[
+				N = \{ \mathrm{id} \} \cup \{ \pi \in G \mid \pi \text{ не имеет неподвижных точек} \}
+			\]
+			является подгруппой $G$ порядка $n$; для любых $a, c$ в $N$ ровно один элемент $\rho$ имеет $\rho(a) = c$.
+		\end{enumerate}
+	\end{theorem}
+
+	\begin{proof}
+		\emph{(1)} Зафиксируем $a \ne b$. По $(\ast)$ отображение $\pi \mapsto (\pi(a), \pi(b))$ является биекцией между $G$ и множеством упорядоченных пар различных элементов, поэтому $|G| = n(n - 1)$. Для любых $a, c$ выберем $b \ne a$ и $d \ne c$ (здесь используется $n \geqslant 2$); найдётся $\pi$ с $\pi(a) = c$, то есть орбита $a$ состоит из $n$ точек. По теореме~\ref{thm:orbit-stabilizer} $|G_a| = n(n - 1)/n = n - 1$.
+
+		\emph{(2), шаг 1: для $a \ne c$ есть ровно одна перестановка $\pi \in G$ без неподвижных точек с $\pi(a) = c$.}
+		Множество $P = \{ \pi \in G \mid \pi(a) = c \}$~--- это смежный класс $\pi_0G_a$ (где $\pi_0 \in P$), поэтому $|P| = n - 1$. Пусть $\pi \in P$ имеет неподвижную точку $x$. Тогда $x \ne a$ (так как $\pi(a) = c \ne a$) и $x \ne c$ (иначе $\pi(c) = c = \pi(a)$). Для каждого из $n - 2$ чисел $x \notin \{a, c\}$ по $(\ast)$ есть единственная $\sigma_x \in P$ с $\sigma_x(x) = x$, и по лемме~\ref{lem:one-fixed-point} эти $\sigma_x$ попарно различны. Значит, в $P$ ровно $n - 2$ перестановки с неподвижной точкой, и $(n - 1) - (n - 2) = 1$ без неё.
+
+		\emph{Шаг 2: для любых $a, c$ в $N$ ровно один элемент $\rho$ с $\rho(a) = c$.}
+		При $a \ne c$ это шаг~1 ($\mathrm{id}$ не подходит). При $a = c$ подходит $\mathrm{id}$, а остальные элементы $N$ не имеют неподвижных точек. Отсюда $|N| = n$: отображение $\rho \mapsto \rho(1)$ биективно из $N$ в $\{1, \dots, n\}$.
+
+		\emph{Шаг 3: $N$~--- подгруппа.} Ясно, что $\mathrm{id} \in N$; если $\rho \in N$, то $\rho^{-1} \in N$, так как $\rho^{-1}(x) = x \iff \rho(x) = x$. Если одна из $\pi, \sigma \in N$ равна $\mathrm{id}$, то $\pi\sigma \in N$ очевидно. Пусть обе отличны от $\mathrm{id}$, и $\pi\sigma$ имеет неподвижную точку $x$: $\pi(\sigma(x)) = x$. Для $y = \sigma(x)$ имеем $\pi^{-1}(x) = y$. Тогда $\sigma, \pi^{-1} \in N$ оба переводят $x$ в $y$, и по шагу~2 $\sigma = \pi^{-1}$, то есть $\pi\sigma = \mathrm{id} \in N$. Если же $\pi\sigma$ неподвижных точек не имеет, то $\pi\sigma \in N$ по определению.
+	\end{proof}
 
 \end{document}
