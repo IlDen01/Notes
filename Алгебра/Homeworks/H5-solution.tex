@@ -2,7 +2,7 @@
 
 \input{~/School/Notes/header.tex}
 
-\title{Домашнее задание по алгебре (к 13.10)}
+\title{Домашнее задание по алгебре}
 \author{Денисов Илья}
 \date{}
 
@@ -26,19 +26,19 @@
 		\]
 
 		Найдём возможные размеры орбит. Зафиксируем $m\in M$ и обозначим
-		$\operatorname{Stab}(m)=\{g\in G\mid gm=m\}$~--- подгруппу в $G$.
+		$G_m=\{g\in G\mid gm=m\}$~--- подгруппу в $G$.
 		Для $g,g'\in G$ имеем
 		\[
 			gm=g'm
 			\iff g^{-1}g'm=m
-			\iff g^{-1}g'\in\operatorname{Stab}(m)
-			\iff g\operatorname{Stab}(m)=g'\operatorname{Stab}(m).
+			\iff g^{-1}g'\in G_m
+			\iff gG_m=g'G_m.
 		\]
-		Значит, отображение $g\operatorname{Stab}(m)\mapsto gm$ корректно задаёт
-		биекцию между левыми смежными классами по $\operatorname{Stab}(m)$ и
+		Значит, отображение $gG_m\mapsto gm$ корректно задаёт
+		биекцию между левыми смежными классами по $G_m$ и
 		орбитой $Gm$. По теореме Лагранжа
 		\[
-			|Gm|=[G:\operatorname{Stab}(m)]=\frac{|G|}{|\operatorname{Stab}(m)|}.
+			|Gm|=[G:G_m]=\frac{|G|}{|G_m|}.
 		\]
 		Итак, размер каждой орбиты делит $|G|=55=5\cdot11$, то есть равен
 		$1$, $5$, $11$ или $55$. Орбита не может быть больше $M$, а
@@ -90,10 +90,10 @@
 
 		\emph{Стабилизатор точки $H=eH\in M$.} По определению
 		\[
-			\operatorname{Stab}(H)=\{g\in G\mid gH=H\}.
+			G_{eH}=\{g\in G\mid gH=H\}.
 		\]
 		Если $g\in H$, то $gH=H$, так как $H$~--- подгруппа. Обратно, если
-		$gH=H$, то $g=ge\in gH=H$. Значит, $\operatorname{Stab}(H)=H$.
+		$gH=H$, то $g=ge\in gH=H$. Значит, $G_{eH}=H$.
 	\end{proof}
 
 	\noindent
@@ -133,7 +133,7 @@
 	\begin{proof}
 		Рассмотрим стабилизатор точки $1$:
 		\[
-			H=\operatorname{Stab}(1)=\{\pi\in G\mid\pi(1)=1\}.
+			H=G_1=\{\pi\in G\mid\pi(1)=1\}.
 		\]
 		Это подгруппа в $G$. Найдём её порядок.
 
