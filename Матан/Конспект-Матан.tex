@@ -1882,4 +1882,109 @@
 			\frac{a_1(x)z'(x)}{(1-p)}+a_0(x)z(x)=f(x)
 		\]
 	\end{statement}
+
+	\subsection{Линейные уравнения $n$-го порядка}
+
+	\begin{definition}
+		Пусть $a_0, a_1, \dots, a_{n-1} \in C(a, b)$. Линейным дифференциальным оператором $n$-го порядка называется оператор
+		\[
+			L = \dfrac{d^n}{dx^n} + a_{n-1}(x) \dfrac{d^{n-1}}{dx^{n-1}} + \dots + a_1(x) \dfrac{d}{dx} + a_0(x), \qquad L: C^n(a, b) \rightarrow C(a, b),
+		\]
+		действующий по правилу
+		\[
+			Ly := y^{(n)}(x) + a_{n-1}(x) y^{(n-1)}(x) + \dots + a_1(x) y'(x) + a_0(x) y(x).
+		\]
+		Уравнение $Ly = 0$, то есть
+		\[
+			y^{(n)}(x) + a_{n-1}(x) y^{(n-1)}(x) + \dots + a_1(x) y'(x) + a_0(x) y(x) = 0,
+		\]
+		называется линейным однородным дифференциальным уравнением $n$-го порядка.
+	\end{definition}
+
+	\begin{statement}
+		Оператор $L$ является линейным.
+	\end{statement}
+
+	\begin{proof}
+		Следует из линейности дифференцирования: для $\lambda \in \mathbb{R}$ и $y, y_1, y_2 \in C^n(a, b)$ при всех $k \leqslant n$ верно $(\lambda y)^{(k)} = \lambda y^{(k)}$ и $(y_1 + y_2)^{(k)} = y_1^{(k)} + y_2^{(k)}$, поэтому $L(\lambda y) = \lambda Ly$ и $L(y_1 + y_2) = Ly_1 + Ly_2$.
+	\end{proof}
+
+	\begin{definition}[Ядро оператора]
+		Пусть $L: X \rightarrow Y$~--- линейный оператор. \emph{Ядром} оператора $L$ называется множество
+		\[
+			\operatorname{Ker}(L) = \{ y \in X : Ly = 0 \},
+		\]
+		то есть множество всех решений однородного уравнения $Ly = 0$.
+	\end{definition}
+
+	\begin{definition}[Фундаментальная система решений]
+		Набор из $n$ линейно независимых на $(a, b)$ решений $\varphi_1, \dots, \varphi_n$ уравнения $Ly = 0$ называется \emph{фундаментальной системой решений} (ФСР).
+	\end{definition}
+
+	\begin{theorem}
+		Пусть $a_k \in C(a, b)$, $k = 0, 1, \dots, n-1$. Тогда у уравнения $Ly = 0$ существует ФСР $\varphi_1(x), \varphi_2(x), \dots, \varphi_n(x)$, и общее решение этого уравнения имеет вид
+		\[
+			y_0(x) = C_1 \varphi_1(x) + C_2 \varphi_2(x) + \dots + C_n \varphi_n(x), \qquad C_1, \dots, C_n \in \mathbb{R}.
+		\]
+		Иными словами, $\operatorname{Ker}(L)$~--- $n$-мерное линейное пространство, а ФСР~--- его базис.
+	\end{theorem}
+
+	\begin{note}
+		Так как $L$ линеен, любая линейная комбинация решений уравнения $Ly = 0$ снова является его решением. Содержательная часть теоремы состоит в том, что независимых решений ровно $n$ и других решений нет.
+	\end{note}
+
+	\subsubsection{Определитель Вронского}
+
+	\begin{definition}[Матрица Вронского и вронскиан]
+		Пусть $\varphi_1, \varphi_2, \dots, \varphi_n \in C^{n-1}(a, b)$. \emph{Матрицей Вронского} этого набора функций называется матрица размера $n \times n$
+		\[
+			W(x) =
+			\begin{pmatrix}
+				\varphi_1(x) & \varphi_2(x) & \cdots & \varphi_n(x) \\[2pt]
+				\varphi_1'(x) & \varphi_2'(x) & \cdots & \varphi_n'(x) \\[2pt]
+				\vdots & \vdots & \ddots & \vdots \\[2pt]
+				\varphi_1^{(n-1)}(x) & \varphi_2^{(n-1)}(x) & \cdots & \varphi_n^{(n-1)}(x)
+			\end{pmatrix}.
+		\]
+		Её определитель
+		\[
+			\omega(x) = \det W(x)
+		\]
+		называется \emph{вронскианом} данного набора функций.
+	\end{definition}
+
+	\begin{statement}
+		Пусть $\varphi_1, \dots, \varphi_n \in C^{n-1}(a, b)$ и $\omega(x_0) \ne 0$ хотя бы в одной точке $x_0 \in (a, b)$. Тогда функции $\varphi_1, \dots, \varphi_n$ линейно независимы на $(a, b)$.
+	\end{statement}
+
+	\begin{proof}
+		Пусть
+		\[
+			C_1 \varphi_1(x) + C_2 \varphi_2(x) + \dots + C_n \varphi_n(x) = 0 \qquad \forall x \in (a, b).
+		\]
+		Продифференцируем это тождество $k$ раз, $k = 0, 1, \dots, n - 1$:
+		\[
+			C_1 \varphi_1^{(k)}(x) + C_2 \varphi_2^{(k)}(x) + \dots + C_n \varphi_n^{(k)}(x) = 0.
+		\]
+		В матричном виде это система
+		\[
+			W(x)
+			\begin{pmatrix}
+				C_1 \\ C_2 \\ \vdots \\ C_n
+			\end{pmatrix}
+			=
+			\begin{pmatrix}
+				0 \\ 0 \\ \vdots \\ 0
+			\end{pmatrix}.
+		\]
+		При $x = x_0$ имеем $\det W(x_0) \ne 0$, поэтому система имеет только тривиальное решение $C_1 = C_2 = \dots = C_n = 0$. Значит, функции линейно независимы.
+	\end{proof}
+
+	\begin{theorem}
+		Пусть $a_k \in C(a, b)$, $k = 0, 1, \dots, n-1$, и пусть $\varphi_1, \varphi_2, \dots, \varphi_n$~--- какие-то решения уравнения $Ly = 0$. Если существует $x_0 \in (a, b)$ такое, что
+		\[
+			\omega(x_0) = \det W(x_0) \ne 0,
+		\]
+		то $\omega(x) \ne 0$ для всех $x \in (a, b)$, то есть $\varphi_1, \dots, \varphi_n$~--- ФСР.
+	\end{theorem}
 \end{document}
