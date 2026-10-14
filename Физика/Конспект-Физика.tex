@@ -1586,33 +1586,317 @@
 
 	\subsubsection{Распространение звука}
 
-	\begin{definition}[Коэффициент всестороннего сжатия]
+	\begin{definition}[Модуль всестороннего сжатия]
+		Отношение изменения давления к относительному изменению объёма, взятое с обратным знаком:
 		\[
-		E = - \frac{\Delta p V}{\Delta V} = -V \frac{d p}{d V}
+			K = -\dfrac{\varDelta p}{\varDelta V / V} = -V\,\dfrac{dp}{dV}, \qquad [K] = \text{Па}.
 		\]
+		При сжатии ($dV < 0$) давление растёт, поэтому $K > 0$.
 	\end{definition}
 
-	\begin{statement}[Не очень точная скорость звука]
+	\begin{statement}[Скорость звука в среде]
+		В газе или жидкости с модулем всестороннего сжатия $K$ и плотностью $\rho$ скорость звука равна
 		\[
-		u = \sqrt{\frac{RT}{M}}
+			V_{\text{зв}} = \sqrt{\dfrac{K}{\rho}}.
 		\]
 	\end{statement}
-
-	\begin{statement}[Скорость звука поточнее]
+	\begin{proof}[Вывод]
+		Повторим вывод для продольной волны в стержне. Пусть поршень в трубе сечением $S$ начинает двигаться с постоянной скоростью $u$. За время $\varDelta t$ сжатие распространяется на расстояние $l = V_{\text{зв}}\varDelta t$, а поршень смещается на $\varDelta l = u\varDelta t$. Сечение постоянно, поэтому относительное изменение объёма сжатого слоя равно относительному изменению его длины:
 		\[
-		u = \sqrt{\frac{7RT}{5M}}
+			\dfrac{|\varDelta V|}{V} = \dfrac{\varDelta l}{l} = \dfrac{u}{V_{\text{зв}}}, \qquad \varDelta p = K\,\dfrac{|\varDelta V|}{V} = K\,\dfrac{u}{V_{\text{зв}}}.
 		\]
-	\end{statement}
+		Избыточное давление за время $\varDelta t$ разгоняет слой массой $\varDelta m = \rho S l$ от $0$ до $u$:
+		\[
+			\varDelta p\, S\,\varDelta t = \rho S l u = \rho S V_{\text{зв}}\varDelta t\, u \quad \Longrightarrow \quad \varDelta p = \rho V_{\text{зв}} u.
+		\]
+		Приравняем два выражения для $\varDelta p$ и сократим на $u$:
+		\[
+			K\,\dfrac{1}{V_{\text{зв}}} = \rho V_{\text{зв}} \quad \Longrightarrow \quad V_{\text{зв}} = \sqrt{\dfrac{K}{\rho}}.
+		\]
+	\end{proof}
 
-	\subsection{Отражение волн}
-
-	\begin{statement}
-		Угол падения равен углу отражения.
+	\begin{statement}[Скорость звука в газе]
+		Если сжатия и разрежения в волне считать изотермическими, то (формула Ньютона)
+		\[
+			V_{\text{зв}} = \sqrt{\dfrac{RT}{M}}.
+		\]
+		Если считать их адиабатными, то (формула Лапласа)
+		\[
+			V_{\text{зв}} = \sqrt{\dfrac{\gamma RT}{M}},
+		\]
+		где $\gamma = \dfrac{i + 2}{i}$~--- коэффициент Пуассона (показатель адиабаты). Для воздуха ($i = 5$, $\gamma = \dfrac{7}{5}$):
+		\[
+			V_{\text{зв}} = \sqrt{\dfrac{7RT}{5M}}.
+		\]
+		Опыт согласуется с формулой Лапласа.
 	\end{statement}
+	\begin{proof}[Вывод]
+		Найдём $K$ в каждом случае. При изотермическом процессе $pV = const$, откуда $p\,dV + V\,dp = 0$ и $K_T = -V\dfrac{dp}{dV} = p$. При адиабатном процессе $pV^\gamma = const$, откуда $V^\gamma dp + \gamma p V^{\gamma - 1} dV = 0$ и $K_{\text{ад}} = -V\dfrac{dp}{dV} = \gamma p$.
+
+		Плотность газа выражается через уравнение Менделеева--Клапейрона: $\rho = \dfrac{m}{V} = \dfrac{\nu M}{V} = \dfrac{pM}{RT}$. Подставим в $V_{\text{зв}} = \sqrt{\dfrac{K}{\rho}}$:
+		\[
+			V_{\text{зв}} = \sqrt{\dfrac{p \cdot RT}{pM}} = \sqrt{\dfrac{RT}{M}}, \qquad V_{\text{зв}} = \sqrt{\dfrac{\gamma p \cdot RT}{pM}} = \sqrt{\dfrac{\gamma RT}{M}}.
+		\]
+	\end{proof}
+
+	\begin{note}
+		Процесс в звуковой волне адиабатный: сжатия и разрежения сменяют друг друга за время, много меньшее времени выравнивания температуры теплопроводностью, поэтому $Q \approx 0$. Формула Ньютона для этого неверна.
+	\end{note}
+
+	\begin{example}
+		Воздух: $M = 29 \cdot 10^{-3}$ кг/моль, $T = 273$ К. Формула Ньютона даёт $V_{\text{зв}} \approx 280$ м/с, формула Лапласа~--- $V_{\text{зв}} \approx 331$ м/с, что совпадает с измеренным значением.
+	\end{example}
+
+	\begin{note}
+		Скорость звука в газе растёт как $\sqrt{T}$ и не зависит от давления при фиксированной температуре. Она одного порядка с тепловой скоростью молекул: $V_{\text{зв}} = \sqrt{\dfrac{\gamma}{3}}\,\sqrt{\overline{\mathcal{V}^2}}$. В жидкостях $K$ значительно больше: для воды $K \approx 2.2 \cdot 10^{9}$ Па, $\rho = 10^3$ кг/м$^3$, откуда $V_{\text{зв}} \approx 1.5$ км/с.
+	\end{note}
 
 	\subsection{Интерференция волн}
 
-	\begin{definition}[Интерференция волн]
-		Сложение волн.
+	\begin{statement}[Принцип суперпозиции]
+		При малых деформациях среды смещение каждой её точки равно сумме смещений, которые вызывала бы каждая из волн по отдельности. Волны проходят друг через друга, не изменяясь.
+	\end{statement}
+
+	\begin{definition}[Когерентные волны]
+		Волны одинаковой частоты с постоянной во времени разностью фаз.
 	\end{definition}
+
+	\begin{definition}[Интерференция волн]
+		Сложение когерентных волн, при котором в одних точках пространства колебания усиливаются, а в других~--- ослабляются, причём эта картина не меняется со временем.
+	\end{definition}
+
+	\begin{definition}[Разность хода]
+		$\varDelta d = d_2 - d_1$, где $d_1$ и $d_2$~--- расстояния от точки наблюдения до источников.
+	\end{definition}
+
+	\begin{statement}[Условия максимума и минимума]
+		Пусть два когерентных источника колеблются в одной фазе. Колебания в точке максимально усиливаются, если разность хода равна целому числу длин волн, и максимально ослабляются, если она равна нечётному числу полуволн:
+		\[
+			\left| \varDelta d \right| = k\lambda \quad (\text{максимум}), \qquad \left| \varDelta d \right| = (2k + 1)\,\dfrac{\lambda}{2} \quad (\text{минимум}), \qquad k = 0, 1, 2, \dots
+		\]
+	\end{statement}
+	\begin{proof}[Вывод]
+		Для простоты амплитуды обеих волн в точке считаем равными $S_m$. По принципу суперпозиции, используя формулу смещения точки от времени и координаты,
+		\[
+			S = S_m \sin \left( 2\pi \left( \dfrac{t}{T} - \dfrac{d_1}{\lambda} \right) \right) + S_m \sin \left( 2\pi \left( \dfrac{t}{T} - \dfrac{d_2}{\lambda} \right) \right) = 2 S_m \cos \left( \dfrac{\pi \varDelta d}{\lambda} \right) \sin \left( 2\pi \left( \dfrac{t}{T} - \dfrac{d_1 + d_2}{2\lambda} \right) \right),
+		\]
+		где использована формула $\sin a + \sin b = 2 \sin \dfrac{a + b}{2} \cos \dfrac{a - b}{2}$. Амплитуда результирующего колебания
+		\[
+			A = 2 S_m \left| \cos \left( \dfrac{\pi \varDelta d}{\lambda} \right) \right|.
+		\]
+		Она максимальна ($A = 2S_m$) при $\dfrac{\pi \left| \varDelta d \right|}{\lambda} = \pi k$, то есть $\left| \varDelta d \right| = k\lambda$, и равна нулю при $\dfrac{\pi \left| \varDelta d \right|}{\lambda} = \dfrac{\pi}{2} + \pi k$, то есть $\left| \varDelta d \right| = (2k + 1)\dfrac{\lambda}{2}$.
+	\end{proof}
+
+	\begin{note}
+		Если источники колеблются в противофазе, условия максимума и минимума меняются местами. Стоячая волна~--- частный случай интерференции двух встречных волн одинаковой амплитуды (например, падающей и отражённой).
+	\end{note}
+
+	\begin{example}
+		Два одинаковых динамика, колеблющихся в одной фазе, излучают звук частотой $\nu = 680$ Гц ($V_{\text{зв}} = 340$ м/с). Длина волны $\lambda = \dfrac{V_{\text{зв}}}{\nu} = 0.5$ м. В точке на расстояниях $4$ м и $4.25$ м от динамиков $\left| \varDelta d \right| = 0.25$ м $= \dfrac{\lambda}{2}$~--- это минимум, звук практически не слышен.
+	\end{example}
+
+	\subsection{Принцип Гюйгенса}
+
+	\begin{statement}[Принцип Гюйгенса]
+		Каждая точка, до которой дошёл волновой фронт, становится источником вторичных сферических волн. Фронт в момент $t + \varDelta t$ является огибающей (общей касательной поверхностью) вторичных волн, радиус которых равен $V\varDelta t$, где $V$~--- скорость волны.
+	\end{statement}
+
+	\begin{example}[Плоская волна]
+		Вторичные волны от точек плоского фронта~--- полусферы радиуса $V\varDelta t$ (рис.~\ref{fig:huygens}). Их огибающая~--- плоскость, параллельная прежнему фронту и смещённая на $V\varDelta t$, то есть плоская волна остаётся плоской.
+
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}[scale=1.2, line join=round, line cap=round, >=Stealth]
+				\def\r{1.2}
+				\foreach \y in {-1.6, -0.8, 0, 0.8, 1.6} {
+					\fill (0, \y) circle (1.2pt);
+					\draw[gray] (0, \y) ++(0, -\r) arc (-90:90:\r);
+				}
+				\draw[thick, blue!70!black] (0, -1.9) -- (0, 1.9);
+				\draw[thick, red!70!black] (\r, -1.6) -- (\r, 1.6);
+				\node[left] at (0, 1.5) {\small фронт в момент $t$};
+				\node[right] at (\r, 1.0) {\small фронт в момент $t + \varDelta t$};
+				\draw[->, thick] (-1.2, 0) -- (-0.3, 0) node[midway, above] {$\vec V$};
+				\draw[<->] (0, -3.1) -- (\r, -3.1) node[midway, below] {$V\varDelta t$};
+			\end{tikzpicture}
+			\caption{Плоская волна: вторичные волны и огибающая}
+			\label{fig:huygens}
+		\end{figure}
+	\end{example}
+
+	\begin{note}
+		Принцип Гюйгенса определяет только положение фронта. С его помощью выводятся законы отражения и преломления (см. ниже) и объясняется дифракция~--- отклонение волны от прямолинейного распространения у краёв препятствий и отверстий. Он не даёт амплитуду волны и не объясняет, почему не возникает волна, идущая назад: это решает уточнение принципа, которое пока не рассматривается.
+	\end{note}
+
+	\subsection{Отражение волн}
+
+	\begin{definition}[Углы падения и отражения]
+		Луч~--- линия, перпендикулярная волновым поверхностям и показывающая направление распространения волны. Угол падения $\alpha$ (отражения $\beta$)~--- угол между падающим (отражённым) лучом и перпендикуляром к границе, проведённым в точку падения.
+	\end{definition}
+
+	\begin{law}[Закон отражения]
+		Падающий луч, отражённый луч и перпендикуляр к границе, проведённый в точку падения, лежат в одной плоскости, причём угол падения равен углу отражения:
+		\[
+			\alpha = \beta.
+		\]
+	\end{law}
+	\begin{proof}[Вывод]
+		Пусть плоская волна падает на плоскую границу, а рисунок выполнен в плоскости падения (отражённая волна лежит в ней по симметрии задачи). В момент, когда падающий фронт $AB$ касается границы в точке $A$, его другой край $B$ ещё не дошёл до границы (рис.~\ref{fig:reflection}). Он дойдёт до точки $C$ через время $\varDelta t = \dfrac{BC}{V}$, где $V$~--- скорость волны. За это время вторичная волна из точки $A$ пройдёт расстояние $AD = V\varDelta t = BC$, а отражённый фронт $CD$ будет касаться окружности радиуса $AD$ с центром в $A$.
+
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}[scale=1.3, line join=round, line cap=round, >=Stealth]
+				\pgfmathsetmacro{\al}{35}
+				\pgfmathsetmacro{\s}{2.5}
+				\pgfmathsetmacro{\r}{\s*tan(\al)}
+				\coordinate (A) at (0, 0);
+				\coordinate (C) at ({\s/cos(\al)}, 0);
+				\coordinate (B) at (\al:\s);
+				\coordinate (D) at ({\r*sin(\al)}, {\r*cos(\al)});
+				% Граница
+				\fill[pattern=north east lines, pattern color=gray] (-1, -0.25) rectangle (4.5, 0);
+				\draw[very thick] (-1, 0) -- (4.5, 0);
+				% Окружность вторичной волны
+				\draw[dashed, gray] (\r, 0) arc (0:110:\r);
+				% Фронты
+				\draw[thick, blue!70!black] (A) -- (B);
+				\draw[thick, red!70!black] (C) -- (D);
+				% Лучи
+				\draw[->, blue!70!black] (B) -- (C);
+				\draw[->, red!70!black] (A) -- (D);
+				\draw[dotted] (A) -- (D);
+				% Углы
+				\pic[draw, angle radius=0.8cm, pic text=$\alpha$, angle eccentricity=1.5] {angle = C--A--B};
+				\pic[draw, angle radius=0.8cm, pic text=$\beta$, angle eccentricity=1.5] {angle = D--C--A};
+				% Подписи
+				\node[below left] at (A) {$A$};
+				\node[above left] at (B) {$B$};
+				\node[below right] at (C) {$C$};
+				\node[above] at (D) {$D$};
+			\end{tikzpicture}
+			\caption{Вывод закона отражения: падающий фронт $AB$ и отражённый фронт $CD$}
+			\label{fig:reflection}
+		\end{figure}
+
+		Прямоугольные треугольники $ABC$ и $CDA$ имеют общую гипотенузу $AC$ и равные катеты $BC = AD$, поэтому равны. Значит, $\angle BAC = \angle DCA$. Стороны этих углов перпендикулярны лучам и нормали, поэтому они равны углам $\alpha$ и $\beta$ соответственно.
+	\end{proof}
+
+	\begin{example}[Эхо]
+		Ухо различает прямой и отражённый звук, если они приходят с запаздыванием не менее $0.1$ с. За это время звук проходит туда и обратно примерно $340 \cdot 0.1 = 34$ м, поэтому эхо слышно, если преграда находится дальше $17$ м.
+	\end{example}
+
+	\subsection{Преломление волн}
+
+	\begin{definition}[Преломление]
+		Изменение направления распространения волны при переходе из одной среды в другую, в которой скорость волны иная. Угол падения обозначим $\alpha_1$, угол преломления~--- $\alpha_2$ (угол между преломлённым лучом и перпендикуляром к границе), скорости волны в средах~--- $V_1$ и $V_2$.
+	\end{definition}
+
+	\begin{law}[Закон преломления]
+		Падающий луч, преломлённый луч и перпендикуляр к границе, проведённый в точку падения, лежат в одной плоскости, причём
+		\[
+			\dfrac{\sin \alpha_1}{\sin \alpha_2} = \dfrac{V_1}{V_2} = n_{21},
+		\]
+		где $n_{21}$~--- относительный показатель преломления второй среды относительно первой.
+	\end{law}
+	\begin{proof}[Вывод]
+		Пусть плоская волна падает на плоскую границу двух сред. В момент, когда падающий фронт $AB$ касается границы в точке $A$, его край $B$ ещё не дошёл до границы (рис.~\ref{fig:refraction}). Он дойдёт до точки $C$ через время $\varDelta t = \dfrac{BC}{V_1}$. По принципу Гюйгенса точка $A$ становится источником вторичной волны во второй среде, которая за это время пройдёт расстояние $AD = V_2\varDelta t$. Преломлённый фронт $CD$~--- касательная к окружности радиуса $AD$ с центром в $A$.
+
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}[scale=1.3, line join=round, line cap=round, >=Stealth]
+				\pgfmathsetmacro{\al}{40}
+				\pgfmathsetmacro{\s}{2.2}
+				\pgfmathsetmacro{\k}{0.6}
+				\pgfmathsetmacro{\bc}{\s*tan(\al)}
+				\pgfmathsetmacro{\ac}{\s/cos(\al)}
+				\pgfmathsetmacro{\ad}{\k*\bc}
+				\pgfmathsetmacro{\bt}{asin(\ad/\ac)}
+				\coordinate (A) at (0, 0);
+				\coordinate (C) at (\ac, 0);
+				\coordinate (B) at (\al:\s);
+				\coordinate (D) at ({\ad*sin(\bt)}, {-\ad*cos(\bt)});
+				% Вторая среда и граница
+				\fill[gray!15] (-1, -2) rectangle (4.5, 0);
+				\draw[very thick] (-1, 0) -- (4.5, 0);
+				\node[right] at (3.6, 0.45) {среда 1, $V_1$};
+				\node[right] at (3.6, -0.45) {среда 2, $V_2$};
+				% Окружность вторичной волны
+				\draw[dashed, gray] (\ad, 0) arc (0:-110:\ad);
+				% Фронты
+				\draw[thick, blue!70!black] (A) -- (B);
+				\draw[thick, red!70!black] (C) -- (D);
+				% Лучи
+				\draw[->, blue!70!black] (B) -- (C);
+				\draw[->, red!70!black] (A) -- (D);
+				% Углы
+				\pic[draw, angle radius=0.8cm, pic text=$\alpha_1$, angle eccentricity=1.5] {angle = C--A--B};
+				\pic[draw, angle radius=0.8cm, pic text=$\alpha_2$, angle eccentricity=1.5] {angle = A--C--D};
+				% Подписи
+				\node[above left] at (A) {$A$};
+				\node[above left] at (B) {$B$};
+				\node[above right] at (C) {$C$};
+				\node[below] at (D) {$D$};
+			\end{tikzpicture}
+			\caption{Вывод закона преломления при $V_2 < V_1$: падающий фронт $AB$ и преломлённый фронт $CD$}
+			\label{fig:refraction}
+		\end{figure}
+
+		Треугольники $ABC$ и $ADC$ прямоугольные с общей гипотенузой $AC$. Угол $BAC$ между фронтом и границей равен углу падения $\alpha_1$, а угол $ACD$~--- углу преломления $\alpha_2$ (их стороны перпендикулярны лучам и нормали). Поэтому
+		\[
+			\sin \alpha_1 = \dfrac{BC}{AC} = \dfrac{V_1\varDelta t}{AC}, \qquad \sin \alpha_2 = \dfrac{AD}{AC} = \dfrac{V_2\varDelta t}{AC} \quad \Longrightarrow \quad \dfrac{\sin \alpha_1}{\sin \alpha_2} = \dfrac{V_1}{V_2}.
+		\]
+	\end{proof}
+
+	\begin{note}
+		При переходе в среду с меньшей скоростью ($V_2 < V_1$) луч приближается к нормали ($\alpha_2 < \alpha_1$), с большей~--- удаляется от неё. Частота волны при переходе не меняется (она задана источником), поэтому из $\lambda = VT$ следует $\dfrac{\lambda_1}{\lambda_2} = \dfrac{V_1}{V_2}$: меняется длина волны.
+	\end{note}
+
+	\begin{statement}[Полное отражение]
+		Пусть $V_2 > V_1$. При угле падения $\alpha_1 \geqslant \alpha_{\text{пр}}$, где
+		\[
+			\sin \alpha_{\text{пр}} = \dfrac{V_1}{V_2},
+		\]
+		преломлённой волны нет, и вся волна отражается от границы.
+	\end{statement}
+	\begin{proof}[Вывод]
+		Из закона преломления $\sin \alpha_2 = \dfrac{V_2}{V_1}\sin \alpha_1$. При $\sin \alpha_1 > \dfrac{V_1}{V_2}$ получаем $\sin \alpha_2 > 1$, что невозможно.
+	\end{proof}
+
+	\begin{example}[Звук из воздуха в воду]
+		Для воздуха $V_1 \approx 340$ м/с, для воды $V_2 \approx 1500$ м/с, поэтому $\sin \alpha_{\text{пр}} = \dfrac{340}{1500} \approx 0.23$, то есть $\alpha_{\text{пр}} \approx 13$\textdegree. Звук, падающий на воду под большим углом к нормали, почти полностью отражается.
+	\end{example}
+
+	\subsection{Поляризация волн}
+
+	\begin{definition}[Поляризация]
+		Свойство поперечной волны, состоящее в том, что колебания частиц происходят в плоскости, перпендикулярной направлению распространения, и упорядочены в ней определённым образом.
+	\end{definition}
+
+	\begin{note}
+		Продольные волны (в том числе звук в газах и жидкостях) не поляризуются: колебания в них идут вдоль луча, и в перпендикулярной плоскости нет выделенного направления.
+	\end{note}
+
+	\begin{definition}[Плоская (линейная) поляризация]
+		Колебания каждой частицы происходят вдоль одной прямой, перпендикулярной лучу. Плоскость, содержащую эту прямую и луч, называют плоскостью колебаний.
+	\end{definition}
+
+	\begin{definition}[Круговая поляризация]
+		Конец вектора смещения частицы равномерно движется по окружности в плоскости, перпендикулярной лучу.
+	\end{definition}
+
+	\subsection{Энергия}
+
+	\begin{definition}[Интенсивность волны, $\frac{\text{Вт}}{\text{м}^2}$]
+		\begin{gather*}
+			W = \frac{m_0 V^2}{2} = \frac{\rho V S_m^2 \omega^2}{2} \\
+			\frac{W}{V} = \frac{\rho S_m^2 \omega^2}{2} \\
+			I = \frac{\Delta W}{\Delta S \Delta t} = \frac{\rho S_m^2 \omega^2 u}{2}
+		\end{gather*}
+	\end{definition}
+
+	\begin{law}[Закон обратных квадратов]
+		\[
+		I \sim \frac{1}{r^2}
+		\]
+	\end{law}
 \end{document}
