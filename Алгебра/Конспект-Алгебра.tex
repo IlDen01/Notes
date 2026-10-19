@@ -328,6 +328,47 @@
     \begin{definition}[Кольцо многочленов]
     	$K[x]$~--- кольцо многочленов над полем коэффициентов $K$.
     \end{definition}
+
+	\subsection{Теорема Безу и кратные корни}
+
+	\begin{theorem}[Безу]\label{thm:bezout}
+		Пусть $f \in K[x]$, $c \in K$. Остаток от деления $f$ на $x - c$ равен $f(c)$. В частности,
+		\[
+			f(c) = 0 \iff (x - c) \mid f.
+		\]
+	\end{theorem}
+
+	\begin{proof}
+		Поделим с остатком: $f = (x - c)\,q + r$, где $r \in K$ (степень остатка меньше $\deg(x - c) = 1$). Подставляя $x = c$, получаем $f(c) = r$.
+	\end{proof}
+
+	\begin{corollary}\label{cor:rational-root-linear}
+		Многочлен $f \in \mathbb{Q}[x]$ имеет рациональный корень тогда и только тогда, когда у него есть делитель степени $1$ в $\mathbb{Q}[x]$.
+	\end{corollary}
+
+	\begin{proof}
+		($\Rightarrow$) Если $f(r) = 0$, $r \in \mathbb{Q}$, то $(x - r) \mid f$ по теореме~\ref{thm:bezout}. ($\Leftarrow$) Если $(ax + b) \mid f$, $a \ne 0$, то $-b/a \in \mathbb{Q}$~--- корень $f$.
+	\end{proof}
+
+	\begin{definition}[Производная]\label{def:derivative}
+		Для $f = \sum_{k=0}^{n} c_k x^k \in K[x]$ положим $f' = \sum_{k=1}^{n} k c_k x^{k-1}$. Выполнены линейность и правило Лейбница $(fg)' = f'g + fg'$.
+	\end{definition}
+
+	\begin{definition}[Кратный корень]\label{def:multiple-root}
+		Число $\alpha \in \mathbb{C}$ называется \emph{кратным корнем} многочлена $f \in \mathbb{Q}[x]$, если $(x - \alpha)^2 \mid f$ в $\mathbb{C}[x]$.
+	\end{definition}
+
+	\begin{statement}[критерий кратных корней]\label{st:multiple-roots}
+		Для ненулевого $f \in \mathbb{Q}[x]$ у $f$ есть кратный корень $\iff \gcd(f, f') \ne 1$.
+	\end{statement}
+
+	\begin{proof}
+		Алгоритм Евклида для $f$ и $f'$ не выходит за пределы $\mathbb{Q}[x]$, поэтому $\gcd(f, f')$ один и тот же в $\mathbb{Q}[x]$ и в $\mathbb{C}[x]$.
+
+		($\Rightarrow$) Пусть $f = (x - \alpha)^2 g$. Тогда $f' = 2(x - \alpha)g + (x - \alpha)^2 g'$, то есть $(x - \alpha)$ делит и $f$, и $f'$, и $\gcd(f, f') \ne 1$.
+
+		($\Leftarrow$) Пусть $\deg \gcd(f, f') \geqslant 1$. По основной теореме алгебры у $\gcd$ есть комплексный корень $\alpha$, и $f(\alpha) = f'(\alpha) = 0$. По теореме~\ref{thm:bezout} $f = (x - \alpha)g$, откуда $f' = g + (x - \alpha)g'$ и $0 = f'(\alpha) = g(\alpha)$. Снова по теореме Безу $(x - \alpha) \mid g$, то есть $(x - \alpha)^2 \mid f$.
+	\end{proof}
     
     \subsection{Кубические уравнения}
     
@@ -407,7 +448,7 @@
     	Как определить, есть ли кратный корень?
     	
     	\begin{enumerate}
-    		\item $\gcd(f, f') \ne 1 \Leftrightarrow$ у $f$ есть кратный корень.
+    		\item $\gcd(f, f') \ne 1 \Leftrightarrow$ у $f$ есть кратный корень (утверждение~\ref{st:multiple-roots}).
     		\item Вычислим кубический дискриминант $D$ многочлена $f$.
     		\begin{itemize}
     			\item Если $D = 0$, есть кратный корень.
@@ -548,7 +589,7 @@
 	\end{statement}
 
 	\begin{proof}
-		Многочлен $f'$ ненулевой и $\deg f' < \deg f$. Так как $\gcd(f, f')$ делит неприводимый $f$, он равен $1$ или $f$ (с точностью до константы), а $f \nmid f'$ по степени. Значит, $\gcd(f, f') = 1$, и по критерию из раздела о кубических уравнениях кратных корней нет.
+		Многочлен $f'$ ненулевой и $\deg f' < \deg f$. Так как $\gcd(f, f')$ делит неприводимый $f$, он равен $1$ или $f$ (с точностью до константы), а $f \nmid f'$ по степени. Значит, $\gcd(f, f') = 1$, и по утверждению~\ref{st:multiple-roots} кратных корней нет.
 	\end{proof}
 
 	\begin{example}[приём $f \mid f(x^2)$]\label{ex:f-divides-f-x2}
@@ -720,6 +761,55 @@
 		По лемме~\ref{lem:cosets} группа $G$ разбивается ровно на $[G : H]$ смежных классов, и в каждом из них по $|H|$ элементов.
 	\end{proof}
 
+	\subsection{Гомоморфизмы и нормальные подгруппы}
+
+	\begin{definition}[Гомоморфизм, ядро, образ]\label{def:homomorphism}
+		Отображение $\varphi: G \to G'$ между группами называется \emph{гомоморфизмом}, если $\varphi(gh) = \varphi(g)\varphi(h)$ для любых $g, h \in G$. \emph{Ядро} и \emph{образ} гомоморфизма $\varphi$:
+		\[
+			\operatorname{Ker}\varphi = \{ g \in G \mid \varphi(g) = e' \}, \qquad \operatorname{Im}\varphi = \{ \varphi(g) \mid g \in G \},
+		\]
+		где $e'$~--- нейтральный элемент $G'$.
+	\end{definition}
+
+	\begin{statement}\label{st:hom-properties}
+		Для гомоморфизма $\varphi: G \to G'$ выполнено $\varphi(e) = e'$ и $\varphi(g^{-1}) = \varphi(g)^{-1}$; кроме того, $\operatorname{Ker}\varphi \leqslant G$ и $\operatorname{Im}\varphi \leqslant G'$.
+	\end{statement}
+
+	\begin{proof}
+		Из $\varphi(e) = \varphi(e)\varphi(e)$ после умножения на $\varphi(e)^{-1}$ получаем $\varphi(e) = e'$. Далее $\varphi(g)\varphi(g^{-1}) = \varphi(e) = e'$, откуда $\varphi(g^{-1}) = \varphi(g)^{-1}$. Если $g, h \in \operatorname{Ker}\varphi$, то $\varphi(gh) = e'e' = e'$ и $\varphi(g^{-1}) = (e')^{-1} = e'$, значит, $\operatorname{Ker}\varphi \leqslant G$. Для образа: $\varphi(g)\varphi(h) = \varphi(gh)$ и $\varphi(g)^{-1} = \varphi(g^{-1})$ лежат в $\operatorname{Im}\varphi$, и $e' = \varphi(e) \in \operatorname{Im}\varphi$.
+	\end{proof}
+
+	\begin{definition}[Нормальная подгруппа]\label{def:normal}
+		Подгруппа $N \leqslant G$ называется \emph{нормальной} (обозначение $N \trianglelefteq G$), если $gng^{-1} \in N$ для любых $g \in G$, $n \in N$.
+	\end{definition}
+
+	\begin{theorem}\label{thm:kernel-normal}
+		Ядро гомоморфизма $\varphi: G \to G'$ является нормальной подгруппой в $G$.
+	\end{theorem}
+
+	\begin{proof}
+		По утверждению~\ref{st:hom-properties} $\operatorname{Ker}\varphi \leqslant G$. Если $n \in \operatorname{Ker}\varphi$ и $g \in G$, то
+		\[
+			\varphi(gng^{-1}) = \varphi(g)\,\varphi(n)\,\varphi(g)^{-1} = \varphi(g)\,e'\,\varphi(g)^{-1} = e',
+		\]
+		то есть $gng^{-1} \in \operatorname{Ker}\varphi$.
+	\end{proof}
+
+	\begin{theorem}\label{thm:hom-order}
+		Пусть $G$ конечна, $\varphi: G \to G'$~--- гомоморфизм. Тогда
+		\[
+			|G| = |\operatorname{Ker}\varphi| \cdot |\operatorname{Im}\varphi|.
+		\]
+	\end{theorem}
+
+	\begin{proof}
+		Пусть $K = \operatorname{Ker}\varphi$. Для $g, h \in G$
+		\[
+			\varphi(g) = \varphi(h) \iff \varphi(g^{-1}h) = e' \iff g^{-1}h \in K \iff gK = hK,
+		\]
+		где последняя равносильность~--- лемма~\ref{lem:cosets}, п.~1. Поэтому $gK \mapsto \varphi(g)$~--- корректно определённая биекция между $G/K$ и $\operatorname{Im}\varphi$, то есть $[G : K] = |\operatorname{Im}\varphi|$. Осталось применить теорему Лагранжа~\ref{thm:lagrange}.
+	\end{proof}
+
 	\subsection{Действие группы на множестве}
 
 	\begin{definition}[Действие]\label{def:action}
@@ -846,6 +936,18 @@
 	\begin{note}
 		Верно и обратное: если действие транзитивно (одна орбита $M = G \cdot m$), то по теореме~\ref{thm:orbit-stabilizer} множество $M$ находится в биекции с $G/G_m$, и эта биекция согласована с действием. Поэтому действия на $G/H$ описывают все транзитивные действия.
 	\end{note}
+
+	\begin{theorem}[о ядре действия на смежных классах]\label{thm:core}
+		Пусть $G$ конечна, $H \leqslant G$, $k = [G : H]$. Тогда существует нормальная подгруппа $N \trianglelefteq G$ такая, что $N \leqslant H$ и $[G : N]$ делит $k!$. В частности, $|N| \geqslant |G| / k!$.
+	\end{theorem}
+
+	\begin{proof}
+		По теореме~\ref{thm:action-on-cosets} группа $G$ действует на $G/H$, а по утверждению~\ref{st:action-bijection} это задаёт гомоморфизм $\varphi: G \to S_{G/H}$. Группа $S_{G/H}$ состоит из $k!$ перестановок $k$-элементного множества (образ первого элемента можно выбрать $k$ способами, второго~--- $k - 1$ и так далее). Положим $N = \operatorname{Ker}\varphi$.
+
+		Нормальность $N$~--- теорема~\ref{thm:kernel-normal}. Если $g \in N$, то $g \cdot eH = eH$, то есть $g \in G_{eH} = H$ (теорема~\ref{thm:action-on-cosets}); значит, $N \leqslant H$.
+
+		Из теоремы~\ref{thm:hom-order} и теоремы Лагранжа $[G : N] = |\operatorname{Im}\varphi|$. Так как $\operatorname{Im}\varphi \leqslant S_{G/H}$ (утверждение~\ref{st:hom-properties}), по теореме Лагранжа $|\operatorname{Im}\varphi|$ делит $k!$. Оценка $|N| \geqslant |G|/k!$ следует из $|N| = |G| / [G : N]$.
+	\end{proof}
 
 	\subsection{Группы перестановок с условием на пары}
 
