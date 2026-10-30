@@ -532,22 +532,120 @@
     \end{theorem}
     
     \subsection{Интерполяция}
-    
-    \begin{problem}[Интерполяционная задача]
-    	\begin{tabular}{c|c|c|c|c}
-			$x$ & $x_1$ & $x_2$ & \dots & $x_n$ \\
-			\hline
-			$f(x)$ & $y_1$ & $y_2$ & \dots & $y_n$
-		\end{tabular}
-		
-		$x_i \ne x_j \in k$, $y_j \in k$
-		
-		Хотим $f \in k[x]$.
-    \end{problem}
-    
-    \begin{theorem}
-    	Такой многочлен существует и единственный среди многочленов степени меньше $n$.
-    \end{theorem}
+
+	\begin{problem}[Интерполяционная задача]\label{prob:interpolation}
+		Даны попарно различные узлы $x_1, \dots, x_n \in K$ ($x_i \ne x_j$ при $i \ne j$) и произвольные значения $y_1, \dots, y_n \in K$:
+		\begin{center}
+			\begin{tabular}{c|c|c|c|c}
+				$x$ & $x_1$ & $x_2$ & \dots & $x_n$ \\
+				\hline
+				$f(x)$ & $y_1$ & $y_2$ & \dots & $y_n$
+			\end{tabular}
+		\end{center}
+		Требуется найти многочлен $f \in K[x]$ такой, что $f(x_i) = y_i$ для всех $i = 1, \dots, n$.
+	\end{problem}
+
+	\begin{lemma}\label{lem:root-count}
+		Ненулевой многочлен $f \in K[x]$ степени $m$ имеет не более $m$ различных корней в $K$.
+	\end{lemma}
+
+	\begin{proof}
+		Индукция по $m$. При $m = 0$ многочлен~--- ненулевая константа, корней нет.
+
+		Пусть $m \geqslant 1$ и $c$~--- корень $f$. По теореме~\ref{thm:bezout} $f = (x - c)\,g$, где $\deg g = m - 1$. Если $c' \ne c$~--- ещё один корень, то $0 = f(c') = (c' - c)\,g(c')$, и так как $c' - c \ne 0$, получаем $g(c') = 0$. Значит, все корни $f$, кроме $c$, являются корнями $g$, а их по предположению индукции не более $m - 1$.
+	\end{proof}
+
+	\begin{definition}[Многочлены Лагранжа]\label{def:lagrange-basis}
+		Для узлов $x_1, \dots, x_n$ положим
+		\[
+			L_i(x) = \prod_{j \ne i} \frac{x - x_j}{x_i - x_j}, \qquad i = 1, \dots, n.
+		\]
+		Знаменатели не равны нулю, так как узлы попарно различны.
+	\end{definition}
+
+	\begin{property}\label{prop:lagrange-basis}
+		$\deg L_i = n - 1$, $L_i(x_i) = 1$ и $L_i(x_j) = 0$ при $j \ne i$.
+	\end{property}
+
+	\begin{theorem}[об интерполяции]\label{thm:interpolation}
+		Решение задачи~\ref{prob:interpolation} существует и единственно среди многочленов степени меньше $n$ (включая нулевой). Оно задаётся \emph{формулой Лагранжа}:
+		\[
+			f(x) = \sum_{i=1}^{n} y_i\,L_i(x) = \sum_{i=1}^{n} y_i \prod_{j \ne i} \frac{x - x_j}{x_i - x_j}.
+		\]
+	\end{theorem}
+
+	\begin{proof}
+		\emph{Существование.} Каждое слагаемое имеет степень не выше $n - 1$, поэтому $\deg f < n$. По свойству~\ref{prop:lagrange-basis} при подстановке $x = x_k$ все слагаемые с $i \ne k$ обращаются в ноль, а $L_k(x_k) = 1$. Значит, $f(x_k) = y_k$.
+
+		\emph{Единственность.} Пусть $f$ и $g$~--- два решения степени меньше $n$. Тогда $h = f - g$ имеет степень меньше $n$ и $n$ различных корней $x_1, \dots, x_n$. По лемме~\ref{lem:root-count} $h = 0$, то есть $f = g$.
+	\end{proof}
+
+	\begin{statement}[общее решение]\label{st:interpolation-general}
+		Пусть $f_0$~--- решение задачи~\ref{prob:interpolation} степени меньше $n$ и $W(x) = (x - x_1)(x - x_2) \cdots (x - x_n)$. Тогда все решения без ограничения на степень имеют вид
+		\[
+			f = f_0 + W \cdot g, \qquad g \in K[x].
+		\]
+	\end{statement}
+
+	\begin{proof}
+		Многочлен $W$ обращается в ноль во всех узлах, поэтому любой такой $f$~--- решение. Обратно, если $f$~--- решение, то $h = f - f_0$ обращается в ноль во всех узлах. По теореме~\ref{thm:bezout} $h = (x - x_1)\,h_1$. Из $0 = h(x_2) = (x_2 - x_1)\,h_1(x_2)$ получаем $h_1(x_2) = 0$, то есть $h_1 = (x - x_2)\,h_2$. Повторяя рассуждение для остальных узлов, получаем $W \mid h$.
+	\end{proof}
+
+	\begin{method}[Формула Лагранжа]\label{meth:lagrange}
+		\begin{enumerate}
+			\item Для каждого узла $x_i$ выписать $L_i(x)$ (определение~\ref{def:lagrange-basis}).
+			\item Составить сумму $\sum y_i L_i(x)$.
+			\item Раскрыть скобки и проверить значения в узлах.
+		\end{enumerate}
+		Удобна, когда нужна явная формула или когда узлы имеют специальный вид.
+	\end{method}
+
+	\begin{method}[Ньютона, добавление узлов по одному]\label{meth:newton}
+		\begin{enumerate}
+			\item Положить $f_1 = y_1$.
+			\item Если $f_m$ уже проходит через первые $m$ узлов, искать
+			\[
+				f_{m+1}(x) = f_m(x) + c\,(x - x_1)(x - x_2) \cdots (x - x_m).
+			\]
+			Добавка обращается в ноль в узлах $x_1, \dots, x_m$, поэтому значения в них не меняются.
+			\item Найти $c$ из условия $f_{m+1}(x_{m+1}) = y_{m+1}$:
+			\[
+				c = \frac{y_{m+1} - f_m(x_{m+1})}{(x_{m+1} - x_1) \cdots (x_{m+1} - x_m)}.
+			\]
+		\end{enumerate}
+		Через $n - 1$ шагов $f_n$~--- искомый многочлен степени меньше $n$. При добавлении нового узла вычисления не нужно начинать заново.
+	\end{method}
+
+	\begin{example}\label{ex:interpolation-basic}
+		Найти многочлен степени меньше $3$, для которого $f(0) = 1$, $f(1) = 3$, $f(2) = 7$.
+
+		\emph{Методом Лагранжа:}
+		\[
+			f(x) = 1 \cdot \frac{(x - 1)(x - 2)}{2} + 3 \cdot \frac{x(x - 2)}{-1} + 7 \cdot \frac{x(x - 1)}{2}.
+		\]
+		Коэффициент при $x^2$ равен $\frac{1}{2} - 3 + \frac{7}{2} = 1$, при $x$~--- $-\frac{3}{2} + 6 - \frac{7}{2} = 1$, свободный член равен $1$. Итак, $f(x) = x^2 + x + 1$.
+
+		\emph{Методом Ньютона:} $f_1 = 1$. Далее $f_2 = 1 + cx$ и $f_2(1) = 3$, откуда $c = 2$. Затем $f_3 = 1 + 2x + c\,x(x - 1)$ и $f_3(2) = 5 + 2c = 7$, откуда $c = 1$. Получаем $f_3 = x^2 + x + 1$.
+
+		Если добавить узел $f(3) = 0$, то $f_4 = f_3 + c\,x(x - 1)(x - 2)$, и из $13 + 6c = 0$ находим $c = -\dfrac{13}{6}$.
+	\end{example}
+
+	\begin{method}[Вспомогательный многочлен]\label{meth:aux-poly}
+		Если значения многочлена в узлах заданы формулой, удобно вычесть из него «очевидное» выражение так, чтобы разность обращалась в ноль во всех узлах. По теореме~\ref{thm:bezout} разность делится на $W(x)$, после чего остаётся найти одну константу.
+	\end{method}
+
+	\begin{example}\label{ex:interpolation-aux}
+		Многочлен $P$ степени не выше $n$ удовлетворяет $P(m) = \dfrac{m}{m + 1}$ при $m = 0, 1, \dots, n$. Найти $P(n + 1)$.
+
+		Положим $Q(x) = (x + 1)P(x) - x$. Тогда $\deg Q \leqslant n + 1$ и $Q(0) = Q(1) = \dots = Q(n) = 0$. Как в доказательстве утверждения~\ref{st:interpolation-general},
+		\[
+			Q(x) = c\,x(x - 1) \cdots (x - n).
+		\]
+		Подставляя $x = -1$, получаем $1 = c\,(-1)^{n+1}(n + 1)!$, то есть $c = \dfrac{(-1)^{n+1}}{(n + 1)!}$. Тогда $Q(n + 1) = c\,(n + 1)! = (-1)^{n+1}$ и
+		\[
+			P(n + 1) = \frac{Q(n + 1) + n + 1}{n + 2} = \frac{n + 1 + (-1)^{n+1}}{n + 2}.
+		\]
+	\end{example}
     
 	\subsection{Минимальные многочлены}
 
@@ -606,11 +704,173 @@
 		\]
 	\end{definition}
 
-	\subsection{Теорема о первообразном корне}
+		\subsection{Теорема о первообразном корне}
 
-	\begin{theorem}[о первообразном корне]
-		$\exists \varepsilon \in \mathbb{Z}/p\mathbb{Z}: \, \{ 1, 2, \dots, p-1 \} = \{ \varepsilon^f \}$
+	\begin{statement}[о порядке элемента]\label{st:elem-order}
+		Пусть $G$~--- конечная группа, $a \in G$. Наименьшее $n \in \mathbb{N}$, для которого $a^n = e$, называется \emph{порядком} элемента $a$ и обозначается $\operatorname{ord}(a)$. Тогда
+		\begin{enumerate}
+			\item $a^m = e \iff \operatorname{ord}(a) \mid m$;
+			\item $\operatorname{ord}(a) \mid |G|$;
+			\item $\operatorname{ord}(a^k) = \dfrac{n}{\gcd(k, n)}$, где $n = \operatorname{ord}(a)$.
+		\end{enumerate}
+	\end{statement}
+
+	\begin{proof}
+		Порядок существует: в конечной группе $a^i = a^j$ при некоторых $i < j$, откуда $a^{j-i} = e$.
+		\begin{enumerate}
+			\item Пусть $m = nq + r$, $0 \leqslant r < n$. Тогда $a^m = a^r$, и $a^m = e \iff r = 0$ по минимальности $n$.
+			\item Элементы $e, a, \dots, a^{n-1}$ различны (если $a^i = a^j$ при $0 \leqslant i < j < n$, то $a^{j-i} = e$ при $0 < j - i < n$) и по п.~1 образуют подгруппу $\langle a \rangle \leqslant G$. По теореме Лагранжа~\ref{thm:lagrange} $n = |\langle a \rangle|$ делит $|G|$.
+			\item Пусть $g = \gcd(k, n)$. По п.~1 $(a^k)^m = e \iff n \mid km \iff \dfrac{n}{g} \mid \dfrac{k}{g}\,m \iff \dfrac{n}{g} \mid m$, так как $\gcd\!\left(\dfrac{n}{g}, \dfrac{k}{g}\right) = 1$.
+		\end{enumerate}
+	\end{proof}
+
+	\begin{theorem}[о первообразном корне]\label{thm:fin-cyclic}
+		Пусть $F$~--- конечное поле, $|F| = q$. Тогда существует $a \in F$ такой, что $\operatorname{ord}(a) = q - 1$ в группе $F^* = F \setminus \{0\}$ по умножению, то есть
+		\[
+			F = \{0\} \cup \{ a^k \mid 0 \leqslant k \leqslant q - 2 \}.
+		\]
+		Иначе говоря, группа $F^*$ \emph{циклична}, а $a$ называется её \emph{образующей} (\emph{первообразным корнем}).
 	\end{theorem}
+
+	\begin{proof}
+		Пусть $N = q - 1$, а $\psi(d)$~--- число элементов порядка ровно $d$ в $F^*$. По утверждению~\ref{st:elem-order} порядок каждого элемента делит $N$, поэтому
+		\[
+			\sum_{d \mid N} \psi(d) = N.
+		\]
+		Обозначим через $\varphi(d)$ число $k \in \{1, \dots, d\}$, взаимно простых с $d$ (функция Эйлера).
+
+		\emph{Шаг 1: $\psi(d) \leqslant \varphi(d)$ для каждого $d \mid N$.} Если $\psi(d) = 0$, доказывать нечего. Иначе пусть $\operatorname{ord}(a) = d$. Элементы $a, a^2, \dots, a^d = 1$ различны и являются корнями $x^d - 1$. По теореме Безу~\ref{thm:bezout} у ненулевого многочлена степени $d$ над полем не более $d$ корней, так что других корней у $x^d - 1$ нет. Элемент порядка $d$ является корнем $x^d - 1$, поэтому имеет вид $a^k$, $1 \leqslant k \leqslant d$, и по п.~3 утверждения~\ref{st:elem-order} $\operatorname{ord}(a^k) = \dfrac{d}{\gcd(k, d)} = d$ тогда и только тогда, когда $\gcd(k, d) = 1$. Значит, $\psi(d) = \varphi(d)$.
+
+		\emph{Шаг 2: $\sum_{d \mid N} \varphi(d) = N$.} Разобьём числа $1, \dots, N$ по значению $\gcd(k, N)$. Числа с $\gcd(k, N) = N/d$ имеют вид $k = \dfrac{N}{d}\,k'$, где $k' \in \{1, \dots, d\}$ и $\gcd(k', d) = 1$; их ровно $\varphi(d)$.
+
+		\emph{Шаг 3.} Из шагов 1 и 2
+		\[
+			N = \sum_{d \mid N} \psi(d) \leqslant \sum_{d \mid N} \varphi(d) = N,
+		\]
+		поэтому $\psi(d) = \varphi(d)$ для всех $d \mid N$. В частности, $\psi(N) = \varphi(N) \geqslant 1$.
+	\end{proof}
+
+	\begin{note}
+		Для $F = \mathbb{Z}/p\mathbb{Z}$ получаем исходную форму: существует $\varepsilon \in \mathbb{Z}/p\mathbb{Z}$, для которого $\{ 1, 2, \dots, p-1 \} = \{ \varepsilon^k \mid 0 \leqslant k \leqslant p - 2 \}$ (первообразный корень по модулю $p$).
+	\end{note}
+
+	\subsection{Конечные поля}
+
+	Всюду в этом разделе $p$~--- простое число, $\mathbb{F}_p = \mathbb{Z}/p\mathbb{Z}$.
+
+	\begin{theorem}[о числе элементов конечного поля]\label{thm:fin-size}
+		Пусть $F$~--- конечное поле. Тогда $F$ содержит подполе, изоморфное $\mathbb{F}_p$ для некоторого простого $p$, причём $p \cdot a = 0$ для любого $a \in F$ и $|F| = p^k$ для некоторого $k \in \mathbb{N}$.
+	\end{theorem}
+
+	\begin{proof}
+		Отображение $\mathbb{Z} \to F$, $n \mapsto n \cdot 1 = 1 + \dots + 1$, сохраняет сумму и произведение. Так как $F$ конечно, оно не инъективно, и его ядро равно $m\mathbb{Z}$ при некотором $m \geqslant 2$ (ведь $1 \ne 0$). Если $m = uv$ при $1 < u, v < m$, то $(u \cdot 1)(v \cdot 1) = m \cdot 1 = 0$ при $u \cdot 1 \ne 0 \ne v \cdot 1$, что невозможно в поле. Значит, $m = p$ простое, и образ отображения изоморфен $\mathbb{Z}/p\mathbb{Z}$. Далее $p \cdot a = (p \cdot 1)\,a = 0$.
+
+		Отождествим этот образ с $\mathbb{F}_p$. Тогда $F$~--- конечномерное векторное пространство над $\mathbb{F}_p$; пусть $e_1, \dots, e_k$~--- его базис. Каждый элемент $F$ единственным образом записывается как $c_1e_1 + \dots + c_ke_k$, $c_i \in \mathbb{F}_p$, то есть $|F| = p^k$.
+	\end{proof}
+
+	\begin{lemma}[Ферма, Фробениус]\label{lem:frobenius}
+		Пусть $F$~--- конечное поле, $|F| = q = p^k$. Тогда
+		\begin{enumerate}
+			\item $a^q = a$ для всех $a \in F$;
+			\item $(a + b)^p = a^p + b^p$ для всех $a, b \in F$; следовательно, для любого $n \in \mathbb{N}$ отображение $a \mapsto a^{p^n}$~--- гомоморфизм $F \to F$, сохраняющий сумму и произведение и неподвижный на $\mathbb{F}_p$.
+		\end{enumerate}
+	\end{lemma}
+
+	\begin{proof}
+		\begin{enumerate}
+			\item При $a \ne 0$ по утверждению~\ref{st:elem-order} (п.~2) $\operatorname{ord}(a) \mid q - 1$, то есть $a^{q-1} = 1$ и $a^q = a$; при $a = 0$ очевидно.
+			\item Биномиальные коэффициенты $\dbinom{p}{i}$ при $0 < i < p$ делятся на $p$ (в $\dfrac{p!}{i!\,(p-i)!}$ числитель делится на $p$, а знаменатель~--- нет), поэтому по теореме~\ref{thm:fin-size} все средние слагаемые в $(a+b)^p$ равны $0$. Умножение сохраняется очевидно. Применяя это $n$ раз, получаем сохранение суммы и произведения для $a \mapsto a^{p^n}$. По п.~1 для поля $\mathbb{F}_p$ имеем $c^p = c$, а значит, и $c^{p^n} = c$ для всех $c \in \mathbb{F}_p$.
+		\end{enumerate}
+	\end{proof}
+
+	\begin{statement}[поле вычетов по неприводимому многочлену]\label{st:quotient-field}
+		Пусть $f \in \mathbb{F}_p[x]$~--- неприводимый многочлен степени $d$. Рассмотрим множество $K_f = \mathbb{F}_p[x]/(f)$ классов многочленов по модулю $f$ ($g \equiv h \iff f \mid g - h$) со сложением и умножением классов. Тогда $K_f$~--- поле из $p^d$ элементов. Пусть $\alpha$~--- класс многочлена $x$. Тогда каждый элемент $K_f$ имеет вид $h(\alpha)$, $h \in \mathbb{F}_p[x]$, и для любого $g \in \mathbb{F}_p[x]$
+		\[
+			g(\alpha) = 0 \iff f \mid g.
+		\]
+	\end{statement}
+
+	\begin{proof}
+		Каждый класс содержит единственный остаток от деления на $f$, то есть многочлен степени меньше $d$; их $p^d$. Если класс $\overline{g} \ne 0$, то $f \nmid g$, и $\gcd(g, f) = 1$ (так как $f$ неприводим). По алгоритму Евклида $ug + vf = 1$, откуда $\overline{u}\,\overline{g} = 1$. Остальное следует из определения: $\overline{h} = h(\alpha)$.
+	\end{proof}
+
+	\begin{theorem}[о разложении $x^{p^n} - x$]\label{thm:fin-xpn}
+		Многочлен $g = x^{p^n} - x \in \mathbb{F}_p[x]$ равен произведению всех унитарных неприводимых над $\mathbb{F}_p$ многочленов $f$, для которых $\deg f \mid n$, причём каждый входит ровно один раз.
+	\end{theorem}
+
+	\begin{proof}
+		\emph{Шаг 1: у $g$ нет кратных множителей.} Если $g = h^2u$, то $g' = 2hh'u + h^2u'$ делится на $h$. Но $g' = p^nx^{p^n - 1} - 1 = -1$ (так как $p \cdot 1 = 0$ в $\mathbb{F}_p$), поэтому $h \mid -1$, то есть $h$~--- константа.
+
+		\emph{Шаг 2.} Пусть $f$ неприводим, $\deg f = d$, $K = \mathbb{F}_p[x]/(f)$ и $\alpha$ из утверждения~\ref{st:quotient-field}; тогда $|K| = p^d$ и $f \mid g \iff \alpha^{p^n} = \alpha$. Покажем, что $f \mid g \iff d \mid n$.
+
+		($\Leftarrow$) По лемме~\ref{lem:frobenius} (п.~1) $a^{p^d} = a$ для всех $a \in K$. Применяя это $\dfrac{n}{d}$ раз, получаем $\alpha^{p^n} = \alpha$, то есть $f \mid g$.
+
+		($\Rightarrow$) Пусть $\alpha^{p^n} = \alpha$. По лемме~\ref{lem:frobenius} (п.~2) отображение $\sigma(a) = a^{p^n}$ сохраняет сумму и произведение и неподвижно на $\mathbb{F}_p$ и на $\alpha$, поэтому $\sigma(h(\alpha)) = h(\alpha)$ для всех $h \in \mathbb{F}_p[x]$. Значит, $a^{p^n} = a$ для всех $a \in K$. Пусть $\gamma$~--- образующая группы $K^*$ (теорема~\ref{thm:fin-cyclic}), $\operatorname{ord}(\gamma) = p^d - 1$. Тогда $\gamma^{p^n - 1} = 1$, и по утверждению~\ref{st:elem-order} (п.~1) $p^d - 1 \mid p^n - 1$. Запишем $n = dm + r$, $0 \leqslant r < d$:
+		\[
+			p^n - 1 = p^r\,(p^{dm} - 1) + (p^r - 1).
+		\]
+		Так как $p^d - 1 \mid p^{dm} - 1$, получаем $p^d - 1 \mid p^r - 1$. Но $0 \leqslant p^r - 1 < p^d - 1$, поэтому $p^r = 1$, то есть $r = 0$ и $d \mid n$.
+
+		\emph{Шаг 3.} Разложим унитарный $g$ на унитарные неприводимые множители. По шагу 1 они попарно различны, а по шагу 2 это в точности все унитарные неприводимые многочлены, степень которых делит $n$.
+	\end{proof}
+
+	\begin{corollary}\label{cor:fin-count}
+		Пусть $I_p(d)$~--- число унитарных неприводимых многочленов степени $d$ над $\mathbb{F}_p$. Тогда
+		\[
+			\sum_{d \mid n} d \cdot I_p(d) = p^n.
+		\]
+	\end{corollary}
+
+	\begin{proof}
+		Сравним степени многочленов в теореме~\ref{thm:fin-xpn}.
+	\end{proof}
+
+	\begin{theorem}[существование и единственность конечного поля]\label{thm:fin-exist-unique}
+		Для любого простого $p$ и любого $k \in \mathbb{N}$
+		\begin{enumerate}
+			\item существует поле из $p^k$ элементов;
+			\item любые два поля из $p^k$ элементов изоморфны.
+		\end{enumerate}
+		Это поле обозначается $\mathbb{F}_{p^k}$. По теореме~\ref{thm:fin-size} других конечных полей нет.
+	\end{theorem}
+
+	\begin{proof}
+		\begin{enumerate}
+			\item Покажем, что $I_p(k) \geqslant 1$. Для $k = 1$ годится $x$. Пусть $k \geqslant 2$. Из следствия~\ref{cor:fin-count} каждое слагаемое $d \cdot I_p(d) \leqslant p^d$, поэтому
+			\[
+				k \cdot I_p(k) = p^k - \sum_{d \mid k,\ d < k} d \cdot I_p(d) \geqslant p^k - \sum_{d = 1}^{\lfloor k/2 \rfloor} p^d > p^k - p^{\lfloor k/2 \rfloor + 1} \geqslant 0.
+			\]
+			Здесь мы использовали, что $\sum_{d=1}^{m} p^d < p^{m+1}$ и $\lfloor k/2 \rfloor + 1 \leqslant k$ при $k \geqslant 2$. Пусть $f$~--- унитарный неприводимый многочлен степени $k$. По утверждению~\ref{st:quotient-field} $\mathbb{F}_p[x]/(f)$~--- поле из $p^k$ элементов.
+
+			\item Пусть $|K| = |L| = p^k$. По теореме~\ref{thm:fin-size} оба поля содержат $\mathbb{F}_p$. Пусть $\gamma$~--- образующая $K^*$ (теорема~\ref{thm:fin-cyclic}); тогда каждый элемент $K$ есть $0$ или степень $\gamma$, то есть значение многочлена от $\gamma$. Отображение $\mathbb{F}_p[x] \to K$, $h \mapsto h(\gamma)$, сюръективно; его ядро есть $(f)$ для унитарного $f$ наименьшей степени с $f(\gamma) = 0$. Значит, $K \cong \mathbb{F}_p[x]/(f)$. Так как это поле, $f$ неприводим (иначе в факторе были бы делители нуля), и $p^{\deg f} = p^k$, то есть $\deg f = k$. По лемме~\ref{lem:frobenius} $\gamma^{p^k} = \gamma$, поэтому $f \mid x^{p^k} - x$.
+
+			В $L$ все $p^k$ элементов являются корнями $x^{p^k} - x$ (лемма~\ref{lem:frobenius}), то есть этот многочлен степени $p^k$ имеет $p^k$ различных корней, и по теореме Безу $x^{p^k} - x = \prod_{b \in L} (x - b)$ в $L[x]$. Так как $f$ делит его, $f$ разлагается на линейные множители в $L[x]$, и у $f$ есть корень $\beta \in L$. Ядро отображения $\mathbb{F}_p[x] \to L$, $h \mapsto h(\beta)$, содержит неприводимый $f$ и не содержит $1$, поэтому равно $(f)$. Образ изоморфен $\mathbb{F}_p[x]/(f)$ и содержит $p^k = |L|$ элементов, то есть совпадает с $L$. Итак, $L \cong \mathbb{F}_p[x]/(f) \cong K$.
+		\end{enumerate}
+	\end{proof}
+
+	\begin{problem}
+		Сколько существует неприводимых многочленов $f \in \mathbb{Z}/p\mathbb{Z}[x]$ степени $n$? Найти ответ при $n = 3$.
+	\end{problem}
+
+	\begin{solution}
+		Любой неприводимый $f$ единственным образом записывается как $c \cdot f_0$, где $c \in \mathbb{F}_p^*$, а $f_0$~--- унитарный неприводимый. Поэтому всего таких многочленов $(p - 1)\,I_p(n)$, и достаточно найти $I_p(n)$. По следствию~\ref{cor:fin-count}:
+		\begin{itemize}
+			\item $n = 1$: $I_p(1) = p$;
+			\item $n = 2$: $p^2 = I_p(1) + 2I_p(2)$, откуда $I_p(2) = \dfrac{p^2 - p}{2}$;
+			\item $n = 3$: $p^3 = I_p(1) + 3I_p(3)$, откуда $I_p(3) = \dfrac{p^3 - p}{3}$.
+		\end{itemize}
+		Итак, при $n = 3$ существует $\dfrac{p^3 - p}{3}$ унитарных и $\dfrac{(p-1)(p^3 - p)}{3}$ всех неприводимых многочленов.
+
+		\emph{Проверка прямым подсчётом.} Кубический многочлен неприводим тогда и только тогда, когда у него нет корня в $\mathbb{F}_p$. Унитарных квадратных многочленов с корнями в $\mathbb{F}_p$ ровно $\dbinom{p+1}{2}$ (неупорядоченные пары корней), поэтому без корней их $p^2 - \dfrac{p(p+1)}{2} = \dfrac{p^2 - p}{2}$. Приводимых унитарных кубических многочленов $\dbinom{p+2}{3}$ (три линейных множителя) $+\ p \cdot \dfrac{p^2 - p}{2}$ (линейный на неприводимый квадратичный), и
+		\[
+			p^3 - \dfrac{p(p+1)(p+2)}{6} - \dfrac{p^2(p-1)}{2} = \dfrac{p^3 - p}{3}.
+		\]
+		При $p = 2$ это $2$ многочлена: $x^3 + x + 1$ и $x^3 + x^2 + 1$.
+	\end{solution}
+
+	\begin{note}
+		В общем случае по формуле обращения Мёбиуса из следствия~\ref{cor:fin-count} получается $I_p(n) = \dfrac{1}{n}\sum_{d \mid n} \mu\!\left(\dfrac{n}{d}\right) p^d$, где $\mu$~--- функция Мёбиуса.
+	\end{note}
 
 	\subsection{Корни из единицы}
 
@@ -990,5 +1250,4 @@
 
 		\emph{Шаг 3: $N$~--- подгруппа.} Ясно, что $\mathrm{id} \in N$; если $\rho \in N$, то $\rho^{-1} \in N$, так как $\rho^{-1}(x) = x \iff \rho(x) = x$. Если одна из $\pi, \sigma \in N$ равна $\mathrm{id}$, то $\pi\sigma \in N$ очевидно. Пусть обе отличны от $\mathrm{id}$, и $\pi\sigma$ имеет неподвижную точку $x$: $\pi(\sigma(x)) = x$. Для $y = \sigma(x)$ имеем $\pi^{-1}(x) = y$. Тогда $\sigma, \pi^{-1} \in N$ оба переводят $x$ в $y$, и по шагу~2 $\sigma = \pi^{-1}$, то есть $\pi\sigma = \mathrm{id} \in N$. Если же $\pi\sigma$ неподвижных точек не имеет, то $\pi\sigma \in N$ по определению.
 	\end{proof}
-
 \end{document}
