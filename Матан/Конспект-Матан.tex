@@ -2031,4 +2031,66 @@
 		\]
 		Вещественных корней нет, поэтому у $A$ нет вещественных собственных чисел: ни один ненулевой вектор плоскости не переходит при таком повороте в коллинеарный себе. Над $\mathbb{C}$ собственные числа~--- $\lambda = \pm i$.
 	\end{example}
+
+	\section{Линейные однородные уравнения с постоянными коэффициентами}
+
+	\noindent
+	Рассмотрим линейное однородное уравнение $n$-го порядка, у которого все коэффициенты постоянны:
+	\[
+		y^{(n)} + a_{n-1} y^{(n-1)} + \dots + a_1 y' + a_0 y = 0, \qquad a_0, a_1, \dots, a_{n-1} \in \mathbb{R}. \qquad (**)
+	\]
+
+	\begin{definition}[Характеристическое уравнение]
+		Многочлен
+		\[
+			P(\lambda) = \lambda^n + a_{n-1} \lambda^{n-1} + \dots + a_1 \lambda + a_0
+		\]
+		называется \emph{характеристическим многочленом} уравнения $(**)$, а уравнение $P(\lambda) = 0$~--- его \emph{характеристическим уравнением}.
+	\end{definition}
+
+	\begin{note}
+		Так как $\left( e^{\lambda x} \right)^{(k)} = \lambda^k e^{\lambda x}$, то
+		\[
+			L e^{\lambda x} = \left( \lambda^n + a_{n-1} \lambda^{n-1} + \dots + a_1 \lambda + a_0 \right) e^{\lambda x} = P(\lambda) e^{\lambda x}.
+		\]
+		Поскольку $e^{\lambda x} \ne 0$, функция $e^{\lambda x}$ является решением $(**)$ тогда и только тогда, когда $P(\lambda) = 0$. Поэтому решения ищутся через корни характеристического уравнения (ср. с примером про собственные числа оператора $\dfrac{d}{dx}$).
+	\end{note}
+
+	\begin{theorem}[Вещественные корни]
+		Пусть $\lambda \in \mathbb{R}$~--- корень характеристического уравнения кратности $k$. Тогда ему отвечают $k$ решений уравнения $(**)$:
+		\[
+			e^{\lambda x}, \ x e^{\lambda x}, \ \dots, \ x^{k-1} e^{\lambda x}.
+		\]
+	\end{theorem}
+
+	\begin{theorem}[Комплексные корни]
+		Пусть $\lambda = a + bi$, $b \ne 0$,~--- корень характеристического уравнения кратности $k$. Так как коэффициенты $P$ вещественны, то $\overline{\lambda} = a - bi$~--- тоже корень кратности $k$. Этой паре корней отвечают $2k$ вещественных решений уравнения $(**)$:
+		\[
+			x^m e^{ax} \cos bx, \quad x^m e^{ax} \sin bx, \qquad m = 0, 1, \dots, k - 1,
+		\]
+		то есть
+		\[
+			e^{ax} \cos bx, \ e^{ax} \sin bx, \ x e^{ax} \cos bx, \ x e^{ax} \sin bx, \ \dots, \ x^{k-1} e^{ax} \cos bx, \ x^{k-1} e^{ax} \sin bx.
+		\]
+	\end{theorem}
+
+	\begin{statement}
+		Решения, отвечающие всем корням характеристического уравнения, вместе составляют ФСР уравнения $(**)$ (всего их $n$, так как сумма кратностей корней равна $n$). Общее решение~--- их линейная комбинация с произвольными вещественными коэффициентами.
+	\end{statement}
+
+	\begin{proof}[Откуда берутся $\cos$ и $\sin$]
+		Корням $\lambda$ и $\overline{\lambda}$ отвечают комплексные решения $x^m e^{\lambda x}$ и $x^m e^{\overline{\lambda} x}$. По формуле Эйлера
+		\[
+			e^{\lambda x} = e^{ax} (\cos bx + i \sin bx), \qquad e^{\overline{\lambda} x} = e^{ax} (\cos bx - i \sin bx).
+		\]
+		Нас интересуют вещественные решения, поэтому в комбинации этих двух решений коэффициенты нужно брать комплексно сопряжёнными, $C$ и $\overline{C}$:
+		\[
+			\begin{aligned}
+				y(x) &= C x^m e^{ax} (\cos bx + i \sin bx) + \overline{C} x^m e^{ax} (\cos bx - i \sin bx) = \\
+				&= \underbrace{(C + \overline{C})}_{C_1} x^m e^{ax} \cos bx + \underbrace{i (C - \overline{C})}_{C_2} x^m e^{ax} \sin bx.
+			\end{aligned}
+		\]
+		Если $C = \alpha + \beta i$, то $C_1 = 2\alpha \in \mathbb{R}$ и $C_2 = i \cdot 2\beta i = -2\beta \in \mathbb{R}$, причём $C_1, C_2$ пробегают все вещественные значения. Значит, пару комплексных решений можно заменить парой вещественных $x^m e^{ax} \cos bx$ и $x^m e^{ax} \sin bx$.
+	\end{proof}
+	
 \end{document}
