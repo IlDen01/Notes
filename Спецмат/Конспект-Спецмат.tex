@@ -1303,4 +1303,113 @@
 	\begin{theorem}[Абеля-Руфини]
 		Существуют многочлены степени $5$ и выше, корни которых не выражаются в радикалах.
 	\end{theorem}
+
+	\subsection{Круговые многочлены (многочлены деления круга)}
+
+	\begin{definition}[Корни $n$-й степени из единицы]\label{def:roots-of-unity}
+		Пусть $n \in \mathbb{N}$, $\xi = \cos\dfrac{2\pi}{n} + i\sin\dfrac{2\pi}{n}$. Числа
+		\[
+			\xi, \ \xi^2, \ \xi^3, \ \ldots, \ \xi^n = 1
+		\]
+		попарно различны и являются всеми корнями многочлена $x^n - 1$, то есть всеми корнями $n$-й степени из $1$.
+
+		Корень $\xi^k$ называется \emph{первообразным}, если его порядок равен $n$, то есть $(\xi^k)^m \ne 1$ при $0 < m < n$. Это равносильно тому, что $\gcd(k, n) = 1$, поэтому первообразных корней ровно $\varphi(n)$ штук ($\varphi$~--- функция Эйлера).
+	\end{definition}
+
+	\begin{definition}[Круговой многочлен]\label{def:cyclotomic}
+		$n$-м \emph{круговым многочленом} называется
+		\[
+			\Phi_n(x) = \prod_{\substack{1 \leqslant k \leqslant n \\ \xi^k\text{~--- первообразный}}} (x - \xi^k) = \prod_{\substack{1 \leqslant k \leqslant n \\ \gcd(k, n) = 1}} (x - \xi^k).
+		\]
+	\end{definition}
+
+	\begin{example}
+		\begin{itemize}
+			\item $p$~--- простое. Все корни $p$-й степени из $1$, кроме самой $1$, первообразные, поэтому
+			\[
+				\Phi_p(x) = \dfrac{x^p - 1}{x - 1} = x^{p-1} + x^{p-2} + \ldots + x + 1.
+			\]
+			\item $n = 4$: первообразные корни~--- $\pm i$, поэтому $\Phi_4(x) = (x - i)(x + i) = x^2 + 1$.
+			\item $n = 6$: первообразные корни~--- $\xi$ и $\xi^5 = \overline{\xi}$, где $\xi = \dfrac{1}{2} + \dfrac{\sqrt{3}}{2}i$. Так как $\xi + \overline{\xi} = 1$ и $\xi\overline{\xi} = 1$, имеем $\Phi_6(x) = x^2 - x + 1$.
+		\end{itemize}
+	\end{example}
+
+	\begin{properties}\label{prop:cyclotomic}
+		\begin{enumerate}
+			\item $\deg \Phi_n = \varphi(n)$.
+			\item $\prod\limits_{k \mid n} \Phi_k(x) = x^n - 1$.
+			\item Старший коэффициент $\Phi_n$ равен $1$.
+		\end{enumerate}
+	\end{properties}
+	\begin{proof}
+		\emph{1.} Корни $\Phi_n$~--- в точности первообразные корни $n$-й степени из $1$, а их $\varphi(n)$ штук (определение~\ref{def:roots-of-unity}).
+
+		\emph{3.} $\Phi_n$~--- произведение многочленов $x - \xi^k$, у каждого из которых старший коэффициент равен $1$.
+
+		\emph{2.} Порядок каждого корня $n$-й степени из $1$ делит $n$. Корень порядка $k$~--- это первообразный корень $k$-й степени из $1$, то есть корень $\Phi_k$. Значит, корни $x^n - 1$ разбиваются на корни многочленов $\Phi_k$, $k \mid n$. Все эти корни попарно различны, а у обоих многочленов старший коэффициент равен $1$ (свойство~3), поэтому они совпадают.
+	\end{proof}
+
+	\begin{corollary}\label{cor:cyclotomic-integer}
+		Коэффициенты $\Phi_n$ рациональны и даже целы: $\Phi_n \in \mathbb{Z}[x]$.
+	\end{corollary}
+	\begin{proof}
+		Индукция по $n$. База: $\Phi_1(x) = x - 1 \in \mathbb{Z}[x]$.
+
+		Переход. По свойству~2
+		\[
+			x^n - 1 = \Phi_n(x) \cdot g(x), \qquad g(x) = \prod_{\substack{k \mid n \\ k < n}} \Phi_k(x).
+		\]
+		По предположению индукции $g \in \mathbb{Z}[x]$, а по свойству~3 старший коэффициент $g$ равен $1$. Поделим $x^n - 1$ на $g$ уголком. На каждом шаге делим только на старший коэффициент $g$, то есть на $1$, поэтому частное $q$ и остаток $r$ лежат в $\mathbb{Z}[x]$. Деление с остатком в $\mathbb{C}[x]$ единственно, а $x^n - 1 = \Phi_n \cdot g + 0$, значит, $\Phi_n = q \in \mathbb{Z}[x]$.
+	\end{proof}
+
+	\begin{lemma}[Гаусса, для приведённых многочленов]\label{lem:gauss-monic}
+		Пусть $f \in \mathbb{Z}[x]$, $f = g h$, где $g, h \in \mathbb{Q}[x]$ и старшие коэффициенты $f, g, h$ равны $1$. Тогда $g, h \in \mathbb{Z}[x]$.
+	\end{lemma}
+	\begin{proof}
+		Пусть $a, b$~--- наименьшие натуральные числа, для которых $ag, bh \in \mathbb{Z}[x]$. Тогда $ab f = (ag)(bh)$. Допустим, $ab > 1$, и пусть $p$~--- простой делитель $ab$. Обозначим через $\overline{u} \in \mathbb{F}_p[x]$ многочлен $u \in \mathbb{Z}[x]$ с коэффициентами, взятыми по модулю $p$. Тогда $\overline{ag} \cdot \overline{bh} = \overline{abf} = 0$. В $\mathbb{F}_p[x]$ нет делителей нуля (старший коэффициент произведения равен произведению старших коэффициентов, а $\mathbb{F}_p$~--- поле), поэтому, скажем, $\overline{ag} = 0$, то есть все коэффициенты $ag$ делятся на $p$. В частности, на $p$ делится её старший коэффициент, равный $a$. Тогда $\dfrac{a}{p} \in \mathbb{N}$ и $\dfrac{a}{p}\,g \in \mathbb{Z}[x]$, что противоречит минимальности $a$. Значит, $a = b = 1$.
+	\end{proof}
+
+	\begin{theorem}\label{thm:cyclotomic-irreducible}
+		Многочлен $\Phi_n$ неприводим над $\mathbb{Z}$ (и над $\mathbb{Q}$).
+	\end{theorem}
+
+	\begin{lemma}\label{lem:cyclotomic-p-power}
+		Пусть $\gcd(n, k) = 1$, $f$~--- минимальный многочлен $\xi^k$ над $\mathbb{Q}$ (определение~\ref{def:min-poly}) и $p$~--- простое, $p \nmid n$. Тогда $(\xi^k)^p$~--- тоже корень $f$.
+	\end{lemma}
+	\begin{proof}
+		Положим $\theta = \xi^k$. Так как $\Phi_n(\theta) = 0$, имеем $f \mid \Phi_n$: $\Phi_n = f g$, где $g \in \mathbb{Q}[x]$ и старшие коэффициенты $f, g$ равны $1$. По следствию~\ref{cor:cyclotomic-integer} и лемме~\ref{lem:gauss-monic} $f, g \in \mathbb{Z}[x]$.
+
+		Так как $\gcd(kp, n) = 1$, корень $\theta^p = \xi^{kp}$ первообразный, то есть $\Phi_n(\theta^p) = 0$. Допустим, $f(\theta^p) \ne 0$. Тогда $g(\theta^p) = 0$, то есть $\theta$~--- корень многочлена $g(x^p)$. Поэтому $f \mid g(x^p)$ в $\mathbb{Q}[x]$: $g(x^p) = f(x)\,h(x)$. Старшие коэффициенты всех трёх многочленов равны $1$, поэтому по лемме~\ref{lem:gauss-monic} $h \in \mathbb{Z}[x]$.
+
+		Перейдём к коэффициентам по модулю $p$ (обозначения из доказательства леммы~\ref{lem:gauss-monic}). Если $\overline{g}(x) = \sum c_i x^i$, то в $\mathbb{F}_p[x]$
+		\[
+			\bigl(\overline{g}(x)\bigr)^p = \sum c_i^p x^{ip} = \sum c_i x^{ip} = \overline{g}(x^p),
+		\]
+		так как $(u + v)^p = u^p + v^p$ в характеристике $p$, а $c^p = c$ для $c \in \mathbb{F}_p$ (малая теорема Ферма). Значит, $\overline{f} \cdot \overline{h} = \overline{g}^{\,p}$. Пусть $u$~--- неприводимый множитель $\overline{f}$ в $\mathbb{F}_p[x]$. Тогда $u \mid \overline{g}^{\,p}$, а значит, $u \mid \overline{g}$. Отсюда
+		\[
+			u^2 \mid \overline{f} \cdot \overline{g} = \overline{\Phi_n} \mid x^n - 1 \quad \text{в } \mathbb{F}_p[x]
+		\]
+		(последнее~--- по свойству~2). Пусть $x^n - 1 = u^2 w$. Тогда $(x^n - 1)' = n x^{n-1} = 2uu'w + u^2 w'$ делится на $u$. Но $n \ne 0$ в $\mathbb{F}_p$ (так как $p \nmid n$), и
+		\[
+			(x^n - 1) - \dfrac{x}{n} \cdot n x^{n-1} = -1,
+		\]
+		поэтому $u \mid -1$, что невозможно, так как $\deg u \geqslant 1$. Противоречие, значит, $f(\theta^p) = 0$.
+	\end{proof}
+
+	\begin{proof}[Доказательство теоремы~\ref{thm:cyclotomic-irreducible}]
+		Пусть $f$~--- минимальный многочлен $\xi$ над $\mathbb{Q}$. Он неприводим (теорема~\ref{thm:irreducible}). Покажем, что каждый первообразный корень $\xi^k$, $\gcd(n, k) = 1$, является корнем $f$. Разложим $k$ на простые множители (возможно, совпадающие):
+		\[
+			k = p_1 p_2 \cdots p_l, \qquad p_i \nmid n.
+		\]
+		Применяем лемму~\ref{lem:cyclotomic-p-power} по цепочке:
+		\[
+			\xi \longrightarrow \xi^{p_1} \longrightarrow \xi^{p_1 p_2} \longrightarrow \ldots \longrightarrow \xi^{p_1 p_2 \cdots p_l} = \xi^k.
+		\]
+		Здесь $\xi$~--- корень $f$. Если $\xi^{p_1 \cdots p_i}$~--- корень $f$, то $f$~--- его минимальный многочлен: $f$ неприводим, а старший коэффициент $f$ равен $1$. Кроме того, $\gcd(p_1 \cdots p_i, n) = 1$, поэтому по лемме $\xi^{p_1 \cdots p_{i+1}}$~--- тоже корень $f$. При $k = 1$ доказывать нечего.
+
+		Итак, все корни $\Phi_n$, а они попарно различны, являются корнями $f$, поэтому $f \,\vdots\, \Phi_n$. Так как $f$ неприводим, $f = c\,\Phi_n$, а так как старшие коэффициенты $f$ и $\Phi_n$ равны $1$, получаем $f = \Phi_n$. Значит, $\Phi_n$ неприводим над $\mathbb{Q}$.
+
+		Наконец, если $\Phi_n = g_1 g_2$, где $g_1, g_2 \in \mathbb{Z}[x]$, то произведение старших коэффициентов равно $1$, поэтому множитель нулевой степени может быть только $\pm 1$. Множителей положительной степени два быть не может по неприводимости над $\mathbb{Q}$. Значит, $\Phi_n$ неприводим и над $\mathbb{Z}$.
+	\end{proof}
+
 \end{document}
