@@ -2519,43 +2519,6 @@
 		\operatorname{tg} \varphi = \dfrac{U_{Lm} - U_{Cm}}{U_{Rm}} = \dfrac{X_L - X_C}{R}.
 	\]
 	На рисунке $X_C > X_L$, поэтому $\vec U_m$ повёрнут от $\vec I_m$ по часовой стрелке: $\varphi < 0$, напряжение отстаёт от тока.
-	
-	\paragraph{Метод комплексных амплитуд.}
-	То же самое можно получить через комплексные экспоненты. Мнимую единицу обозначим $j$ ($j^2 = -1$), так как буква $i$ занята током. По формуле Эйлера $e^{j\alpha} = \cos \alpha + j \sin \alpha$, поэтому
-	\[
-		A \sin (\omega t + \alpha) = \operatorname{Im} \bigl( A e^{j\alpha} e^{j\omega t} \bigr) = \operatorname{Im} \bigl( \hat A e^{j\omega t} \bigr), \qquad \hat A = A e^{j\alpha}.
-	\]
-	Число $\hat A$ называется комплексной амплитудой: его модуль~--- амплитуда, аргумент~--- начальная фаза. Это тот же вектор диаграммы, только записанный как точка комплексной плоскости. Взятие мнимой части перестановочно со сложением, умножением на действительное число и дифференцированием по $t$, поэтому можно вычислять с экспонентами и брать $\operatorname{Im}$ в самом конце. Ключевое удобство:
-	\[
-		\bigl( \hat A e^{j\omega t} \bigr)' = j\omega \, \hat A e^{j\omega t},
-	\]
-	то есть дифференцирование сводится к умножению на $j\omega$.
-	
-	Пусть $i = \operatorname{Im} \bigl( I_m e^{j\omega t} \bigr)$. Найдём комплексные амплитуды напряжений:
-	\begin{itemize}
-		\item резистор: $u_R = Ri$ $\Longrightarrow$ $\hat U_R = R I_m$;
-		\item катушка: $u_L = Li'$ $\Longrightarrow$ $\hat U_L = j\omega L \, I_m = jX_L I_m$;
-		\item конденсатор: $i = q' = Cu_C'$ $\Longrightarrow$ $I_m = j\omega C \, \hat U_C$ $\Longrightarrow$ $\hat U_C = \dfrac{I_m}{j\omega C} = -jX_C I_m$.
-	\end{itemize}
-	Так как $j = e^{j\pi/2}$, умножение на $j$~--- это поворот на $\dfrac{\pi}{2}$ против часовой стрелки, а на $-j$~--- по часовой. Это в точности повороты векторов на диаграмме.
-	
-	Складываем:
-	\[
-		\hat U = \hat U_R + \hat U_L + \hat U_C = I_m \bigl( R + j(X_L - X_C) \bigr) = I_m \hat Z, \qquad \hat Z = R + j(X_L - X_C).
-	\]
-	Запишем $\hat Z$ в показательной форме: $\hat Z = Z e^{j\varphi}$, где
-	\[
-		Z = |\hat Z| = \sqrt{R^2 + (X_L - X_C)^2}, \qquad \operatorname{tg} \varphi = \dfrac{X_L - X_C}{R}.
-	\]
-	Тогда
-	\[
-		u = \operatorname{Im} \bigl( I_m Z e^{j\varphi} e^{j\omega t} \bigr) = I_m Z \sin (\omega t + \varphi),
-	\]
-	что совпадает с полученным выше.
-	
-	\begin{note}
-		Комплексное число $\hat Z = R + jX_L - jX_C$ называют комплексным сопротивлением цепи: при последовательном соединении комплексные сопротивления элементов просто складываются, как обычные сопротивления, а импеданс $Z$~--- его модуль.
-	\end{note}
 
 	\subsubsection{Мощность в цепи переменного тока}
 	
@@ -2632,6 +2595,169 @@
 	
 	\begin{note}
 		При $\omega \to 0$ ток не идёт из-за конденсатора ($X_C \to \infty$), при $\omega \to \infty$~--- из-за катушки ($X_L \to \infty$). Чем меньше сопротивление $R$, тем выше и острее резонансный пик. При этом амплитуды напряжений на катушке и конденсаторе при резонансе равны $U_{Lm} = U_{Cm} = I_{m\,\text{рез}} X_L = U_m \dfrac{\omega_0 L}{R}$ и при малом $R$ могут во много раз превышать напряжение источника.
+	\end{note}
+
+	\subsubsection{Параллельная $RLC$-цепь}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}[scale=1, line join=round, line cap=round, >=Stealth]
+			% Клеммы источника
+			\draw (0, 1.9) circle (0.07);
+			\draw (0, 1.1) circle (0.07);
+			\node[left] at (-0.15, 1.5) {$u \sim$};
+			% Провода
+			\draw (0, 1.97) -- (0, 3) -- (6, 3) -- (6, 2);
+			\draw (0, 1.03) -- (0, 0) -- (6, 0) -- (6, 1);
+			\draw (2, 3) -- (2, 2);
+			\draw (2, 0) -- (2, 1);
+			\draw (4, 3) -- (4, 1.8);
+			\draw (4, 0) -- (4, 1.2);
+			% Узлы
+			\fill (2, 3) circle (0.05);
+			\fill (4, 3) circle (0.05);
+			\fill (2, 0) circle (0.05);
+			\fill (4, 0) circle (0.05);
+			% Катушка
+			\draw[domain=0:1080, samples=200, smooth] plot ({2 + 0.18 - 0.18*cos(\x)}, {1 + \x/1080 - 0.18*sin(\x)});
+			\node[right] at (2.45, 1.5) {$L$};
+			% Конденсатор
+			\draw[thick] (3.5, 1.8) -- (4.5, 1.8);
+			\draw[thick] (3.5, 1.2) -- (4.5, 1.2);
+			\node[right] at (4.55, 1.5) {$C$};
+			% Резистор
+			\draw (5.8, 1) rectangle (6.2, 2);
+			\node[right] at (6.25, 1.5) {$R$};
+		\end{tikzpicture}
+		\caption{Параллельное соединение катушки, конденсатора и резистора}
+		\label{fig:ac-rlc-parallel}
+	\end{figure}
+	
+	Элементы соединены параллельно, поэтому напряжение на них одно и то же и равно напряжению источника:
+	\[
+		u_L = u_C = u_R = u.
+	\]
+	Теперь удобно задать именно напряжение, $u = U_m \sin \omega t$. По результатам предыдущих пунктов токи через элементы:
+	\[
+		i_R = \dfrac{U_m}{R} \sin \omega t, \qquad i_C = \dfrac{U_m}{X_C} \sin \Bigl( \omega t + \dfrac{\pi}{2} \Bigr) = \dfrac{U_m}{X_C} \cos \omega t, \qquad i_L = \dfrac{U_m}{X_L} \sin \Bigl( \omega t - \dfrac{\pi}{2} \Bigr) = -\dfrac{U_m}{X_L} \cos \omega t.
+	\]
+	Ток через резистор в фазе с напряжением, через конденсатор опережает напряжение на $\dfrac{\pi}{2}$, через катушку отстаёт от напряжения на $\dfrac{\pi}{2}$. Значит, $i_C$ и $i_L$ колеблются в противофазе и частично гасят друг друга:
+	\[
+		i_C + i_L = U_m \Bigl( \dfrac{1}{X_C} - \dfrac{1}{X_L} \Bigr) \cos \omega t.
+	\]
+	По закону сохранения заряда ток в неразветвлённой части цепи равен сумме токов в ветвях:
+	\[
+		i = i_R + i_C + i_L = U_m \Bigl( \dfrac{1}{R} \sin \omega t - \Bigl( \dfrac{1}{X_L} - \dfrac{1}{X_C} \Bigr) \cos \omega t \Bigr).
+	\]
+	Вынесем $\sqrt{\dfrac{1}{R^2} + \Bigl( \dfrac{1}{X_L} - \dfrac{1}{X_C} \Bigr)^2}$ и, как и раньше, введём сдвиг фаз $\varphi$ напряжения относительно тока (то есть $i = I_m \sin (\omega t - \varphi)$):
+	\[
+		i = U_m \sqrt{\dfrac{1}{R^2} + \Bigl( \dfrac{1}{X_L} - \dfrac{1}{X_C} \Bigr)^2} \, \Biggl( \underbrace{\dfrac{1/R}{\sqrt{\dots}}}_{\cos \varphi} \sin \omega t - \underbrace{\dfrac{1/X_L - 1/X_C}{\sqrt{\dots}}}_{\sin \varphi} \cos \omega t \Biggr) =
+	\]
+	\[
+		= U_m \sqrt{\dfrac{1}{R^2} + \Bigl( \dfrac{1}{X_L} - \dfrac{1}{X_C} \Bigr)^2} \, \sin (\omega t - \varphi).
+	\]
+	
+	\begin{statement}[Закон Ома для параллельной $RLC$-цепи]
+		Если напряжение на параллельной $RLC$-цепи равно $u = U_m \sin \omega t$, то ток в неразветвлённой части цепи
+		\[
+			\boxed{i = \dfrac{U_m}{Z} \sin (\omega t - \varphi), \qquad \dfrac{1}{Z} = \sqrt{\dfrac{1}{R^2} + \Bigl( \dfrac{1}{\omega L} - \omega C \Bigr)^2}, \qquad \operatorname{tg} \varphi = R \Bigl( \dfrac{1}{X_L} - \dfrac{1}{X_C} \Bigr)}
+		\]
+		где $Z$~--- импеданс цепи, $\varphi$~--- сдвиг фаз между напряжением и током. По-прежнему $U_m = I_m Z$.
+	\end{statement}
+	
+	\begin{note}
+		При $X_L < X_C$ (низкие частоты) больший ток идёт через катушку, $\varphi > 0$: напряжение опережает ток, цепь ведёт себя «как катушка». При $X_L > X_C$ (высокие частоты) больший ток идёт через конденсатор, $\varphi < 0$: цепь ведёт себя «как конденсатор». В последовательной цепи наоборот: там преобладает элемент с \emph{б\'{о}льшим} реактивным сопротивлением, а в параллельной~--- с \emph{меньшим}, так как через него идёт больший ток.
+	\end{note}
+	
+	\paragraph{Векторная диаграмма.}
+	Отложим вектор амплитуды напряжения $\vec U_m$, общего для всех ветвей. Тогда:
+	\begin{itemize}
+		\item $\vec I_{Rm}$ сонаправлен с $\vec U_m$, $I_{Rm} = \dfrac{U_m}{R}$;
+		\item $\vec I_{Cm}$ повёрнут относительно $\vec U_m$ на $\dfrac{\pi}{2}$ против часовой стрелки (опережает напряжение), $I_{Cm} = \dfrac{U_m}{X_C}$;
+		\item $\vec I_{Lm}$ повёрнут на $\dfrac{\pi}{2}$ по часовой стрелке (отстаёт от напряжения), $I_{Lm} = \dfrac{U_m}{X_L}$.
+	\end{itemize}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}[scale=1, line join=round, line cap=round, >=Stealth]
+			% Напряжение
+			\draw[->, thick] (0, 0) -- (0, 3) node[left] {$\vec U_m$};
+			% Токи в ветвях
+			\draw[->, thick, blue!70!black] (0, 0) -- (0, 1.6) node[midway, left] {$\vec I_{Rm}$};
+			\draw[->, thick, blue!70!black] (0, 0) -- (-1.2, 0) node[below] {$\vec I_{Cm}$};
+			\draw[->, thick, blue!70!black] (0, 0) -- (2.4, 0) node[below] {$\vec I_{Lm}$};
+			% Достраиваем
+			\draw[dashed] (1.2, 0) -- (1.2, 1.6) -- (0, 1.6);
+			\fill (1.2, 0) circle (0.04);
+			% Полный ток
+			\draw[->, very thick, blue!70!black] (0, 0) -- (1.2, 1.6) node[above right] {$\vec I_m$};
+			% Угол
+			\draw (0, 0.7) arc[start angle=90, end angle={atan2(1.6, 1.2)}, radius=0.7];
+			\node at (0.3, 1.05) {$\varphi$};
+		\end{tikzpicture}
+		\caption{Векторная диаграмма параллельной $RLC$-цепи (случай $X_L < X_C$)}
+		\label{fig:ac-rlc-parallel-phasor}
+	\end{figure}
+	
+	Векторы $\vec I_{Cm}$ и $\vec I_{Lm}$ противоположны, их сумма имеет длину $|I_{Lm} - I_{Cm}|$. Вместе с $\vec I_{Rm}$ она образует прямоугольный треугольник с гипотенузой $\vec I_m$:
+	\[
+		I_m^2 = I_{Rm}^2 + (I_{Lm} - I_{Cm})^2 = U_m^2 \Bigl( \dfrac{1}{R^2} + \Bigl( \dfrac{1}{X_L} - \dfrac{1}{X_C} \Bigr)^2 \Bigr) \quad \Longrightarrow \quad I_m = \dfrac{U_m}{Z},
+	\]
+	\[
+		\operatorname{tg} \varphi = \dfrac{I_{Lm} - I_{Cm}}{I_{Rm}} = R \Bigl( \dfrac{1}{X_L} - \dfrac{1}{X_C} \Bigr).
+	\]
+	На рисунке $X_L < X_C$, поэтому $\vec I_m$ повёрнут от $\vec U_m$ по часовой стрелке: ток отстаёт от напряжения, $\varphi > 0$.
+
+	\subsubsection{Резонанс в параллельной $RLC$-цепи}
+	
+	Снова будем менять частоту $\omega$ источника при постоянной амплитуде напряжения $U_m$. Амплитуда тока в неразветвлённой части цепи
+	\[
+		I_m = \dfrac{U_m}{Z} = U_m \sqrt{\dfrac{1}{R^2} + \Bigl( \dfrac{1}{\omega L} - \omega C \Bigr)^2}.
+	\]
+	Слагаемое $\dfrac{1}{R^2}$ от частоты не зависит, а второе слагаемое неотрицательно, поэтому теперь $Z \to \max$ и ток \emph{минимален} при
+	\[
+		X_L = X_C \quad \Longleftrightarrow \quad \dfrac{1}{\omega L} = \omega C \quad \Longleftrightarrow \quad \omega = \dfrac{1}{\sqrt{LC}} = \omega_0.
+	\]
+	
+	\begin{definition}[Резонанс токов]
+		Резонанс в параллельной $RLC$-цепи: при совпадении частоты источника $\omega$ с собственной частотой контура $\omega_0 = \dfrac{1}{\sqrt{LC}}$ ток в неразветвлённой части цепи минимален, а токи в катушке и конденсаторе могут быть во много раз больше него. Резонанс в последовательной цепи по аналогии называют резонансом напряжений.
+	\end{definition}
+	
+	\begin{statement}
+		При резонансе токов $Z = R$ (максимально), ток в неразветвлённой части цепи минимален и колеблется в фазе с напряжением источника:
+		\[
+			I_{m\,\text{рез}} = \dfrac{U_m}{R}, \qquad \varphi = 0.
+		\]
+		Цепь ведёт себя как один резистор: токи через катушку и конденсатор в каждый момент компенсируют друг друга.
+	\end{statement}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}[scale=1, line join=round, line cap=round, >=Stealth]
+			\draw[->] (-0.3, 0) -- (8, 0) node[below left] {$\omega$};
+			\draw[->] (0, -0.3) -- (0, 3.6) node[left] {$I_m$};
+			% R_1 < R_2
+			\draw[thick, domain=0.45:2.2, samples=300, smooth] plot ({3.5*\x}, {sqrt(0.64 + 2.56*(1/\x - \x)^2)});
+			\draw[thick, blue!70!black, domain=0.45:2.2, samples=300, smooth] plot ({3.5*\x}, {sqrt(0.04 + 2.56*(1/\x - \x)^2)});
+			\node[above] at (4.15, 0.95) {$R_1$};
+			\node[blue!70!black, below right] at (4.3, 0.6) {$R_2$};
+			\draw[dashed] (3.5, 0) -- (3.5, 0.8);
+			\node[below] at (3.5, 0) {$\omega_0 = \dfrac{1}{\sqrt{LC}}$};
+		\end{tikzpicture}
+		\caption{Резонансные кривые параллельной цепи при $R_1 < R_2$}
+		\label{fig:ac-resonance-parallel}
+	\end{figure}
+	
+	\begin{note}
+		При $\omega \to 0$ ток неограниченно растёт из-за катушки ($X_L \to 0$), при $\omega \to \infty$~--- из-за конденсатора ($X_C \to 0$): соответствующая ветвь закорачивает источник. Чем \emph{больше} сопротивление $R$, тем глубже и острее резонансный провал; в идеальном контуре без резистора ($R \to \infty$) ток от источника при резонансе равен нулю.
+	\end{note}
+	
+	\begin{note}
+		При резонансе амплитуды токов в катушке и конденсаторе равны
+		\[
+			I_{Lm} = I_{Cm} = \dfrac{U_m}{\omega_0 L} = I_{m\,\text{рез}} \dfrac{R}{\omega_0 L}
+		\]
+		и при большом $R$ могут во много раз превышать ток, потребляемый от источника. По контуру $LC$ циркулирует большой ток: энергия перекачивается между катушкой и конденсатором, как при свободных колебаниях, а источник лишь восполняет потери на резисторе.
 	\end{note}
 
 \end{document}
