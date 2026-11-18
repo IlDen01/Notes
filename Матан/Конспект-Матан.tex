@@ -1,0 +1,2096 @@
+\documentclass[12pt]{article}
+
+\input{../header.tex}
+
+\newcommand{\twoheaduparrow}{\rotatebox[origin=c]{90}{$\twoheadrightarrow$}}
+\newcommand{\twoheaddownarrow}{\rotatebox[origin=c]{-90}{$\twoheadrightarrow$}}
+\newcommand{\dint}{\displaystyle\int}
+\newcommand{\arcsinh}{\text{arcsinh} \,}
+\newcommand{\arccosh}{\text{arccosh} \,}
+\newcommand{\arctgh}{\text{arctgh} \,}
+\newcommand{\arcctgh}{\text{arcctgh} \,}
+
+\begin{document}
+	\tableofcontents
+	\setcounter{tocdepth}{3}
+	\newpage
+	\section{Последовательность.}
+	$f: \mathbb{N} \rightarrow \mathbb{R}$ \\
+	$f(n) =: f_n$
+	\begin{definition}
+		Последовательность называется ограниченной сверху, если $\exists M: |f_n| \leqslant M$. Снизу, если $\exists m:  f_n \geqslant m$. $f_n$~--- ограниченная, если ограничена сверху и снизу.
+	\end{definition}
+	\begin{definition}
+		$M_0 = \sup f_n$, если $M_0$~--- верхняя грань и $\forall \varepsilon > 0$ $\exists n_0: f_{n0} > M_0 - \varepsilon$. $m_0 = \inf f_n$, если $m_0$~--- нижняя грань и $\forall \varepsilon > 0$ $\exists n_0: f_{n0} < m_0 + \varepsilon$.
+	\end{definition}
+	\begin{axiom}[Вещественных чисел]
+		Если множество $X$ ограничено сверху, то $\exists sup X$. Если $f_n$ неограниченно сверху, то $sup f_n =: + \infty$. Если снизу, то $inf f_n =: - \infty$.
+	\end{axiom}
+	\begin{definition}
+		$f_n$~--- бесконечно большая (бб), если $\forall \varepsilon > 0$ $\exists N = N(\varepsilon): |f_n| > \frac{1}{\varepsilon}$ $\forall n \geqslant N$. $f_n$~--- не бб, $\exists \varepsilon > 0: \forall N \exists n > N: |f_n| \leqslant \frac{1}{\varepsilon}$.
+	\end{definition}
+	\begin{definition}
+		$f_n$~--- бесконечно малая (бм), если $\forall \varepsilon > 0$ $\exists N = N(\varepsilon): |f_n| <\varepsilon$ $\forall n \geqslant N$.
+	\end{definition}
+	\begin{lemma}
+		$f_n$~--- бм $\Rightarrow f_n$~--- ограничена.
+	\end{lemma}
+	\begin{proof}
+		Пусть $\varepsilon = 1$, тогда $\exists N: |f_n| \leqslant 1$ $\forall n \geqslant N$. \\
+		$M := max{|f_1|, \dots, |f_{N - 1}|, 1}$, тогда $|f_n| \leqslant M$ $\forall n \in N$.
+	\end{proof}
+	\begin{lemma}
+		\begin{enumerate}[a)]
+			\item $f_n$~--- бб $\Rightarrow \frac{1}{f_n}$~--- бм
+			\item $f_n$~--- бм ($f_n \not= 0$) $\Rightarrow \frac{1}{f_n}$~--- бб
+		\end{enumerate}
+	\end{lemma}
+	\begin{lemma}
+		$f_n$~--- неограниченная последовательность, тогда существует бб подпоследовательность $f_{nk}$.
+	\end{lemma}
+	\begin{proof}
+		$\exists n_1: |f_{n1} > 1|$, \\
+		$\exists n_2 > n_1: |f_{n2} > 2|$, \\
+		$\exists n_3 > n_2: |f_{n3}| > 3$, \\
+		$\vdots$, \\
+		$\exists n_1 < n_2 < \dots < n_k < \dots$ \\
+		$|f_{nk}| > k \Rightarrow f_{nk}$~--- бб.
+	\end{proof}
+	\begin{lemma}
+		\begin{enumerate}[a)]
+			\item бм $+$ бм $=$ бм
+			\item бм $\cdot$ C $=$ бм
+			\item бм $\cdot$ бм $=$ бм
+			\item бб $\cdot$ C $=$ бб, $C \not= 0$
+			\item бб $\cdot$ бб $=$ бб
+		\end{enumerate}
+	\end{lemma}
+	\subsection{Предел последовательности.}
+	$a_n$~--- последовательность.
+	\begin{definition}
+		$a = \lim$ $a_n$, если $\forall \varepsilon > 0$ $\exists N:$ $|a_n - a| < \varepsilon$ $\forall n \geqslant N$.
+	\end{definition}
+	\begin{definition}
+		Эпсилон окрестность: $U_{\varepsilon} (a) := (a - \varepsilon; a + \varepsilon)$. Выколотая эпсилон окрестность: $\mathring{U}_{\varepsilon} (a) := U_{\varepsilon}(a) \backslash \{a\}$.
+	\end{definition}
+	\noindent
+	$\varepsilon_1 < \varepsilon_2 \Rightarrow U_{\varepsilon1}(a) \subset U_{\varepsilon2}(a), a \in \overline{\mathbb{R}}$.
+	\begin{definition}
+		$\mathbb{R} \cup \{\pm \infty\} = \overline{\mathbb{R}}$~--- расширенная числовая прямая.
+	\end{definition}
+	\begin{definition}
+		$\varepsilon > 0$ $U_{\varepsilon} (+ \infty) = (\frac{1}{\varepsilon}; + \infty)$; $U_{\varepsilon}(- \infty) = (- \infty; -\frac{1}{\varepsilon})$.
+	\end{definition}
+	\noindent
+	$\lim |a_n| = + \infty \Leftrightarrow \forall \varepsilon > 0$ $\exists N(\varepsilon):$ $|a_n| > \frac{1}{\varepsilon}$. \\
+	Если $a_n$~--- бб $\Leftrightarrow \lim |a_n| = + \infty$. \\
+	Если $a_n$~--- бм $\Leftrightarrow \lim |a_n| = 0$.
+	\begin{statement}
+		$\lim a_n = a \Leftrightarrow \exists$ бм последовательность $d_n$, такая что $a_n = a + d_n$.
+	\end{statement}
+	\begin{statement}
+		Если предел последовательности существует, то он единственный.
+	\end{statement}
+	\begin{proof}
+		$\exists a < b$ и $a = \lim a_n$, $b = \lim a_n$. Тогда $\varepsilon := \frac{b - a}{42}:$ \\
+		$\exists N_1:$ $a_n \in U_{\varepsilon} (a) \forall n \geqslant N_1$ \\
+		$\exists N_2:$ $a_n \in U_{\varepsilon} (b) \forall n \geqslant N_2$ \\
+		$\Rightarrow a_n \in (U_{\varepsilon} (a) \cap U_{\varepsilon} (b)) = \emptyset$ $\forall n \geqslant \max\{N_1, N_2\} !?!$.
+	\end{proof}
+	\begin{lemma}[Предельный переход в неравенства]
+		$a_n \leqslant b_n$ $\forall n \geqslant N_{0}$. Пусть $\exists$ $\lim a_n = a$; $\lim b_n = b$, $a, b \in \overline{\mathbb{R}}$. Тогда $a \leqslant b$.
+	\end{lemma}
+	\begin{proof}
+		Пусть $a > b$. Тогда $\varepsilon := \frac{a - b}{42}:$ \\
+		$\exists N_1:$ $a_n \in U_{\varepsilon} (a) \forall n \geqslant N_1$ \\
+		$\exists N_2:$ $a_n \in U_{\varepsilon} (b) \forall n \geqslant N_2$ \\
+		$\Rightarrow a_n > b_n$ $\forall n \geqslant \max\{N_1, N_2\} !?!$.
+	\end{proof}
+	\begin{lemma}[О сжатой последовательности]
+		Пусть $a_n \leqslant b_n \leqslant c_n$ $\forall n \geqslant N_0$ и $\exists$ $\lim a_n = \lim c_n = a \in \overline{\mathbb{R}}$, тогда $\exists$ $\lim b_n = a$.
+	\end{lemma}
+	\begin{proof}
+		$\varepsilon > 0:$ \\
+		$\exists$ $a_n \in U_{\varepsilon}$, $n \geqslant N_1$ \\
+		$\exists$ $c_n \in U_{\varepsilon}$, $n \geqslant N_2$ \\
+		$\Rightarrow b_n \in U_{\varepsilon}:$ $\forall n \geqslant \{N_1, N_2, N_0\} =: N \Rightarrow a = \lim b_n$ по определению.
+	\end{proof}
+	\begin{lemma}[Об отделимости от нуля]
+		Пусть $\exists$ $\lim a_n = a > 0$. Тогда $\exists$ $N:$ $a_n > \frac{a}{2} > 0$, $\forall n \geqslant N$. \\
+		Следствие. Если $\lim a_n \not= 0 \Rightarrow \frac{1}{a_n}$ ограничена ($a_n \not= 0$).
+	\end{lemma}
+	\begin{proof}
+		$\lim a_n = a > 0$ \\
+		$\exists N_1:$ $a_n > \frac{a}{2} \Rightarrow 0 < \frac{1}{a_n} < \frac{2}{a}$ $\forall n \geqslant N_1$ \\
+		$\min\{a_1, \dots, a_{N - 1}, \frac{a}{2}\} \leqslant \frac{1}{a_n} \leqslant \max\{a_1, \dots, a_{N - 1}, \frac{2}{a}\}$
+	\end{proof}
+	\begin{theorem}[Арифметические свойства предела]
+		Пусть $\lim a_n = a$, $\lim b_n = b$; $a, b \in \overline{\mathbb{R}}$. Тогда:
+		\begin{enumerate}
+			\item $\lim (a_n + b_n) = a + b$, кроме случаев $+ \infty + (- \infty)$, $- \infty + (+ \infty)$
+			\item $\lim (ka_n) = ka$, кроме случая $0 \cdot (\pm \infty)$
+			\item $\lim (a_n \cdot b_n) = ab$, кроме случая $0 (\pm \infty)$
+			\item $\lim \frac{a_n}{b_n} = \frac{a}{b}$, кроме случаев $\frac{0}{0}$, $\frac{\infty}{\infty}$
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		$a, b \in \mathbb{R}$. $a_n = a + \alpha_n$, $b_n = b + \beta_n$; $\alpha_n, \beta_n$~--- бм. 
+		\begin{enumerate}
+			\item
+			$a_n + b_n = (a + b) + (\alpha_n + \beta_n) \Leftrightarrow \lim (a_n + b_n) = a + b$.
+			\item Аналогично.
+			\item $a_nb_n = (a + \alpha_n)(b + \beta_n) = ab + \alpha_nb + \beta_na + \alpha_n + \beta_n$
+			\item Если $b \not= 0$ $\frac{1}{b_n}$~--- ограниченна \\
+			$\frac{a_n}{b_n} - \frac{a}{b} = \frac{a + \alpha_n}{b + \beta_n} - \frac{a}{b} = \frac{\alpha_nb - \beta_na}{b_nb} = \frac{1}{b} \cdot \frac{1}{b_n} \cdot (\alpha_nb - \beta_na)$ \\
+			Если $b = 0 \Rightarrow b_n$ бм $\Rightarrow \frac{1}{b_n}$~--- бб $\Rightarrow a_n \cdot \frac{1}{b_n} =$ ограниченная бб
+		\end{enumerate}
+	\end{proof}
+	\begin{definition}
+		Линейное пространство~--- множество, сумма двух элементов которого лежит в этом множестве и элемент с коэффициентом лежит в этом множестве.
+	\end{definition}
+	\begin{definition}
+		Последовательность называется возвратной, если $a_n = \beta_{n - 1} a_{n - 1} + \beta_{n - 2} a_{n - 2} + \dots + \beta_{n - k} a_{n - k}$; $\beta{i}$~--- фиксированные коэффициенты.
+	\end{definition}
+	\noindent
+	$a_n^{(1)}, a_n^{(2)} \Rightarrow \forall \lambda, \mu \in \mathbb{R}$ $\lambda a_n^{(1)} + \mu a_n^{(2)}$ тоже удовлетворяет $(x)$. \\
+	$a_n := t^n$ \\
+	$t^k = \beta_{n - 1}t^{k - 1} + \dots + \beta_{n - k}$ \\
+	$t_0$~--- простой корень, то $t_0^n$ \\
+	$t_0$~--- корень $(m) \Rightarrow t_0^n; nt_0^n; n^2t_0^n; \dots; n^{m - 1}t_0^n$ \\
+	\begin{theorem}
+		\begin{enumerate}
+			\item Пусть $a_n$ возрастает и ограничена сверху. Тогда $\exists \lim a_n = \sup a_n$
+			\item Пусть $a_n$ убывает и ограничена снизу. Тогда $\exists \lim a_n = \inf a_n$
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		fix $\varepsilon > 0$. Так как $a_n$~--- ограничена, то $\exists M  \sup a_n \in \mathbb{R}$; И $\exists N: a_N > M - \varepsilon$. \\
+		Тогда $\begin{cases}
+			a_n \geqslant M - \varepsilon & \forall n \geqslant N \text{, так как } a_n \uparrow \\
+			a_n \leqslant M < M + \varepsilon
+		\end{cases} \Rightarrow \exists N: |a_n - M| < \varepsilon \forall n \geqslant N \Rightarrow \lim\limits_{n \rightarrow \infty} a_n = M$ по определению.
+	\end{proof}
+	\begin{definition}
+		Найти предел последовательности $a_n = (1 + \frac{1}{n})^n$.
+		\begin{quote}
+			$b_n = (1 + \frac{1}{n})^{n + 1}; b_1 = 4, b_2 = 3,...$ $b_n \downarrow$ \\
+			$b_n \geqslant 1$ \\
+			Докажем, что $b_n$ убывает. \\
+			$\frac{b_n}{b_{n + 1}} = \frac{(\frac{n + 1}{n})^{n + 1}}{(\frac{n + 2}{n + 1})^{n + 2}} = \frac{n + 1}{n})^{n + 1} \cdot \frac{n + 1}{n + 2})^{n + 2} = \frac{n + 1}{n + 2} \cdot (\frac{n^2 + 2n + 1}{n^2 + 2n})^{n + 1} = \frac{n + 1}{n + 2} \cdot (1 + \frac{1}{n^2 + 2n})^{n + 1} \overbrace{>}^{\text{Неравенство Бернулли}} \frac{n + 1}{n + 2} \cdot (1 + \frac{n + 1}{n^2 + 2n}) = \frac{(n + 1)(n^2 + 3n + 1)}{(n + 2)(n^2 + 2n)} = \frac{n^3 + 4n^2 + 4n + 1}{n^3 + 4n^2 + 4n} > 1$. \\
+			$a_n = \frac{b_n}{(1 + \frac{1}{n})}$ \\
+			$\lim\limits_{n \rightarrow \infty} = \lim \frac{b_n}{1 + \frac{1}{n}} = \frac{\lim b_n}{\lim (1 + \frac{1}{n})} = \lim b_n$~--- существует. \\
+			$e := \lim\limits_{n \rightarrow \infty} (1 + \frac{1}{n})^n \approx 2.718281828459045...$
+		\end{quote}
+	\end{definition}
+	\begin{theorem}[Больцано-Вейерштрасса]
+		Пусть последовательность $a_n$ ограничена. Тогда существует сходящаяся подпоследовательность.
+	\end{theorem}
+	\begin{proof}
+		$|a_n| \leqslant M$ \\
+		$[-M = \alpha_1; M = \beta_1]$. $\alpha_2$~--- середина. $a_1 = x_1 \in [\alpha_1; \alpha_2]$. \\
+		$[\alpha_2; \beta_2]$. $\beta_3$~--- середина. $x_2 = a_{\min n} \in [\alpha_2; \beta_3]$. \\
+		И тд. \\
+		${\alpha_k}$ неубывающая и ограниченная сверху. $\exists \lim \alpha_k = \alpha$. ${\beta_k}$ неубывающая и ограниченная сверху. $\exists \lim \beta_k = \beta$. \\
+		$\beta - \alpha = \lim \limits_{k \rightarrow \infty} (\beta_k - \alpha_k) = \lim \limits_{k \rightarrow \infty} \frac{2M}{2^{k - 1}} = 0$. \\
+		По построению $x_k$~--- подпоследовательность и $\alpha_k \leqslant x_k \leqslant \beta_k \Rightarrow \exists \lim x_k$.
+	\end{proof}
+	\begin{definition}
+		Последовательность называется фундаментальной (или последовательностью Коши), если $\forall \varepsilon > 0$ $\exists N(\varepsilon)$: $|a_n - a_k| < \varepsilon$ $\forall n, k \geqslant N$.
+	\end{definition}
+	\begin{statement}
+		Пусть $\exists \lim a_n = a \in \mathbb{R}$. Тогда $\{a_n\}$ фундаментальная.
+	\end{statement}
+	\begin{proof}
+		fix $\varepsilon > 0 \exists N: |a_n - a| < \frac{\varepsilon}{2} \forall n \geqslant N$. Тогда $\forall n, k \geqslant N$ $|a_n - a_k| = |(a_n - a) + (a - a_k)| \leqslant |a_n - a| + |a_k - a| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$.
+	\end{proof}
+	\begin{theorem}[Коши]
+		Пусть $\{a_n\}$ фундаментальная последовательность. Тогда $\exists \lim a_n$.
+	\end{theorem}
+	\begin{proof}
+		\begin{enumerate}[1)]
+			\item $(!) \{a_n\}$ ограничена. \\
+			$\varepsilon = 1$: $\exists N$: $|a_n - a_k| \leqslant \varepsilon$ $\forall n, k \geqslant N \Rightarrow a_k \in [a_{N - 1}; a_{N + 1}] \forall k \geqslant N$ \\
+			$M = max\{|a_1|, |a_2|, \dots, |a_N + 1|\} \Rightarrow |a_n| \leqslant M \forall n$.
+			\item Тогда по теореме Вейерштрасса $\exists a_{n_k}$~--- подпоследовательность; $\lim \limits_{n \rightarrow \infty} a_{n_k} = a$.
+			\item fix $\varepsilon > 0$. $\exists N_1: |a_{n_k} - a| < \frac{\varepsilon}{2}$ $\forall n_k \geqslant N_1$ \\
+			$\exists N_2: |a_m - a_n| < \frac{\varepsilon}{2}$ $\forall m, n \geqslant N_2$ \\
+			Пусть $n \geqslant max\{N_1, N_2\}$ $\exists n_k \geqslant m$. \\
+			$|a_m - a| = |(a_m - a_{n_k}) + (a_{n_k} - a)| \leqslant |a_n - a_{n_k}| + |a_{n_k} - a| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon \Rightarrow a = \lim \limits_{m \rightarrow \infty} a_m$.
+		\end{enumerate}
+	\end{proof}
+	\section{Возведение в вещественную степень.}
+	$n \in \mathbb{N}$; $x^n = x \cdot x \cdot ... \cdot x$, $n$ раз. \\
+	$x^{-n} = \frac{1}{x^n}$, $x \not= 0$ \\
+	$x^0 := 1$ \\
+	$\sqrt[n]{x} = x^{\frac{1}{n}}$ \\
+	$x^p$, $p \in \mathbb{Q}$, $x \geqslant 0$ $(p > 0)$ или $x > 0$ $(p \geqslant 0)$ \\
+	\underline{fix $a > 0$, $x \in \mathbb{R}$} \\
+	$a^x := \lim \limits_{n \rightarrow \infty} a^{x_n}$, где $\{x_n\}$ последовательность, такая что $x_n \in \mathbb{Q}$, $\lim \limits_{n \rightarrow \infty} x_n := x$. \\
+	Корректность определения.
+	\begin{enumerate}
+		\item $x \in \mathbb{Q}$. Докажем, что $a^x$ совпадает со старым определением. \\
+		$x \in \mathbb{Q}$, берем $x_n = x \Rightarrow a^x = a^x$
+		\item Берем произвольную последовательность $\{x_n\}$, $x_n \rightarrow x \Rightarrow x_n$~--- фундаментальная последовательность. \\
+		fix $\varepsilon > 0$ $|a^{x_n} - a^{x_k}| = a^{x_n}|1 - a^{x_k - x_n}|$. Сходится. Значит ограничена. Тогда $a^{x_n}$ ограничена. Тогда $a^{x_n}|1 - a^{x_k - x_n}| \leqslant M \cdot |1 - a^{x_k - x_n}|$. \\
+		$\exists N: |a^{\frac{1}{m}} - 1| < \frac{M}{\varepsilon}$ $\forall m \geqslant N \Rightarrow |a^{\frac{1}{n}} - 1| < \frac{M}{\varepsilon} \Rightarrow \exists N_0: |x_n - x_k| < \frac{1}{N}$ $\forall n, k \geqslant N$ \\
+		$M \cdot |1 - a^{x_k - x_n}| < M \cdot \frac{2}{M}$ $\forall n, k \geqslant N_0 \Rightarrow a^{x_n}$ образует фундаментальную последовательность $\Rightarrow$ (по теореме Коши) $\exists \lim \limits_{n \rightarrow \infty} a^{x_n}$
+		\item $x_n \rightarrow x$, $y_m \rightarrow x$, $x_n, y_m \in \mathbb{Q}$ \\
+		$\exists a = \lim a^{x_n}$; $\alpha = \lim a^{y_m}$ \\
+		$(a - \alpha) = \lim \limits_{n \rightarrow \infty} (a^{x_n} - a^{y_m}) = \lim \limits_{n \rightarrow \infty} a^{x_n} (1 - a^{x_n - y_m}) = 0$ \\
+		$\lim(y_n - x_n) = x - x = 0$
+	\end{enumerate}
+	Свойства:
+	\begin{enumerate}
+		\item $a^x \cdot a^y = a^{x + y}$ \\
+		Пусть $x_n \rightarrow x$, $y_n \rightarrow y$; $x_n, y_n \in \mathbb{Q}$ \\
+		$a^{x_n} \cdot a^{y_n} = a^{x_n + y_n}$ \\
+		$a^x \cdot a^y = \lim a^{x_n} \cdot \lim a^{y_n} = \lim a^{x_n} \cdot a^{y_n} = \lim a^{x_n + y_n} = a^{x + y}$
+		\item $(a^x)^y = a^{xy}$ \\
+		Пусть $x_n \rightarrow x$, $y_m \rightarrow y$; $x_n, y_m \in \mathbb{Q}$ \\
+		$x_ny_n \rightarrow xy$ \\
+		$\lim \limits_{m \rightarrow \infty} (\lim \limits_{n \rightarrow \infty} a^{x_n})^{y_m}$ ? $\lim \limits_{n \rightarrow \infty} a^{x_ny_n}$ \\
+		$\lim \limits_{n \rightarrow \infty} (a^x)^{y_n} = \lim \limits_{n \rightarrow \infty} a^{x_ny_n}$ \\
+		$\lim \limits_{n \rightarrow \infty} |b^{y_n} - a^{x_ny_n}| = 0$, где $b = a^x$ \\
+		$\exists N:$ $|a^{x_n} - b| < \varepsilon$ $\forall n \geqslant N$ \\
+		$b - \varepsilon < a^{x_n} < b + \varepsilon$ \\
+		$1 - \frac{\varepsilon}{b} < \frac{a^{x_n}}{b} < 1 + \frac{\varepsilon}{b}$ $\uparrow ^{y_n}, y_n > 0$, для $< 0$ аналогично \\
+		$(1 - \frac{\varepsilon}{b})^{y_n} < (\frac{a^{x_n}}{b})^{y_n} < (1 + \frac{\varepsilon}{b})^{y_n}$ \\
+		$1 - \frac{y_n \varepsilon}{b} < \frac{a^{x_ny_n}}{b^{y_n}} < 1 + \frac{y_n \varepsilon}{b}$ \\
+		$\Rightarrow |\frac{a^{x_ny_n}}{b^{y_n}} - 1| \leqslant \frac{|y_n|}{b} \varepsilon$ \\
+		$|a^{x_ny_n} - b^{y_n}| < \frac{|y_n|}{b} \cdot b^{y_n} \varepsilon \leqslant M\varepsilon$ $\forall n \geqslant N$ \\
+		$\Rightarrow \lim |b^{y_n} - a^{x_ny_n}| = 0$
+	\end{enumerate}
+	fix $a > 0$, $a \not= 1$ \\
+	$y = a^x$, $x \in \mathbb{R}$
+	\begin{definition}
+		$f(x)$~--- возрастающая на $X$, если $\forall x_1, x_2 \in X$ $x_1 < x_2 \Rightarrow f(x_1) < f(x_2)$. $f(x)$ неубывающая, если $\leqslant$.
+	\end{definition}
+	\begin{statement}
+		При $a > 1$ $f(x) = a^x$~--- возрастает на $\mathbb{R}$; При $0 < a,< 1$ $f(x) = a^x$~--- убывает на $\mathbb{R}$.
+	\end{statement}
+	\begin{quote}
+		Пусть $x < \xi$, $x_n \rightarrow x$, $\xi_n \rightarrow \xi$ \\
+		$x < x_0 < \xi_0 < \xi$ и $x_0$ не в окрестности $x$ и аналогично $\xi$. \\
+		$\forall n \geqslant N$ \\
+		$x_n < x_0 < \xi_0 < \xi_0$ \\
+		Тогда $a^{x_n} < a^{x_0} < a^{\xi_0} < a^{\xi_n}$ \\
+		$a^{x} \leqslant a^{x_0} < a^{\xi_0} \leqslant a^{\xi} \Rightarrow a^x < a^{\xi}$ \\
+		$0 < a < 1$ \\
+		$a^x = (\frac{1}{a})^{-x}$; $a^{\xi} = (\frac{1}{a})^{-\xi}$ \\
+		$x < \xi \Rightarrow -x > -\xi$ $(\frac{1}{a})^{-x} > (\frac{1}{a})^{-\xi} \Rightarrow a^x > a^{\xi}$
+	\end{quote}
+	\section{Предел и непрерывность.}
+	\begin{definition}
+		Передельная точка $x_0$ области $D$~--- такая точка, что $\forall \varepsilon > 0$ $\mathring{U}_{\varepsilon}(x_0) \cap D \not= \emptyset$. Множество предельных точек множества $D$~--- называется замыкание $D$, обозначается $\overline{D}$.
+	\end{definition}
+	\noindent
+	$f: D \rightarrow \mathbb{R}$; $D \subset \mathbb{R}$. Пусть $x_0$~--- предельная точка $D$. \\
+	\begin{definition}[По Гейне]
+		Если $\forall$ последовательности $x_n \rightarrow x_0$; $x_n \not= x_0$ $\exists \lim \limits_{n \rightarrow \infty} f(x_n) = a$, то говорят, что $\exists \lim \limits_{x \rightarrow x_0} f(x) = a$.
+	\end{definition}
+	\begin{definition}
+		$f$ непрерывна в точке $x_0 \in D$, если $\exists \lim \limits_{x \rightarrow x_0} f(x) = f(x_0)$.
+	\end{definition}
+	\begin{note}
+		Функция не непрерывна:
+		\begin{enumerate}
+			\item $\lim\limits_{x \rightarrow x_0} \exists$, но $\not= f(x_0)$~--- устранимый разрыв.
+			\item $\lim\limits_{x \rightarrow x_0} \nexists$~--- неустранимы разрыв.
+			\begin{enumerate}
+				\item $\lim\limits_{x \rightarrow x_0 - 0} f(x) = a$, $\lim\limits_{x \rightarrow x_0 + 0} f(x) = b$, $a, b \in \mathbb{R}$~--- разрыв I рода или скачок.
+				\item Разрыв второго рода или существенная особенность.
+			\end{enumerate}
+		\end{enumerate}
+	\end{note}
+	\begin{definition}[По Коши]
+		$\lim \limits_{x \rightarrow x_0} f(x) = a$, если $\forall \varepsilon > 0$ $\exists \delta > 0$: $f(x) \subset U_{\varepsilon}(a)$ $\forall x \in \mathring{U}_{\delta}(x_0) \cap D(f)$.
+	\end{definition}
+	\begin{statement}
+		Определения по Коши и по Гейне равносильны.
+	\end{statement}
+	\begin{proof}
+		Доказательство Коши $\Rightarrow$ Гейне.
+		\begin{quote}
+			Известно, что $\forall \varepsilon > 0$ $\exists \delta > 0$: $f(x) \in U_{\varepsilon}(a) \forall x \in \mathring{U}_{\delta}(x_0)$. \\
+			Берем произвольную $x_n \rightarrow x_0$: fix $\varepsilon > 0 \Rightarrow \exists \delta$, такое что выполнено $f(x) \in U_{\varepsilon}(a) \forall x \in \mathring{U}_{\delta}(x_0)$ и $\exists N$: $x_n \in U_{\delta}(x_0) \forall n \geqslant N \Rightarrow \exists N$: $\forall n \geqslant N$ $x_n \in \mathring{U}_{\delta}(x_0) \Rightarrow f(x_n) \in U_{\varepsilon}(a)$. \\
+			Те $\forall \varepsilon > 0$ $\exists N$: $\forall n \geqslant N$ $f(x_n) \in U_{\varepsilon}(a)$, те $a = \lim \limits_{n \rightarrow \infty}f(x_n)$
+		\end{quote}
+		Доказательство не Коши $\Rightarrow$ не Гейне.
+		\begin{quote}
+			Нет предела по Коши. fix $a$: $\exists \varepsilon$: $\forall \delta > 0$. $\exists \tilde{x} \in \mathring{U}_{\delta}(x_0)$: $f(\tilde{x}) \not\in U_{\varepsilon}(a) \Rightarrow a$ не является пределом по Гейне? \\
+			От противного. $a = \lim \limits_{x \rightarrow x_0} f(x)$ по Гейне. \\
+			$\delta_n = \frac{1}{n}$ $\exists \tilde{x_n} \in \mathring{U}_{\frac{1}{n}}(x_0)$ и $f(\tilde{x_n}) \not\in U_{\varepsilon}(a) \Rightarrow \tilde{x_n} \rightarrow x_0, \tilde{x_n} \not= x_0$, но $\lim \limits_{n \rightarrow \infty} f(\tilde{x_n}) \not= a$
+		\end{quote}
+	\end{proof}
+	\noindent
+	\begin{statement}
+		$f(x)$ бесконечно малая в точке $x_0$, если $\lim \limits_{x \rightarrow x_0} f(x) = 0$.
+	\end{statement}
+	\begin{statement}
+		$f(x)$ бесконечно большая в точке $x_0$, если $\lim \limits_{x \rightarrow x_0} |f(x)| = +\infty$.
+	\end{statement}
+	\begin{lemma}[О двух милиционерах]
+		Пусть $f(x) \leqslant g(x) \leqslant h(x)$ в некоторой окрестности точки $x_0$ (передельная точка $D(f), D(g), D(h)$). Если $\exists \lim \limits_{x \rightarrow x_0} f(x) = \lim \limits_{x \rightarrow x_0} h(x) = a$, то $\exists \lim \limits_{x \rightarrow x_0} g(x) = a$.
+	\end{lemma}
+	\begin{lemma}[Предельный переход в неравенства]
+		Пусть $f(x) \leqslant g(x)$ в некоторой окрестности точки $x_0$ (передельная точка $D(f), D(g)$). Если $\exists \lim \limits_{x \rightarrow x_0} f(x) = a$; $\exists \lim \limits_{x \rightarrow x_0} g(x) = b$, то $a \leqslant b$.
+	\end{lemma}
+	\begin{lemma}[Об ограниченности]
+		Если $\exists \lim \limits_{x \rightarrow x_0} f(x) = a \in \mathbb{R}$. Тогда $f$ ограничена в некотором $\mathring{U}(x_0)$.
+	\end{lemma}
+	\begin{proof}
+		$\varepsilon = 1$: $\exists \delta > 0$: $|f(x) - a| < 1$ $\forall x \in \mathring{U}_{\delta}(x_0) \Rightarrow |f(x)| \leqslant |a| + 1$ $\forall x \in \mathring{U}_{\delta}(x_0)$
+	\end{proof}
+	\begin{lemma}[Об отделимости от нуля]
+		Если $\exists \lim \limits_{x \rightarrow x_0} f(x) = a > 0$. Тогда $\inf f(x) > 0$ в некоторой $\mathring{U}(x_0)$ ($f$ отделима от нуля).
+	\end{lemma}
+	\begin{proof}
+		$\varepsilon = \frac{a}{42}$: $\exists \delta < \frac{a}{42}$ $\forall x \in \mathring{U}_{\delta}(x_0) \Rightarrow f(x) \geqslant \frac{41}{42}a > 0$ $\forall x \in \mathring{U}_{\delta}(x_0) \Rightarrow \inf f(x) \geqslant \frac{41}{42}a > 0$.
+	\end{proof}
+	\begin{corollary}
+		Если $\lim \limits_{x \rightarrow x_0} f(x) \not= 0$, то $\frac{1}{f(x)}$ ограничена в некоторой $\mathring{U}(x_0)$.
+	\end{corollary}
+	\begin{definition}
+		$x^{\alpha}, \alpha \in \mathbb{R} ; a^x; \log_ax; \sin, \cos, \tg, \arcsin, \arccos, \arctg$~--- основные элементарные функции.
+	\end{definition}
+	\begin{definition}
+		Функция называется элементарной, если она получается арифметическими операциями или композицией конечного числа основных элементарных функций.
+	\end{definition}
+	\begin{statement}
+		Любая элементарная функция непрерывна.
+	\end{statement}
+	\begin{theorem}[Теорема о пределе композиций]
+		$f: X \rightarrow Y$; $g: Y \rightarrow Z$, $x_0$~--- предельная точка множества $X$, $y_0$~--- предельная точка множества $Y$. $\exists \lim \limits_{x \rightarrow x_0} f(x) = y_0$, $\exists \lim \limits_{y \rightarrow y_0} g(y) = g(y_0) = a$. Тогда $\exists \lim \limits_{x \rightarrow x_0} g(f(x)) = a$.
+	\end{theorem}
+	\begin{proof}
+		$\forall x \in \mathring{U}_{\delta}(x_0) \Rightarrow g(f(x)) \in U_{\varepsilon} (a)$ \\
+		$a = \lim \limits_{y \rightarrow y_0} g(y) \Rightarrow \exists \varepsilon_1 > 0$: $y \in U_{\varepsilon_1} (y_0) \Rightarrow g(y) \in U_{\varepsilon} (g(y_0))$ \\
+		$\exists \delta > 0$: $x \in \mathring{U}_{\delta} (x_0) \Rightarrow f(x) \in U_{\varepsilon_1} (y_0) \Rightarrow g(f(x)) \subset U_{\varepsilon} (g(y_0))$
+	\end{proof}
+	\begin{theorem}[Непрерывности обратной функции]
+		Пусть $f$ непрерывная биекция на $\langle a; b \rangle$. Тогда $f^{-1}$ тоже непрерывная биекция $Y \rightarrow \langle a; b \rangle$.
+	\end{theorem}
+	\begin{proof}
+		НУО $f$ строго возрастает на $\langle a; b \rangle$ \\
+		fix $\varepsilon > 0$, тогда $y_1 := f(x_0 - \varepsilon)$; $y_2 := f(x_0 + \varepsilon)$ \\
+		$\delta = \min \{ y_2 - y_0; y_0 - y_1 \}$ \\
+		Тогда $\forall y \in U_{\delta} (y) \Rightarrow f^{-1} (y) \in U_{\epsilon} (f^{-1} (y_0))$ тк $y_1 < y < y_2 \Rightarrow f^{-1} (y_1) < f^{-1} (y) < f^{-1} (y_2)$
+	\end{proof}
+	\subsection{Замечательные пределы.}
+	\begin{enumerate}
+		\item $\lim\limits_{x \rightarrow +\infty} \left(1 + \dfrac{1}{x}\right)^x = e$
+		\item $\lim\limits_{x \rightarrow -\infty} \left(1 + \dfrac{1}{x}\right)^x = e$
+		\item $\lim\limits_{x \rightarrow 0} (1 + x)^{\frac{1}{x}} = e$
+		\item $\lim\limits_{x \rightarrow 0} \dfrac{\ln (1 + x)}{x} = 1$
+		\item $\lim\limits_{x \rightarrow 0} \dfrac{e^x - 1}{x} = 1$; $\lim\limits_{x \rightarrow 0} \dfrac{a^x - 1}{x} = \ln a$
+		\item $\lim\limits_{x \rightarrow 0} \dfrac{(1 + x)^m - 1}{x} = m$; $m \in \mathbb{R}$
+		\item $\lim\limits_{x \rightarrow 0} \dfrac{1 - \cos x}{x^2} = \dfrac{1}{2}$
+		\item $\lim\limits_{x \rightarrow 0} \dfrac{\sin x}{x} = 1$
+		\item $\lim\limits_{x \rightarrow +\infty} \dfrac{n}{2^n} = 0$
+	\end{enumerate}
+	\begin{statement}
+		$(1 + x)^p \simeq 1 + px$, $x \rightarrow 0$.
+	\end{statement}
+	\section{$\overline{o}$ и $\underline{O}$.}
+	\begin{definition}
+		Символ Ландау~--- $\overline{o}$.
+		\begin{enumerate}
+			\item $\lim\limits_{x \rightarrow x_0} \frac{f(x)}{g(x)} = 0$, тогда $f(x) := \overline{o}(g(x))$, $x \rightarrow x_0$.
+			\item $f(x) = \overline{o}(g(x))$, если $\forall \varepsilon > 0$ $\exists \delta > 0$: $|f(x)| \leqslant \varepsilon |g(x)|$, $\forall x \in \mathring{U}_\delta (x_0)$.
+		\end{enumerate}
+	\end{definition}
+	\begin{property}
+		\begin{enumerate}
+			\item $f(x)$ называется бесконечно малой в точке $x_0$, если $f(x) = \overline{o}(1)$, $x \rightarrow x_0$.
+			\item $\overline{o}(f(x)) + \overline{o}(f(x)) = \overline{o}(f(x))$, $x \rightarrow x_0$.
+			\item $C \cdot \overline{o}(f(x)) = \overline{o}(f(x))$, $x \rightarrow x_0$.
+			\item $\overline{o}(\overline{o}(f(x))) = \overline{o}(f(x))$, $x \rightarrow x_0$.
+		\end{enumerate}
+	\end{property}
+	\begin{definition}
+		\begin{enumerate}
+			\item Пусть $f$, $g$ обе бесконечно большие или бесконечно малые. $\lim\limits_{x \rightarrow x_0} \frac{f(x)}{g(x)} = 1$, тогда $f(x) \sim g(x)$, $x \rightarrow x_0$.
+			\item $f(x) \sim g(x) \Leftrightarrow \forall \varepsilon > 0$ $\exists \delta > 0$ $(1 - \varepsilon)|g(x)| \leqslant |f(x)| \leqslant (1 + \varepsilon)|g(x)|$, $\forall x \in \mathring{U}_\delta (x_0)$.
+		\end{enumerate}
+	\end{definition}
+	\begin{statement}
+		$f(x) \sim g(x)$, $x \rightarrow x_0$ $\Leftrightarrow$ $f(x) = g(x) + \overline{o}(g(x))$, $x \rightarrow x_0$.
+	\end{statement}
+	\begin{definition}
+		$f(x) = \underline{O}(g(x))$, $x \rightarrow x_0$, если $\exists$ $C > 0$: $|f(x)| \leqslant C|g(x)|$ в некоторой выколотой окрестности точки $x_0$.
+	\end{definition}
+	\begin{definition}
+		$f(x) \asymp g(x)$, $x \rightarrow x_0$, если $\exists$ $c_1, c_2 > 0$: $c_1|g(x)| \leqslant |f(x)| \leqslant c_2|g(x)|$ в некоторой выколотой окрестности точки $x_0$.
+	\end{definition}
+	\begin{theorem}
+		Пусть $f(x) \sim f_1(x)$, $x \rightarrow x_0$ и функции не обращаются в $0$ в некоторой $\mathring{U}(x_0)$. Тогда $\lim\limits_{x \rightarrow x_0} f(x)g(x)$ и $\lim\limits_{x \rightarrow x_0} f_1(x)g(x)$ $\exists$ или $\nexists$ одновременно, и если $\exists$, то они равны. Словами: в произведение пределов сомножители можно заменять на эквивалентные; слагаемые нельзя!
+	\end{theorem}
+	\begin{proof}
+		$\lim\limits_{x \rightarrow x_0} f(x)g(x) = \lim\limits_{x \rightarrow x_0} \dfrac{f(x)}{f_1(x)} \cdot f_1(x)g(x)$.
+	\end{proof}
+	\begin{statement}
+		$(1 + t)^\alpha = 1 + \alpha t + \overline{o}(t)$, $t \rightarrow 0$.
+	\end{statement}
+	\begin{statement}
+		$e^t = 1 + t + \overline{o}(t)$, $t \rightarrow 0$.
+	\end{statement}
+	\begin{statement}
+		Если $\exists$ $\lim\limits_{x \rightarrow x_0} \dfrac{f(x)}{g(x)} = k \in \mathbb{R} \setminus \{ 0 \} \Rightarrow f(x) \asymp g(x), x \rightarrow x_0 \Rightarrow f(x) = \underline{O}(g(x))$ и $g(x) = \underline{O}(f(x)), x \rightarrow x_0$.
+	\end{statement}
+	\subsection{Асимптотические равенства.}
+	\begin{enumerate}
+		\item $\lim\limits_{x \rightarrow 0} \dfrac{\sin x}{x} = 1$; $\sin x \sim x$; $\sin x = x + \overline{o}(x)$
+		\item $\lim\limits_{x \rightarrow 0} \dfrac{1 - \cos x}{x^2} = \dfrac{1}{2}$; $1 - \cos x \sim \dfrac{x^2}{2}$; $\cos x = 1 - \dfrac{x^2}{2} + \overline{o}(x^2)$
+		\item $\lim\limits_{x \rightarrow 0} \dfrac{\ln (1 + x)}{x} = 1$; $\ln (1 + x) \sim x$; $\ln (1 + x) = x + \overline{o}$ \\
+		$\log_a(1 + x) \sim \dfrac{x}{\ln a}$; $\log_a(1 + x) = \dfrac{x}{\ln a} + \overline{o}(x)$
+		\item $\lim\limits_{x \rightarrow 0} \dfrac{e^x - 1}{x} = 1$; $e^x - 1 \sim x$; $e^x = 1 + x + \overline{o}(x)$ \\
+		$e^x - 1 = x + \overline{o}(x)$; $a^x = 1 + x \ln a + \overline{o}(x)$
+		\item $\lim\limits_{x \rightarrow 0} \dfrac{(1 + x)^s - 1}{x} = s$; $(1 + x)^s - 1 \sim sx$; $(1 + x)^s = 1 + sx + \overline{o}(x)$
+	\end{enumerate}
+	\section{Функции, непрерывные на отрезке.}
+	\begin{definition}
+		$f$ непрерывна на отрезке $[a, b]$, $a, b \in \mathbb{R}$; $a < b \Leftrightarrow \forall x_0 \in [a, b]$ $\lim\limits_{x \rightarrow x_0} f(x) = f(x_0)$.
+	\end{definition}
+	\begin{note}
+		$C(X) = \{ \text{множество функций непрерывных на множестве } X \}$. $f \in C(x)$: $\forall x_0 \in X$ $\forall \varepsilon > 0$ $\exists \delta > 0$: $|f(x) - f(x_0)| < \varepsilon$ $\forall |x - x_0| < \delta$.
+	\end{note}
+	\subsection{Первая теорема Вейерштрасса.}
+	\begin{theorem}[Первая теорема Вейерштрасса]
+		$f \in C([a, b])$. Тогда $f$ ограничена на $[a, b]$.
+	\end{theorem}
+	\begin{proof}
+		НУО докажем, что $f$ ограничена сверху. \\
+		$\#$ $f$ неограниченна сверху.	$\exists x_n \in [a, b]$: $f(x_n) > n$.	$\{ x_n \} \in [a, b]$. $\exists$ $x_{n_k} \rightarrow x_0 \in [a, b]$. $f(x_0) = \lim\limits_{x_{n_k} \rightarrow x_0} f(x_{n_k}) = \infty$ $\#$.
+	\end{proof}
+	\subsection{Вторая Теорема Вейерштрасса.}
+	\begin{theorem}[Вторая Теорема Вейерштрасса]
+		Пусть $f \in C([a, b])$. Тогда $\exists \overline{x}, \underline{x} \in [a, b]$: $f(\overline{x}) = \min\limits_{[a, b]} f(x), f(\underline{x}) = \max\limits_{[a, b]} f(x)$.
+	\end{theorem}
+	\begin{proof}
+		$\# \inf\limits_{[a, b]} f(x) = m$ и не достигается. $f(x) > m$ $\forall x \in [a, b] \Rightarrow g(x) := \dfrac{1}{f(x) - m}$ неограниченна на $[a, b]$. Но $\forall \varepsilon > 0$ $\exists$ $x_{\varepsilon} \in [a, b]$: $f(x_{\varepsilon}) < m + \varepsilon \Rightarrow g(x_{\varepsilon}) > \dfrac{1}{\varepsilon} \Rightarrow g$ неограниченна сверху на $[a, b]$ $\#$.
+	\end{proof}
+	\subsection{Теорема Больцано-Коши.}
+	\begin{theorem}[Больцано-Коши]
+		$f \in C([a, b])$, $f(a)f(b) < 0$. Тогда $\exists$ $x_0 \in [a, b]$: $f(x_0) = 0$.
+	\end{theorem}
+	\begin{proof}[Доказательство №1]
+		НУО $f(a) < 0; f(b) > 0$. $a_0 := a, b_0 := b$. $[a_k, b_k] \rightarrow [a_{k + 1}, b_{k + 1}]$. $\lim a_k = \alpha$, $\lim b_k = \beta$. $\lim (a_k - b_k) = \alpha - \beta$, $\lim \dfrac{b - a}{2^k} = 0 \Rightarrow \alpha = \beta =: x_0$. $f(a_k) < 0, f(b_k) > 0$. $ \begin{cases}
+			f(x_0) = \lim\limits_{k \rightarrow \infty} f(a_k) \leqslant 0 \\
+			f(x_0) = \lim\limits_{k \rightarrow \infty} f(b_k) \geqslant 0
+		\end{cases} \Rightarrow f(x_0) = 0$.
+	\end{proof}
+	\begin{proof}[Доказательство №2]
+		$X = \{ x \in [a, b]: f(x) < 0 \} \not= \emptyset$. $\exists x_0 = \sup X < b$.
+	\end{proof}
+	\subsection{Третья Теорема Вейерштрасса.}
+	\begin{theorem}[Третья Теорема Вейерштрасса]
+		$f \in C([a, b])$, $M = \max\limits_{[a, b]} f(x), m = \min\limits_{[a, b]} f(x)$. Тогда $E(f) = [m; M]$.
+	\end{theorem}
+	\subsection{Равномерная непрерывность.}
+	\begin{definition}[Равномерная непрерывность]
+		$f$ равномерно непрерывна на $X$, если $\forall \varepsilon > 0$ $\exists \delta > 0$: $\forall x_0 \in X$ $|f(x) - f(x_0)| < \varepsilon$ $\forall |x - x_0| < \delta$.
+	\end{definition}
+	\begin{theorem}[?Коши-Вейерштрасса?]
+		Пусть $f \in C([a, b])$. Тогда $f$ равномерно непрерывна на $[a, b]$.
+	\end{theorem}
+	\begin{proof}
+		$\#$ $\exists \varepsilon > 0$: $\forall \delta > 0$: $\exists x_1 \xi$ $|f(x) - f(\xi)| \geqslant \varepsilon$, $|x - \xi| < \delta$. Возьмем $\delta_1 = 1$ $\exists x_1, \xi_1$: $|x_1 - \xi_1| < 1$ и $|f(x_1) - f(\xi_1)| \geqslant \varepsilon$, $\dots$, $\delta_n = \dfrac{1}{n}$ $\exists x_n, \xi_n$: $|x_n - \xi_n| < \dfrac{1}{n}$ и $|f(x_n) - f(\xi_n)| \geqslant \varepsilon$. $\{ x_n \}, \{ \xi_n \} \subset [a, b]$. $\{ x_{n_m} \rightarrow x_0 \}, \{ \xi_{n_m} \rightarrow \xi_0 \} \Rightarrow x_0 = \xi_0$. $|f(x_{n_m}) \rightarrow f(x_0) - f(\xi_{n_m}) \rightarrow f(x_0)| \geqslant \varepsilon$ $\#$.
+	\end{proof}
+	\section{Дифференциальное исчисление.}
+	\begin{definition}
+		$f$ дифференцируема в точке $x_0$, если $\exists$ $k \in \mathbb{R}$: $f(x) = f(x_0) + k(x - x_0) + \overline{o}(x - x_0)$.
+	\end{definition}
+	\begin{statement}
+		Если $f$ дифференцируема в точке $x_0$ $\Leftrightarrow$ $\exists$ $\lim\limits_{x \rightarrow x_0} \dfrac{f(x) - f(x_0)}{x - x_0} = k$.
+	\end{statement}
+	\begin{proof}
+		$\overline{o}(x - x_0) + k(x - x_0) = f(x) - f(x_0) \Leftrightarrow k + \dfrac{\overline{o}(x - x_0)}{x - x_0} = \dfrac{f(x) - f(x_0)}{x - x_0} \Leftrightarrow k = k + \lim \dfrac{\overline{o}(x - x_0)}{x - x_0} = \lim \dfrac{f(x) - f(x_0)}{x - x_0}$.
+	\end{proof}
+	\begin{definition}
+		Такое $k$ называется производной в точке $x_0$. Обозначается $f'(x_0) = \lim\limits_{x \rightarrow x_0} \dfrac{f(x) - f(x_0)}{x - x_0}$.
+	\end{definition}
+	\begin{statement}
+		Если $f$ дифференцируема, то она непрерывна.
+	\end{statement}
+	\begin{definition}
+		Производная (функция) функции $f \rightarrow g(x) = f'(x)$: $x_0 \mapsto \lim\limits_{x \rightarrow x_0} \dfrac{f(x) - f(x_0)}{x - x_0} ; \varDelta x = x - x_0$; $x_0 \mapsto \lim\limits_{x \rightarrow \varDelta x} \dfrac{f(x + \varDelta x) - f(x)}{\varDelta x}$; $f'(x) = \lim\limits_{\varDelta x \rightarrow 0} \dfrac{f(x + \varDelta x) - f(x)}{\varDelta x}$.
+	\end{definition}
+	\begin{note}
+		$f(\tilde{x}) = f(x) \cdot f'(x)(\tilde{x} - x) + \overline{o}(\tilde{x} - x)$. $f(x + \varDelta x) = f(x) + f'(x) \cdot \varDelta x + \overline{o}(\varDelta x)$; $\varDelta f(x) := f(x + \varDelta x) - f(x)$. $\varDelta f(x) = f'(x) \cdot \varDelta x + \overline{o}(\varDelta x)$, $\varDelta x \rightarrow 0$.
+	\end{note}
+	\begin{definition}[Дифференциал функции]
+		$df(x) := f'(x) \varDelta x$.
+	\end{definition}
+	\begin{note}
+		Пусть $f(x) = x$. $\varDelta x = 1 \cdot \varDelta x + 0$, $\varDelta f(x) = f'(x) \varDelta x + \overline{o}(\varDelta x)$ $\Rightarrow$ $f'(x) = 1$ $\Rightarrow$ $df(x) = \varDelta x$. Тогда $df(x) = f'(x)d(x)$, $f'(x) = \dfrac{df(x)}{dx}$.
+	\end{note}
+	\begin{note}
+		Дифференциал~--- линейная часть малого приращения функции.
+	\end{note}
+	\subsection{Правила дифференцирования.}
+	(рассматриваем дифференцируемые функции):
+	\begin{enumerate}
+		\item $(c)' = 0$; $(cf(x))' = cf'(x)$
+		\item $(f(x) \pm g(x))' = f'(x) \pm g'(x)$
+		\item $(f(x) \cdot g(x))' = f'(x) \cdot g(x) + f(x) \cdot g'(x) \rightarrow d(fg) = df \cdot g + dg \cdot f$
+		\item $\left( \dfrac{1}{f(x)} \right)' = - \dfrac{f'(x)}{f^2(x)}$, $f(x) \not= 0$
+		\item $\left( \dfrac{f(x)}{g(x)} \right)' = \dfrac{f'(x)g(x) - f(x)g'(x)}{g^2(x)}$
+		\item Пусть $f$ дифференцируема в точке $x$, $g$ дифференцируема в точке $f(x)$. Тогда $g(f(x))$ дифференцируема в точке $x$ и $(g(f(x)))' = g'(f(x)) \cdot f'(x)$ или $dg(f(x)) = g'(f(x)) \cdot df(x)$
+		\item $f$ дифференцируема в точке $x_0$ и $f'(x_0) \not= 0$. Если $f$ обратима в окрестности точки $x_0$, то $f^{-1}$ дифференцируема в точке $y_0 = f(x_0)$ и $(f^{-1})'(y_0) = \dfrac{1}{f'(x_0)} = \dfrac{1}{f'(f^{-1}(y_0))}$
+		\item $(\sin x)' = \cos x$
+		\item $(\cos x)' = - \sin x$
+		\item $(\tg x)' = \dfrac{1}{\cos^2 x}$
+		\item $(\ctg x)' = - \dfrac{1}{\sin^2 x}$
+		\item $(\arcsin x)' = \dfrac{1}{\sqrt{1 - x^2}}$
+		\item $(\arccos x)' = - \dfrac{1}{\sqrt{1 - x^2}}$
+		\item $(\arctg x)' = \dfrac{1}{1 + x^2}$
+		\item $(\arcctg x)' = - \dfrac{1}{1 + x^2}$
+		\item $(e^x)' = e^x$; $(a^x)' = a^x \cdot \ln a$
+		\item $(\ln x)' = \dfrac{1}{x}$; $(\log_ax)' = \dfrac{1}{x \ln a}$
+		\item $(x^p)' = px^{p - 1}$
+	\end{enumerate}
+	\subsection{Выпуклость.}
+	\begin{definition}
+		Функция называется выпуклой на отрезке $[a, b]$ если для каждого отрезка $[x_1, x_2]$, принадлежащего $[a, b]$, график функции f расположен не выше отрезка с концами в $(x_1, f(x_1))$ и $(x_2, f(x_2))$ (строго выпуклой, если ниже). Иными словами, если для любых $x_1, x, x_2 \in [a, b]$, $x_1 < x < x_2$ справедливо неравенство $f(x) \leqslant y(x) = \dfrac{x_2 - x}{x_2 - x_1} f(x_1) + \dfrac{x - x_1}{x_2 - x_1} f(x_2)$, что равносильно $(x_2 - x_1) f(x) \leqslant (x_2 - x) f(x_1) + (x - x_1) f(x_2)$.
+	\end{definition}
+	\begin{definition}[Из конспекта к зачету]
+		Пусть $f: X \rightarrow \mathbb{R}$, $X$~--- выпуклое множество.\\
+		$f(x)$~--- выпуклая (выпуклая вниз) на $X$, если
+		$$
+		\forall x_1, x_2 \in X \qquad f \left( \dfrac{x_1 + x_2}{2} \right) \leqslant \dfrac{f(x_1) + f(x_2)}{2}
+		$$
+		$f(x)$~--- строго выпуклая на $X$, если
+		$$
+		\forall x_1, x_2 \in X \qquad f \left( \dfrac{x_1 + x_2}{2} \right) < \dfrac{f(x_1) + f(x_2)}{2}
+		$$
+		$f(x)$~--- вогнутая (выпуклая вверх) на $X$, если
+		$$
+		\forall x_1, x_2 \in X \qquad f \left( \dfrac{x_1 + x_2}{2} \right) \geqslant \dfrac{f(x_1) + f(x_2)}{2}
+		$$
+		$f(x)$~--- строго вогнутая на $X$, если
+		$$
+		\forall x_1, x_2 \in X \qquad f \left( \dfrac{x_1 + x_2}{2} \right) > \dfrac{f(x_1) + f(x_2)}{2}
+		$$
+	\end{definition}
+	\begin{lemma}
+		Пусть функция $f$ определена на отрезке $[a, b]$. Тогда она выпукла тогда и только тогда, когда для любых $x_1, x, x_2 \in [a, b]$, $x_1 < x < x_2$, справедливо любое из следующих трех неравенств:
+		$$
+		\frac{f(x) - f(x_1)}{x - x_1} \leqslant \frac{f(x_2) - f(x)}{x_2 - x},
+		$$
+		$$
+		\frac{f(x) - f(x_1)}{x - x_1} \leqslant \frac{f(x_2) - f(x_1)}{x_2 - x_1},
+		$$
+		$$
+		\frac{f(x_2) - f(x_1)}{x_2 - x_1} \leqslant \frac{f(x_2) - f(x)}{x_2 - x},
+		$$
+		причем в случае строгой выпуклости неравенства также будут строгими.
+	\end{lemma}
+	\begin{proof}
+		Запишем $x_2 - x_1$ как $(x_2 - x) + (x - x_1)$, тогда неравенство примет вид
+		\[
+		(x_2 - x)f(x) + (x - x_1)f(x) \leqslant (x_2 - x)f(x_1) + (x - x_1)f(x_2),
+		\]
+		после преобразования получаем
+		\[
+		(x_2 - x)(f(x) - f(x_1)) \leqslant (x - x_1)(f(x_2) - f(x)),
+		\]
+		что равносильно
+		$$
+		\frac{f(x) - f(x_1)}{x - x_1} \leqslant \frac{f(x_2) - f(x)}{x_2 - x}.
+		$$
+		\noindent
+		Запишем $x_2 - x$ как $(x_2 - x_1) - (x - x_1)$, тогда неравенство примет вид
+		\[
+		(x_2 - x_1)f(x) \leqslant (x_2 - x_1)f(x_1) - (x - x_1)f(x_1) + (x - x_1)f(x_2),
+		\]
+		после преобразования получаем
+		\[
+		(x_2 - x_1)(f(x) - f(x_1)) \leqslant (x - x_1)(f(x_2) - f(x_1)),
+		\]
+		что равносильно
+		$$
+		\frac{f(x) - f(x_1)}{x - x_1} \leqslant \frac{f(x_2) - f(x_1)}{x_2 - x_1}.
+		$$
+		
+		\noindent
+		Запишем $x - x_1$ как $(x_2 - x_1) - (x_2 - x)$, тогда неравенство примет вид
+		\[
+		(x_2 - x_1)f(x) \leqslant (x_2 - x)f(x_1) + (x_2 - x_1)f(x_2) - (x_2 - x)f(x_2),
+		\]
+		после преобразования получаем
+		\[
+		(x_2 - x)(f(x_2) - f(x_1)) \leqslant (x_2 - x_1)(f(x_2) - f(x)),
+		\]
+		что равносильно
+		$$
+		\frac{f(x_2) - f(x_1)}{x_2 - x_1} \leqslant \frac{f(x_2) - f(x)}{x_2 - x}.
+		$$
+	\end{proof}
+	\begin{definition}[Левая и правая производная]
+		$$
+		f'_{-}(x_0) = f'(x_0 - 0) := \lim\limits_{h \to +0} \dfrac{f(x_0) - f(x_0 - h)}{h},
+		$$
+		$$
+		f'_{+}(x_0) = f'(x_0 + 0) := \lim\limits_{h \to +0} \dfrac{f(x_0 + h) - f(x_0)}{h}.
+		$$
+	\end{definition}
+	\begin{note}
+		$\exists f'(x_0)$ $\Leftrightarrow$ существует производная слева и справа и $f'_{-}(x_0) = f'_{+}(x_0)$.
+	\end{note}
+	\begin{theorem}
+		Пусть функция $f$ выпукла на $[a, b]$. Тогда
+		\begin{enumerate}[a)]
+			\item $\forall x_0 \in (a, b)$ $\exists f'_-(x_0)$ и $f'_+(x_0)$, причем $f'_-(x_0) \leqslant f'_+(x_0)$
+			\item $f \in C(a, b)$
+			\item $\forall x_1, x_2 \in (a, b)$, $x_1 < x_2$, имеем $f'_+(x_1) \leqslant f'_-(x_2)$ (если $f$ строго выпукла, то $f'_+(x_1) < f'_-(x_2)$)
+			\item $f'_-$ и $f'_+$~--- неубывающие на $(a, b)$ функции (возрастающие в случае строгой выпуклости)
+			\item $f$ дифференцируема на $(a, b)$ всюду, кроме, быть может, не более чем счетного числа точек
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		\begin{enumerate}[a)]
+			\item Пусть $x_0 \in (a, b)$, $h > 0$~--- такое, что $x_0 + h \in (a, b)$ тоже. Тогда, учитывая, что $x_0 - (x_0 - h) = (x_0 + h) - x_0 = h$, по неравенству $\dfrac{f(x) - f(x_1)}{x - x_1} \leqslant \dfrac{f(x_2) - f(x)}{x_2 - x}$ имеем
+			\[
+			\frac{f(x_0) - f(x_0 - h)}{h} \leqslant \frac{f(x_0 + h) - f(x_0)}{h};
+			\]
+			при убывании $h$ левая часть неравенства не убывает в силу $\dfrac{f(x_2) - f(x_1)}{x_2 - x_1} \leqslant \dfrac{f(x_2) - f(x)}{x_2 - x}$, правая — не возрастает в силу $\dfrac{f(x) - f(x_1)}{x - x_1} \leqslant \dfrac{f(x_2) - f(x_1)}{x_2 - x_1}$. Следовательно при $h \to +0$ существуют оба предела, равные $f'_-(x_0)$ и $f'_+(x_0)$, а из неравенства получаем $f'_-(x_0) \leqslant f'_+(x_0)$.
+			\item Из существования односторонних производных имеем для любого $x_0 \in (a, b)$
+			\[
+			f(x_0 + h) = 
+			\begin{cases}
+				f(x_0) + f'_+(x_0)h + \overline{o}(h), & h \to +0 \\
+				f(x_0) + f'_-(x_0)h + \overline{o}(h), & h \to -0
+			\end{cases}
+			\]
+			откуда в любом случае получаем $f(x_0 + h) = f(x_0) + \overline{o}(1), h \to 0$, т.е. $f$ непрерывна в $x_0$.
+			\item Для всякого $x \in (x_1, x_2)$ имеем
+			\[
+			\frac{f(x) - f(x_1)}{x - x_1} \leqslant \frac{f(x_2) - f(x_1)}{x_2 - x_1}
+			\]
+			(строгое неравенство в случае строгой выпуклости).
+			
+			При $x \to x_1 + 0$ левая часть неравенства невозрастает (строгое неравенство при этом сохраняется), поэтому мы можем перейти к пределу:
+			\[
+			f'_+(x_1) \leqslant \frac{f(x_2) - f(x_1)}{x_2 - x_1}.
+			\]
+			
+			Аналогично, при $x \to x_2 - 0$ имеем
+			\[
+			\frac{f(x_2) - f(x_1)}{x_2 - x_1} \leqslant \frac{f(x_2) - f(x)}{x_2 - x}
+			\]
+			(строгое неравенство в случае строгой выпуклости).
+			
+			Таким образом, имеем
+			\[
+			f'_+(x_1) \leqslant \frac{f(x_2) - f(x_1)}{x_2 - x_1} \leqslant f'_-(x_2)
+			\]
+			(строгое неравенство в случае строгой выпуклости), откуда следует требуемое.
+			\item Для $x_1, x_2 \in (a, b), x_1 < x_2$ из a) и c) имеем $f'_-(x_1) \leqslant f'_+(x_1) \leqslant f'_-(x_2) \leqslant f'_+(x_2)$ (в случае строгой выпуклости $f'_-(x_1) \leqslant f'_+(x_1) < f'_-(x_2) \leqslant f'_+(x_2)$), откуда следует требуемая монотонность.
+			\item Для доказательства потребуется следующая лемма:
+			\begin{lemma}
+				Пусть $g(x)$ монотонная на $[a, b]$. Тогда $g(x)$ не может иметь разрывов второго рода и имеет не более чем счетное число разрывов (устранимых или первого рода).
+			\end{lemma}
+			В силу монотонности множество точек разрыва функции $f'_-$ на $(a, b)$ не более чем счетно. Покажем, что в точках непрерывности функции $f'_-$ существует производная $f'$ (т.е. $f'_- = f'_+$). 
+			
+			Пусть $x_0$~--- точка непрерывности функции $f'_-$. Для всякого $h > 0$ такого, что $x_0 + h \in (a, b)$ из а) и c) имеем
+			\[
+			f'_-(x_0) \leqslant f'_+(x_0) \leqslant f'_-(x_0 + h),
+			\]
+			откуда
+			\[
+			0 \leqslant f'_+(x_0) - f'_-(x_0) \leqslant f'_-(x_0 + h) - f'_-(x_0).
+			\]
+			
+			В силу непрерывности $f'_-$ имеем $f'_-(x_0 + h) - f'_-(x_0) \rightarrow 0$, откуда по теореме о зажатой функции $f'_+(x_0) - f'_-(x_0) \rightarrow 0$, а так как это выражение на самом деле не зависит от $h$, получаем, что $f'_+(x_0) = f'_-(x_0)$.
+		\end{enumerate}
+	\end{proof}
+	\subsection{Вторая производная.}
+	\begin{definition}
+		Пусть $f(x)$ дифференцируема $\forall x \in X$, тогда $f'(x): X \rightarrow \mathbb{R}$. $(f')' =: f''$.
+	\end{definition}
+	\subsubsection{Многочлен Тейлора.}
+	\begin{definition}[Многочлен Тейлора]
+		$T_{n, x_0} f = f(x_0) + f'(x_0)(x - x_0) + \dfrac{f''(x_0)}{2}(x - x_0)^2 + \dfrac{f'''(x_0)}{3!}(x - x_0)^3 + \dots + \dfrac{f^{(n)}(x_0)}{n!}(x - x_0)^n = \sum\limits_{k = 0}^{n} \dfrac{f^{(k)}(x_0)}{k!}(x - x_0)^k$.
+	\end{definition}
+	\subsubsection{Формула Тейлора.}
+	\begin{theorem}[Формула Тейлора.]
+		$f(x) = T_{n, x_0} f + R_{n, x_0} f$. Остатки бывают в разных формах (например в форме Пеано это $\overline{o}((x - x_0)^n)$).
+	\end{theorem}
+	\begin{proof}
+		$f(x) = T_{n, x_0} f + \overline{o} ((x - x_0)^n) \Leftrightarrow f(x) - T_{n, x_0} f = \overline{o}((x - x_0)^n) \Leftrightarrow \lim\limits_{x \rightarrow x_0} \dfrac{f(x) - T_{n, x_0} f}{(x - x_0)^n} = \left[ \dfrac{0}{0} \right] \overset{\text{правило Лопиталя}}{=} \lim\limits_{x \rightarrow x_0} \dfrac{f'(x) - (f'(x_0) + f''(x_0)(x - x_0) + \dots + \frac{f^{(n)}}{(n - 1)!} (x - x_0)^{n - 1})}{n(x - x_0)^{n - 1}} = \dots =$\\
+		$= \lim\limits_{x \rightarrow x_0} \dfrac{f^{(n)}(x) - f^{(n)}(x_0)}{n!} = 0$.
+	\end{proof}
+	\subsubsection{Теорема Ферма.}
+	\begin{theorem}[Ферма]
+		Пусть $f \in C([a, b]) \cap C^1(a, b)$. Тогда, если $x_0 \in (a, b)$ точка экстремума (точка локального максимума или минимума), то $f'(x_0) = 0$.
+	\end{theorem}
+	\begin{proof}
+		$f'(x_0) = f'_-(x_0) = f'_+(x_0)$
+		
+		$x_0$~--- локальный максимум:
+		\begin{align*}
+			f'_+(x_0) = \lim\limits_{\varDelta \to +0} \dfrac{\overbrace{f(x_0 + \varDelta x)}^{\leqslant f(x_0)} - f(x_0)}{\varDelta x} \leqslant 0\\
+			f'_-(x_0) = \lim\limits{\varDelta x \to +0} \dfrac{f(x_0) - \overbrace{f(x_0 - \varDelta x)}^{\leqslant f(x_0)}}{\varDelta x} \geqslant 0\\
+			\Rightarrow f'(x_0) = 0
+		\end{align*}
+	\end{proof}
+	\begin{corollary}
+		В точке экстремума производная нулевая или не существует.
+	\end{corollary}
+	\subsubsection{Немного определений.}
+	\begin{definition}
+		$x_0$ стационарная, если $f'(x_0) = 0$.
+	\end{definition}
+	\begin{definition}
+		$x_0$ критическая, если $f'(x_0) = 0$ или $f'(x_0) \nexists$
+	\end{definition}
+	\begin{definition}
+		$x_0$ экстремум, если это локальный минимум или максимум.
+	\end{definition}
+	\subsubsection{Теорема Ролля.}
+	\begin{theorem}[Ролля]
+		Пусть $f \in C([a, b]) \cap C^1(a, b)$, $f(a) = f(b)$. Тогда $\exists c \in (a, b)$: $f'(c) = 0$.
+	\end{theorem}
+	\begin{proof}
+		$f \in C([a, b]) \Rightarrow$ достигается максимум и минимум $\Rightarrow$ хотя бы одна из них $c \in (a, b) \Rightarrow$ по теореме Ферма $f'(c) = 0$.
+	\end{proof}
+	\subsubsection{Теорема Коши.}
+	\begin{theorem}[Коши]
+		$f, g \in C([a, b]) \cap C^1(a, b)$, $g'(x) \ne 0$ на $(a, b)$. Тогда $\exists c \in (a, b)$: $\dfrac{f(b) - f(a)}{g(b) - g(a)} = \dfrac{f'(c)}{g'(c)}$.
+	\end{theorem}
+	\begin{proof}
+		Рассмотрим функцию $h(x) = f(x) - k g(x)$, $k \in \mathbb{R}$: $\in C^1(a, b) \cap C([a, b])$.
+		
+		Выберем $k$, такое что $h(a) = h(b)$. $f(a) - k g(a) = f(b) - k g(b) \Rightarrow k(g(b) - g(a)) = f(b) - f(a) \Rightarrow k = \dfrac{f(b) - f(a)}{g(b) - g(a)}$.
+		
+		По теореме Ролля $\exists c \in (a, b)$: $h'(c) = 0$
+		
+		$f'(c) - k g'(c) = 0$
+	\end{proof}
+	\subsubsection{Теорема Лагранжа.}
+	\begin{theorem}[Лагранжа о среднем в дифференциальной форме.]
+		$f \in C([a, b]) \cap C^1(a, b)$. Тогда $\exists c \in (a, b)$: $f(b) - f(a) = f'(c)(b - a)$.
+	\end{theorem}
+	\begin{proof}
+		Следует из теоремы Коши, если взять $g(x) = x$.
+	\end{proof}
+	\subsubsection{Правило Лопиталя.}
+	\begin{theorem}[Правило Лопиталя.]
+		Пусть $f(x)$, $g(x)$ непрерывно дифференцируемы в окрестности точки $x_0$, $x_0 \in \mathbb{R}$. Пусть $\lim\limits_{x \rightarrow x_0} \dfrac{f(x)}{g(x)} = \left[ \dfrac{\infty}{\infty} \right]$ или $\left[ \dfrac{0}{0} \right]$. Тогда, если $\exists \lim\limits_{x \rightarrow x_0} \dfrac{f'(x)}{g'(x)} = a$, то $\exists \lim\limits_{x \rightarrow x_0} \dfrac{f(x)}{g(x)} = a$.
+	\end{theorem}
+	\begin{proof}
+		\begin{enumerate}
+			\item $x_0 \in \mathbb{R}$, $\left[ \dfrac{0}{0} \right] \Rightarrow f(x_0) = g(x_0) = 0$
+			
+			$\lim\limits_{x \to x_0} \dfrac{f(x)}{g(x)} = \lim\limits_{x \to x_0} \dfrac{f(x) - f(x_0)}{g(x) - x(x_0)} \overset{\text{по теореме Коши}}{=} \lim\limits_{x \to x_0} \dfrac{f'(c(x))}{g'(c(x))} = \lim\limits_{c \to x_0} \dfrac{f)}{g'(c)} = a$.
+			
+			\item $x_0 \in \mathbb{R}$, $\left[ \dfrac{\infty}{\infty} \right]$
+			
+			$\dfrac{f(x)}{g(x)} = \dfrac{\frac{1}{g(x)}}{\frac{1}{f(x)}} = \dfrac{g_1(x)}{f_1(x)}$, пусть
+			$$
+			f_1(x) =
+			\begin{cases}
+				\dfrac{1}{f(x)}, x \ne x_0\\
+				0, x = x_0
+			\end{cases}
+			$$
+			$$
+			g_1(x) =
+			\begin{cases}
+				\dfrac{1}{g(x)}, x \ne x_0\\
+				0, x = x_0
+			\end{cases}
+			$$
+			$f_1, g_1$ непрерывно дифференцируемы.
+			
+			\item $x_0 = \pm \infty$ (НУО рассмотрим только $+ \infty$); $a \in \mathbb{R}$
+			
+			fix $\varepsilon > 0$: $\exists \delta > 0$: $\left| \dfrac{f'(x)}{g'(x)} - a \right| < \varepsilon \quad \forall x > \dfrac{1}{\delta}$
+			
+			fix $y \in (\dfrac{1}{\delta}; + \infty) \quad \exists c$ между $x$ и $y$: $\dfrac{f(x) - f(y)}{g(x) - g(y)} = \dfrac{f'(c)}{g'(c)}$
+			
+			$$
+			\dfrac{f(x)(1 - \frac{f(x)}{f(x)})}{g(x)(1 - \frac{g(y)}{g(x)})} = \dfrac{f'(c)}{g'(c)}
+			$$
+			$$
+			\dfrac{f(x)}{g(x)} = \dfrac{f'(c)}{g'(c)} \cdot \dfrac{1 - \frac{g(y)}{g(x)}}{1 - \frac{f(y)}{f(x)}} = \dfrac{f'(c)}{g'(c)} \cdot \left( 1 + \underbrace{\dfrac{\overbrace{\frac{f(y)}{f(x)}}^{\to 0} - \overbrace{\frac{g(y)}{g(x)}}^{\to 0}}{1 - \underbrace{\frac{f(y)}{f(x)}}_{\to 0}}}_{\text{б. м.}} \right) > \dfrac{1}{2} \cdot \dfrac{f'(c)}{g'(c)} > \dfrac{1}{2 \varepsilon} \quad \forall x \geqslant \dfrac{1}{2 \delta}
+			$$
+			
+			\item $x_0 = \pm \infty$ (НУО рассмотрим только $+ \infty$); $\left[ \dfrac{0}{0} \right]$
+			
+			$$
+			\lim\limits_{x \to + \infty} \dfrac{f(x)}{g(x)} \underset{x = \frac{1}{t}}{=} \lim\limits_{t \to +0} \dfrac{f(\frac{1}{t})}{g(\frac{1}{t})} = \left[ \dfrac{0}{0} \right]
+			$$
+			
+			Рассмотрим
+			$$
+			\exists \lim \dfrac{(f(\frac{1}{t}))'}{(g(\frac{1}{t}))'} = \lim\limits_{t \to +0} \dfrac{f'(\frac{1}{t}) \cdot (- \frac{1}{t^2})}{g'(\frac{1}{t}) \cdot (- \frac{1}{t^2})} = \lim\limits_{x \to + \infty} \dfrac{f'(x)}{g'(x)} = a
+			$$
+		\end{enumerate}
+	\end{proof}
+	\paragraph{Применение Лопиталя.}
+	\begin{lemma}
+		$\forall p > 0 \quad \forall a > 1 \qquad x^p = \overline{o}(a^x)$, $x \to + \infty$.
+	\end{lemma}
+	\begin{lemma}
+		$\forall p > 0 \quad \forall a \in (0; 1) \cup (1; + \infty) \qquad \log_a x = \overline{o}(x^p)$, $x \to + \infty$.
+	\end{lemma}
+	\begin{lemma}
+		$\forall \alpha > 0 \quad \forall p > 0 \quad \forall a \in (0; 1) \cup (1; + \infty) \qquad \log_a^\alpha x = \overline{o}(x^p)$, $x \to + \infty$.
+	\end{lemma}
+	\subsubsection{Утверждения.}
+	\begin{statement}
+		$\exists f'(x_0) \Leftrightarrow f(x) = f(x_0) + A \cdot (x - x_0) + \overline{o} (x - x_0)$ и $A = f'(x_0)$.
+	\end{statement}
+	\begin{statement}
+		$f$ непрерывно дифференцируема $n$ раз в некоторой окрестности точки $x_0$ $\Rightarrow$ $f(x) = f(x_0) + f'(x_0)(x - x_0) + \dfrac{f''(x_0)}{2!}(x - x_0)^2 + \dots + \dfrac{f^{(n)}(x_0)}{n!}(x - x_0)^n + \overline{o}((x - x_0)^n)$.
+	\end{statement}
+	\subsubsection{Применение Тейлора.}
+	\begin{statement}
+		$e^x = 1 + x + \dfrac{x^2}{2!} + \dfrac{x^3}{3!} + \dots + \dfrac{x^n}{n!} + \overline{o}(x^n)$.
+	\end{statement}
+	\begin{statement}
+		$\sin x = 0 + x + \dfrac{0}{2!}x^2 - \dfrac{1}{3!}x^3 + 0 \cdot x^4 + \dfrac{1}{3!}x^5 + \dots = x - \dfrac{x^3}{3!} + \dfrac{x^5}{5!} - \dots + (-1)^n \dfrac{x^{2n + 1}}{(2n + 1)!} + \overline{o}(x^{2n + 2})$.
+	\end{statement}
+	%\begin{statement}
+	%	$\cos x =$
+	%\end{statement}
+	%\begin{statement}
+	%	$(1 + x)^{\alpha} =$
+	%\end{statement}
+	
+	\section{Построение графика функции и анализ.}
+	
+	$y = f(x)$
+	
+	\begin{enumerate}
+		\item $D(f)$~--- смотрим область определения, поведение в точках разрыва.
+		\item Точки пересечения с осями и промежутки знакопостоянства.
+		\item Поведение на $\pm \infty$ (асимптоты).\\
+		Прямая $y = kx + b$, асимптота $y = f(x)$ $\Leftrightarrow$ $f(x) - (kx + b) = \overline{o}(1)$
+		\begin{statement}
+			$y = kx + b$ является асимптотой для $y = f(x)$ при $x \to +\infty$ $\Leftrightarrow$ $k = \lim\limits_{x \to +\infty} \dfrac{f(x)}{x}$; $b = \lim\limits_{x \to +\infty} (f(x) - kx)$.
+		\end{statement}
+		\item Исследование на четность/нечетность.
+		\item Исследование на монотонность и точки экстремума.
+		\begin{theorem}
+			Пусть $f$ непрерывно дифференцируема на $\langle a; b \rangle$. Если:
+			\begin{itemize}
+				\item $f' \geqslant 0$ на $\langle a; b \rangle$, то $f \uparrow$ на $\langle a; b \rangle$.
+				\item $f' > 0$ на $\langle a; b \rangle$, то $f \twoheaduparrow$ на $\langle a; b \rangle$.
+				\item $f' \leqslant 0$ на $\langle a; b \rangle$, то $f \downarrow$ на $\langle a; b \rangle$.
+				\item $f' < 0$ на $\langle a; b \rangle$, то $f \twoheaddownarrow$ на $\langle a; b \rangle$.
+			\end{itemize}
+		\end{theorem}
+		\begin{proof}
+			$\forall x_1 < x_2$, $x_1, x_2 \in \langle a; b \rangle \overset{?}{\Rightarrow} f(x_1) \geqslant f(x_2)$.\\
+			$f$ непрерывно дифференцируема на $[x_1, x_2] \Rightarrow \exists c \in [x_1, x_2]: f(x_2) - f(x_1) = f'(x)(x_2 - x_1)$.
+		\end{proof}
+		
+		\begin{theorem}
+			Пусть $f \uparrow$ на $\langle a; b \rangle$ и дифференцируема на $\langle a; b \rangle$ $\Rightarrow$ $f' \geqslant 0$ на $\langle a; b \rangle$.
+		\end{theorem}
+		\begin{proof}
+			$f'(x) = \lim\limits_{\varDelta x \to 0} \dfrac{f(x + \varDelta x) - f(x)}{\varDelta x} \geqslant 0$.
+		\end{proof}
+		\item Исследование на выпуклость.\\
+		Если $f \in C^2(\langle a; b \rangle)$, то если:
+		\begin{itemize}
+			\item Если $f'' \geqslant 0$, то $f$ выпукла вниз.
+			\item Если $f'' > 0$, то $f$ строго выпукла вниз.
+			\item Если $f'' \leqslant 0$, то $f$ выпукла вверх.
+			\item Если $f'' < 0$, то $f$ строго выпукла вверх.
+		\end{itemize}
+		\item Строим график.
+		\item $E(f)$.
+	\end{enumerate}
+	
+	\subsection{Регулярные и сингулярные точки.}
+	
+	\begin{definition}[Регулярная точка]
+		$\forall t \in \langle t_0 - \varepsilon; t_0 + \varepsilon \rangle: \begin{cases}
+			x = x(t)\\
+			y = y(t)
+		\end{cases}$ является графиком функции.
+	\end{definition}
+	
+	\section{Интегральное исчисление.}
+	
+	Рассмотрим ограниченную функцию $f: [a, b] \rightarrow \mathbb{R}, \, m \leqslant f(x) \leqslant M$. Возьмем точки $\{ x_0 = a < x_1 < x_2 < \dots < x_n = b \}$. $\xi_k \in [x_{k - 1}, x_k], \, \forall k = 1 \dots n$.
+	
+	\begin{definition}[Разбиение отрезка с выбранными точками]
+		Набор $x_k$ с набором $\xi_k$ ($\forall k = 1 \dots n$) называется разбиением отрезка с выбранными точками.
+	\end{definition}
+	
+	\begin{definition}[Интегральная сумма функции $f$ для разбиения отрезка с выбранными точками]
+		$$ m (b - a) \leqslant \sum\limits_{k = 1}^n f(\xi_k)(x_k - x_{k - 1}) \leqslant M (b - a) $$
+	\end{definition}
+	
+	\begin{definition}[Мелкость (ранг) разбиения]
+		$$ d = \max\limits_{k = 1}^n \{ x_k - x_{k - 1} \} $$
+	\end{definition}
+	
+	\begin{definition}[Интеграл функции]
+		Пусть $\exists I \in \mathbb{R}$, такое что $\forall \varepsilon > 0 \, \exists \delta > 0$: $\forall$ разбиения $d < \delta$, $\forall$ выбора $\{ \xi_k \}$ верно $\sum\limits_{k = 1}^n f(\xi_k)(x_k - x_{k - 1}) - I < \varepsilon$, тогда $I := \dint\limits_a^b f(x) dx$.
+	\end{definition}
+	
+	\begin{definition}[Верхняя и нижняя сумма Дарбу]
+		$f$ ограничена на $[a; b] \, \{ x_k \}_{k = 0}^n$~--- разбиение.
+		
+		$\sum\limits_{k = 1}^n \sup f_{[x_{k - 1}, x_k]} \varDelta x_k = \overline{S}_{\{ x_k \}}$~--- верхняя сумма Дарбу.
+		
+		$\sum\limits_{k = 1}^n \inf f_{[x_{k - 1}, x_k]} \varDelta x_k = \underline{S}_{\{ x_k \}}$~--- нижняя сумма Дарбу.
+	\end{definition}
+	
+	\begin{statement}
+		$\forall$ выбора $\{ \xi_k \}$ (для fix $\{ x_k \}$): $$ \underline{S}_{\{ x_k \}} \leqslant \sum\limits_{k = 1}^n f(\xi_k) \varDelta x_k \leqslant \overline{S}_{\{ x_k \}} $$
+	\end{statement}
+	
+	\begin{lemma}
+		Если добавить в разбиение еще одну точку, то верхняя сумма Дарбу не увеличится, а нижняя~--- не уменьшится.
+	\end{lemma}
+	
+	\begin{proof}
+		Возьмем точку $c$.
+		
+		$\sup f_{[x_k; x_{k + 1}]} \varDelta x_k \rightarrow \sup f_{[x_k, c]} (c - x_k) + \sup f_{[c; x_{k + 1}]} (x_{k + 1} - c) \leqslant \sup f_{[x_k, x_{k + 1}]} (c - x_k) + \sup f_{[x_k, x_{k + 1}]} (x_{k + 1} - c) = \sup f_{[x_k, x_{k + 1}]} (x_{k + 1} - x_k)$.
+		
+		Для минимума аналогично.
+	\end{proof}
+	
+	\begin{lemma}
+		$\{ x_k \}, \, \{ y_m \}$~--- два разбиения $[a; b]$. Тогда $\underline{S}_{\{ x_k \}} \leqslant \overline{S}_{\{ y_m \}}$.
+	\end{lemma}
+	
+	\begin{statement}
+		$\{ \overline{S}_{\{ x_k \}} \}_{\forall \text{разбиения}}$ ограничено снизу; $\{ \underline{S}_{\{ x_k \}} \}_{\forall \text{разбиения}}$ ограничено сверху.
+	\end{statement}
+	
+	\begin{definition}
+		$S^* = \inf \overline{S}_{\{ x_k \}}$; $S_* = \sup \underline{S}_{\{ x_k \}}$. $\inf$ и $\sup$ берутся по множеству всех разбиений $[a; b]$.
+	\end{definition}
+	
+%	\begin{lemma}
+%		$S^* = S_* \Leftrightarrow \exists \dint\limits_a^b f(x) dx$.
+%	\end{lemma}
+%	
+%	\begin{proof}
+%		\begin{itemize}
+%			\item[$\Rightarrow$]
+%			
+%			Пусть $S^* = S_* = S$. fix $\varepsilon > 0$.
+%			
+%			$\exists \{ z_l \}$: $\overline{S}_{\{ z_l \}} < S + \varepsilon$.
+%			
+%			$\exists \{ y_m \}$: $\underline{S}_{\{ y_m \}} > S - \varepsilon$.
+%			
+%			$\rightarrow \{ x_k \} := \{ z_l \} \cup \{ y_m \}$.
+%			
+%			$S - \varepsilon < \underline{S}_{\{ x_k \}} \leqslant \overline{S}_{\{ x_k \}} < S + \varepsilon$; $\delta := \max \{ \varDelta x_k \}$~--- искомая $\delta$.
+%			
+%			$\forall$ разбиения $\{ w_m \}$, мелкость $d < \delta$; $\{ \tilde{w}_m \} = \{ w_m \} \cup \{ x_k \}$.
+%			
+%			$\underline{S}_{\{ w_m \}} \leqslant \underline{S}_{\{ \tilde{w}_m \}} \leqslant \overline{S}_{\{ \tilde{w}_m \}} \leqslant \overline{S}_{\{ w_m \}}$ и $\overline{S}_{\{ \tilde{w}_m \}} - \underline{S}_{\{ \tilde{w}_m \}} \leqslant \overline{S}_{x_k} - \underline{S}_{x_k} < 2 \varepsilon$
+%			
+%			$\left| \sum\limits_{m = 1}^m f(\xi_m) \varDelta w_m - S \right| \leqslant \max \{ \left| \sum \dots - \underline{S}_{\{ w_m \}} \right|; \left| \sum \dots - \overline{S}_{\{ w_m \}} \right| \} \overset{?}{\leqslant} \overline{S}_{\{ w_m \}} - \underline{S}_{\{ w_m \}} < 2 \varepsilon$
+%			
+%			\item[$\Leftarrow$]
+%			
+%			fix $\varepsilon > 0$. $\exists \{ x_k \}$ $\forall$ выбора точек $\xi_k$ $\sum f(\xi_k) \varDelta x_k < S + \varepsilon$.
+%			
+%			Пусть $\xi_k: f(\xi_k) > \sup f_{[x_{k - 1}, x_k]} - \dfrac{\varepsilon}{2 (b - a)}$.
+%			
+%			$\sum f(\xi_k) \varDelta x_k \geqslant \sum \left( \sup f_{[x_{k - 1}, x_k]} - \dfrac{\varepsilon}{2 (b - a)} \right) \varDelta x_k$
+%		\end{itemize}
+%	\end{proof}
+
+	\begin{lemma}
+        $S^* = S_* \Leftrightarrow \exists \dint\limits_a^b f(x)\,dx$.
+    \end{lemma}
+    
+    \begin{proof}
+        \begin{itemize}
+            \item[$\Rightarrow$]
+            
+            Пусть $S^* = S_* = S$. Докажем по критерию Римана, что
+            \[
+                \exists \int\limits_a^b f(x)\,dx = S.
+            \]
+            
+            Зафиксируем $\varepsilon > 0$.
+            
+            По определению точной верхней грани существует разбиение $\{z_l\}$ такое, что
+            \[
+                \overline S_{\{z_l\}} < S + \varepsilon.
+            \]
+            По определению точной нижней грани существует разбиение $\{y_m\}$ такое, что
+            \[
+                \underline S_{\{y_m\}} > S - \varepsilon.
+            \]
+            
+            Рассмотрим их общее измельчение
+            \[
+                \{x_k\} := \{z_l\} \cup \{y_m\}.
+            \]
+            Тогда, поскольку при измельчении нижняя сумма не убывает, а верхняя не возрастает,
+            \[
+                S - \varepsilon
+                < \underline S_{\{y_m\}}
+                \le \underline S_{\{x_k\}}
+                \le \overline S_{\{x_k\}}
+                \le \overline S_{\{z_l\}}
+                < S + \varepsilon.
+            \]
+            Следовательно,
+            \[
+                \overline S_{\{x_k\}} - \underline S_{\{x_k\}} < 2\varepsilon.
+            \]
+            
+            Обозначим
+            \[
+                \delta := \min_{k} (x_k - x_{k-1}) > 0.
+            \]
+            Покажем, что эта $\delta$ подходит в критерии интегрируемости.
+            
+            Пусть $\{w_j\}$ --- любое разбиение отрезка $[a,b]$ мелкости
+            \[
+                d(\{w_j\}) := \max_j (w_j - w_{j-1}) < \delta.
+            \]
+            Тогда каждое звено разбиения $\{w_j\}$ не может содержать более одной внутренней точки разбиения $\{x_k\}$; поэтому разбиение
+            \[
+                \{\widetilde w_j\} := \{w_j\} \cup \{x_k\}
+            \]
+            получается из $\{w_j\}$ добавлением точек, и на каждом промежутке разбиения $\{w_j\}$ точки разбиения $\{x_k\}$ лишь уточняют его.
+            
+            Для любого выбора отмеченных точек $\xi_j \in [w_{j-1},w_j]$ имеем
+            \[
+                \underline S_{\{w_j\}}
+                \le \sum_j f(\xi_j)\,\Delta w_j
+                \le \overline S_{\{w_j\}}.
+            \]
+            Кроме того,
+            \[
+                \underline S_{\{w_j\}}
+                \le \underline S_{\{\widetilde w_j\}}
+                \le \overline S_{\{\widetilde w_j\}}
+                \le \overline S_{\{w_j\}}.
+            \]
+            Так как $\{\widetilde w_j\}$ является измельчением разбиения $\{x_k\}$, то
+            \[
+                \overline S_{\{\widetilde w_j\}} - \underline S_{\{\widetilde w_j\}}
+                \le
+                \overline S_{\{x_k\}} - \underline S_{\{x_k\}}
+                < 2\varepsilon.
+            \]
+            Отсюда
+            \[
+                S-\varepsilon < \underline S_{\{x_k\}}
+                \le \underline S_{\{\widetilde w_j\}}
+                \le \sum_j f(\xi_j)\,\Delta w_j
+                \le \overline S_{\{\widetilde w_j\}}
+                \le \overline S_{\{x_k\}} < S+\varepsilon,
+            \]
+            то есть
+            \[
+                \left|\sum_j f(\xi_j)\,\Delta w_j - S\right| < \varepsilon.
+            \]
+            
+            Значит, по критерию Римана функция $f$ интегрируема на $[a,b]$, и
+            \[
+                \int_a^b f(x)\,dx = S.
+            \]
+            
+            \item[$\Leftarrow$]
+            
+            Пусть существует интеграл
+            \[
+                \int_a^b f(x)\,dx = S.
+            \]
+            Докажем, что $S^* = S_* = S$.
+            
+            Зафиксируем $\varepsilon > 0$. По критерию Римана существует $\delta > 0$ такое, что для всякого разбиения
+            \[
+                \{x_k\}, \qquad d(\{x_k\}) < \delta,
+            \]
+            и для любого выбора точек $\xi_k \in [x_{k-1},x_k]$ выполнено
+            \[
+                \left|\sum_k f(\xi_k)\,\Delta x_k - S\right| < \frac{\varepsilon}{2}.
+            \]
+            
+            Возьмём какое-нибудь разбиение $\{x_k\}$ мелкости $<\delta$.
+            
+            Для каждого $k$ выберем точку $\xi_k$ так, чтобы
+            \[
+                f(\xi_k) > \sup_{[x_{k-1},x_k]} f - \frac{\varepsilon}{2(b-a)}.
+            \]
+            Тогда
+            \[
+                \sum_k f(\xi_k)\,\Delta x_k
+                \ge
+                \sum_k \left(\sup_{[x_{k-1},x_k]} f - \frac{\varepsilon}{2(b-a)}\right)\Delta x_k
+                =
+                \overline S_{\{x_k\}} - \frac{\varepsilon}{2(b-a)}\sum_k \Delta x_k
+                =
+                \overline S_{\{x_k\}} - \frac{\varepsilon}{2}.
+            \]
+            С другой стороны,
+            \[
+                \sum_k f(\xi_k)\,\Delta x_k < S + \frac{\varepsilon}{2}.
+            \]
+            Поэтому
+            \[
+                \overline S_{\{x_k\}} < S + \varepsilon.
+            \]
+            Значит,
+            \[
+                S^* \le \overline S_{\{x_k\}} < S + \varepsilon.
+            \]
+            
+            Аналогично, выбирая точки $\eta_k$ так, что
+            \[
+                f(\eta_k) < \inf_{[x_{k-1},x_k]} f + \frac{\varepsilon}{2(b-a)},
+            \]
+            получаем
+            \[
+                \sum_k f(\eta_k)\,\Delta x_k
+                \le
+                \underline S_{\{x_k\}} + \frac{\varepsilon}{2}.
+            \]
+            Но одновременно
+            \[
+                \sum_k f(\eta_k)\,\Delta x_k > S - \frac{\varepsilon}{2},
+            \]
+            следовательно,
+            \[
+                \underline S_{\{x_k\}} > S - \varepsilon.
+            \]
+            Значит,
+            \[
+                S_* \ge \underline S_{\{x_k\}} > S - \varepsilon.
+            \]
+            
+            Так как для любого разбиения всегда
+            \[
+                \underline S_{\{x_k\}} \le S_* \le S^* \le \overline S_{\{x_k\}},
+            \]
+            то из полученных оценок следует
+            \[
+                S - \varepsilon < S_* \le S^* < S + \varepsilon.
+            \]
+            Поскольку $\varepsilon > 0$ произвольно, заключаем:
+            \[
+                S_* = S^* = S.
+            \]
+        \end{itemize}
+    \end{proof}
+	
+	\begin{theorem}[Вейерштрасса]
+		Пусть $f \in C([a; b])$. Тогда $\exists \, \dint\limits_a^b f(x) dx$.
+	\end{theorem}
+	
+	\begin{proof}
+		fix $\varepsilon > 0$. $f$ равномерно непрерывна на $[a; b] \Rightarrow \exists \delta = \delta(\varepsilon): \, \forall x, y \in [a; b]: \, |x - y| < \delta \Rightarrow |f(x) - f(y)| < \varepsilon$.
+		
+		Возьмем произвольное разбиение $\{ x_k \}$, $d < \delta$.
+		
+		Пусть $\xi_k$~--- точки максимума, $\eta_k$~--- точки минимум а на $[x_{k - 1}, x_k]$.
+		
+		$\overline{S}_{\{ x_k \}} - \underline{S}_{\{ x_k \}} = \sum\limits_{k = 1}^k (f(\xi_k) - f(\eta_k)) \varDelta x_k < \varepsilon \sum\limits_{k = 1}^k \varDelta x_k = \varepsilon (b - a)$.
+		
+		$0 \leqslant \overline{S}_{\{ x_k\}} - \underline{S}_{\{ x_k \}} < \varepsilon (b - a) \Rightarrow S^* = S_* \Rightarrow \exists \dint\limits_a^b f(x) dx$.
+	\end{proof}
+	
+		\subsection{Свойства интегралов.}
+	
+	\begin{enumerate}
+		\item \textbf{Линейность.}
+		
+		Пусть $f$ и $g$ интегрируемы на $[a, b]$, тогда $\forall \alpha, \beta \in \mathbb{R}$ функция $\alpha f + \beta g$ тоже интегрируема на $[a, b]$ и 
+		$$ \dint\limits_a^b (\alpha f(x) + \beta g(x)) dx = \alpha \dint\limits_a^b f(x) dx + \beta \dint\limits_a^b g(x) dx $$
+		
+		\begin{proof}
+			Пусть $A = \dint\limits_a^b f(x) dx$ и $B = \dint\limits_a^b g(x) dx$. Рассмотрим модуль разности интегральной суммы и предполагаемого значения интеграла:
+			\begin{align*}
+				&\left| \sum\limits_{k = 1}^n (\alpha f(\xi_k) + \beta g(\xi_k))\varDelta x_k - (\alpha A + \beta B) \right| \\
+				={}& \left| \alpha \left(\sum\limits_{k = 1}^n f(\xi_k)\varDelta x_k - A\right) + \beta \left(\sum\limits_{k = 1}^n g(\xi_k)\varDelta x_k - B\right) \right| \\
+				\leqslant{}& |\alpha| \cdot \left| \sum\limits_{k = 1}^n f(\xi_k)\varDelta x_k - A \right| + |\beta| \cdot \left| \sum\limits_{k = 1}^n g(\xi_k)\varDelta x_k - B \right|
+			\end{align*}
+			Fix $\varepsilon > 0$. Так как $f$ и $g$ интегрируемы, то для $\varepsilon' = \dfrac{\varepsilon}{|\alpha| + |\beta| + 1} > 0$ существуют $\delta_1 > 0$ и $\delta_2 > 0$ такие, что для любого разбиения с мелкостью $d < \delta_1$ (для $f$) и $d < \delta_2$ (для $g$) выполняется:
+			$$ \left| \sum f(\xi_k)\varDelta x_k - A \right| < \varepsilon' \quad \text{и} \quad \left| \sum g(\xi_k)\varDelta x_k - B \right| < \varepsilon' $$
+			Выберем $\delta = \min(\delta_1, \delta_2)$. Тогда для любого разбиения с мелкостью $d < \delta$ имеем:
+			$$ |\alpha| \cdot \left| \dots \right| + |\beta| \cdot \left| \dots \right| < |\alpha|\varepsilon' + |\beta|\varepsilon' = (|\alpha| + |\beta|)\frac{\varepsilon}{|\alpha| + |\beta| + 1} < \varepsilon $$
+			Что и требовалось доказать.
+		\end{proof}
+		
+		\item \textbf{Аддитивность.}
+		
+		Пусть $f$ интегрируема на $[a, b]$. Тогда $\forall c \in (a, b)$ функция $f$ интегрируема на отрезках $[a, c]$ и $[c, b]$, и справедливо равенство:
+		$$ \dint\limits_a^b f(x) dx = \dint\limits_a^c f(x) dx + \dint\limits_c^b f(x) dx $$
+		
+		\item \textbf{Монотонность.}
+		
+		Пусть функции $f(x)$ и $g(x)$ интегрируемы на $[a, b]$ и $\forall x \in [a, b]$ выполняется $f(x) \leqslant g(x)$. Тогда:
+		$$ \dint\limits_a^b f(x) dx \leqslant \dint\limits_a^b g(x) dx $$
+		Если, кроме того, $f$ и $g$ непрерывны и $\exists x_0 \in [a, b]: f(x_0) < g(x_0)$, то неравенство будет строгим.
+		
+		\begin{proof}[Идея]
+			Рассмотрим функцию $h(x) = g(x) - f(x) \geqslant 0$. Интегральная сумма для $h(x)$ будет неотрицательна, следовательно, и ее предел (интеграл) также будет неотрицателен: $\dint\limits_a^b (g(x) - f(x)) dx \geqslant 0$.
+		\end{proof}
+		
+	\end{enumerate}
+	
+	\begin{theorem}[О среднем значении в интегральной форме]
+		Пусть $f(x)$ непрерывна на отрезке $[a, b]$. Тогда $\exists c \in [a, b]$ такая, что
+		$$ \dint\limits_a^b f(x) dx = f(c) \cdot (b - a) $$
+	\end{theorem}
+	\begin{proof}
+		Т.к. $f \in C([a, b])$, по теореме Вейерштрасса она достигает на нем своих наименьшего $m$ и наибольшего $M$ значений.
+		$$ m \leqslant f(x) \leqslant M, \quad \forall x \in [a, b] $$
+		Интегрируя это неравенство от $a$ до $b$:
+		$$ \dint\limits_a^b m \,dx \leqslant \dint\limits_a^b f(x) \,dx \leqslant \dint\limits_a^b M \,dx $$
+		$$ m(b - a) \leqslant \dint\limits_a^b f(x) \,dx \leqslant M(b - a) $$
+		Разделим на $(b - a)$:
+		$$ m \leqslant \frac{1}{b - a}\dint\limits_a^b f(x) \,dx \leqslant M $$
+		По теореме о промежуточном значении для непрерывной функции, существует точка $c \in [a, b]$, в которой функция принимает это среднее значение.
+	\end{proof}
+	
+	\begin{definition}[Кусочно-непрерывная функция]
+		Функция называется \textbf{кусочно-непрерывной} на отрезке $[a, b]$, если она имеет конечное число точек разрыва, и все они являются разрывами первого рода.
+	\end{definition}
+	
+	\begin{theorem}
+		Если функция $f$ кусочно-непрерывна на $[a, b]$, то она интегрируема на $[a, b]$.
+	\end{theorem}
+	
+	\subsection{Интеграл с переменным верхним пределом}
+	
+	Пусть $f$ интегрируема на $[\alpha, \beta]$. Зафиксируем $a \in [\alpha, \beta]$ и рассмотрим функцию:
+	$$ F(x) = \dint\limits_a^x f(t) dt, \quad x \in [\alpha, \beta] $$
+	
+	\begin{theorem}[Основная теорема анализа (Теорема Барроу)]
+		Пусть $f(t)$ непрерывна на отрезке $[\alpha, \beta]$. Тогда функция $F(x) = \dint\limits_a^x f(t) dt$:
+		\begin{enumerate}
+			\item Непрерывна на $[\alpha, \beta]$.
+			\item Дифференцируема в любой точке $x_0 \in (\alpha, \beta)$, и ее производная равна $F'(x_0) = f(x_0)$.
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		1) Докажем непрерывность. Рассмотрим $\lim_{\Delta x \to 0} (F(x_0 + \Delta x) - F(x_0))$.
+		$$ F(x_0 + \Delta x) - F(x_0) = \dint\limits_a^{x_0 + \Delta x} f(t) dt - \dint\limits_a^{x_0} f(t) dt = \dint\limits_{x_0}^{x_0 + \Delta x} f(t) dt $$
+		Так как $f$ непрерывна на отрезке, она на нем ограничена. $|\dint\limits_{x_0}^{x_0 + \Delta x} f(t) dt| \leqslant \sup |f| \cdot |\Delta x| \to 0$ при $\Delta x \to 0$.
+		
+		2) Найдем производную.
+		$$ F'(x_0) = \lim_{\Delta x \to 0} \frac{F(x_0 + \Delta x) - F(x_0)}{\Delta x} = \lim_{\Delta x \to 0} \frac{1}{\Delta x} \dint\limits_{x_0}^{x_0 + \Delta x} f(t) dt $$
+		По теореме о среднем, $\exists c \in [x_0, x_0 + \Delta x]$ такое, что $\dint\limits_{x_0}^{x_0 + \Delta x} f(t) dt = f(c) \cdot \Delta x$.
+		$$ F'(x_0) = \lim_{\Delta x \to 0} \frac{f(c) \cdot \Delta x}{\Delta x} = \lim_{\Delta x \to 0} f(c) = f(x_0) $$
+		Последний переход верен, так как при $\Delta x \to 0$ имеем $c \to x_0$, а функция $f$ непрерывна.
+	\end{proof}
+	
+	\begin{definition}[Первообразная]
+		Пусть $f$ определена на $[\alpha, \beta]$. Функция $F(x)$ называется \textbf{первообразной} для $f(x)$, если $\forall x \in [\alpha, \beta]$ выполняется $F'(x) = f(x)$.
+	\end{definition}
+	
+	\begin{statement}
+		Из теоремы Барроу следует, что если функция $f$ непрерывна на отрезке, то у нее существует хотя бы одна первообразная (а именно, $F(x) = \dint_a^x f(t)dt$).
+	\end{statement}
+	
+	\begin{lemma}
+		Пусть $f$ непрерывна на $[\alpha, \beta]$; $F_1(x)$ и $F_2(x)$~--- две первообразные к $f(x)$ на $[\alpha, \beta]$. Тогда $F_1(x) - F_2(x) = const$.
+	\end{lemma}
+	
+	\begin{proof}
+		$G(x) = F_1(x) - F_2(x)$; $\forall x_1, x_2 \in [\alpha, \beta]$.
+		
+		По теореме Лагранжа о средних в дифференциальной форме:
+		
+		$\exists c \in (x_1, x_2)$: $G(x_1) - G(x_2) = G'(c)(x_1 - x_2) = (F_1'(c) - F_2'(c))(x_1 - x_2) = 0 \, \forall x_1, x_2 \Rightarrow G(x) = const$.
+	\end{proof}
+	
+	\begin{theorem}[Формула Ньютона-Лейбница]
+		$f$ непрерывна на $[a, b]$; $F(x)$~--- любая первообразная $f(x)$. Тогда $\dint\limits_a^b f(x) dx = F(b) - F(a) =: F(x) \Bigr|_a^b$.
+	\end{theorem}
+	
+	\begin{proof}
+		$\Phi (x) = \dint\limits_a^b f(x) dx = F(x) + C$.
+		
+		$t = b$: $\Phi (b) = F(b) + C$.
+		
+		$t = a$: $\Phi (a) = F(a) + C \Rightarrow C = -F(a)$.
+	\end{proof}
+	
+	\begin{theorem}[Формула замены переменной]
+		Пусть $f$ непрерывна на $[\alpha, \beta]$; $g$ непрерывно дифференцируема на $[a, b]$ и $g(a) = \alpha$, $g(b) = \beta$. Тогда $\dint\limits_a^b f(g(x)) g'(x) dx = \dint\limits_{g(a)}^{g(b)} f(t) dt$.
+	\end{theorem}
+	
+	\begin{proof}
+		$\dint\limits_a^b f(t) dt = F(\beta) - F(\alpha) = F(g(b)) - F(g(a)) = F(g(x)) \Bigr|_a^b = \dint\limits_a^b (F(g(x)))' dx\\
+		= \dint\limits_a^b f(g(x)) g'(x) dx$.
+	\end{proof}
+	
+	\begin{theorem}[Формула интегрирования по частям]
+		Пусть $f$ и $g$ непрерывно дифференцируемы на $[a, b]$. Тогда $\dint\limits_a^b f(x) g'(x) dx = f(x) g(x) \Bigr|_a^b - \dint\limits_a^b f'(x) g(x) dx$, что эквивалентно $\dint\limits_a^b f(x) d g(x) = f(x) g(x) \Bigr|_a^b - \dint\limits_a^b g(x) d f(x)$.
+	\end{theorem}
+	
+	\begin{proof}
+		$\dint\limits_a^b f g' dx + \dint\limits_a^b f' g dx = \dint\limits_a^b (f g' + f' g) dx = \dint\limits_a^b (fg)' dx = fg \Bigr|_a^b$.
+	\end{proof}
+	
+	\subsection{Правила интегрирования.}
+	
+    \begin{enumerate}
+        \item $\dint x^s\,dx = \dfrac{x^{s+1}}{s+1} + C$; $s \ne -1$
+        
+        \textbf{Вывод:} $\left(\dfrac{x^{s+1}}{s+1}\right)' = \dfrac{(s+1)x^s}{s+1} = x^s$. \checkmark
+        
+        \item $\dint \dfrac{dx}{x} = \ln|x| + C$
+        
+        \textbf{Вывод:} При $x > 0$: $(\ln x)' = \dfrac{1}{x}$. При $x < 0$: $(\ln(-x))' = \dfrac{-1}{-x} = \dfrac{1}{x}$. Итого $(\ln|x|)' = \dfrac{1}{x}$. \checkmark
+        
+        \item $\dint a^x\,dx = \dfrac{a^x}{\ln a} + C$; $\dint e^x\,dx = e^x + C$
+        
+        \textbf{Вывод:} $\left(\dfrac{a^x}{\ln a}\right)' = \dfrac{a^x \ln a}{\ln a} = a^x$. При $a = e$: $\ln e = 1$, поэтому $(e^x)' = e^x$. \checkmark
+        
+        \item $\dint \sin x\,dx = -\cos x + C$
+        
+        \textbf{Вывод:} $(-\cos x)' = \sin x$. \checkmark
+        
+        \item $\dint \cos x\,dx = \sin x + C$
+        
+        \textbf{Вывод:} $(\sin x)' = \cos x$. \checkmark
+        
+        \item $\dint \dfrac{dx}{\sin^2 x} = -\ctg x + C$
+        
+        \textbf{Вывод:} $(-\ctg x)' = -\left(-\dfrac{1}{\sin^2 x}\right) = \dfrac{1}{\sin^2 x}$. \checkmark
+        
+        \item $\dint \dfrac{dx}{\cos^2 x} = \tg x + C$
+        
+        \textbf{Вывод:} $(\tg x)' = \left(\dfrac{\sin x}{\cos x}\right)' = \dfrac{\cos^2 x + \sin^2 x}{\cos^2 x} = \dfrac{1}{\cos^2 x}$. \checkmark
+        
+        \item $\dint \tg x\,dx = -\ln|\cos x| + C$
+        
+        \textbf{Вывод:}
+        \[
+            \dint \tg x\,dx
+            = \dint \frac{\sin x}{\cos x}\,dx
+            = -\dint \frac{d(\cos x)}{\cos x}
+            = -\ln|\cos x| + C.
+        \]
+        
+        \item $\dint \ctg x\,dx = \ln|\sin x| + C$
+        
+        \textbf{Вывод:}
+        \[
+            \dint \ctg x\,dx
+            = \dint \frac{\cos x}{\sin x}\,dx
+            = \dint \frac{d(\sin x)}{\sin x}
+            = \ln|\sin x| + C.
+        \]
+        
+        \item $\dint \dfrac{dx}{x^2 + 1} = \arctg x + C$
+        
+        \textbf{Вывод:} $(\arctg x)' = \dfrac{1}{x^2 + 1}$. \checkmark
+        
+        Частный случай:
+        \[
+            \dint \frac{dx}{x^2 + a^2}
+            = \frac{1}{a^2}\dint \frac{dx}{\left(\tfrac{x}{a}\right)^2 + 1}
+            = \frac{1}{a^2}\dint \frac{a\,d\!\left(\tfrac{x}{a}\right)}{\left(\tfrac{x}{a}\right)^2 + 1}
+            = \frac{1}{a}\arctg\frac{x}{a} + C.
+        \]
+        
+        \item $\dint \dfrac{dx}{x^2 - a^2} = \dfrac{1}{2a}\ln\left|\dfrac{x-a}{x+a}\right| + C$
+        
+        \textbf{Вывод:} Разложим дробь на простейшие:
+        \[
+            \frac{1}{x^2 - a^2}
+            = \frac{1}{(x-a)(x+a)}
+            = \frac{1}{2a}\left(\frac{1}{x-a} - \frac{1}{x+a}\right).
+        \]
+        Следовательно,
+        \[
+            \dint \frac{dx}{x^2 - a^2}
+            = \frac{1}{2a}\left(\dint\frac{d(x-a)}{x-a} - \dint\frac{d(x+a)}{x+a}\right)
+            = \frac{1}{2a}\ln\left|\frac{x-a}{x+a}\right| + C.
+        \]
+        
+        \item $\dint \dfrac{dx}{\sqrt{1 - x^2}} = \arcsin x + C$
+        
+        \textbf{Вывод:} $(\arcsin x)' = \dfrac{1}{\sqrt{1-x^2}}$. \checkmark
+        
+        \item $\dint \dfrac{dx}{\sqrt{x^2 - 1}} = \operatorname{arcsinh} x + C$
+        
+        \textbf{Вывод:} Сделаем замену $x = \cosh t$, $dx = \sinh t\,dt$, $\sqrt{x^2-1} = \sinh t$:
+        \[
+            \dint\frac{dx}{\sqrt{x^2-1}}
+            = \dint\frac{\sinh t\,dt}{\sinh t}
+            = \dint dt
+            = t + C
+            = \operatorname{arccosh} x + C
+            = \ln\!\left(x + \sqrt{x^2 - 1}\right) + C.
+        \]
+        
+        \item $\dint \dfrac{dx}{\sqrt{x^2+1}} = \ln\!\left(x + \sqrt{x^2+1}\right) + C$
+        
+        \textbf{Вывод:} Сделаем замену $x = \sinh t$, $dx = \cosh t\,dt$, $\sqrt{x^2+1} = \cosh t$:
+        \[
+            \dint\frac{dx}{\sqrt{x^2+1}}
+            = \dint\frac{\cosh t\,dt}{\cosh t}
+            = \dint dt
+            = t + C
+            = \operatorname{arcsinh} x + C
+            = \ln\!\left(x + \sqrt{x^2+1}\right) + C.
+        \]
+        
+        \item $\dint \arctg x\,dx = x\arctg x - \dfrac{1}{2}\ln(x^2+1) + C$
+        
+        \textbf{Вывод:} Интегрируем по частям ($u = \arctg x$, $dv = dx$):
+        \[
+            \dint \arctg x\,dx
+            = x\arctg x - \dint x\,d(\arctg x)
+            = x\arctg x - \dint \frac{x\,dx}{x^2+1}
+            = x\arctg x - \frac{1}{2}\dint\frac{d(x^2+1)}{x^2+1}
+            = x\arctg x - \frac{1}{2}\ln(x^2+1) + C.
+        \]
+    \end{enumerate}
+
+	\subsection{Приложения определенного интеграла}
+
+	\subsubsection{Объемы тел вращения}
+	\begin{statement}
+		Объем тела вращения, образованного вращением вокруг оси $Ox$ криволинейной трапеции, ограниченной графиком непрерывной функции $y = f(x)$, равен:
+		$$ V_{\text{вр}} = \pi \dint_a^b f^2(x) dx $$
+	\end{statement}
+	\noindent
+	Пример: $y = \sin x$ на $[0, \pi]$. Тогда $V = \pi \dint_0^\pi \sin^2 x dx = \frac{\pi^2}{2}$.
+
+	\subsubsection{Длина дуги кривой}
+	\begin{statement}
+		Пусть функция $f(x)$ непрерывно дифференцируема на $[a, b]$. Тогда длина $L$ дуги кривой $y = f(x)$ от $a$ до $b$ вычисляется по формуле:
+		$$ L = \dint_a^b \sqrt{1 + (f'(x))^2} dx $$
+	\end{statement}
+	\begin{proof}[Идея вывода]
+		Разобьем отрезок на части. Длина малого участка $\Delta L_k \approx \sqrt{\Delta x_k^2 + \Delta y_k^2} = \sqrt{1 + (\frac{\Delta y_k}{\Delta x_k})^2} \Delta x_k$. По теореме Лагранжа $\frac{\Delta y_k}{\Delta x_k} = f'(\xi_k)$. Переходя к пределу при $\max \Delta x_k \rightarrow 0$, получаем интеграл.
+	\end{proof}
+
+	\noindent
+	Если кривая в $\mathbb{R}^3$ задана параметрически $\begin{cases} x = x(t) \\ y = y(t) \\ z = z(t) \end{cases}, t \in [t_1, t_2]$, то:
+	$$ L = \dint_{t_1}^{t_2} \sqrt{(x'(t))^2 + (y'(t))^2 + (z'(t))^2} dt $$
+
+	\subsubsection{Площадь в параметрическом виде}
+	\begin{statement}
+		Пусть кривая задана параметрически $x = x(t), y = y(t), t \in [t_1, t_2]$. Тогда площадь фигуры, ограниченной этой кривой, вычисляется через криволинейный интеграл:
+		$$ S = \dint_{t_1}^{t_2} y(t) x'(t) dt \quad \text{или} \quad S = \frac{1}{2} \dint_{t_1}^{t_2} (x y' - y x') dt $$
+	\end{statement}
+	\noindent
+	Пример: Площадь эллипса $\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$. Параметризация: $x = a \cos t, y = b \sin t, t \in [0, 2\pi]$.
+	$$ S = \frac{1}{2} \dint_0^{2\pi} (ab \cos^2 t + ab \sin^2 t) dt = \frac{1}{2} ab \dint_0^{2\pi} 1 dt = \pi ab $$
+
+    \subsection{Полярные координаты}
+
+    \begin{statement}
+        Пусть у нас есть график в полярных координатах $r = r(\varphi)$. Тогда его площадь равна $$S = \dfrac{1}{2} \dint_{\varphi_1}^{\varphi_2} r^2(\varphi) d \varphi$$
+    \end{statement}
+
+    \begin{proof}[Вывод]
+        Возьмем маленькое изменение угла. Тогда у нас получился почти сектор. $S_{\text{сектор}} = \pi r_{\text{сектор}}^2 \dfrac{\varDelta \varphi}{2 \pi}$. Тогда полная площадь $S = \dfrac{1}{2} \dint_{\varphi_1}^{\varphi_2} r^2(\varphi) d \varphi$.
+    \end{proof}
+    
+    \section{Дифференциальные уравнения}
+    
+    \begin{definition}[Обыкновенное дифференциальное уравнение]
+    	Уравнение вида
+    	\[
+    		F\bigl(x, y(x), y'(x), \dots, y^{(n)}(x)\bigr) = 0
+    	\]
+    	называется обыкновенным дифференциальным уравнением (ОДУ) $n$-го порядка.
+    \end{definition}
+    
+    \begin{definition}[Уравнение, разрешённое относительно старшей производной]
+    	Если в уравнении $F(x, y(x), y'(x), \dots, y^{(n)}(x)) = 0$ можно выразить старший член, то есть представить его в виде
+    	\[
+    		y^{(n)}(x) = \tilde{F}(x, y(x), y'(x), \dots, y^{(n-1)}(x)),
+    	\]
+    	то такое уравнение называется \emph{разрешённым относительно старшей производной}.
+    \end{definition}
+
+    \begin{definition}[Ортогональное семейство кривых]
+    	Пусть задано семейство кривых
+    	\[
+    		F(x, y, C) = 0,
+    	\]
+    	зависящее от параметра $C$. Семейство кривых $G(x, y, C_1) = 0$ называется \emph{ортогональным} к первому, если в каждой точке пересечения касательные к кривым обоих семейств взаимно перпендикулярны.
+    \end{definition}
+
+    \begin{method}[Построение ортогонального семейства]
+    	Пусть исходному семейству $F(x, y, C) = 0$ соответствует дифференциальное уравнение (не содержащее $C$)
+    	\[
+    		y' = f(x, y).
+    	\]
+    	Так как угловые коэффициенты взаимно перпендикулярных прямых удовлетворяют соотношению $k_1 \cdot k_2 = -1$, дифференциальное уравнение ортогонального семейства получается заменой
+    	\[
+    		y' \; \longmapsto \; -\frac{1}{y'}.
+    	\]
+    	Общее решение уравнения
+    	\[
+    		y' = -\frac{1}{f(x, y)}
+    	\]
+    	и задаёт искомое ортогональное семейство.
+    \end{method}
+
+    \begin{example}[Ортогональное семейство для $y = a/x^2$]
+    	Рассмотрим семейство кривых
+    	\[
+    		y = \frac{a}{x^2}.
+    	\]
+    	Дифференцируя по $x$:
+    	\[
+    		y' = -\frac{2a}{x^3}.
+    	\]
+    	Исключим параметр $a$, выразив его из исходного уравнения: $a = yx^2$. Подставляя, получаем дифференциальное уравнение семейства:
+    	\[
+    		y' = -\frac{2y}{x}.
+    	\]
+    	Заменяя $y'$ на $-\dfrac{1}{y'}$, получаем уравнение ортогонального семейства:
+    	\[
+    		y' = \frac{x}{2y}.
+    	\]
+    	Разделяя переменные и интегрируя:
+    	\[
+    		2y\,dy = x\,dx \quad\Longrightarrow\quad y^2 = \frac{x^2}{2} + C \quad\Longrightarrow\quad x^2 - 2y^2 = C_1.
+    	\]
+    	Таким образом, семейство кубических гипербол $y = a/x^2$ и семейство гипербол $x^2 - 2y^2 = C_1$ являются взаимно ортогональными.
+    \end{example}
+    
+        \subsection{Уравнения с разделяющимися переменными}
+
+    \begin{definition}[Уравнение с разделяющимися переменными]
+    	Дифференциальное уравнение первого порядка называется уравнением с \emph{разделяющимися переменными}, если оно может быть записано в виде
+    	\[
+    		f(x)\,dx = g(y)\,dy,
+    	\]
+    	или, что то же самое,
+    	\[
+    		y' = \frac{f(x)}{h(y)}, \qquad \text{где } g(y) = h(y).
+    	\]
+    \end{definition}
+
+    \begin{method}[Решение уравнения с разделяющимися переменными]
+    	Пусть уравнение приведено к виду $f(x)\,dx = g(y)\,dy$. Тогда, интегрируя обе части независимо (левую по $x$, правую по $y$), получаем общее решение в неявном виде:
+    	\[
+    		\int f(x)\,dx = \int g(y)\,dy + C.
+    	\]
+    	
+    	\emph{Замечание.} Если исходное уравнение имеет вид $M(x)N(y)\,dx = P(x)Q(y)\,dy$, то для разделения переменных обе части делят на $N(y)P(x)$ (при условии $N(y)P(x) \ne 0$):
+    	\[
+    		\frac{M(x)}{P(x)}\,dx = \frac{Q(y)}{N(y)}\,dy.
+    	\]
+    	При этом отдельно нужно проверить случаи $N(y) = 0$ и $P(x) = 0$ — они могут давать дополнительные (особые) решения, не содержащиеся в общей формуле.
+    \end{method}
+
+    \begin{example}
+    	Решить уравнение $y' = \dfrac{x}{y}$, $y \ne 0$.
+    	
+    	Разделяем переменные:
+    	\[
+    		y\,dy = x\,dx.
+    	\]
+    	Интегрируя:
+    	\[
+    		\frac{y^2}{2} = \frac{x^2}{2} + C \quad\Longrightarrow\quad y^2 - x^2 = C_1.
+    	\]
+    	Это семейство гипербол, являющееся общим решением исходного уравнения.
+    \end{example}
+
+    \subsection{Задача Коши}
+
+    \begin{definition}[Задача Коши]
+    	\emph{Задачей Коши} для ОДУ $n$-го порядка
+    	\[
+    		y^{(n)} = \tilde{F}\bigl(x, y, y', \dots, y^{(n-1)}\bigr)
+    	\]
+    	называется задача нахождения решения этого уравнения, удовлетворяющего заданным \emph{начальным условиям}
+    	\[
+    		y(x_0) = y_0, \quad y'(x_0) = y_1, \quad \dots, \quad y^{(n-1)}(x_0) = y_{n-1},
+    	\]
+    	где $x_0, y_0, y_1, \dots, y_{n-1}$~--- заданные числа.
+    \end{definition}
+
+    \begin{note}
+    	Для уравнения первого порядка $y' = f(x, y)$ задача Коши состоит в нахождении решения, проходящего через заданную точку $(x_0, y_0)$, то есть удовлетворяющего условию $y(x_0) = y_0$. Геометрически: из всего семейства интегральных кривых (общего решения) выбирается та единственная кривая, которая проходит через точку $(x_0, y_0)$.
+    \end{note}
+
+    \begin{theorem}[Коши о существовании и единственности]
+    	Пусть функции $F(x, y)$ и $\dfrac{\partial F}{\partial y}(x, y)$ непрерывны в некоторой окрестности точки $(x_0, y_0)$. Тогда в этой окрестности существует единственное решение задачи Коши
+    	\[
+    		\begin{cases}
+    			y' = F(x, y) \\
+    			y(x_0) = y_0.
+    		\end{cases}
+    	\]
+    \end{theorem}
+
+    \begin{example}
+    	Найти решение задачи Коши:
+    	\[
+    		y' = \frac{x}{y}, \qquad y(0) = 2.
+    	\]
+    	Из общего решения (см. пример выше) $y^2 - x^2 = C_1$ подставим начальные условия $x = 0$, $y = 2$:
+    	\[
+    		2^2 - 0^2 = C_1 \quad\Longrightarrow\quad C_1 = 4.
+    	\]
+    	Таким образом, частное решение задачи Коши:
+    	\[
+    		y^2 - x^2 = 4, \qquad \text{т.е.}\qquad y = \sqrt{x^2 + 4}
+    	\]
+    	(знак $+$ выбран, так как $y(0) = 2 > 0$).
+    \end{example}
+    
+    \begin{statement}
+    	\[
+			\ln |a| = \ln |b| + C, \ C \in \mathbb{R} \ \Leftrightarrow \ a = C_1 b, \ C_1 \ne 0
+		\]
+    \end{statement}
+    
+    \subsection{Линейные операторы}
+    
+    \begin{definition}
+    	Пусть $X$, $Y$~--- линейные пространства. Отображение $A: X \rightarrow Y$ называется оператором. Оператор $A$ называется линейным, если:
+    	\begin{enumerate}
+    		\item $\forall \lambda \in \mathbb{R}$ $\forall x \in X$ $A(\lambda x) = \lambda Ax$;
+    		\item $\forall x_1, x_2 \in X$ $A(x_1 + x_2) = Ax_1 + Ax_2$.
+    	\end{enumerate}
+    \end{definition}
+    
+    \noindent
+    Рассмотрим уравнение
+    \[
+    	Ax = y. \qquad (*)
+    \]
+    Уравнение $Ax = 0$ называется однородным, соответствующим уравнению $(*)$.
+    
+    \begin{theorem}
+    	Пусть $A$~--- линейный оператор, $x_0$~--- частное решение уравнения $(*)$, а $\widetilde{x}$~--- общее решение уравнения $Ax = 0$. Тогда $x = x_0 + \widetilde{x}$~--- общее решение уравнения $(*)$.
+    \end{theorem}
+    
+    \begin{proof}
+    	Пусть $\widetilde{x}$~--- произвольное решение $Ax = 0$. Тогда по линейности
+    	\[
+    		A(x_0 + \widetilde{x}) = Ax_0 + A\widetilde{x} = y + 0 = y,
+    	\]
+    	то есть $x_0 + \widetilde{x}$~--- решение $(*)$.
+    	
+    	Обратно, пусть $x$~--- произвольное решение $(*)$. Так как $A(-x_0) = -Ax_0$ (первое свойство при $\lambda = -1$), то
+    	\[
+    		A(x - x_0) = Ax + A(-x_0) = Ax - Ax_0 = y - y = 0,
+    	\]
+    	то есть $\widetilde{x} := x - x_0$~--- решение однородного уравнения, и $x = x_0 + \widetilde{x}$.
+    \end{proof}
+    
+    \begin{definition}
+    	Пусть $a, b \in \overline{\mathbb{R}}$, $a_0, a_1 \in C(a, b)$. Линейным дифференциальным оператором первого порядка называется оператор
+    	\[
+    		L = a_1(x) \dfrac{d}{dx} + a_0(x), \qquad L: C^1(a, b) \rightarrow C(a, b),
+    	\]
+    	действующий по правилу
+    	\[
+    		Lu := a_1(x) \dfrac{d}{dx} u(x) + a_0(x) u(x).
+    	\]
+    \end{definition}
+    
+    \begin{definition}
+    	Уравнение
+    	\[
+    		Lu = f(x), \qquad f(x) \in C(a, b),
+    	\]
+    	называется линейным дифференциальным уравнением первого порядка. При $f \equiv 0$ оно называется однородным.
+    \end{definition}
+    
+    \begin{statement}
+    	Оператор $L$ является линейным.
+    \end{statement}
+    
+    \begin{proof}
+    	Пусть $\lambda \in \mathbb{R}$, $u, u_1, u_2 \in C^1(a, b)$. Из линейности дифференцирования
+    	\[
+    		L(\lambda u) = a_1 (\lambda u)' + a_0 \lambda u = \lambda (a_1 u' + a_0 u) = \lambda Lu,
+    	\]
+    	\[
+    		L(u_1 + u_2) = a_1 (u_1' + u_2') + a_0 (u_1 + u_2) = Lu_1 + Lu_2.
+    	\]
+    \end{proof}
+    
+    \begin{note}
+    	По доказанному утверждению к уравнению $Lu = f$ применима теорема о структуре общего решения: общее решение равно сумме частного решения $Lu = f$ и общего решения однородного уравнения $Lu = 0$.
+    \end{note}
+    
+    \subsubsection{Однородное уравнение}
+    
+    \begin{statement}
+    	Пусть $a_1(x) \ne 0$ на $(a, b)$. Тогда общее решение однородного уравнения $Ly = 0$, то есть
+    	\[
+    		a_1(x) y'(x) + a_0(x) y(x) = 0,
+    	\]
+    	имеет вид
+    	\[
+    		y_0(x) = C e^{-\int \frac{a_0(x)}{a_1(x)} dx}, \qquad C \in \mathbb{R}.
+    	\]
+    \end{statement}
+    
+    \begin{proof}
+    	Это уравнение с разделяющимися переменными. Так как $a_1(x) \ne 0$, можно записать
+    	\[
+    		y' = -\dfrac{a_0(x)}{a_1(x)} y.
+    	\]
+    	Функция $y \equiv 0$ является решением. Пусть $y \ne 0$, тогда, разделяя переменные,
+    	\[
+    		\dfrac{dy}{y} = -\dfrac{a_0(x)}{a_1(x)} dx.
+    	\]
+    	Интегрируя, получаем
+    	\[
+    		\ln |y| = -\int \dfrac{a_0(x)}{a_1(x)} dx + C_1, \qquad C_1 \in \mathbb{R},
+    	\]
+    	откуда
+    	\[
+    		y = C e^{-\int \frac{a_0(x)}{a_1(x)} dx}, \qquad C \ne 0.
+    	\]
+    	Решение $y \equiv 0$ получается из этой формулы при $C = 0$, поэтому окончательно $C \in \mathbb{R}$.
+    \end{proof}
+    
+    \subsubsection{Неоднородное уравнение}
+    
+    \begin{statement}[Метод вариации постоянной (Лагранжа); формула Эйлера--Пуассона]
+    	Пусть $a_1(x) \ne 0$ на $(a, b)$. Тогда общее решение уравнения $Ly = f(x)$ имеет вид
+    	\[
+    		y(x) = \widetilde{y}(x) + C y_0(x) = \left( \int \dfrac{f(x)}{a_1(x)} e^{\int \frac{a_0(x)}{a_1(x)} dx} dx + C \right) e^{-\int \frac{a_0(x)}{a_1(x)} dx}, \qquad C \in \mathbb{R},
+    	\]
+    	где $y_0(x) = e^{-\int \frac{a_0(x)}{a_1(x)} dx}$~--- ненулевое решение однородного уравнения, а $\widetilde{y}$~--- частное решение $Ly = f(x)$.
+    \end{statement}
+    
+    \begin{proof}
+    	По теореме о структуре общего решения $y = \widetilde{y} + C y_0$, где $C y_0$~--- общее решение однородного уравнения. Осталось найти частное решение $\widetilde{y}$. Будем искать его в виде
+    	\[
+    		\widetilde{y}(x) = c(x) y_0(x),
+    	\]
+    	то есть <<варьируем>> постоянную $C$. Подставим $\widetilde{y}$ в уравнение $Ly = f(x)$:
+    	\[
+    		a_1(x) \bigl( c(x) y_0(x) \bigr)' + a_0(x) c(x) y_0(x) = f(x),
+    	\]
+    	\[
+    		a_1(x) c'(x) y_0(x) + c(x) \underbrace{\bigl[ a_1(x) y_0'(x) + a_0(x) y_0(x) \bigr]}_{= 0} = f(x).
+    	\]
+    	Выражение в квадратных скобках равно нулю, так как $y_0$~--- решение однородного уравнения. Остаётся
+    	\[
+    		a_1(x) c'(x) y_0(x) = f(x),
+    	\]
+    	откуда
+    	\[
+    		c(x) = \int \dfrac{f(x)}{a_1(x) y_0(x)} dx = \int \dfrac{f(x)}{a_1(x)} e^{\int \frac{a_0(x)}{a_1(x)} dx} dx,
+    	\]
+    	так как $\dfrac{1}{y_0(x)} = e^{\int \frac{a_0(x)}{a_1(x)} dx}$. Подставляя $\widetilde{y} = c(x) y_0(x)$ в $y = \widetilde{y} + C y_0$, получаем требуемую формулу.
+    \end{proof}
+    
+    \subsubsection{Задача Коши для линейного уравнения}
+    
+    \noindent
+    Рассмотрим задачу Коши для линейного уравнения первого порядка:
+    \[
+    	\begin{cases}
+    		a_1(x) y' + a_0(x) y = f(x), \\
+    		y(x_0) = B.
+    	\end{cases}
+    \]
+    
+    \begin{statement}
+    	Пусть $a_1(x_0) \ne 0$. Тогда в некоторой окрестности точки $x_0$ решение задачи Коши существует, единственно и имеет вид
+    	\[
+    		y(x) = \left( \int\limits_{x_0}^{x} \dfrac{f(\xi)}{a_1(\xi)} e^{\int\limits_{x_0}^{\xi} \frac{a_0(\eta)}{a_1(\eta)} d\eta} d\xi + B \right) e^{-\int\limits_{x_0}^{x} \frac{a_0(\xi)}{a_1(\xi)} d\xi}.
+    	\]
+    \end{statement}
+    
+    \begin{proof}
+    	Так как $a_1$ непрерывна и $a_1(x_0) \ne 0$, найдётся окрестность $x_0$, в которой $a_1 \ne 0$; рассматриваем уравнение в ней. Общее решение имеет вид
+    	\[
+    		y(x) = \left( \int \dfrac{f(x)}{a_1(x)} e^{A(x) + C_0} dx + C \right) e^{-(A(x) + C_0)},
+    	\]
+    	где $A(x)$~--- первообразная функции $\dfrac{a_0(x)}{a_1(x)}$, а постоянная $C_0$ входит в $e^{\pm C_0}$ и поглощается постоянной $C$. Поэтому в качестве первообразной можно взять
+    	\[
+    		A(x) = \int\limits_{x_0}^{x} \dfrac{a_0(\xi)}{a_1(\xi)} d\xi, \qquad A(x_0) = 0,
+    	\]
+    	а первообразную в скобках взять в виде интеграла с переменным верхним пределом $\int\limits_{x_0}^{x}$, тогда все остальные первообразные отличаются от неё на постоянную, которая входит в $C$:
+    	\[
+    		y(x) = \left( \int\limits_{x_0}^{x} \dfrac{f(\xi)}{a_1(\xi)} e^{A(\xi)} d\xi + C \right) e^{-A(x)}.
+    	\]
+    	Подставим $x = x_0$: интеграл по $[x_0, x_0]$ равен нулю, а $A(x_0) = 0$, поэтому $y(x_0) = C$. Из условия $y(x_0) = B$ получаем $C = B$, причём это единственное значение $C$. Значит, среди всех решений условию удовлетворяет ровно одно, и оно задаётся указанной формулой.
+    \end{proof}
+    
+    \subsubsection{Метод подстановки $y = uv$}
+    
+    \begin{method}[Решение линейного уравнения подстановкой $y = uv$]
+    	Пусть $a_1(x) \ne 0$. Для решения уравнения
+    	\[
+    		a_1(x) y'(x) + a_0(x) y(x) = f(x)
+    	\]
+    	ищем решение в виде произведения двух функций:
+    	\[
+    		y(x) = u(x) v(x).
+    	\]
+    	Тогда $y' = u'v + uv'$, и уравнение принимает вид
+    	\[
+    		a_1(x) u'(x) v(x) + \underbrace{a_1(x) u(x) v'(x) + a_0(x) u(x) v(x)}_{= u(x) \left( a_1(x) v'(x) + a_0(x) v(x) \right)} = f(x).
+    	\]
+    	Одну из функций можно выбрать произвольно, поэтому потребуем, чтобы выражение в скобках обращалось в ноль. Тогда исходное уравнение будет выполнено, если функции $u$ и $v$ удовлетворяют системе
+    	\[
+    		\begin{cases}
+    			a_1(x) v'(x) + a_0(x) v(x) = 0 & \text{--- берем частное решение } v_0(x), \\
+    			a_1(x) u'(x) v(x) = f(x) & \text{--- находим общее решение } u(x).
+    		\end{cases}
+    	\]
+    \end{method}
+    
+    \begin{example}[Вывод формулы общего решения этим методом]
+    	Из первого уравнения системы берем ненулевое частное решение однородного уравнения:
+    	\[
+    		v_0(x) = e^{-\int \frac{a_0(x)}{a_1(x)} dx}.
+    	\]
+    	Подставляем $v = v_0$ во второе уравнение:
+    	\[
+    		u'(x) = \dfrac{f(x)}{a_1(x) v_0(x)} \quad \Longrightarrow \quad u(x) = \int \dfrac{f(x)}{a_1(x)} e^{\int \frac{a_0(x)}{a_1(x)} dx} dx + C, \qquad C \in \mathbb{R}.
+    	\]
+    	Итого
+    	\[
+    		y(x) = u(x) v_0(x) = \left( \int \dfrac{f(x)}{a_1(x)} e^{\int \frac{a_0(x)}{a_1(x)} dx} dx + C \right) e^{-\int \frac{a_0(x)}{a_1(x)} dx},
+    	\]
+    	что совпадает с формулой, полученной методом вариации постоянной.
+    \end{example}
+
+	\subsection{Уравнение Бернулли}
+
+	\begin{definition}[Уравнение Бернулли]
+		Уравнение вида
+		\[
+			a_1(x)y'(x)+a_0(x)y(x)=f(x)y^p(x)
+		\]
+		называется уравнением Бернулли.
+	\end{definition}
+
+	\begin{statement}[Приведение уравнения Бернулли к линейному виду]
+		Если есть уравнение вида $a_1(x)y'(x)+a_0(x)y(x)=f(x)y^p(x)$, $p\ne 1$, то можно сделать замену так, чтобы оно стало линейным:
+		\[
+			a_1(x)y^{-p}(x)y'(x)+a_0(x)y^{1-p}(x)=f(x), \qquad z(x)=y^{1-p}(x), \qquad z'(x)=(1-p)y^{-p}(x)y'(x)
+		\]
+		\[
+			\frac{a_1(x)z'(x)}{(1-p)}+a_0(x)z(x)=f(x)
+		\]
+	\end{statement}
+
+	\subsection{Линейные уравнения $n$-го порядка}
+
+	\begin{definition}
+		Пусть $a_0, a_1, \dots, a_{n-1} \in C(a, b)$. Линейным дифференциальным оператором $n$-го порядка называется оператор
+		\[
+			L = \dfrac{d^n}{dx^n} + a_{n-1}(x) \dfrac{d^{n-1}}{dx^{n-1}} + \dots + a_1(x) \dfrac{d}{dx} + a_0(x), \qquad L: C^n(a, b) \rightarrow C(a, b),
+		\]
+		действующий по правилу
+		\[
+			Ly := y^{(n)}(x) + a_{n-1}(x) y^{(n-1)}(x) + \dots + a_1(x) y'(x) + a_0(x) y(x).
+		\]
+		Уравнение $Ly = 0$, то есть
+		\[
+			y^{(n)}(x) + a_{n-1}(x) y^{(n-1)}(x) + \dots + a_1(x) y'(x) + a_0(x) y(x) = 0,
+		\]
+		называется линейным однородным дифференциальным уравнением $n$-го порядка.
+	\end{definition}
+
+	\begin{statement}
+		Оператор $L$ является линейным.
+	\end{statement}
+
+	\begin{proof}
+		Следует из линейности дифференцирования: для $\lambda \in \mathbb{R}$ и $y, y_1, y_2 \in C^n(a, b)$ при всех $k \leqslant n$ верно $(\lambda y)^{(k)} = \lambda y^{(k)}$ и $(y_1 + y_2)^{(k)} = y_1^{(k)} + y_2^{(k)}$, поэтому $L(\lambda y) = \lambda Ly$ и $L(y_1 + y_2) = Ly_1 + Ly_2$.
+	\end{proof}
+
+	\begin{definition}[Ядро оператора]
+		Пусть $L: X \rightarrow Y$~--- линейный оператор. \emph{Ядром} оператора $L$ называется множество
+		\[
+			\operatorname{Ker}(L) = \{ y \in X : Ly = 0 \},
+		\]
+		то есть множество всех решений однородного уравнения $Ly = 0$.
+	\end{definition}
+
+	\begin{definition}[Фундаментальная система решений]
+		Набор из $n$ линейно независимых на $(a, b)$ решений $\varphi_1, \dots, \varphi_n$ уравнения $Ly = 0$ называется \emph{фундаментальной системой решений} (ФСР).
+	\end{definition}
+
+	\begin{theorem}
+		Пусть $a_k \in C(a, b)$, $k = 0, 1, \dots, n-1$. Тогда у уравнения $Ly = 0$ существует ФСР $\varphi_1(x), \varphi_2(x), \dots, \varphi_n(x)$, и общее решение этого уравнения имеет вид
+		\[
+			y_0(x) = C_1 \varphi_1(x) + C_2 \varphi_2(x) + \dots + C_n \varphi_n(x), \qquad C_1, \dots, C_n \in \mathbb{R}.
+		\]
+		Иными словами, $\operatorname{Ker}(L)$~--- $n$-мерное линейное пространство, а ФСР~--- его базис.
+	\end{theorem}
+
+	\begin{note}
+		Так как $L$ линеен, любая линейная комбинация решений уравнения $Ly = 0$ снова является его решением. Содержательная часть теоремы состоит в том, что независимых решений ровно $n$ и других решений нет.
+	\end{note}
+
+	\subsubsection{Определитель Вронского}
+
+	\begin{definition}[Матрица Вронского и вронскиан]
+		Пусть $\varphi_1, \varphi_2, \dots, \varphi_n \in C^{n-1}(a, b)$. \emph{Матрицей Вронского} этого набора функций называется матрица размера $n \times n$
+		\[
+			W(x) =
+			\begin{pmatrix}
+				\varphi_1(x) & \varphi_2(x) & \cdots & \varphi_n(x) \\[2pt]
+				\varphi_1'(x) & \varphi_2'(x) & \cdots & \varphi_n'(x) \\[2pt]
+				\vdots & \vdots & \ddots & \vdots \\[2pt]
+				\varphi_1^{(n-1)}(x) & \varphi_2^{(n-1)}(x) & \cdots & \varphi_n^{(n-1)}(x)
+			\end{pmatrix}.
+		\]
+		Её определитель
+		\[
+			\omega(x) = \det W(x)
+		\]
+		называется \emph{вронскианом} данного набора функций.
+	\end{definition}
+
+	\begin{statement}
+		Пусть $\varphi_1, \dots, \varphi_n \in C^{n-1}(a, b)$ и $\omega(x_0) \ne 0$ хотя бы в одной точке $x_0 \in (a, b)$. Тогда функции $\varphi_1, \dots, \varphi_n$ линейно независимы на $(a, b)$.
+	\end{statement}
+
+	\begin{proof}
+		Пусть
+		\[
+			C_1 \varphi_1(x) + C_2 \varphi_2(x) + \dots + C_n \varphi_n(x) = 0 \qquad \forall x \in (a, b).
+		\]
+		Продифференцируем это тождество $k$ раз, $k = 0, 1, \dots, n - 1$:
+		\[
+			C_1 \varphi_1^{(k)}(x) + C_2 \varphi_2^{(k)}(x) + \dots + C_n \varphi_n^{(k)}(x) = 0.
+		\]
+		В матричном виде это система
+		\[
+			W(x)
+			\begin{pmatrix}
+				C_1 \\ C_2 \\ \vdots \\ C_n
+			\end{pmatrix}
+			=
+			\begin{pmatrix}
+				0 \\ 0 \\ \vdots \\ 0
+			\end{pmatrix}.
+		\]
+		При $x = x_0$ имеем $\det W(x_0) \ne 0$, поэтому система имеет только тривиальное решение $C_1 = C_2 = \dots = C_n = 0$. Значит, функции линейно независимы.
+	\end{proof}
+
+	\begin{theorem}
+		Пусть $a_k \in C(a, b)$, $k = 0, 1, \dots, n-1$, и пусть $\varphi_1, \varphi_2, \dots, \varphi_n$~--- какие-то решения уравнения $Ly = 0$. Если существует $x_0 \in (a, b)$ такое, что
+		\[
+			\omega(x_0) = \det W(x_0) \ne 0,
+		\]
+		то $\omega(x) \ne 0$ для всех $x \in (a, b)$, то есть $\varphi_1, \dots, \varphi_n$~--- ФСР.
+	\end{theorem}
+
+	\section{Собственные числа}
+
+	\begin{definition}[Собственное число и собственный вектор]
+		Пусть $X$~--- линейное пространство над $\mathbb{R}$, $A: X \rightarrow X$~--- линейный оператор. Число $\lambda \in \mathbb{R}$ называется \emph{собственным числом} (собственным значением) оператора $A$, если существует вектор $x \in X$, $x \ne 0$, такой что
+		\[
+			Ax = \lambda x.
+		\]
+		Вектор $x$ называется \emph{собственным вектором} оператора $A$, отвечающим собственному числу $\lambda$.
+	\end{definition}
+
+	\begin{note}
+		Условие $x \ne 0$ существенно: равенство $A0 = \lambda 0$ верно при любом $\lambda$, поэтому без этого требования любое число было бы <<собственным>>.
+
+		Пусть $E$~--- тождественный оператор ($Ex = x$). Равенство $Ax = \lambda x$ равносильно $(A - \lambda E)x = 0$, поэтому $\lambda$~--- собственное число тогда и только тогда, когда
+		\[
+			\operatorname{Ker}(A - \lambda E) \ne \{0\},
+		\]
+		а множество собственных векторов, отвечающих $\lambda$, есть $\operatorname{Ker}(A - \lambda E) \setminus \{0\}$.
+
+		Пусть $X = \mathbb{R}^n$ и $A$~--- квадратная матрица $n \times n$, действующая по правилу $x \mapsto Ax$. Однородная система $(A - \lambda E)x = 0$ с квадратной матрицей имеет ненулевое решение тогда и только тогда, когда определитель её матрицы равен нулю. Поэтому
+		\[
+			\lambda \text{~--- собственное число } A \quad \Longleftrightarrow \quad \det(A - \lambda E) = 0.
+		\]
+
+		Над $\mathbb{C}$ определение и этот критерий переносятся дословно, с $\lambda \in \mathbb{C}$.
+	\end{note}
+
+	\begin{example}
+		Пусть $A = \dfrac{d}{dx}: C^\infty(a, b) \rightarrow C^\infty(a, b)$. Для любого $\lambda \in \mathbb{R}$ функция $e^{\lambda x}$ ненулевая и $\dfrac{d}{dx} e^{\lambda x} = \lambda e^{\lambda x}$, поэтому каждое $\lambda \in \mathbb{R}$ является собственным числом $A$.
+
+		Более того, равенство $Ay = \lambda y$ есть однородное уравнение $y' - \lambda y = 0$. По утверждению об однородном уравнении ($a_1 = 1$, $a_0 = -\lambda$) его общее решение $y = C e^{\lambda x}$, то есть
+		\[
+			\operatorname{Ker}(A - \lambda E) = \{ C e^{\lambda x} : C \in \mathbb{R} \}.
+		\]
+	\end{example}
+
+	\begin{example}
+		Пусть $A = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$ (поворот плоскости $\mathbb{R}^2$ на $90^\circ$ против часовой стрелки). Собственные числа $A$~--- корни уравнения $\det(A - \lambda E) = 0$:
+		\[
+			\det(A - \lambda E) = \begin{vmatrix} -\lambda & -1 \\ 1 & -\lambda \end{vmatrix} = \lambda^2 + 1 = 0.
+		\]
+		Вещественных корней нет, поэтому у $A$ нет вещественных собственных чисел: ни один ненулевой вектор плоскости не переходит при таком повороте в коллинеарный себе. Над $\mathbb{C}$ собственные числа~--- $\lambda = \pm i$.
+	\end{example}
+
+	\section{Линейные однородные уравнения с постоянными коэффициентами}
+
+	\noindent
+	Рассмотрим линейное однородное уравнение $n$-го порядка, у которого все коэффициенты постоянны:
+	\[
+		y^{(n)} + a_{n-1} y^{(n-1)} + \dots + a_1 y' + a_0 y = 0, \qquad a_0, a_1, \dots, a_{n-1} \in \mathbb{R}. \qquad (**)
+	\]
+
+	\begin{definition}[Характеристическое уравнение]
+		Многочлен
+		\[
+			P(\lambda) = \lambda^n + a_{n-1} \lambda^{n-1} + \dots + a_1 \lambda + a_0
+		\]
+		называется \emph{характеристическим многочленом} уравнения $(**)$, а уравнение $P(\lambda) = 0$~--- его \emph{характеристическим уравнением}.
+	\end{definition}
+
+	\begin{note}
+		Так как $\left( e^{\lambda x} \right)^{(k)} = \lambda^k e^{\lambda x}$, то
+		\[
+			L e^{\lambda x} = \left( \lambda^n + a_{n-1} \lambda^{n-1} + \dots + a_1 \lambda + a_0 \right) e^{\lambda x} = P(\lambda) e^{\lambda x}.
+		\]
+		Поскольку $e^{\lambda x} \ne 0$, функция $e^{\lambda x}$ является решением $(**)$ тогда и только тогда, когда $P(\lambda) = 0$. Поэтому решения ищутся через корни характеристического уравнения (ср. с примером про собственные числа оператора $\dfrac{d}{dx}$).
+	\end{note}
+
+	\begin{theorem}[Вещественные корни]
+		Пусть $\lambda \in \mathbb{R}$~--- корень характеристического уравнения кратности $k$. Тогда ему отвечают $k$ решений уравнения $(**)$:
+		\[
+			e^{\lambda x}, \ x e^{\lambda x}, \ \dots, \ x^{k-1} e^{\lambda x}.
+		\]
+	\end{theorem}
+
+	\begin{theorem}[Комплексные корни]
+		Пусть $\lambda = a + bi$, $b \ne 0$,~--- корень характеристического уравнения кратности $k$. Так как коэффициенты $P$ вещественны, то $\overline{\lambda} = a - bi$~--- тоже корень кратности $k$. Этой паре корней отвечают $2k$ вещественных решений уравнения $(**)$:
+		\[
+			x^m e^{ax} \cos bx, \quad x^m e^{ax} \sin bx, \qquad m = 0, 1, \dots, k - 1,
+		\]
+		то есть
+		\[
+			e^{ax} \cos bx, \ e^{ax} \sin bx, \ x e^{ax} \cos bx, \ x e^{ax} \sin bx, \ \dots, \ x^{k-1} e^{ax} \cos bx, \ x^{k-1} e^{ax} \sin bx.
+		\]
+	\end{theorem}
+
+	\begin{statement}
+		Решения, отвечающие всем корням характеристического уравнения, вместе составляют ФСР уравнения $(**)$ (всего их $n$, так как сумма кратностей корней равна $n$). Общее решение~--- их линейная комбинация с произвольными вещественными коэффициентами.
+	\end{statement}
+
+	\begin{proof}[Откуда берутся $\cos$ и $\sin$]
+		Корням $\lambda$ и $\overline{\lambda}$ отвечают комплексные решения $x^m e^{\lambda x}$ и $x^m e^{\overline{\lambda} x}$. По формуле Эйлера
+		\[
+			e^{\lambda x} = e^{ax} (\cos bx + i \sin bx), \qquad e^{\overline{\lambda} x} = e^{ax} (\cos bx - i \sin bx).
+		\]
+		Нас интересуют вещественные решения, поэтому в комбинации этих двух решений коэффициенты нужно брать комплексно сопряжёнными, $C$ и $\overline{C}$:
+		\[
+			\begin{aligned}
+				y(x) &= C x^m e^{ax} (\cos bx + i \sin bx) + \overline{C} x^m e^{ax} (\cos bx - i \sin bx) = \\
+				&= \underbrace{(C + \overline{C})}_{C_1} x^m e^{ax} \cos bx + \underbrace{i (C - \overline{C})}_{C_2} x^m e^{ax} \sin bx.
+			\end{aligned}
+		\]
+		Если $C = \alpha + \beta i$, то $C_1 = 2\alpha \in \mathbb{R}$ и $C_2 = i \cdot 2\beta i = -2\beta \in \mathbb{R}$, причём $C_1, C_2$ пробегают все вещественные значения. Значит, пару комплексных решений можно заменить парой вещественных $x^m e^{ax} \cos bx$ и $x^m e^{ax} \sin bx$.
+	\end{proof}
+	
+\end{document}

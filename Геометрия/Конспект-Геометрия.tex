@@ -1,0 +1,706 @@
+\documentclass[12pt]{article}
+
+\input{../header.tex}
+
+\tikzset{
+	dot/.style={circle, fill=black, inner sep=1pt},
+	invisible/.style={dashed, thin, opacity=0.5},
+	visible/.style={thick},
+	main/.style={blue!70!black, thick},
+	aux/.style={red!70!black, thin},
+	plane/.style={fill=green!20, opacity=0.4},
+	secant/.style={green!50!black, thick}
+}
+
+\begin{document}
+	\tableofcontents
+	\setcounter{tocdepth}{3}
+	\newpage
+	
+	\section{Тетраэдр}
+	
+	\subsection{Медианы, высоты и средние линии}
+	
+	\begin{theorem}
+		Если в тетраэдре две пары перпендикулярных скрещивающихся ребер, то он ортоцентрический (высоты пересекаются в одной точке).
+		
+		\begin{center}
+			\begin{tikzpicture}[scale=1.2, line join=round, line cap=round]
+				% Координаты вершин
+				\coordinate (D) at (2, 4);
+				\coordinate (A) at (0, 0);
+				\coordinate (B) at (5, 0.5);
+				\coordinate (C) at (1.5, 1.5);
+				
+				% Основание и скрытые линии
+				\draw[invisible] (A) -- (C);
+				\draw[invisible] (B) -- (C);
+				\draw[invisible] (D) -- (C);
+				
+				% Видимые ребра
+				\draw[visible] (A) -- (B) -- (D) -- cycle;
+				
+				% Точка пересечения высот (ортоцентр) H
+				\coordinate (H) at (1.9, 1.4);
+				\node[dot, label=right:$H$] at (H) {};
+				
+				% Высота из D на плоскость ABC
+				\coordinate (Hd) at (1.9, 0.6);
+				\draw[aux, dashed] (D) -- (H) -- (Hd);
+				\node[below] at (Hd) {\small $H_D$};
+				
+				% Высота из A на плоскость BDC
+				\coordinate (Ha) at (2.8, 2);
+				\draw[aux, dashed] (A) -- (H) -- (Ha);
+				\node[right] at (Ha) {\small $H_A$};
+				
+				% Подписи вершин
+				\node[below left] at (A) {$A$};
+				\node[below right] at (B) {$B$};
+				\node[above] at (C) {$C$};
+				\node[above] at (D) {$D$};
+			\end{tikzpicture}
+		\end{center}
+	\end{theorem}
+	
+	\begin{theorem}
+		Медианы тетраэдра пересекаются в одной точке и делятся в отношение $3 : 1$.
+		
+		\begin{center}
+			\begin{tikzpicture}[scale=1.2, line join=round, line cap=round]
+				\coordinate (D) at (2, 4);
+				\coordinate (A) at (0, 0);
+				\coordinate (B) at (5, 0);
+				\coordinate (C) at (1.5, 1.5);
+				
+				% Скрытые ребра
+				\draw[invisible] (A) -- (C);
+				\draw[invisible] (B) -- (C);
+				\draw[invisible] (D) -- (C);
+				
+				% Видимые ребра
+				\draw[visible] (A) -- (B) -- (D) -- cycle;
+				
+				% Центроид грани ABC (G_D)
+				\coordinate (Gd) at (2.16, 0.5); 
+				% Центроид грани BCD (G_A)
+				\coordinate (Ga) at (2.83, 1.83);
+				
+				% Точка пересечения медиан (Центроид тетраэдра M)
+				% M = (A+B+C+D)/4. Gd = (A+B+C)/3. M = 3/4 Gd + 1/4 D.
+				\coordinate (M) at (2.12, 1.37);
+				
+				% Рисуем медианы
+				\draw[aux, dashed] (D) -- (M) -- (Gd);
+				\draw[aux, dashed] (A) -- (M) -- (Ga);
+				
+				\node[dot, label=right:$M$] at (M) {};
+				\node[below] at (Gd) {\small $G_D$};
+				\node[right] at (Ga) {\small $G_A$};
+				
+				\node[below left] at (A) {$A$};
+				\node[below right] at (B) {$B$};
+				\node[above] at (C) {$C$};
+				\node[above] at (D) {$D$};
+				
+				% Обозначение отношения
+				\node[left, red] at (2.1, 2.7) {$3x$};
+				\node[left, red] at (2.15, 0.9) {$x$};
+			\end{tikzpicture}
+		\end{center}
+	\end{theorem}
+	
+	\begin{theorem}
+		Средние линии тетраэдра пересекаются в одной точке и делятся в точке пересечения пополам.
+		
+		\begin{center}
+			\begin{tikzpicture}[scale=1.2, line join=round, line cap=round]
+				\coordinate (D) at (2, 4);
+				\coordinate (A) at (0, 0);
+				\coordinate (B) at (5, 0.5);
+				\coordinate (C) at (1.5, 1.5);
+				
+				\draw[invisible] (A) -- (C);
+				\draw[invisible] (B) -- (C);
+				\draw[invisible] (D) -- (C);
+				\draw[visible] (A) -- (B) -- (D) -- cycle;
+				
+				% Середины ребер
+				\coordinate (M_AB) at (2.5, 0.25);
+				\coordinate (M_CD) at (1.75, 2.75);
+				\coordinate (M_AD) at (1, 2);
+				\coordinate (M_BC) at (3.25, 1);
+				
+				% Точка пересечения
+				\coordinate (M) at (2.125, 1.5);
+				\node[dot, label=right:$M$] at (M) {};
+				
+				% Средние линии
+				\draw[aux, dashed] (M_AB) -- (M_CD);
+				\draw[aux, dashed] (M_AD) -- (M_BC);
+				
+				% Узлы для середин
+				\node[dot, scale=0.5] at (M_AB) {};
+				\node[dot, scale=0.5] at (M_CD) {};
+				\node[dot, scale=0.5] at (M_AD) {};
+				\node[dot, scale=0.5] at (M_BC) {};
+				
+				\node[below left] at (A) {$A$};
+				\node[below right] at (B) {$B$};
+				\node[above] at (C) {$C$};
+				\node[above] at (D) {$D$};
+			\end{tikzpicture}
+		\end{center}
+	\end{theorem}
+	
+	\subsection{Теорема Менелая}
+	
+	\begin{theorem}[Теорема Менелая для тетраэдра]
+		Возьмем три точки $M, N, K$, лежащие в одной плоскости; $M \in AD$, $N \in BD$, $K \in AC$. Тогда если эта плоскость пересекает $BC$ в точке $P$, то:
+		$$\dfrac{DM}{MA} \cdot \dfrac{AK}{KC} \cdot \dfrac{CP}{PB} \cdot \dfrac{BN}{ND} = 1$$
+		
+		\begin{center}
+			\begin{tikzpicture}[scale=1.5, line join=round, line cap=round]
+				% 1. Координаты вершин тетраэдра
+				\coordinate (D) at (2, 4);
+				\coordinate (A) at (0, 0);
+				\coordinate (B) at (5, 0.5);
+				\coordinate (C) at (1.5, 1.5);
+				
+				% 2. Точки на ребрах через интерполяцию (calc)
+				% Точки M и N на передних ребрах
+				\coordinate (M) at ($(A)!0.4!(D)$); 
+				\coordinate (N) at ($(B)!0.6!(D)$);
+				% Точки K и P на задних ребрах
+				\coordinate (K) at ($(A)!0.65!(C)$);
+				\coordinate (P) at ($(B)!0.4!(C)$); 
+				
+				% 3. Отрисовка невидимых ребер тетраэдра
+				\draw[invisible] (A) -- (C);
+				\draw[invisible] (B) -- (C);
+				\draw[invisible] (D) -- (C);
+				
+				% 4. Заливка плоскости сечения
+				\fill[plane] (M) -- (N) -- (P) -- (K) -- cycle;
+				
+				% 5. Отрисовка линий сечения
+				% Линия MN видима (на передней грани ADB)
+				\draw[secant] (M) -- (N);
+				% Остальные линии сечения уходят на невидимые грани
+				\draw[secant, dashed] (N) -- (P);
+				\draw[secant, dashed] (P) -- (K);
+				\draw[secant, dashed] (K) -- (M);
+				
+				% 6. Отрисовка видимых ребер тетраэдра
+				\draw[visible] (A) -- (B) -- (D) -- cycle;
+				
+				% 7. Подписи и точки
+				\node[below left] at (A) {$A$};
+				\node[below right] at (B) {$B$};
+				\node[above] at (C) {$C$};
+				\node[above] at (D) {$D$};
+				
+				\node[dot, label=left:$M$] at (M) {};
+				\node[dot, label=right:$N$] at (N) {};
+				\node[dot, label=above left:$K$] at (K) {};
+				\node[dot, label=below:$P$] at (P) {};
+			\end{tikzpicture}
+		\end{center}
+	\end{theorem}
+	
+	\begin{statement}
+		В ортоцентрическом тетраэдре суммы квадратов противоположных ребер равны:
+		$$AB^2 + CD^2 = AC^2 + BD^2 = AD^2 + BC^2$$
+		
+		\begin{center}
+			\begin{tikzpicture}[scale=1.5, line join=round, line cap=round]
+				% Стили для параллелепипеда
+				\tikzset{box/.style={gray, thin, opacity=0.4}}
+				
+				% Координаты вершин параллелепипеда (основание)
+				\coordinate (V0) at (0, 0);       % Передний-левый-низ
+				\coordinate (V1) at (3.5, 0.5);   % Передний-правый-низ
+				\coordinate (V2) at (1.2, 1.2);   % Задний-левый-низ
+				\coordinate (V3) at (4.7, 1.7);   % Задний-правый-низ (точка B)
+				
+				% Координаты вершин параллелепипеда (верх)
+				\coordinate (V4) at (0, 3.5);     % Передний-левый-верх
+				\coordinate (V5) at (3.5, 4.0);   % Передний-правый-верх (точка D)
+				\coordinate (V6) at (1.2, 4.7);   % Задний-левый-верх (точка C)
+				\coordinate (V7) at (4.7, 5.2);   % Задний-правый-верх
+				
+				% Вершины тетраэдра
+				\coordinate (A) at (V0);
+				\coordinate (B) at (V3);
+				\coordinate (C) at (V6);
+				\coordinate (D) at (V5);
+				
+				% 1. Отрисовка невидимых линий параллелепипеда
+				\draw[box, dashed] (V2) -- (V0);
+				\draw[box, dashed] (V2) -- (V3);
+				\draw[box, dashed] (V2) -- (V6);
+				
+				
+				% 2. Отрисовка видимых линий параллелепипеда
+				\draw[box] (V0) -- (V1) -- (V3);
+				\draw[box] (V4) -- (V5) -- (V7) -- (V6) -- cycle;
+				\draw[box] (V0) -- (V4);
+				\draw[box] (V1) -- (V5);
+				\draw[box] (V3) -- (V7);
+				
+				% 3. Отрисовка ребер тетраэдра
+				\draw[visible] (A) -- (B);
+				\draw[visible] (A) -- (D);
+				\draw[visible] (B) -- (D);
+				\draw[visible] (C) -- (D);
+				\draw[visible] (B) -- (C);
+				\draw[visible] (A) -- (C);
+				
+				% 4. Подписи вершин тетраэдра
+				\node[dot, label=below left:$A$] at (A) {};
+				\node[dot, label=right:$B$] at (B) {};
+				\node[dot, label=above:$C$] at (C) {};
+				\node[dot, label=above:$D$] at (D) {};
+				
+				% Обозначения ребер параллелепипеда (для доказательства)
+				\node[below, gray] at ($(V0)!0.5!(V1)$) {\small $x$};
+				\node[right, gray] at ($(V1)!0.5!(V3)$) {\small $y$};
+				\node[left, gray] at ($(V0)!0.5!(V4)$) {\small $z$};
+			\end{tikzpicture}
+		\end{center}
+	\end{statement}
+
+    \section{Координаты}
+
+    \begin{definition}[Коллинеарные векторы]
+        Лежат на параллельных прямых или на одной прямой.
+    \end{definition}
+
+    \begin{definition}[Равные векторы]
+        Векторы, равные по модулю и направлению.
+    \end{definition}
+
+    \begin{definition}[Компланарные векторы]
+        Векторы компланарные, если равные им векторы, имеющие общее начало, лежат в одной плоскости.
+    \end{definition}
+
+    \begin{note}
+        Ось z~--- ось аппликат.
+    \end{note}
+
+    \begin{definition}[Расстояние]
+        Расстояние между точками $A = (x_1, y_1, z_1)$ и $B = (x_2, y_2, z_2)$ равно $AB = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2 + (z_1 - z_2)^2}$.
+    \end{definition}
+
+    \begin{statement}[Деление отрезка в соотношении $\dfrac{m}{n}$]
+        $\left( \dfrac{m x_1 + n x_2}{m + n}, \dfrac{m y_1 + n y_2}{m + n}, \dfrac{m z_1 + n z_2}{m + n} \right)$
+    \end{statement}
+    
+    \subsection{Уравнение плоскости}
+	
+	\begin{statement}[Уравнение плоскости]
+        Рассмотрим плоскость $\alpha$ в трехмерном пространстве. Зададим ее следующими параметрами:
+        \begin{itemize}
+            \item Вектор нормали $\vec{n}(a, b, c)$, такой что $\vec{n} \perp \alpha$.
+            \item Фиксированная точка $M_0(x_0, y_0, z_0)$, принадлежащая плоскости ($M_0 \in \alpha$).
+            \item Произвольная (текущая) точка плоскости $M(x, y, z) \in \alpha$.
+        \end{itemize}
+        Тогда уравнение плоскости такое:
+        \[
+        ax + by + cz + d = 0
+        \]
+    \end{statement}
+    
+    \begin{proof}[Вывод]
+    	Так как точки $M_0$ и $M$ лежат в плоскости $\alpha$, вектор $\vec{M_0M}$ также лежит в этой плоскости. Поскольку $\vec{n} \perp \alpha$, то вектор нормали перпендикулярен любому вектору в плоскости:
+        \[
+        \vec{M_0M} \perp \vec{n} \implies \vec{M_0M} \cdot \vec{n} = 0
+        \]
+        
+        Координаты вектора $\vec{M_0M} = (x - x_0, y - y_0, z - z_0)$. Записывая скалярное произведение в координатной форме, получаем \textbf{уравнение плоскости, проходящей через точку перпендикулярно вектору}:
+        \[
+            \boxed{a(x - x_0) + b(y - y_0) + c(z - z_0) = 0}
+        \]
+        
+        Раскрыв скобки и обозначив свободный член как $d = -(ax_0 + by_0 + cz_0)$, мы переходим к \textbf{общему уравнению плоскости} (в конспекте названо каноническим видом):
+        \[
+            ax + by + cz + d = 0
+        \]
+    \end{proof}
+
+    \subsubsection{Пример решения задачи}
+    
+    \begin{problem}
+    	Найти уравнение плоскости, проходящей через три точки: $M_1(1, 2, -1)$, $M_2(-1, -1, 3)$ и $M_3(2, 3, -2)$.
+    \end{problem}
+    
+    \begin{solution}
+    	\begin{enumerate}
+			\item Составим векторы:
+       		$\vec{M_1M_2} = (-2, -3, 4)$
+       		$\vec{M_1M_3} = (1, 1, -1)$
+			\item Найдем вектор нормали $\vec{n}$ как векторное произведение $\vec{M_1M_2} \times \vec{M_1M_3}$ (или через систему уравнений, как в черновике). В результате расчетов получен вектор $\vec{n}(1, -2, -1)$.
+			\item Подставим координаты вектора $\vec{n}$ и точки $M_1$ в уравнение (1):
+       		\[
+				1(x - 1) - 2(y - 2) - 1(z + 1) = 0
+			\]
+       		\[
+				x - 1 - 2y + 4 - z - 1 = 0 \implies x - 2y - z + 2 = 0
+			\]
+		\end{enumerate}
+    \end{solution}
+    
+    \subsection{Расстояние от точки до плоскости}
+    
+    \begin{problem}
+    	Найти расстояние $\rho(M_0, \alpha)$ от точки $M_0(x_0, y_0, z_0)$ до плоскости $\alpha: ax + by + cz + d = 0$.
+    \end{problem}
+    
+    \begin{solution}
+        Пусть $M_1(x_1, y_1, z_1)$ — проекция точки $M_0$ на плоскость $\alpha$. Тогда вектор $\vec{M_1M_0}$ коллинеарен вектору нормали $\vec{n}(a, b, c)$:
+        \[
+        \vec{M_1M_0} = k \cdot \vec{n} \Rightarrow 
+        \begin{cases} 
+            x_0 - x_1 = ka \\
+            y_0 - y_1 = kb \\
+            z_0 - z_1 = kc
+        \end{cases}
+        \]
+        Отсюда координаты точки $M_1$ выражаются как: $x_1 = x_0 - ka$, $y_1 = y_0 - kb$, $z_1 = z_0 - kc$.
+        Так как $M_1 \in \alpha$, подставим эти координаты в уравнение плоскости:
+        \[
+        a(x_0 - ka) + b(y_0 - kb) + c(z_0 - kc) + d = 0
+        \]
+        \[
+        ax_0 + by_0 + cz_0 + d = k(a^2 + b^2 + c^2) \Rightarrow k = \frac{ax_0 + by_0 + cz_0 + d}{a^2 + b^2 + c^2}
+        \]
+        
+        Расстояние $\rho = |\vec{M_1M_0}| = \sqrt{(ka)^2 + (kb)^2 + (kc)^2} = |k|\sqrt{a^2 + b^2 + c^2}$.
+        Подставляя значение $k$, получаем итоговую формулу:
+        \[
+            \boxed{\rho = \frac{|ax_0 + by_0 + cz_0 + d|}{\sqrt{a^2 + b^2 + c^2}}}
+        \]
+    \end{solution}
+
+	\subsection{Уравнение прямой}
+	\begin{statement}
+		Прямая в пространстве может быть задана как линия пересечения двух непараллельных плоскостей:
+    	\[
+    		\begin{cases}
+        		a_1x + b_1y + c_1z + d_1 = 0 \\
+        		a_2x + b_2y + c_2z + d_2 = 0
+    		\end{cases}
+    	\]
+		Но это не удобно. Удобнее задавать как
+		\[
+			\frac{x - x_1}{x_2 - x_1} = \frac{y - y_1}{y_2 - y_1} = \frac{z - z_1}{z_2 - z_1} = t
+		\]
+		Также есть параметрический вид:
+		\[
+			\begin{cases}
+				x = x_1 + (x_2 - x_1)t \\
+				y = y_1 + (y_2 - y_1)t \\
+				z = z_1 + (z_2 - z_1)t
+			\end{cases}
+		\]
+	\end{statement}
+	
+    \subsection{Векторы}
+    
+    \subsubsection{Скалярное произведение векторов}
+    
+    \begin{definition}[Скалярное произведение]
+    	Пусть $\vec{a} = (x_1, y_1, z_1)$, $\vec{b} = (x_2, y_2, z_2)$. Тогда
+    	\[
+    		\vec{a} \cdot \vec{b} = |\vec{a}| \, |\vec{b}| \cos \bigl( \widehat{\vec{a}, \vec{b}} \bigr) = x_1x_2 + y_1y_2 + z_1z_2.
+    	\]
+    \end{definition}
+    
+    \subsubsection{Векторное произведение векторов}
+    
+    \begin{note}
+    	Определения коллинеарных и компланарных векторов даны выше, в разделе <<Координаты>>. Напомним, что векторы компланарны, если они параллельны некоторой плоскости.
+    \end{note}
+    
+    \begin{definition}[Правая и левая тройки]
+    	Пусть $\vec{a}$, $\vec{b}$, $\vec{c}$~--- некомпланарные векторы. Рассмотрим упорядоченную тройку $(\vec{a}, \vec{b}, \vec{c})$ и посмотрим на неё из конца вектора $\vec{c}$. Тройка называется:
+    	\begin{itemize}
+    		\item \textbf{правой}, если кратчайший поворот от $\vec{a}$ к $\vec{b}$ виден \textbf{против} часовой стрелки;
+    		\item \textbf{левой}, если этот поворот виден \textbf{по} часовой стрелке.
+    	\end{itemize}
+    \end{definition}
+    
+    \begin{definition}[Векторное произведение]
+    	Векторным произведением $\vec{a} \times \vec{b}$ называется вектор $\vec{c}$, удовлетворяющий условиям:
+    	\begin{enumerate}
+    		\item если $\vec{a} \parallel \vec{b}$ (в частности, если один из векторов нулевой), то $\vec{c} = \vec{0}$;
+    		\item если $\vec{a} \nparallel \vec{b}$, то
+    		\begin{itemize}
+    			\item $|\vec{c}| = |\vec{a}| \, |\vec{b}| \sin \bigl( \widehat{\vec{a}, \vec{b}} \bigr)$;
+    			\item $\vec{c} \perp \vec{a}$ и $\vec{c} \perp \vec{b}$, то есть $\vec{c}$ перпендикулярен плоскости векторов $\vec{a}$ и $\vec{b}$;
+    			\item $(\vec{a}, \vec{b}, \vec{c})$~--- правая тройка.
+    		\end{itemize}
+    	\end{enumerate}
+    \end{definition}
+    
+    \begin{properties}[векторного произведения]
+    	\begin{enumerate}
+    		\item $\vec{a} \parallel \vec{b} \Leftrightarrow \vec{a} \times \vec{b} = \vec{0}$.
+    		\item $\vec{a} \times \vec{b} = - \vec{b} \times \vec{a}$.
+    		\item $(\lambda \vec{a}) \times \vec{b} = \lambda (\vec{a} \times \vec{b})$.
+    		\item $(\vec{a} + \vec{b}) \times \vec{c} = \vec{a} \times \vec{c} + \vec{b} \times \vec{c}$.
+    	\end{enumerate}
+    \end{properties}
+    
+    \begin{statement}
+    	Пусть $\vec{a} = (a_1, a_2, a_3)$, $\vec{b} = (b_1, b_2, b_3)$. Тогда
+    	\[
+    		\vec{a} \times \vec{b} = (a_2b_3 - a_3b_2, \; a_3b_1 - a_1b_3, \; a_1b_2 - a_2b_1).
+    	\]
+    	Формально это раскрытие определителя
+    	$\begin{vmatrix}
+    		\vec{i} & \vec{j} & \vec{k} \\
+    		a_1 & a_2 & a_3 \\
+    		b_1 & b_2 & b_3
+    	\end{vmatrix}$ по первой строке.
+    \end{statement}
+    
+    \begin{proof}
+    	Пусть $\vec{i}, \vec{j}, \vec{k}$~--- правый ортонормированный базис. Из определения $\vec{i} \times \vec{j} = \vec{k}$, $\vec{j} \times \vec{k} = \vec{i}$, $\vec{k} \times \vec{i} = \vec{j}$, а также $\vec{i} \times \vec{i} = \vec{j} \times \vec{j} = \vec{k} \times \vec{k} = \vec{0}$. Из антикоммутативности $\vec{j} \times \vec{i} = -\vec{k}$, $\vec{k} \times \vec{j} = -\vec{i}$, $\vec{i} \times \vec{k} = -\vec{j}$.
+    
+    	Из свойств 2--4 векторное произведение линейно по каждому аргументу, поэтому
+    	\begin{multline*}
+    		(a_1\vec{i} + a_2\vec{j} + a_3\vec{k}) \times (b_1\vec{i} + b_2\vec{j} + b_3\vec{k}) = \\
+    		= a_1b_2 \vec{k} - a_1b_3 \vec{j} - a_2b_1 \vec{k} + a_2b_3 \vec{i} + a_3b_1 \vec{j} - a_3b_2 \vec{i} = \\
+    		= (a_2b_3 - a_3b_2)\vec{i} + (a_3b_1 - a_1b_3)\vec{j} + (a_1b_2 - a_2b_1)\vec{k}.
+    	\end{multline*}
+    \end{proof}
+    
+    \subsubsection{Смешанное произведение векторов}
+    
+    \begin{definition}[Смешанное произведение]
+    	Смешанным произведением векторов $\vec{a}$, $\vec{b}$, $\vec{c}$ называется число
+    	\[
+    		\vec{a} \cdot \left( \vec{b} \times \vec{c} \right).
+    	\]
+    	Его модуль равен объему $v$ параллелепипеда, построенного на $\vec{a}$, $\vec{b}$, $\vec{c}$, а знак определяется ориентацией тройки:
+    	\[
+    		\vec{a} \cdot \left( \vec{b} \times \vec{c} \right) =
+    		\begin{cases}
+    			v, & \text{если } (\vec{a}, \vec{b}, \vec{c}) \text{~--- правая тройка}, \\
+    			-v, & \text{если } (\vec{a}, \vec{b}, \vec{c}) \text{~--- левая тройка}, \\
+    			0, & \text{если } \vec{a}, \vec{b}, \vec{c} \text{ компланарны}.
+    		\end{cases}
+    	\]
+    \end{definition}
+    
+    \begin{statement}
+    	Векторы $\vec{a}$, $\vec{b}$, $\vec{c}$ компланарны тогда и только тогда, когда $\vec{a} \cdot \left( \vec{b} \times \vec{c} \right) = 0$.
+    \end{statement}
+    
+    \begin{statement}
+    	$\vec{a} \cdot \left( \vec{b} \times \vec{c} \right) = \left( \vec{a} \times \vec{b} \right) \cdot \vec{c}$.
+    \end{statement}
+    
+    \begin{proof}
+    	Смешанное произведение~--- это объем параллелепипеда со знаком ориентации тройки. Тройки $(\vec{a}, \vec{b}, \vec{c})$ и $(\vec{c}, \vec{a}, \vec{b})$ отличаются циклической перестановкой, поэтому имеют одну ориентацию и задают один и тот же параллелепипед. Значит, $\vec{a} \cdot (\vec{b} \times \vec{c}) = \vec{c} \cdot (\vec{a} \times \vec{b})$, а скалярное произведение коммутативно.
+    \end{proof}
+
+	\subsection{Основные формулы векторного метода}
+    
+    \begin{note}
+    	Во всех формулах ниже координаты векторов заданы в правом ортонормированном базисе.
+    \end{note}
+    
+    \subsubsection{Определители порядка 2 и 3}
+    
+    \begin{definition}[Определитель]
+    	Определители порядка $2$ и $3$ вычисляются по формулам
+    	\[
+    		\begin{vmatrix}
+    			a & b \\
+    			c & d
+    		\end{vmatrix} = ad - bc,
+    	\]
+    	\[
+    		\begin{vmatrix}
+    			a_1 & a_2 & a_3 \\
+    			b_1 & b_2 & b_3 \\
+    			c_1 & c_2 & c_3
+    		\end{vmatrix}
+    		= a_1 \begin{vmatrix} b_2 & b_3 \\ c_2 & c_3 \end{vmatrix}
+    		- a_2 \begin{vmatrix} b_1 & b_3 \\ c_1 & c_3 \end{vmatrix}
+    		+ a_3 \begin{vmatrix} b_1 & b_2 \\ c_1 & c_2 \end{vmatrix}
+    		\quad \text{(разложение по первой строке).}
+    	\]
+    \end{definition}
+    
+    \subsubsection{Длина вектора и углы}
+    
+    \begin{statement}[Длина вектора]
+    	Пусть $\vec{a} = (x_1, y_1, z_1)$. Тогда
+    	\[
+    		|\vec{a}| = \sqrt{\vec{a}^2} = \sqrt{x_1^2 + y_1^2 + z_1^2}.
+    	\]
+    \end{statement}
+    
+    \begin{proof}
+    	По определению скалярного произведения $\vec{a} \cdot \vec{a} = |\vec{a}|^2 \cos 0 = |\vec{a}|^2$, а в координатах $\vec{a} \cdot \vec{a} = x_1^2 + y_1^2 + z_1^2$.
+    \end{proof}
+    
+    \begin{statement}[Угол между векторами]
+    	Для ненулевых векторов $\vec{a}$ и $\vec{b}$
+    	\[
+    		\cos \widehat{\vec{a}, \vec{b}} = \dfrac{\vec{a} \cdot \vec{b}}{|\vec{a}| \cdot |\vec{b}|}.
+    	\]
+    \end{statement}
+    
+    \begin{proof}
+    	Следует из определения скалярного произведения $\vec{a} \cdot \vec{b} = |\vec{a}| \, |\vec{b}| \cos \widehat{\vec{a}, \vec{b}}$ делением на $|\vec{a}| \, |\vec{b}| \ne 0$.
+    \end{proof}
+    
+    \begin{statement}[Угол между прямыми]
+    	Угол между прямыми $AB$ и $CD$ находится по формуле
+    	\[
+    		\cos \angle (AB, CD) = \left| \dfrac{\vec{AB} \cdot \vec{CD}}{|\vec{AB}| \cdot |\vec{CD}|} \right|.
+    	\]
+    \end{statement}
+    
+    \begin{proof}
+    	Угол между прямыми лежит в промежутке $[0^\circ, 90^\circ]$, поэтому его косинус неотрицателен. Угол между направляющими векторами $\vec{AB}$ и $\vec{CD}$ может быть как острым, так и тупым~--- разные направления векторов на одной прямой дают углы $\varphi$ и $180^\circ - \varphi$ с противоположными по знаку косинусами. Модуль убирает эту неоднозначность.
+    \end{proof}
+    
+    \subsubsection{Перпендикуляры к векторам и плоскости}
+    
+    \begin{corollary}
+    	Пусть $\vec{a} \nparallel \vec{b}$. Тогда вектор
+    	\[
+    		\vec{n} = \vec{a} \times \vec{b} = \begin{vmatrix}
+    			\vec{i} & \vec{j} & \vec{k} \\
+    			x_1 & y_1 & z_1 \\
+    			x_2 & y_2 & z_2
+    		\end{vmatrix}
+    	\]
+    	ненулевой и перпендикулярен обоим векторам $\vec{a}$ и $\vec{b}$.
+    \end{corollary}
+    
+    \begin{proof}
+    	Следует из определения векторного произведения и его координатной формулы (см. выше).
+    \end{proof}
+    
+    \begin{corollary}
+    	Вектор, перпендикулярный плоскости $ABC$ (точки $A$, $B$, $C$ не лежат на одной прямой):
+    	\[
+    		\vec{n} = \vec{AB} \times \vec{AC}.
+    	\]
+    \end{corollary}
+    
+    \begin{proof}
+    	Векторы $\vec{AB}$ и $\vec{AC}$ неколлинеарны и лежат в плоскости $ABC$, а их векторное произведение перпендикулярно обоим, то есть перпендикулярно плоскости.
+    \end{proof}
+    
+    \subsubsection{Углы между плоскостями и между прямой и плоскостью}
+    
+    \begin{statement}[Угол между плоскостями]
+    	Пусть $\vec{n}_1$ и $\vec{n}_2$~--- ненулевые векторы, перпендикулярные плоскостям $ABC$ и $MNP$ соответственно. Тогда
+    	\[
+    		\cos \angle (ABC; MNP) = \left| \dfrac{\vec{n}_1 \cdot \vec{n}_2}{|\vec{n}_1| \cdot |\vec{n}_2|} \right|.
+    	\]
+    \end{statement}
+    
+    \begin{proof}
+    	Угол между плоскостями равен углу между их нормалями (или дополняет его до $180^\circ$, в зависимости от выбора направлений нормалей). Так как угол между плоскостями не превосходит $90^\circ$, берём модуль.
+    \end{proof}
+    
+    \begin{statement}[Угол между прямой и плоскостью]
+    	Пусть $\vec{n}$~--- ненулевой вектор, перпендикулярный плоскости $MNP$. Тогда
+    	\[
+    		\sin \angle (AB; MNP) = \left| \cos \widehat{\vec{AB}, \vec{n}} \right| = \left| \dfrac{\vec{AB} \cdot \vec{n}}{|\vec{AB}| \cdot |\vec{n}|} \right|.
+    	\]
+    \end{statement}
+    
+    \begin{proof}
+    	Угол между прямой и плоскостью равен $90^\circ$ минус угол между прямой и нормалью к плоскости, откуда синус первого угла равен косинусу второго. Модуль нужен по той же причине, что и в формуле для угла между прямыми.
+    \end{proof}
+    
+    \subsubsection{Проекция и расстояния}
+    
+    \begin{definition}[Проекция вектора на вектор]
+    	Длина проекции вектора $\vec{a}$ на ненулевой вектор $\vec{b}$:
+    	\[
+    		\operatorname{Pr}_{\vec{b}} \vec{a} = \left| \dfrac{\vec{a} \cdot \vec{b}}{|\vec{b}|} \right|.
+    	\]
+    \end{definition}
+    
+    \begin{note}
+    	Без модуля величина $\dfrac{\vec{a} \cdot \vec{b}}{|\vec{b}|} = |\vec{a}| \cos \widehat{\vec{a}, \vec{b}}$~--- это проекция со знаком: она отрицательна, если угол между $\vec{a}$ и $\vec{b}$ тупой.
+    \end{note}
+    
+    \begin{statement}[Расстояние от точки до плоскости]
+    	Пусть $\vec{n}$~--- ненулевой вектор, перпендикулярный плоскости $MNP$. Тогда
+    	\[
+    		\rho(A; MNP) = \left| \operatorname{Pr}_{\vec{n}} \vec{AM} \right| = \left| \dfrac{\vec{AM} \cdot \vec{n}}{|\vec{n}|} \right|.
+    	\]
+    \end{statement}
+    
+    \begin{proof}
+    	Расстояние до плоскости~--- длина перпендикуляра из $A$ на плоскость, то есть длина проекции вектора $\vec{AM}$ (где $M$~--- любая точка плоскости) на направление нормали.
+    \end{proof}
+    
+    \begin{note}
+    	Эта формула согласуется с координатной (см. раздел <<Расстояние от точки до плоскости>>). Для плоскости $ax + by + cz + d = 0$ возьмём $\vec{n} = (a, b, c)$ и точку $M(x_M, y_M, z_M)$ плоскости. Тогда $\vec{AM} \cdot \vec{n} = a(x_M - x_A) + b(y_M - y_A) + c(z_M - z_A) = -d - (ax_A + by_A + cz_A)$, так как $ax_M + by_M + cz_M = -d$.
+    \end{note}
+    
+    \begin{statement}[Расстояние между скрещивающимися прямыми]
+    	Пусть $AB$ и $MN$~--- скрещивающиеся прямые, $\vec{n}$~--- ненулевой вектор, перпендикулярный векторам $\vec{AB}$ и $\vec{MN}$ (например, $\vec{n} = \vec{AB} \times \vec{MN}$). Тогда
+    	\[
+    		\rho(AB; MN) = \left| \operatorname{Pr}_{\vec{n}} \vec{AM} \right| = \left| \dfrac{\vec{AM} \cdot \vec{n}}{|\vec{n}|} \right|.
+    	\]
+    \end{statement}
+    
+    \begin{proof}
+    	Расстояние между скрещивающимися прямыми~--- длина их общего перпендикуляра, который параллелен $\vec{n}$. Вектор $\vec{AM}$ соединяет точки двух прямых, поэтому его проекция на направление общего перпендикуляра равна расстоянию между прямыми.
+    \end{proof}
+    
+    \subsubsection{Площадь и объём}
+    
+    \begin{statement}[Площадь треугольника]
+    	\[
+    		S_{ABC} = \dfrac{1}{2} \left| \vec{AB} \times \vec{AC} \right|.
+    	\]
+    \end{statement}
+    
+    \begin{proof}
+    	Модуль векторного произведения равен $|\vec{AB}| \, |\vec{AC}| \sin \widehat{\vec{AB}, \vec{AC}}$, то есть площади параллелограмма, построенного на $\vec{AB}$ и $\vec{AC}$. Треугольник $ABC$ составляет его половину.
+    \end{proof}
+    
+    \begin{statement}[Смешанное произведение в координатах]
+    	Пусть $\vec{a} = (x_1, y_1, z_1)$, $\vec{b} = (x_2, y_2, z_2)$, $\vec{c} = (x_3, y_3, z_3)$. Тогда
+    	\[
+    		(\vec{a}, \vec{b}, \vec{c}) = \vec{a} \cdot (\vec{b} \times \vec{c}) = \begin{vmatrix}
+    			x_1 & y_1 & z_1 \\
+    			x_2 & y_2 & z_2 \\
+    			x_3 & y_3 & z_3
+    		\end{vmatrix}.
+    	\]
+    \end{statement}
+    
+    \begin{proof}
+    	По координатной формуле векторного произведения $\vec{b} \times \vec{c} = (y_2z_3 - z_2y_3, \; z_2x_3 - x_2z_3, \; x_2y_3 - y_2x_3)$. Тогда
+    	\[
+    		\vec{a} \cdot (\vec{b} \times \vec{c}) = x_1 (y_2z_3 - z_2y_3) - y_1 (x_2z_3 - z_2x_3) + z_1 (x_2y_3 - y_2x_3),
+    	\]
+    	что в точности равно разложению определителя по первой строке.
+    \end{proof}
+    
+    \begin{statement}[Объём тетраэдра]
+    	\[
+    		V_{PABC} = \dfrac{1}{6} \left| (\vec{PA}, \vec{PB}, \vec{PC}) \right|.
+    	\]
+    \end{statement}
+    
+    \begin{proof}
+    	Модуль смешанного произведения равен объёму параллелепипеда, построенного на $\vec{PA}$, $\vec{PB}$, $\vec{PC}$. Тетраэдр $PABC$ составляет $\dfrac{1}{6}$ этого объёма: треугольная призма с основанием $PAB$ и боковым ребром $PC$ вдвое меньше параллелепипеда, а пирамида $PABC$ составляет треть объёма этой призмы.
+    \end{proof}
+	
+\end{document}

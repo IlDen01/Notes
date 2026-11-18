@@ -1,0 +1,1415 @@
+\documentclass[12pt]{article}
+
+\input{../header.tex}
+\newcommand{\orb}{\text{orb}}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\cycl}{\text{cycl}}
+\newcommand{\Img}[1]{\text{Im}(#1)}
+\newcommand{\Ker}[1]{\text{Ker}(#1)}
+\newcommand{\Aut}[1]{\text{Aut}(#1)}
+\newcommand{\st}[1]{\text{st}(#1)}
+
+\begin{document}
+	\tableofcontents
+	\setcounter{tocdepth}{3}
+	\newpage
+	\section{Теория групп.}
+	\begin{definition}
+		\label{group-def}
+		Группа~--- множество с одной операцией $*$: $G \times G \rightarrow G$ со следующими свойствами:
+		\begin{enumerate}
+			\item $a * (b * c) = (a * b) * c$
+			\item $\exists e$: $a * e = e * a = a$
+			\item $\forall a$ $\exists a^{-1}$: $a * a^{-1} = a^{-1} * a = e$
+		\end{enumerate}
+	\end{definition}
+	\begin{example}
+		\begin{itemize}
+			\item $(\mathbb{Z}; +)$
+			\item $(\mathbb{Q}; +)$
+			\item $(\mathbb{R}; +)$
+			\item $(\mathbb{C}; +)$
+			\item $(V; +)$
+			\item $(\mathbb{R}_+; \cdot)$
+			\item $(\mathbb{R} \setminus \{ 0 \}; \cdot)$
+			\item $(\mathbb{Z}_n; +)$
+		\end{itemize}
+	\end{example}
+	\begin{definition}
+		Пусть $G$~--- группа, $H \subset G$. Говорим, что $H$ является подгруппой (пишем $H < G$), если $H$ является группой относительно операции в $G$. Чтобы проверить, что $H$ является подгруппой, необходимо убедиться, что произведение двух элементов из $H$ принадлежит $H$, и элементы, обратные к $H$, тоже лежат в $H$.
+	\end{definition}
+	\begin{theorem}[Кэли]
+		Любая группа $G$ является подгруппой в группе подстановок, а именно $S_G$.
+	\end{theorem}
+	\begin{definition}
+		Абелева группа~--- \hyperref[group-def]{группа} с коммутативностью.
+	\end{definition}
+	\begin{definition}
+		Говорят, что группа $G$ порождается элементами $\{ x_i \}$, если любой элемент из $G$ можно представить как произведение нескольких $x_i$ и обратных к ним. Группа называется циклической, если она порождена одним элементом.
+	\end{definition}
+	\begin{theorem}
+		Конечная циклическая группа изоморфна $(\mathbb{Z}_n, +)$.
+	\end{theorem}
+	\begin{definition}
+		Пусть $G$~--- группа, $H < G$. Введем два отношения эквивалентности на $G$: $x \sim_1 y$ если $xy^{-1} \in H$, $x \sim_2 y$ если $x^{-1}y \in H$.
+	\end{definition}
+	\begin{statement}
+		$\sim_1$ и $\sim_2$ совпадают в абелевой группе.
+	\end{statement}
+	\begin{note}
+		Классы эквивалентности по отношению $\sim_1$ называются левыми смежными классами; класс элемента $x$ обозначается $xH$. Классы эквивалентности по $\sim_2$~--- правые смежные классы, обозначаются $Hx$.
+	\end{note}
+	\begin{definition}
+		Пусть теперь группа $G$ конечна, $H < G$. Количество классов эквивалентности $\sim_1$ называется индексом $G$ по $H$ и обозначается $[G : H]$.
+	\end{definition}
+	\begin{theorem}[Лагранжа]
+		$|G| = |H| \cdot [G : H]$.
+	\end{theorem}
+	\begin{definition}
+		Пусть $x \in G$. Порядком элемента $x$ называется наименьшее натуральное число $n$, такое что $x^n = e$, где $e$~--- нейтральный элемент. Обозначение: $ord(x)$. Если такого $n$ не существует, то пишем $ord(x) = + \infty$.
+	\end{definition}
+	\begin{definition}
+		Пусть $X, Y \subset G$~--- подмножества группы. Их произведением будем называть множество $\{ xy | x \in X, y \in Y \}$.
+	\end{definition}
+	\begin{definition}
+		Полная линейна группа $GL(n, F)$~--- это множество всех квадратных матриц размера $n \times n$ с элементами из поля $F$, которые являются обратимыми ($\det \not= 0$), вместе с операцией матричного умножения.
+	\end{definition}
+	\begin{definition}
+		Специальная линейная группа $SL(n, F)$~--- это подгруппа полной линейной группы, состоящая из всех матриц с определителем, равным $1$. То есть это множество всех матриц $A$ размера $n \times n$ над полем $F$, таких что $\det(A) = 1$.
+	\end{definition}
+	\begin{definition}
+		Специальная ортогональная группа $SO(n, F)$~--- группа из ортогональных матриц. Матрица $A$ называется ортогональной, если $A^T \times A = A \times A^T = E$.
+	\end{definition}
+	\begin{statement}
+		Пусть $X$~--- произвольное множество. Тогда множество всех биекций $f: X \rightarrow X$ образуют группу относительно композиции. Эту группу обозначают $S_X$. Если $X = \{ 1, 2, \dots, n \}$, то $S_X$ обозначают $S_n$~--- группа подстановок.
+	\end{statement}
+	\subsection{Таблица Кэли.}
+	\begin{definition}
+		Пусть $G$~--- конечная группа порядка $n$. Её таблицей Кэли (таблицей умножения) будем называть таблицу $(n + 1) \times (n + 1)$ (левый столбец и левая строка считаются нулевыми и служат лишь для нумерации). В нулевом столбце и в нулевой строке стоят все элементы группы в одном и том же порядке. На пересечении строки и столбца этой таблицы будем ставить произведение соответствующих элементов в нулевом столбце и в нулевой строке (слева пишется элемент, задающий строку, справа — столбец).
+	\end{definition}
+	\begin{definition}
+		Напомним, что перестановкой мы будем называть биекцию $f: \{ 1, 2, \dots, n \} \rightarrow \{ 1, 2, \dots, n \}$. Умножение перестановок — композиция биекций. Перестановки записываются в две строчки: в первой~--- числа от $1$ до $n$ (как правило, в порядке возрастания, но не обязательно), а во второй строчке под числом $k$ стоит число $f(k)$.
+	\end{definition}
+	\subsection{Группы.}
+	\begin{theorem}
+		$G$~--- группа; $H < G$. Равносильно:
+		\begin{enumerate}
+			\item $\forall x$ $xH = Hx$
+			\item $\forall x$ $xH \subset Hx$
+			\item $\forall x$ $xH \supset Hx$
+			\item $\forall x$ $xHx^{-1} = H$
+			\item $\forall x$ $xHx^{-1} \subset H$
+			\item $\forall x$ $xHx^{-1} \supset H$
+			\item $\forall x \in G$ $\forall h \in H$ $x^{-1}hx \in H$
+		\end{enumerate}
+	\end{theorem}
+	\begin{definition}
+		Такая $H$ называется нормальной подгруппой. Обозначается $H \vartriangleleft G$.
+	\end{definition}
+	\begin{definition}
+		$xhx^{-1}$ называется сопряженным элементом $h$.
+	\end{definition}
+	\begin{statement}
+		$h \sim x^{-1}hx$~--- отношение эквивалентности.
+	\end{statement}
+	\begin{definition}
+		$H \vartriangleleft G$. Класс смежности по $H$ можно перемножать.
+	\end{definition}
+	\begin{definition}
+		Множество классов смежности образуют группу. Это называется фактор-группой $G$ по $H$. $G/H$.
+	\end{definition}
+	\begin{definition}
+		Простая группа~--- группа без нетривиальных нормальных подгрупп.
+	\end{definition}
+	\subsection{Перестановки.}
+	\begin{definition}
+		Перестановкой конечного множества $M$ называется биекция $\pi : M \rightarrow M $. Множество всех перестановок множества $M$ обозначается символом $S(M)$. Произведением перестановок $\pi$ и $\sigma$ называется перестановка $\sigma \cdot \pi$, соответствующая биекции $x \mapsto \sigma (\pi (x))$.
+	\end{definition}
+	\begin{definition}
+		Пусть $\pi \in S(M)$. Орбитой элемента $a \in M$ называется множество $\orb_{\pi}(a) = \{ a, \pi(a), \pi^2(a), \dots \}$. Порядком элемента $a$ называется мощность его орбиты: $\ord(a) = |\orb(a)|$.
+	\end{definition}
+	\begin{definition}
+		В предыдущей серии показано, что любая перестановка является произведением циклов. Количество циклов в перестановке обозначается $\cycl(\pi)$. Если перестановка разбивается на циклы, длины которых~--- $l_1, \dots, l_m$, то $(l_1, \dots,l_m)$ называется цикленным типом перестановки $\pi$. Перестановка, у которой цикленный тип $(2, 1, 1, \dots, 1)$, называется транспозицией.
+	\end{definition}
+	\begin{definition}
+		Перестановка $\pi$ называется четной или нечетной в зависимости от четности числа $n + \cycl(\pi)$. Знаком перестановки называется число $\text{sign}(\pi) = (-1)^{n + \cycl(\pi)}$.
+	\end{definition}
+	\begin{definition}
+		Хотим $\forall$ перестановки называть ее четной или нечетной: ЧЧ $=$ Ч, НН $=$ Ч, ЧН $=$ Н, НЧ $=$ Н и $\exists$ Ч и НЧ перестановки.
+	\end{definition}
+	\begin{definition}
+		Инверсия: $\alpha = \begin{pmatrix}
+			1 & 2 & \dots & i & \dots & j & \dots & n\\
+			a_1 & a_2 & \dots & a_i & \dots & a_j & \dots & n\\
+		\end{pmatrix}$. Пара $(i, j)$ называется инверсией, если $i < j$ и $a_i > a_j$.
+	\end{definition}
+	\begin{definition}
+		Перестановка с четным количеством инверсий~--- четная, с нечетным~--- нечетная.
+	\end{definition}
+	\begin{note}
+		$\forall$ перестановка~--- произведение транспозиций. Четное количество транспозиций $\Leftrightarrow$ четная перестановка.
+	\end{note}
+	\begin{definition}
+		Четная перестановка $= (n + \text{количество циклов}) \mod{2}$.
+	\end{definition}
+	\begin{theorem}
+		Перестановки сопряжены $\Leftrightarrow$ совпадает их циклический тип.
+	\end{theorem}
+	\subsection{Центр группы.}
+	\begin{definition}
+		$G$~--- группа. Центр $G$: $Z(G) := \{ g \in G | gh = hg, \forall g \in G \}$.
+	\end{definition}
+	\begin{statement}
+		$Z(S_n) = \{ e \}$.
+	\end{statement}
+	\begin{theorem}
+		$Z(G) \vartriangleleft G$.
+	\end{theorem}
+	\begin{statement}
+		$Z(GL(\mathbb{R})) = \begin{pmatrix}
+			\alpha & 0 & \dots & 0\\
+			0 & \alpha & \dots & 0\\
+			\vdots & \vdots & \ddots & \vdots\\
+			0 & 0 & \dots & \alpha
+		\end{pmatrix}$
+	\end{statement}
+	\begin{definition}[Коммутатор]
+		$x, y \in G$. $[x, y] := xyx^{-1}y^{-1}$.
+	\end{definition}
+	\begin{statement}
+		$[x, y]^{-1} = [y, x]$.
+	\end{statement}
+	\begin{note}
+		Произведение коммутаторов не обязательно является коммутатором.
+	\end{note}
+	\begin{definition}[Коммутант]
+		$[G, G] := \left< [x, y] \right>$.
+	\end{definition}
+	\begin{theorem}
+		\begin{enumerate}
+			\item $[G, G] \vartriangleleft G$.
+			\item $G / [G; G]$~--- абелева.
+			\item $G / H$~--- абелева $\Rightarrow H \supset [G, G]$.
+		\end{enumerate}
+	\end{theorem}
+	\begin{statement}
+		$\alpha^{-1} [x, y] \alpha = [\alpha^{-1} x \alpha, \alpha^{-1} y \alpha]$.
+	\end{statement}
+	\begin{statement}
+		$\alpha^{-1} [x_1, y_1] [x_2, y_2] \dots [x_k, y_k] \alpha \in [G, G]$.
+	\end{statement}
+	\begin{theorem}[Галуа.]
+		$A_n$ простая, если $n \geqslant 5$.
+	\end{theorem}
+	\subsection{Гомоморфизм группы.}
+	\begin{definition}
+		$(G, \cdot)$; $(H; *)$~--- группа. $f: G \rightarrow H$~--- отображение. $f$ называется гомоморфизмом, если $\forall a, b \in G$ $f(a \cdot b) = f(a) * f(b)$.
+	\end{definition}
+	\begin{definition}
+		$f: G \rightarrow H$~--- гомоморфизм. $f$ называется:
+		\begin{itemize}
+			\item Эпиморфизмом, если $f$~--- сюръекция.
+			\item Мономорфизм, если $f$~--- инъекция.
+			\item Изоморфизм, если $f$~--- биекция.
+		\end{itemize}
+		$G \simeq H$, если существует изоморфизм $f: G \rightarrow H$.
+	\end{definition}
+	\subsection{Кватернионы.}
+	$\mathbb{H} := \{ a + bi + cj + dk | a, b, c, d \in \mathbb{R} \}$.
+	\begin{xltabular}{\textwidth}{|c|c|c|c|}
+		\hline
+		$\times$ & $i$ & $j$ & $k$\\
+		\hline
+		$i$ & $-1$ & $k = -ji$ & $-j = -ki$\\
+		\hline
+		$j$ & $-k = -ij$ & $-1$ & $i = -kj$\\
+		\hline
+		$k$ & $j = -ik$ & $-i = -jk$ & $-1$\\
+		\hline
+	\end{xltabular}
+	\subsubsection{Группа Кватернионов.}
+	$\mathbb{H} = \{ \pm 1, \pm i, \pm j, \pm k \}$.
+	\begin{lemma}
+		$a_1, a_2, \dots, a_{2n}$~--- строка из символов $j$ и $k$. Если перевернуть строку и заменить $j \leftrightarrow k$, то произведение не изменится.
+	\end{lemma}
+	\subsection{Теоремы об изоморфизме.}
+	\subsubsection{Первая теорема об изоморфизме.}
+	\begin{theorem}
+		Пусть $f : G \rightarrow H$~--- гомоморфизм групп. Тогда $\Img{f} \simeq G / \Ker{f}$.
+	\end{theorem}
+	\subsubsection{Вторая теорема об изоморфизме.}
+	\begin{theorem}
+		Пусть $G$~--- группа, $H$ и $K$~--- ее подгруппы, причем $K$ нормальна. Тогда $HK / K \simeq H / (H \cap K)$.
+	\end{theorem}
+	\subsubsection{Третья теорема об изоморфизме.}
+	\begin{theorem}
+		Пусть $G$~--- группа, $H$ и $K$~--- ее нормальные подгруппы, причем $K \subset N$. Тогда $(G / K) / (N / K) \simeq G / N$.
+	\end{theorem}
+	\subsection{Группы автоморфизмов графа.}
+	\begin{definition}
+		Автоморфизмом графа Г называется биекция множества его вершин на себя, так что пара вершин смежны тогда и только тогда, когда смежны их образы. Автоморфизмы графа образуют группу относительно композиции. Обозначается $\Aut{\text{Г}}$.
+	\end{definition}
+	\begin{theorem}[Фрухта]
+		Для любой группы $G$ найдется граф, группа автоморфизмов которого в точности $G$.
+	\end{theorem}
+	\subsection{Действие группы на множестве.}
+	\begin{definition}
+		$G$~--- группа, $M$~--- множество. Действием (левое) называем $G$ на $M$ называем $\cdot$: $G \times M \rightarrow M$: $(g; x) \mapsto g \cdot x$ или $g(x)$.
+	\end{definition}
+	\begin{property}
+		\begin{enumerate}
+			\item $(g \cdot h) \cdot x = g \cdot (h \cdot x)$.
+			\item $e \cdot x = x$.
+		\end{enumerate}
+	\end{property}
+	\begin{corollary}
+		$gx = y \Rightarrow g^{-1}y = x$.
+	\end{corollary}
+	\begin{definition}[2]
+		Действие $G$ на $M$~--- это гомоморфизм $F: G \rightarrow S_M$ (группа перестановок $M$). $g \cdot x := F(g)(x)$. Наоборот: есть $\cdot$: $G \times M \rightarrow M$: $F(g)(x) := g(x)$.
+	\end{definition}
+	\begin{definition}
+		$x$ неподвижен под действием $g$, если $g \cdot x = x$. Орбита $x$: $\orb(x) := \{ g \cdot x | g \in G \}$.
+	\end{definition}
+	\begin{statement}
+		Орбиты либо совпадают, либо не пересекаются.
+	\end{statement}
+	\begin{definition}
+		$x \in M$; стабилизатор $x$~--- это $\st{x} := \{ g \in G | gx = x \}$.
+	\end{definition}
+	\begin{statement}
+		$\st{x}$~--- подгруппа в $G$.
+	\end{statement}
+	\begin{definition}
+		$\st{g} := \{ x | gx = x \}$~--- стабилизатор $g$.
+	\end{definition}
+	\begin{lemma}[Бермсайда]
+		$G$~--- конечная группа; $M$~--- конечная $\Rightarrow$ количество орбит $= \dfrac{1}{|G|} \sum\limits_{g \in G} |\st{g}| = \dfrac{1}{|G|} \sum\limits_{x \in M} |\st{x}|$, тк $\sum\limits_{g \in G} |\st{g}| = \sum\limits_{x \in M} |\st{x}| = \# \{ (g, x) | gx = x \}$.
+	\end{lemma}
+	
+	\section{Метрические пространства.}
+	
+	\begin{definition}
+		$M$~--- множество; $\rho$: $M \times M \rightarrow \mathbb{R}$.
+		\begin{enumerate}
+			\item $\rho(x, y) \geqslant 0$; $\rho(x, y) = 0 \Leftrightarrow x = y$
+			\item $\rho(x, y) = \rho(y, x)$
+			\item $\rho(x, z) \leqslant \rho(x, y) + \rho(y, z)$
+		\end{enumerate}
+		$(M, \rho)$~--- метрическое пространство.
+	\end{definition}
+	
+	\begin{definition}
+		$B(x_0, r) := \{ x \in M | \rho(x, x_0) < r \}$
+	\end{definition}
+	
+	\begin{definition}
+		\label{open-def}
+		$A \subset M$. $A$ называется открытым, если $\forall x_0 \in A \, \exists \varepsilon: B(x_0, \varepsilon) \subset A$.
+	\end{definition}
+	
+	\begin{definition}
+		$f$ называется замкнутым, если $X \setminus f$ \hyperref[open-def]{открыто}.
+	\end{definition}
+	
+	\begin{theorem}
+		\begin{enumerate}
+			\item $\{ U_i \}_{i \in I}$~--- открыто $\Rightarrow$ $\bigcup\limits_{i \in I}$~--- открыто.
+			\item $\{ U_i \}_{i \in I}^{n}$~--- открыто $\Rightarrow$ $\bigcup\limits_{i \in I}^{n}$~--- открыто.
+			\item $\varnothing; M$~--- открыты.
+		\end{enumerate}
+	\end{theorem}
+	
+	\begin{theorem}
+		\begin{enumerate}
+			\item $\{ F_i \}_{i \in I}$~--- замкнуто $\Rightarrow$ $\bigcap\limits_{i \in I} F_i$~--- замкнуто.
+			\item $\{ F_i \}_{i \in I}^{n}$~--- замкнуто $\Rightarrow$ $\bigcap\limits_{i \in I}^{n} F_i$~--- замкнуто.
+			\item $\varnothing; M$~--- замкнуто.
+		\end{enumerate}
+	\end{theorem}
+	
+	\begin{definition}[Топологическое пространство]
+		Множество $X$ с множеством $\Omega \subset 2^X$ ($A \in \Omega$~--- открытые подмножества):
+		\begin{enumerate}
+			\item $\bigcup\limits_{i \in I} U_i \in \Omega$, если $\forall U_i \in \Omega$
+			\item $U_1, \dots, U_n \in \Omega \Rightarrow \bigcap\limits_{i=1}^n U_i \in \Omega$
+			\item $\varnothing, X \in \Omega$
+		\end{enumerate}
+	\end{definition}
+	
+	\begin{definition}[Граница множества $\partial A$]
+		\label{border-def}
+		Это множество точек, в любой окрестности (шаре) которых есть как точки из $A$, так и точки не из $A$. $x \in \partial A \Leftrightarrow \forall r > 0: B(x, r) \cap A \ne \varnothing$ и $B(x, r) \cap (X \setminus A) \ne \varnothing$
+	\end{definition}
+	
+	\begin{definition}[Замыкание $\overline{A}$]
+		Объединение множества и его \hyperref[border-def]{границы}: $\overline{A} = A \cup \partial A$. Замыкание всегда является замкнутым множеством.
+	\end{definition}
+	
+	\begin{definition}[Канторово множество, $K$]
+		Получается, если выкидывать каждый раз среднюю треть на $(0, 1)$.
+	\end{definition}
+	
+	\begin{definition}[Непрерывность отображения]
+		$f: X \rightarrow Y$ непрерывна, если $\forall U \subset Y \, f^{-1} (U)$~--- открыто в $X$.
+	\end{definition}
+	
+	\begin{definition}[Гомеоморфизм]
+		$X \simeq Y$, если $\exists f: X \rightarrow Y$:
+		\begin{itemize}
+			\item $f$~--- непрерывна.
+			\item $f$~--- биекция.
+			\item $f'$~--- непрерывна.
+		\end{itemize}
+	\end{definition}
+	
+	\begin{property}
+		\begin{enumerate}
+			\item $K$~--- замкнуто.
+			\item Длина $K = 0$.
+			\item $K$ несчетно.
+			\item $K \simeq K \times K$
+		\end{enumerate}
+	\end{property}
+	
+	\section{Связность.}
+	
+	\begin{definition}[Несвязность]
+		$X$~--- несвязное пространство, если $\exists$ открытые $U, V \subset X$:
+		\begin{enumerate}
+			\item $U, V \ne \varnothing$
+			\item $U \cap V = \varnothing$
+			\item $U \cup V = X$
+		\end{enumerate}
+	\end{definition}
+	
+	\begin{definition}[Несвязность]
+		$X$~--- топологическое пространство; $A \ne \varnothing \subset X$. $A$ несвязно, если $\exists$ открытые $U, V \subset X$:
+		\begin{itemize}
+			\item $U \cap A \ne \varnothing$, $V \cap A \ne \varnothing$
+			\item $U \cap V \cap A = \varnothing$
+			\item $A \subset U \cup V$
+		\end{itemize}
+	\end{definition}
+	
+	\begin{definition}[Линейная связность]
+		$X$~--- топологическое пространство. $X$ называется линейно связным, если $\forall a, b \in X$  $\exists$ непрерывное $f: [0, 1] \rightarrow X$: $f(0) = a, f(1) = b$.
+	\end{definition}
+	
+	\begin{note}
+		Линейная связность $\Rightarrow$ связность.
+	\end{note}
+	
+	\begin{theorem}
+		$I = [0, 1]$ связен.
+	\end{theorem}
+	
+	\begin{proof}
+		Допустим противное.
+		
+		$U, V$~--- открытые; $U \cap I \ne \varnothing$, $V \cap I \ne \varnothing$; $U \cap V \cap I = \varnothing$; $I \subset U \cap V$.
+		
+		НУО $0 \in U$.
+		
+		$x_0 = \inf \{ V \cap I \}$.
+		
+		Пусть $x_0 \in V \Rightarrow \exists \varepsilon > 0: B(x_0, \varepsilon) \subset V \Rightarrow (x_0 - \varepsilon; x_0 + \varepsilon) \subset V \Rightarrow x_0$~--- не инфимум.
+		
+		Пусть тогда $x_0 \in U \Rightarrow \exists \varepsilon > 0: B(x_0, \varepsilon) \subset U \Rightarrow (x_0 - \varepsilon; x_0 + \varepsilon) \subset U \Rightarrow x_0 + \dfrac{\varepsilon}{2}$~--- нижняя грань $V \cap I$.
+		
+		Если $x_0 = 0: [0, \varepsilon) \subset U \Rightarrow x_0 \geqslant \varepsilon$.
+	\end{proof}
+	
+	\begin{theorem}
+		$f: X \rightarrow Y$ непрерывно; $A \subset X$~--- связно $\Rightarrow f(A)$ связно в $Y$.
+	\end{theorem}
+	
+	\begin{theorem}[Вейерштрасса]
+		$X$~--- связен; $f: X \rightarrow R$; $f(x_1) = a$, $f(x_2) = b$, $a \leqslant c \leqslant b \Rightarrow \exists x_0: f(x_0) = c$.
+	\end{theorem}
+	
+	\begin{definition}[Блин]
+		Открытое (связное) ограниченное подмножество плоскости.
+	\end{definition}
+	
+	\begin{statement}
+		Блин одной прямой, параллельной данной, можно разделить на 2 равные части.
+	\end{statement}
+	
+	\begin{statement}
+		Любой блин можно разделить на две равновеликие части прямой, проходящей через заданную точку.
+	\end{statement}
+	
+	\begin{statement}
+		Два любых блина, каждый на две равновеликие части.
+	\end{statement}
+	
+	\begin{statement}
+		Один блин на 4 равновеликие части, двумя перпендикулярными разрезами.
+	\end{statement}
+	
+	\section{Компактность.}
+	
+	\begin{definition}[Покрытие]
+		$(X, \Omega)$~--- топологическое пространство; $\{ U_i \}$~--- открытое. Если $\bigcup\limits_i U_i = X$, то $\{ U_i \}$~--- открытое покрытие.
+	\end{definition}
+	
+	\begin{definition}[Компактность]
+		$X$ называется компактным, если $\forall$ покрытия $\{ U_i \}$ $\exists U_1, U_2, \dots, U_n$: $\{ U_k \}_{k = 1}^n$~--- покрытие.
+	\end{definition}
+	
+	\begin{definition}
+		$(X, \Omega)$~--- топологическое пространство, $A \subset X$. $A$ компактное, если $\forall \{ U_i \}_{i \in I}$: $\bigcup\limits_{i \in I} U_i \supset A \Rightarrow \exists U_1, \dots, U_n$: $U_1 \cup \dots \cup U_n \supset A$.
+	\end{definition}
+	
+	\begin{theorem}
+		$A \subset \mathbb{R}^n \Rightarrow A$~--- компактно $\Leftrightarrow A$~--- замкнуто и ограничено.
+	\end{theorem}
+	
+	\begin{theorem}
+		$A$ компактно, $f: A \rightarrow \mathbb{R}$ непрерывная функция $\Rightarrow f$ достигает свои max и min.
+	\end{theorem}
+	
+	\begin{theorem}
+		$[0, 1]$~--- компактно.
+	\end{theorem}
+	
+	\begin{theorem}
+		Замкнутое подмножество компактного~--- компактно.
+	\end{theorem}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \section{Поля}
+    
+    \subsection{Поля и их расширения}
+    
+    \begin{definition}[Поле]\label{def:field}
+    	Множество $K$ с двумя операциями $+$ и $\cdot$ называется \emph{полем}, если выполнены следующие аксиомы:
+    	\begin{enumerate}
+    		\item \label{ax:add-assoc} ассоциативность сложения: $(a+b)+c = a+(b+c)$;
+    		\item \label{ax:zero} существует нейтральный элемент $0$: $a + 0 = a$;
+    		\item \label{ax:add-inv} для любого $a$ существует противоположный $-a$: $a + (-a) = 0$;
+    		\item \label{ax:add-comm} коммутативность сложения: $a + b = b + a$;
+    		\smallskip
+    		\item[] \quad (\ref{ax:add-assoc}--\ref{ax:add-comm}: $K$ является абелевой группой по сложению)
+    		\smallskip
+    		\item \label{ax:distrib} дистрибутивность: $a(b+c) = ab + ac$;
+    		\smallskip
+    		\item \label{ax:mul-assoc} ассоциативность умножения: $(ab)c = a(bc)$;
+    		\item \label{ax:one} существует единица $1 \ne 0$: $a \cdot 1 = a$;
+    		\item \label{ax:mul-inv} для любого $a \ne 0$ существует обратный $a^{-1}$: $a \cdot a^{-1} = 1$;
+    		\item \label{ax:mul-comm} коммутативность умножения: $ab = ba$;
+    		\smallskip
+    		\item[] \quad (\ref{ax:mul-assoc}--\ref{ax:mul-comm}: $K \setminus \{0\}$ является абелевой группой по умножению)
+    	\end{enumerate}
+    \end{definition}
+    
+    \begin{example}
+    	\[
+    	\mathbb{Q}, \quad \mathbb{R}, \quad \mathbb{C}, \quad \mathbb{F}_p = \mathbb{Z}/p\mathbb{Z} \ (p \text{ --- простое}), \quad \mathbb{Q}(\sqrt{2}), \ \ldots
+    	\]
+    \end{example}
+    
+    \begin{definition}[Подполе, расширение поля]\label{def:extension}
+    	Пусть $K \subset L$ --- поля (определение~\ref{def:field}), причём операции на $L$, ограниченные на $K$, совпадают с операциями на $K$ (т.е. $K$ замкнуто относительно $+, \cdot$ и содержит $0, 1$).
+    
+    	Тогда $K$ называется \emph{подполем} $L$, а $L$ называется \emph{расширением} поля $K$. Обозначение: $L/K$.
+    \end{definition}
+    
+    \begin{definition}[Характеристика поля]\label{def:characteristic}
+    	Пусть $K$ --- поле (определение~\ref{def:field}). Рассмотрим гомоморфизм колец
+    	\[
+    	\varphi: \mathbb{Z} \to K, \qquad \varphi(n) = \underbrace{1+1+\cdots+1}_{n}\ (n>0), \quad \varphi(0)=0, \quad \varphi(-n)=-\varphi(n).
+    	\]
+    	Его ядро $\ker\varphi$ --- идеал в $\mathbb{Z}$, а $\mathbb{Z}$ --- кольцо главных идеалов, поэтому $\ker\varphi = (m)$ для единственного $m \geqslant 0$.
+    
+    	Число $m$ называется \emph{характеристикой} поля $K$ и обозначается $\operatorname{char} K$. Если $\operatorname{char} K = 0$, то $\varphi$ инъективен; если $\operatorname{char} K = m > 0$, то (как показано в доказательстве теоремы~\ref{thm:prime-field-classification}) $m$ обязано быть простым числом, так как иначе в $K$ появились бы делители нуля.
+    \end{definition}
+    
+    \begin{note}
+    	Характеристика поля напрямую связана с его простым подполем (теорема~\ref{thm:prime-field-classification}): если $\operatorname{char} K = 0$, то простое подполе $K$ изоморфно $\mathbb{Q}$; если $\operatorname{char} K = p$, то оно изоморфно $\mathbb{F}_p$.
+    \end{note}
+    
+    \subsection{Расширение как векторное пространство. Степень расширения}
+    
+    \begin{theorem}\label{thm:vector-space}
+    	Если $L/K$ --- расширение полей (определение~\ref{def:extension}), то $L$ является линейным (векторным) пространством над $K$: элементы $L$ складываются как в поле, а умножение на скаляры $\lambda \in K$ --- это обычное умножение в $L$. Все аксиомы векторного пространства следуют из аксиом поля $L$ (определение~\ref{def:field}).
+    \end{theorem}
+    \begin{proof}
+    	Сложение в $L$ уже задано (как в поле). Умножение на скаляры $K \times L \to L$ определим как обычное умножение в $L$ (это корректно, так как $K \subset L$). Проверим аксиомы векторного пространства:
+    	\begin{itemize}
+    		\item $(L, +)$ --- абелева группа (аксиомы~\ref{ax:add-assoc}--\ref{ax:add-comm} поля $L$, определение~\ref{def:field});
+    		\item $\lambda(v+w) = \lambda v + \lambda w$ и $(\lambda+\mu)v = \lambda v + \mu v$ --- это в точности дистрибутивность (аксиома~\ref{ax:distrib}) в $L$;
+    		\item $(\lambda\mu)v = \lambda(\mu v)$ --- ассоциативность умножения в $L$ (аксиома~\ref{ax:mul-assoc});
+    		\item $1 \cdot v = v$ --- аксиома~\ref{ax:one}.
+    	\end{itemize}
+    	Все нужные тождества --- это частные случаи аксиом поля $L$ (определение~\ref{def:field}), применённые к $\lambda, \mu \in K \subset L$. Значит, $L$ --- векторное пространство над $K$.
+    \end{proof}
+    
+    \begin{definition}[Конечное расширение, степень расширения]\label{def:degree}
+    	Пусть $L/K$ --- расширение полей (определение~\ref{def:extension}); напомним, что тогда $L$ --- векторное пространство над $K$ (теорема~\ref{thm:vector-space}). Если $\dim_K L < \infty$, то расширение $L/K$ называется \emph{конечным}, а само число
+    	\[
+    	[L:K] := \dim_K L
+    	\]
+    	называется \emph{степенью расширения}.
+    \end{definition}
+    
+    \subsection{Алгебраические элементы и минимальный многочлен}
+    
+    \begin{definition}[Алгебраический и трансцендентный элемент]\label{def:algebraic}
+    	Пусть $L/K$ --- расширение полей (определение~\ref{def:extension}) и $\alpha \in L$ (в общем случае $\alpha$ может лежать и в каком-то большем поле, содержащем $K$, --- сам $\alpha$ не обязан лежать в $K$).
+    
+    	Элемент $\alpha$ называется \emph{алгебраическим над $K$}, если существует ненулевой многочлен $f \in K[x]$ такой, что $f(\alpha) = 0$.
+    
+    	Если такого $f$ не существует, $\alpha$ называется \emph{трансцендентным над $K$}.
+    \end{definition}
+    
+    \begin{definition}[Минимальный многочлен]\label{def:min-poly}
+    	Пусть $\alpha$ алгебраичен над $K$ (определение~\ref{def:algebraic}). Многочлен $f \in K[x]$ наименьшей степени среди всех многочленов, обращающихся в $\alpha$ в ноль (обычно берут ещё нормированный, со старшим коэффициентом $1$), называется \emph{минимальным многочленом} $\alpha$ над $K$.
+    
+    	Степень этого многочлена называется \emph{степенью элемента $\alpha$} над $K$.
+    \end{definition}
+    
+    \begin{definition}[Алгебраическое расширение]\label{def:algebraic-extension}
+    	Расширение $L/K$ (определение~\ref{def:extension}) называется \emph{алгебраическим}, если каждый элемент $\alpha \in L$ является алгебраическим над $K$ (определение~\ref{def:algebraic}).
+    \end{definition}
+    
+    \subsection{Поля $K(\alpha)$ и $K[\alpha]$}
+    
+    \begin{definition}[Поле $K(\alpha)$, порождённое $\alpha$]\label{def:generated-field}
+    	Пусть $\alpha$ --- произвольный элемент некоторого расширения $K$ (алгебраичность заранее не предполагается). Через $K(\alpha)$ обозначается наименьшее по включению поле, содержащее $K$ и $\alpha$.
+    \end{definition}
+    
+    \begin{definition}[кольцо $K{[}\alpha{]}$]\label{def:Kalpha-ring}
+    	Через $K[\alpha]$ обозначается образ гомоморфизма колец $\varphi: K[x] \to L$, $\varphi(g) = g(\alpha)$, т.е. множество всех значений $g(\alpha)$ при $g \in K[x]$. Это наименьшее по включению \emph{кольцо}, содержащее $K$ и $\alpha$ (в отличие от $K(\alpha)$ из определения~\ref{def:generated-field}, которое является наименьшим \emph{полем} с этим свойством); очевидно, $K[\alpha] \subset K(\alpha)$.
+    \end{definition}
+    
+    \begin{theorem}\label{thm:irreducible}
+    	Пусть $\alpha$ алгебраичен над $K$ (определение~\ref{def:algebraic}), а $f$ --- его минимальный многочлен (определение~\ref{def:min-poly}). Тогда $f$ неприводим над $K$.
+    \end{theorem}
+    \begin{proof}
+    	Предположим противное: $f = gh$, где $g, h \in K[x]$ и $\deg g, \deg h < \deg f$. Тогда $0 = f(\alpha) = g(\alpha)h(\alpha)$. Так как $\alpha$ лежит в поле (в частности, в области целостности), из $g(\alpha)h(\alpha)=0$ следует $g(\alpha)=0$ или $h(\alpha)=0$. Но $\deg g, \deg h < \deg f$, а $f$ по определению~\ref{def:min-poly} --- многочлен наименьшей степени, обращающийся в $\alpha$ в ноль. Противоречие. Значит, $f$ неприводим.
+    \end{proof}
+    
+    \begin{theorem}\label{thm:basis}
+    	Пусть $\alpha$ алгебраичен над $K$ (определение~\ref{def:algebraic}) и его степень равна $n$ (определение~\ref{def:min-poly}). Тогда $1, \alpha, \alpha^2, \ldots, \alpha^{n-1}$ образуют базис $K[\alpha]$ (определение~\ref{def:Kalpha-ring}) как векторного пространства над $K$.
+    \end{theorem}
+    \begin{proof}
+    	\emph{Линейная независимость.} Если $c_0 + c_1\alpha + \cdots + c_{n-1}\alpha^{n-1} = 0$ для некоторых $c_i \in K$, не все из которых равны нулю, то многочлен $c_0 + c_1x + \cdots + c_{n-1}x^{n-1}$ --- ненулевой, имеет степень $<n$ и обращается в $\alpha$ в ноль. Это противоречит тому, что минимальный многочлен $f$ (определение~\ref{def:min-poly}) имеет наименьшую степень $n$ среди всех многочленов, обнуляющихся на $\alpha$. Значит, все $c_i = 0$.
+    
+    	\emph{Порождающая система.} Пусть $\beta \in K[\alpha]$, то есть $\beta = g(\alpha)$ для некоторого $g \in K[x]$. Поделим $g$ с остатком на $f$ (в $K[x]$ это возможно, так как $f$ можно считать нормированным): $g = qf + r$, где $r = 0$ или $\deg r < n$. Тогда
+    	\[
+    	\beta = g(\alpha) = q(\alpha)f(\alpha) + r(\alpha) = q(\alpha)\cdot 0 + r(\alpha) = r(\alpha),
+    	\]
+    	а $r(\alpha)$ --- это $K$-линейная комбинация $1, \alpha, \ldots, \alpha^{n-1}$. Значит, эти элементы порождают $K[\alpha]$.
+    
+    	Итак, $1, \alpha, \ldots, \alpha^{n-1}$ --- базис $K[\alpha]$ над $K$.
+    \end{proof}
+    
+    \begin{theorem}\label{thm:Kalpha}
+    	Пусть $\alpha$ алгебраичен над $K$ (определение~\ref{def:algebraic}). Тогда:
+    	\begin{enumerate}
+    		\item[(a)] \label{thm:Kalpha-a} расширение $K(\alpha)/K$ алгебраическое (определение~\ref{def:algebraic-extension});
+    		\item[(b)] \label{thm:Kalpha-b} расширение $K(\alpha)/K$ конечное (определение~\ref{def:degree});
+    		\item[(c)] \label{thm:Kalpha-c} $[K(\alpha):K]$ равно степени $\alpha$ (определение~\ref{def:min-poly}).
+    	\end{enumerate}
+    \end{theorem}
+    \begin{proof}
+    	\emph{(b), (c).} Пусть $f$ --- минимальный многочлен $\alpha$ (определение~\ref{def:min-poly}), $\deg f = n$. По теореме~\ref{thm:irreducible} $f$ неприводим над $K$, поэтому идеал $(f) \subset K[x]$ максимален (так как $K[x]$ --- кольцо главных идеалов), и, значит, $K[x]/(f)$ --- поле.
+    
+    	Рассмотрим гомоморфизм колец $\varphi: K[x] \to K[\alpha]$, $\varphi(g) = g(\alpha)$ (определение~\ref{def:Kalpha-ring}). Он сюръективен по определению $K[\alpha]$, а его ядро --- это в точности многочлены, обращающиеся в $\alpha$ в ноль, то есть идеал $(f)$ (это множество --- идеал, а $f$ --- его элемент наименьшей степени, значит, он и порождает этот идеал, поскольку $K[x]$ --- область главных идеалов). По теореме о гомоморфизме,
+    	\[
+    	K[\alpha] \cong K[x]/(f),
+    	\]
+    	а значит, $K[\alpha]$ само является полем. Так как $K(\alpha)$ --- наименьшее поле, содержащее $K$ и $\alpha$ (определение~\ref{def:generated-field}), а $K[\alpha]$ уже поле, содержащее $K$ и $\alpha$, получаем $K(\alpha) = K[\alpha]$.
+    
+    	По теореме~\ref{thm:basis} $1, \alpha, \ldots, \alpha^{n-1}$ --- базис $K[\alpha]$ над $K$, поэтому $[K(\alpha):K] = n$ и это конечно (определение~\ref{def:degree}). Это доказывает (b) и (c).
+    
+    	\emph{(a).} Сначала докажем общий факт: \emph{если $M/K$ --- конечное расширение (определение~\ref{def:degree}), то оно алгебраическое (определение~\ref{def:algebraic-extension})}\label{lem:finite-algebraic}. Пусть $[M:K] = d$ и $\beta \in M$ произвольный. Тогда $1, \beta, \beta^2, \ldots, \beta^d$ --- это $d+1$ элементов в $d$-мерном пространстве $M$ над $K$, значит, они линейно зависимы: существуют $c_0, \ldots, c_d \in K$, не все нулевые, такие что $c_0 + c_1\beta + \cdots + c_d\beta^d = 0$. Это ненулевой многочлен из $K[x]$, обращающийся в $\beta$ в ноль, значит, $\beta$ алгебраичен над $K$ (определение~\ref{def:algebraic}). Так как $\beta$ был произвольным, $M/K$ алгебраическое.
+    
+    	Применяя это к $M = K(\alpha)$ (которое конечно над $K$ по пункту~\ref{thm:Kalpha-b}), получаем, что $K(\alpha)/K$ алгебраическое.
+    \end{proof}
+    
+    \subsection{Башня расширений}
+    
+    \begin{theorem}[мультипликативность степени]\label{thm:tower}
+    	Пусть $M/L/K$ --- башня конечных расширений полей (определения~\ref{def:extension}, \ref{def:degree}). Тогда
+    	\[
+    	[M:K] = [M:L] \cdot [L:K].
+    	\]
+    \end{theorem}
+    \begin{proof}
+    	Пусть $e_1, \ldots, e_m$ --- базис $L$ над $K$ (так что $[L:K]=m$), а $f_1, \ldots, f_n$ --- базис $M$ над $L$ (так что $[M:L]=n$); такие базисы существуют, так как $L/K$ и $M/L$ конечны (определение~\ref{def:degree}). Докажем, что $mn$ элементов $\{e_i f_j\}_{1\leqslant i \leqslant m, 1 \leqslant j \leqslant n}$ образуют базис $M$ над $K$.
+    
+    	\emph{Порождающая система.} Пусть $x \in M$. Так как $f_1,\ldots,f_n$ --- базис над $L$, найдутся $\lambda_1,\ldots,\lambda_n \in L$ такие, что $x = \sum_j \lambda_j f_j$. Так как $e_1,\ldots,e_m$ --- базис $L$ над $K$, каждое $\lambda_j = \sum_i c_{ij} e_i$ для некоторых $c_{ij} \in K$. Подставляя,
+    	\[
+    	x = \sum_j \Big(\sum_i c_{ij} e_i\Big) f_j = \sum_{i,j} c_{ij} \, e_i f_j,
+    	\]
+    	то есть $x$ --- это $K$-линейная комбинация элементов $e_i f_j$.
+    
+    	\emph{Линейная независимость.} Пусть $\sum_{i,j} c_{ij} e_i f_j = 0$ для $c_{ij} \in K$. Перегруппируем по $j$:
+    	\[
+    	\sum_j \Big(\sum_i c_{ij} e_i\Big) f_j = 0.
+    	\]
+    	Каждый коэффициент $\sum_i c_{ij} e_i$ лежит в $L$, а $f_1,\ldots,f_n$ линейно независимы над $L$, поэтому $\sum_i c_{ij} e_i = 0$ для каждого $j$. Но $e_1,\ldots,e_m$ линейно независимы над $K$, значит, $c_{ij} = 0$ для всех $i,j$.
+    
+    	Итак, $\{e_i f_j\}$ --- базис $M$ над $K$ из $mn$ элементов, откуда $[M:K] = mn = [M:L]\cdot[L:K]$.
+    \end{proof}
+    
+    \subsection{Существование корня и поле разложения}
+    
+    \begin{theorem}[построение корня для неприводимого многочлена]\label{thm:root-field}
+    	Пусть $f \in K[x]$ неприводим над $K$ и $\deg f = n$. Тогда факторкольцо
+    	\[
+    	F := K[x]/(f)
+    	\]
+    	является полем, содержащим $K$ (как подполе, отождествляя $c \in K$ с классом $\bar c$), $[F:K] = n$, а класс $\bar x \in F$ является корнем $f$ в $F$.
+    \end{theorem}
+    \begin{proof}
+    	Так как $f$ неприводим, а $K[x]$ --- кольцо главных идеалов, идеал $(f)$ максимален, поэтому $F = K[x]/(f)$ --- поле (это та же конструкция, что и в доказательстве теоремы~\ref{thm:Kalpha}, только здесь $\alpha$ заранее не существует --- мы \emph{строим} поле, в котором у $f$ появится корень).
+    
+    	Классы $1, \bar x, \bar x^2, \ldots, \bar x^{n-1}$ образуют базис $F$ над $K$: это доказывается дословно как в теореме~\ref{thm:basis} (деление с остатком на $f$ даёт разложение любого класса $\bar g$ по этим степеням, а линейная независимость следует из того, что многочлен степени $<n$ не может лежать в $(f)$, кроме нулевого). Значит, $[F:K]=n$ (определение~\ref{def:degree}).
+    
+    	Наконец, пусть $f(x) = a_n x^n + \cdots + a_1 x + a_0$. Тогда в $F$
+    	\[
+    	f(\bar x) = a_n \bar x^n + \cdots + a_1 \bar x + a_0 = \overline{f(x)} = \bar 0,
+    	\]
+    	поскольку $f(x) \in (f)$ по определению идеала. Значит, $\bar x$ --- корень $f$ в $F$.
+    \end{proof}
+    
+    \begin{theorem}[существование поля, где $f$ распадается на линейные множители]\label{thm:splitting-field}
+    	Пусть $f \in K[x]$ неприводим над $K$ и $\deg f = n$. Тогда существует конечное расширение $L/K$ (определения~\ref{def:extension}, \ref{def:degree}), в котором $f$ имеет $n$ корней (с учётом кратности), то есть раскладывается в $L[x]$ в произведение линейных множителей.
+    \end{theorem}
+    \begin{proof}
+    	Построим $F_1 := K[x]/(f)$ как в теореме~\ref{thm:root-field}; это поле, $[F_1:K]=n$, и класс $\bar x_1 \in F_1$ --- корень $f$. Поделив $f$ на $(x-\bar x_1)$ с остатком в $F_1[x]$ (остаток от деления на линейный многочлен равен $f(\bar x_1)=0$), получаем разложение
+    	\[
+    	f(x) = (x - \bar x_1)\, g(x), \qquad g \in F_1[x],\ \deg g = n-1.
+    	\]
+    	Если $g$ не раскладывается на линейные множители над $F_1$, возьмём среди его неприводимых над $F_1$ множителей какой-нибудь $f_2$ со $\deg f_2 > 1$ и применим к нему теорему~\ref{thm:root-field} над полем $F_1$: получим поле $F_2 := F_1[x_2]/(f_2)$, $[F_2:F_1] < \infty$, в котором у $f_2$ (а значит, и у исходного $f$) появляется ещё один корень $\bar x_2$.
+    
+    	Повторяя эту процедуру (на каждом шаге либо все множители $f$ над текущим полем линейны --- и тогда $f$ уже раскладывается полностью, либо берём неприводимый множитель степени $>1$ и присоединяем его корень), получаем конечную башню
+    	\[
+    	K \subset F_1 \subset F_2 \subset \cdots \subset F_m =: L,
+    	\]
+    	в которой каждое включение --- конечное расширение (теорема~\ref{thm:root-field}, применённая к очередному неприводимому множителю), а процесс обязан остановиться не более чем за $n-1$ шаг, так как степень оставшегося нелинейного множителя строго убывает.
+    
+    	По теореме о мультипликативности степени~\ref{thm:tower}, применённой последовательно ко всей башне,
+    	\[
+    	[L:K] = [F_m:F_{m-1}]\cdots[F_2:F_1]\cdot[F_1:K] < \infty,
+    	\]
+    	то есть $L/K$ конечно. По построению в $L[x]$ многочлен $f$ раскладывается в произведение $n$ линейных множителей, то есть имеет $n$ корней в $L$ с учётом кратности.
+    \end{proof}
+    
+    \begin{definition}[поле разложения $f$]\label{def:splitting-field}
+    	Пусть $f \in K[x]$, а $L/K$ --- расширение, в котором $f$ раскладывается на линейные множители (например, поле $L$ из теоремы~\ref{thm:splitting-field}). Пересечение всех подполей $L$, содержащих $K$ и все корни $f$ (лежащие в $L$), само является полем: пересечение любого семейства подполей --- снова подполе, а $K$ и корни $f$ содержатся в каждом из пересекаемых полей, значит, и в пересечении. Это наименьшее такое подполе называется \emph{полем разложения} $f$ над $K$ (в $L$).
+    \end{definition}
+    
+    \subsection{Алгебраичность суммы и произведения}
+    
+    \begin{theorem}\label{thm:sum-product}
+    	Сумма и произведение алгебраических над $K$ элементов (определение~\ref{def:algebraic}) также алгебраичны над $K$.
+    \end{theorem}
+    \begin{proof}
+    	Пусть $\alpha, \beta$ алгебраичны над $K$. Так как $\alpha$ алгебраичен над $K$, расширение $K(\alpha)/K$ конечно (теорема~\ref{thm:Kalpha}, пункт~\hyperref[thm:Kalpha-b]{b}). Так как $\beta$ алгебраичен над $K$ (существует ненулевой $g \in K[x]$ с $g(\beta)=0$), то $\beta$ алгебраичен и над большим полем $K(\alpha) \supset K$ (тот же многочлен $g$ годится, ведь $K[x] \subset K(\alpha)[x]$). Значит, $K(\alpha)(\beta)/K(\alpha)$ тоже конечно (снова теорема~\ref{thm:Kalpha}, пункт~\hyperref[thm:Kalpha-b]{b}, применённая к базовому полю $K(\alpha)$).
+    
+    	По теореме~\ref{thm:tower} о мультипликативности степени,
+    	\[
+    	[K(\alpha,\beta):K] = [K(\alpha,\beta):K(\alpha)]\cdot[K(\alpha):K] < \infty,
+    	\]
+    	где $K(\alpha,\beta) := K(\alpha)(\beta)$. Значит, $K(\alpha,\beta)/K$ --- конечное расширение, а по факту, доказанному выше (см.~\hyperref[lem:finite-algebraic]{общий факт} в доказательстве теоремы~\ref{thm:Kalpha}), конечное расширение алгебраично. Так как $\alpha+\beta, \ \alpha\beta \in K(\alpha,\beta)$, оба этих элемента алгебраичны над $K$.
+    \end{proof}
+    
+    \subsection{Приложения алгебраических расширений}
+    
+    \subsubsection{Избавление от иррациональности в знаменателе}
+    
+    \begin{theorem}[избавление от иррациональности в знаменателе]\label{thm:rationalize}
+    	Дана дробь, числитель которой равен $1$, а знаменатель --- конечная сумма корней из целых чисел. Тогда существует равная ей дробь, такая что её знаменатель --- целое число, а числитель --- сумма (с целыми коэффициентами) корней из целых чисел.
+    \end{theorem}
+    \begin{proof}
+    	Пусть $D = r_1 + r_2 + \cdots + r_k \ne 0$, где $r_i = n_i^{1/m_i}$ --- некоторый вещественный корень $m_i$-й степени из целого числа $n_i$. Каждое $r_i$ алгебраично над $\mathbb{Q}$ (определение~\ref{def:algebraic}; корень многочлена $x^{m_i}-n_i$), поэтому по теореме~\ref{thm:sum-product} (применённой несколько раз подряд к суммам) $D$ алгебраично над $\mathbb{Q}$.
+    
+    	Пусть $f(x) = x^N + c_{N-1}x^{N-1} + \cdots + c_1 x + c_0$ --- минимальный многочлен $D$ над $\mathbb{Q}$ (определение~\ref{def:min-poly}); домножив на общий знаменатель коэффициентов, можно считать все $c_i \in \mathbb{Z}$. Заметим, что $c_0 \ne 0$: иначе $f(x) = x\cdot(x^{N-1}+\cdots+c_1)$, и так как $f(D)=0$ и $D\ne 0$, получили бы $D^{N-1}+\cdots+c_1=0$ --- ненулевое соотношение меньшей степени, чем $\deg f$, что противоречит минимальности $f$ (определение~\ref{def:min-poly}).
+    
+    	Из $f(D)=0$ получаем
+    	\[
+    	D\cdot\big(D^{N-1}+c_{N-1}D^{N-2}+\cdots+c_1\big) = -c_0,
+    	\]
+    	то есть
+    	\[
+    	\frac{1}{D} = \frac{-\big(D^{N-1}+c_{N-1}D^{N-2}+\cdots+c_1\big)}{c_0}.
+    	\]
+    	Знаменатель $c_0$ --- целое число. Осталось проверить, что числитель --- сумма корней из целых чисел. Числитель является $\mathbb{Z}$-линейной комбинацией степеней $D^j$, а каждая степень $D^j$ (после раскрытия по полиномиальной формуле) --- это $\mathbb{Z}$-линейная комбинация одночленов вида $r_1^{a_1}r_2^{a_2}\cdots r_k^{a_k}$.
+    
+    	Пусть $L = \mathrm{lcm}(m_1,\ldots,m_k)$. Тогда каждый такой одночлен сам является корнем степени $L$ из целого числа:
+    	\[
+    	r_1^{a_1}\cdots r_k^{a_k} = n_1^{a_1/m_1}\cdots n_k^{a_k/m_k} = \Big(n_1^{a_1 L/m_1}\cdots n_k^{a_k L/m_k}\Big)^{1/L},
+    	\]
+    	а показатели $a_iL/m_i$ --- целые числа, так как $m_i \mid L$. Значит, числитель --- это целочисленная линейная комбинация корней степени $L$ из целых чисел, то есть сумма (с учётом знаков и повторений) корней из целых чисел, что и требовалось.
+    \end{proof}
+    
+    \subsubsection{Квадратичные расширения}
+    
+    \begin{theorem}[квадратичное расширение полей]\label{thm:quadratic}
+    	Пусть $L/K$ --- расширение полей (определение~\ref{def:extension}), $\operatorname{char} K \ne 2$, и $\sqrt{\alpha} \notin K$ ни для какого $\alpha \in K$, не являющегося квадратом в $K$ (т.е. рассматриваем нетривиальный случай). Тогда
+    	\[
+    	L = K(\sqrt{\alpha}) \text{ для некоторого } \alpha \in K,\ \sqrt\alpha \notin K \quad \Longleftrightarrow \quad [L:K] = 2.
+    	\]
+    \end{theorem}
+    \begin{proof}
+    	\emph{($\Rightarrow$)} Пусть $L = K(\sqrt{\alpha})$ (определение~\ref{def:generated-field}), где $\alpha \in K$ не является квадратом в $K$. Тогда многочлен $x^2-\alpha$ не имеет корней в $K$, а значит (будучи степени 2) неприводим над $K$. Он же обнуляется на $\sqrt\alpha$, значит, он и есть минимальный многочлен $\sqrt\alpha$ над $K$ (определение~\ref{def:min-poly}), и его степень равна $2$. По теореме~\ref{thm:Kalpha}, пункт~\ref{thm:Kalpha-c}, $[K(\sqrt\alpha):K]$ равно степени $\sqrt\alpha$, то есть $[L:K]=2$.
+    
+    	\emph{($\Leftarrow$)} Пусть $[L:K]=2$ (определение~\ref{def:degree}). Возьмём любой $\beta \in L \setminus K$. Так как $\dim_K L = 2$, а $1, \beta$ линейно независимы над $K$ (если бы $\beta = c\cdot 1$ для $c\in K$, то $\beta \in K$ --- противоречие), пара $\{1,\beta\}$ --- базис $L$ над $K$.
+    
+    	Тогда $\beta^2 \in L$ раскладывается по этому базису: $\beta^2 = a + b\beta$ для некоторых $a,b \in K$, то есть $\beta$ --- корень многочлена $x^2 - bx - a \in K[x]$.
+    
+    	Так как $\operatorname{char} K \ne 2$, элемент $2$ обратим в $K$, и можно выделить полный квадрат: положим $\gamma := \beta - \dfrac{b}{2} \in L$. Тогда
+    	\[
+    	\gamma^2 = \beta^2 - b\beta + \frac{b^2}{4} = (a+b\beta) - b\beta + \frac{b^2}{4} = a + \frac{b^2}{4} =: \alpha \in K.
+    	\]
+    	Значит, $\gamma = \sqrt{\alpha}$ для некоторого $\alpha \in K$. Так как $b/2 \in K$, то $K(\gamma) = K(\beta)$ (определение~\ref{def:generated-field}; каждое выражается через другое с коэффициентами из $K$), и $K(\beta) = L$ (так как $\beta \notin K$, а $[L:K]=2$, поле $K(\beta)$ строго больше $K$, значит, совпадает с $L$). Наконец, $\alpha$ не является квадратом в $K$: иначе $\gamma \in K$, откуда $\beta = \gamma + b/2 \in K$ --- противоречие.
+    
+    	Итак, $L = K(\gamma) = K(\sqrt\alpha)$ для некоторого $\alpha \in K$, не являющегося квадратом в $K$.
+    \end{proof}
+    
+    \subsection{Теорема о примитивном элементе}
+    
+    \begin{theorem}[примитивный элемент]\label{thm:primitive-element}
+    	$L$~--- конечное расширение $\mathbb{Q} \Rightarrow L = \mathbb{Q}(\theta)$.
+    \end{theorem}
+    \begin{proof}
+    	\emph{Шаг 1: сведение к лемме о двух образующих.} Пусть $[L:\mathbb{Q}] = d < \infty$ (определение~\ref{def:degree}), и пусть $e_1,\ldots,e_d$ --- базис $L$ над $\mathbb{Q}$. Тогда
+    	\[
+    	L = \mathbb{Q}(e_1,\ldots,e_d),
+    	\]
+    	так как поле $\mathbb{Q}(e_1,\ldots,e_d)$ содержится в $L$ (все $e_i \in L$), а с другой стороны, будучи полем, содержащим $\mathbb{Q}$ и все $e_i$, оно замкнуто относительно сложения и умножения на элементы $\mathbb{Q}$, а значит содержит все $\mathbb{Q}$-линейные комбинации $e_i$, то есть весь $L$ (по определению базиса). Кроме того, $L/\mathbb{Q}$ конечно, значит алгебраично (общий факт из доказательства теоремы~\ref{thm:Kalpha}, см.~\hyperref[lem:finite-algebraic]{там}), поэтому все $e_i$ алгебраичны над $\mathbb{Q}$.
+    
+    	Далее нам понадобится следующая лемма, которую мы применим $d-1$ раз подряд, чтобы последовательно "склеивать" пары образующих в одну.
+    
+    	\smallskip
+    	\noindent\textbf{Лемма.} \emph{Пусть $K \supset \mathbb{Q}$ --- поле (в частности, $\operatorname{char} K = 0$, поэтому $K$ бесконечно, так как содержит бесконечное поле $\mathbb{Q}$), а $\alpha,\beta$ алгебраичны над $K$ (определение~\ref{def:algebraic}). Тогда существует $c \in K$ такое, что}
+    	\[
+    	K(\alpha,\beta) = K(\alpha + c\beta).
+    	\]
+    
+    	\emph{Доказательство леммы.}
+    
+    	\emph{Отделимость.} Пусть $f, g \in K[x]$ --- минимальные многочлены $\alpha, \beta$ над $K$ (определение~\ref{def:min-poly}), $\deg f = m$, $\deg g = n$; по теореме~\ref{thm:irreducible} оба неприводимы над $K$. Покажем, что $f$ не имеет кратных корней ни в каком расширении $K$, где он раскладывается на линейные множители. Так как $\operatorname{char} K = 0$ и $\deg f = m \geqslant 1$, производная $f'$ ненулевая и $\deg f' < m$. Если бы $f$ и $f'$ имели общий нетривиальный делитель $h \in K[x]$, то $h \mid f$ и $0 < \deg h < m$, что противоречит неприводимости $f$ (её единственные делители в $K[x]$ --- константы и произведения $f$ на константу). Значит, $\gcd(f,f')=1$ в $K[x]$: существуют $u,v \in K[x]$ с $uf+vf'=1$. Это тождество сохраняется в любом расширении поля, поэтому общего корня у $f$ и $f'$ там тоже нет, то есть $f$ не имеет кратных корней. Аналогично $g$ не имеет кратных корней.
+    
+    	\emph{Построение поля со всеми корнями.} Применяя ту же конструкцию, что и в доказательстве теоремы~\ref{thm:splitting-field} (только не к неприводимому $f$, а к произведению $fg$: раскладываем его на неприводимые над $K$ множители и по очереди присоединяем корень каждого нелинейного множителя теоремой~\ref{thm:root-field}, пока всё не разложится на линейные), получаем конечное расширение $M/K$, в котором
+    	\[
+    	f(x) = \prod_{i=1}^m (x-\alpha_i), \qquad g(x) = \prod_{j=1}^n (x-\beta_j), \qquad \alpha_i,\beta_j \in M,
+    	\]
+    	причём (по доказанной отделимости) все $\alpha_i$ попарно различны и все $\beta_j$ попарно различны. Перенумеруем так, что $\alpha=\alpha_1$, $\beta=\beta_1$.
+    
+    	\emph{Выбор $c$.} Так как $K$ бесконечно, а пар $(i,j)$ с $j\ne 1$ конечное число, можно выбрать $c \in K$, отличное от всех значений
+    	\[
+    	\frac{\alpha_i-\alpha}{\beta-\beta_j}, \qquad 1\leqslant i \leqslant m,\ \ 2\leqslant j \leqslant n.
+    	\]
+    	Положим $\theta := \alpha+c\beta$.
+    
+    	\emph{$K(\theta) \subseteq K(\alpha,\beta)$.} Так как $\alpha,\beta \in K(\alpha,\beta)$ и $c \in K \subset K(\alpha,\beta)$, а $K(\alpha,\beta)$ --- поле (определение~\ref{def:generated-field}), то $\theta = \alpha+c\beta \in K(\alpha,\beta)$. Поскольку $K(\theta)$ --- наименьшее поле, содержащее $K$ и $\theta$, получаем $K(\theta)\subseteq K(\alpha,\beta)$.
+    
+    	\emph{$K(\alpha,\beta) \subseteq K(\theta)$.} Рассмотрим $h(x) := f(\theta-cx) \in K(\theta)[x]$ (коэффициенты --- многочленные выражения от $\theta,c \in K(\theta)$). Тогда $h(\beta) = f(\theta-c\beta) = f(\alpha) = 0$, то есть $\beta$ --- общий корень $h$ и $g$ в $M$. При этом для $j \ne 1$
+    	\[
+    	h(\beta_j) = f(\alpha + c(\beta-\beta_j)),
+    	\]
+    	и если бы это было $0$, то $\alpha+c(\beta-\beta_j)=\alpha_i$ для некоторого $i$, то есть $c = \dfrac{\alpha_i-\alpha}{\beta-\beta_j}$ --- ровно то значение, которое было исключено при выборе $c$. Значит, $h(\beta_j)\ne 0$ при $j\ne1$, то есть среди корней $\beta_1,\ldots,\beta_n$ многочлена $g$ только $\beta=\beta_1$ является корнем $h$.
+    
+    	Так как $g$ не имеет кратных корней, $\gcd(h,g)$, посчитанный делением с остатком в $K(\theta)[x]$ (это можно делать, так как $K(\theta)$ --- поле), делит $g$ и имеет среди корней в $M$ только $\beta$ --- значит (с точностью до нормировки) $\gcd(h,g) = x-\beta$. Результат алгоритма Евклида не зависит от того, в каком (большем) поле мы представляем себе корни --- он определяется только операциями в $K(\theta)$, поэтому этот $\gcd$, посчитанный именно в $K(\theta)[x]$, и есть многочлен $x-\beta$ с коэффициентами из $K(\theta)$. В частности, $\beta \in K(\theta)$.
+    
+    	Тогда $\alpha = \theta-c\beta \in K(\theta)$ тоже, так как $\theta,c,\beta \in K(\theta)$. Значит, $K(\alpha,\beta)\subseteq K(\theta)$.
+    
+    	Обе включения дают $K(\theta)=K(\alpha,\beta)$, что и требовалось в лемме.
+    
+    	\smallskip
+    	\emph{Шаг 2: завершение.} Применим лемму $d-1$ раз, последовательно объединяя образующие в поле $L=\mathbb{Q}(e_1,\ldots,e_d)$:
+    	\[
+    	L = \mathbb{Q}(e_1,\ldots,e_d) = \mathbb{Q}(e_1,\ldots,e_{d-2},\theta_1) = \mathbb{Q}(e_1,\ldots,e_{d-3},\theta_2) = \cdots = \mathbb{Q}(\theta_{d-1}),
+    	\]
+    	где на каждом шаге $K$ в лемме --- это уже построенное на предыдущем шаге промежуточное поле $\mathbb{Q}(e_1,\ldots,e_k,\theta_{\ldots})\supset\mathbb{Q}$ (оно бесконечно, так как содержит $\mathbb{Q}$), а два элемента, которые мы объединяем, алгебраичны над ним (они алгебраичны уже над $\mathbb{Q}$, значит и над любым содержащим $\mathbb{Q}$ полем, определение~\ref{def:algebraic}). Положив $\theta := \theta_{d-1}$, получаем $L = \mathbb{Q}(\theta)$.
+    \end{proof}
+    
+    \subsection{Сепарабельность}
+    
+    \begin{definition}[Сепарабельное расширение]\label{def:separable}
+    	Пусть $L/K$ --- расширение полей (определение~\ref{def:extension}). Оно называется \emph{сепарабельным}, если для любого элемента $\alpha \in L$, алгебраического над $K$ (определение~\ref{def:algebraic}), его минимальный многочлен над $K$ (определение~\ref{def:min-poly}) не имеет кратных корней в поле, где он раскладывается на линейные множители (например, в поле разложения этого многочлена, определение~\ref{def:splitting-field}).
+    \end{definition}
+    
+    \subsection{Простые поля}
+    
+    \begin{definition}[Простое поле]\label{def:prime-field}
+    	Поле $K$ (определение~\ref{def:field}) называется \emph{простым}, если оно не содержит собственных подполей (определение~\ref{def:extension}), то есть единственное его подполе --- это само $K$.
+    \end{definition}
+    
+    \begin{theorem}[классификация простых полей]\label{thm:prime-field-classification}
+    	Простое поле (определение~\ref{def:prime-field}) изоморфно либо $\mathbb{Q}$, либо $\mathbb{F}_p$ для некоторого простого $p$.
+    \end{theorem}
+    \begin{proof}
+    	Пусть $K$ --- простое поле (определение~\ref{def:field}, \ref{def:prime-field}). Рассмотрим отображение
+    	\[
+    	\varphi: \mathbb{Z} \to K, \qquad \varphi(n) = \underbrace{1+1+\cdots+1}_{n}\ (\text{при } n>0),\quad \varphi(0)=0,\quad \varphi(-n)=-\varphi(n).
+    	\]
+    	Это гомоморфизм колец: $\varphi(n+m)=\varphi(n)+\varphi(m)$ и $\varphi(nm)=\varphi(n)\varphi(m)$ проверяются прямо из аксиом поля (дистрибутивность и ассоциативность сложения, определение~\ref{def:field}).
+    
+    	Ядро $\ker\varphi$ --- идеал в $\mathbb{Z}$, а $\mathbb{Z}$ --- кольцо главных идеалов, поэтому $\ker\varphi = (m)$ для некоторого $m \geqslant 0$. Разберём два случая.
+    
+    	\emph{Случай $m=0$.} Тогда $\varphi$ инъективен, и образ $\varphi(\mathbb{Z}) \subset K$ --- подкольцо, изоморфное $\mathbb{Z}$. Так как $K$ --- поле, для каждого ненулевого $\varphi(n)$ существует обратный $\varphi(n)^{-1} \in K$. Значит, в $K$ содержатся все элементы вида $\varphi(a)\varphi(b)^{-1}$, $a,b\in\mathbb{Z}$, $b\ne 0$; они образуют подполе $K' \subset K$, изоморфное полю частных $\mathbb{Z}$, то есть $\mathbb{Q}$. Так как $K$ простое, оно не имеет собственных подполей (определение~\ref{def:prime-field}), а $K'$ --- подполе $K$, значит $K'=K$. Итак, $K \cong \mathbb{Q}$.
+    
+    	\emph{Случай $m>0$.} Тогда $\varphi$ индуцирует инъективный гомоморфизм колец $\bar\varphi: \mathbb{Z}/m\mathbb{Z} \hookrightarrow K$, а его образ $\varphi(\mathbb{Z}) \cong \mathbb{Z}/m\mathbb{Z}$ --- подкольцо $K$. Так как $K$ --- поле, в частности область целостности (в поле нет делителей нуля: если $ab=0$ и $a\ne0$, то $b = a^{-1}ab = a^{-1}\cdot 0 = 0$), то и подкольцо $\mathbb{Z}/m\mathbb{Z} \subset K$ не может иметь делителей нуля. Но если бы $m$ было составным, $m=ab$ с $1<a,b<m$, то в $\mathbb{Z}/m\mathbb{Z}$ классы $\bar a, \bar b$ были бы ненулевыми, а $\bar a \bar b = \bar m = \bar 0$ --- делители нуля. Значит, $m=p$ --- простое число.
+    
+    	Тогда $\mathbb{Z}/p\mathbb{Z} = \mathbb{F}_p$ уже само является полем (у каждого ненулевого $\bar a$ есть обратный: так как $p$ простое, $\gcd(a,p)=1$, и по тождеству Безу $ua+vp=1$ для некоторых $u,v\in\mathbb{Z}$, откуда $\bar u \bar a = \bar 1$ в $\mathbb{Z}/p\mathbb{Z}$). Значит, образ $\varphi(\mathbb{Z}) \cong \mathbb{F}_p$ --- подполе $K$. Так как $K$ простое (определение~\ref{def:prime-field}), оно совпадает со своим подполем $\varphi(\mathbb{Z})$, то есть $K \cong \mathbb{F}_p$.
+    
+    	В обоих случаях $K$ изоморфно либо $\mathbb{Q}$, либо некоторому $\mathbb{F}_p$.
+    \end{proof}
+    
+    \subsection{Конечные поля}
+    
+    \begin{theorem}[мощность конечного поля]\label{thm:finite-field-size}
+    	Пусть $K$ --- конечное поле. Тогда $K$ содержит подполе, изоморфное $\mathbb{F}_p$ для некоторого простого $p$, и $|K| = p^n$ для некоторого $n \in \mathbb{N}$.
+    \end{theorem}
+    \begin{proof}
+    	Рассмотрим простое подполе $K_0 \subset K$ (пересечение всех подполей $K$; по построению оно само не содержит собственных подполей, то есть является простым в смысле определения~\ref{def:prime-field}). По теореме~\ref{thm:prime-field-classification} $K_0$ изоморфно либо $\mathbb{Q}$, либо $\mathbb{F}_p$ для некоторого простого $p$. Так как $K$ конечно, а $\mathbb{Q}$ бесконечно и не может быть подмножеством конечного множества, случай $K_0 \cong \mathbb{Q}$ невозможен. Значит, $K_0 \cong \mathbb{F}_p$ для некоторого простого $p$; отождествим $K_0$ с $\mathbb{F}_p$, то есть $K \supset \mathbb{F}_p$.
+    
+    	По теореме~\ref{thm:vector-space} $K$ является векторным пространством над $\mathbb{F}_p$. Его размерность $n := \dim_{\mathbb{F}_p} K$ конечна: если бы в $K$ существовало бесконечно много линейно независимых над $\mathbb{F}_p$ элементов, то и различных $\mathbb{F}_p$-линейных комбинаций (например, уже для $n+1$ линейно независимых элементов существует $p^{n+1}$ различных комбинаций с коэффициентами из $\mathbb{F}_p$) было бы сколь угодно много, что противоречит конечности $K$. Значит, $[K:\mathbb{F}_p] = n < \infty$ (определение~\ref{def:degree}).
+    
+    	Пусть $e_1,\ldots,e_n$ --- базис $K$ над $\mathbb{F}_p$. Тогда каждый элемент $K$ единственным образом записывается в виде
+    	\[
+    	c_1 e_1 + c_2 e_2 + \cdots + c_n e_n, \qquad c_i \in \mathbb{F}_p,
+    	\]
+    	причём разным наборам $(c_1,\ldots,c_n)$ отвечают разные элементы $K$ (это и есть базис: единственность разложения). Так как у каждого $c_i$ есть $p$ возможных значений (определение~\ref{def:field}, пример), число таких наборов равно $p^n$. Значит, $|K| = p^n$.
+    \end{proof}
+    
+    \begin{theorem}[существование конечного поля из $p^n$ элементов]\label{thm:finite-field-existence}
+    	Для любого простого $p$ и любого $n \in \mathbb{N}$ существует поле из $p^n$ элементов.
+    \end{theorem}
+    \begin{proof}
+    	Рассмотрим многочлен $f(x) = x^{p^n} - x \in \mathbb{F}_p[x]$. Той же конструкцией, что и в доказательстве теоремы~\ref{thm:splitting-field} (там она применялась к неприводимому многочлену, но рассуждение дословно переносится на произвольный: раскладываем $f$ на неприводимые над текущим полем множители и по очереди присоединяем корень каждого нелинейного множителя теоремой~\ref{thm:root-field}, пока всё не разложится на линейные), получаем конечное расширение $L/\mathbb{F}_p$, в котором $f$ раскладывается на линейные множители.
+    
+    	\emph{У $f$ нет кратных корней в $L$.} Производная $f'(x) = p^n x^{p^n-1} - 1 = -1$ в $\mathbb{F}_p[x]$ (так как $p \mid p^n$, коэффициент при $x^{p^n-1}$ обнуляется). Значит, $\gcd(f,f')=\gcd(f,-1)=1$: тождество $f\cdot 0 + (-1)\cdot(-f') = 1$ показывает, что $f$ и $f'$ взаимно просты в $\mathbb{F}_p[x]$, а значит (как и в доказательстве леммы об отделимости в теореме~\ref{thm:primitive-element}) у $f$ нет кратных корней ни в каком расширении. Следовательно, $f$ имеет ровно $p^n$ различных корней в $L$.
+    
+    	\emph{Множество корней --- поле.} Положим
+    	\[
+    	K := \{\alpha \in L : \alpha^{p^n} = \alpha\}
+    	\]
+    	--- множество всех корней $f$ в $L$; по предыдущему пункту $|K|=p^n$. Покажем, что $K$ --- подполе $L$ (определение~\ref{def:extension}).
+    
+    	Так как $\operatorname{char} L = p$ (в $L$ выполнено $\underbrace{1+\cdots+1}_{p}=0$, ведь $\mathbb{F}_p \subset L$), для любых $a,b \in L$ по биномиальной формуле
+    	\[
+    	(a+b)^p = \sum_{k=0}^{p} \binom{p}{k} a^k b^{p-k},
+    	\]
+    	а все биномиальные коэффициенты $\binom{p}{k}$ при $0<k<p$ делятся на $p$ (так как $p$ простое и не делит $k!(p-k)!$), то есть равны $0$ в $L$. Значит,
+    	\[
+    	(a+b)^p = a^p+b^p \qquad \text{для всех } a,b \in L.
+    	\]
+    	Применяя это $n$ раз подряд, получаем $(a+b)^{p^n} = a^{p^n}+b^{p^n}$ для всех $a,b \in L$. Кроме того, очевидно $(ab)^{p^n}=a^{p^n}b^{p^n}$ (коммутативность и ассоциативность умножения в поле, определение~\ref{def:field}).
+    
+    	Проверим аксиомы подполя для $K$:
+    	\begin{itemize}
+    		\item $0^{p^n}=0$ и $1^{p^n}=1$, значит $0,1 \in K$;
+    		\item если $a,b\in K$, то $(a+b)^{p^n}=a^{p^n}+b^{p^n}=a+b$, значит $a+b\in K$;
+    		\item если $a,b\in K$, то $(ab)^{p^n}=a^{p^n}b^{p^n}=ab$, значит $ab\in K$;
+    		\item если $a\in K$, то $(-a)^{p^n} = (-1)^{p^n}a^{p^n}$; при $p$ нечётном $p^n$ нечётно, значит $(-1)^{p^n}=-1$ и $(-a)^{p^n}=-a^{p^n}=-a$, то есть $-a\in K$ (при $p=2$ это тривиально, так как $-a=a$);
+    		\item если $a\in K$, $a\ne 0$, то из $a^{p^n}=a$ следует $(a^{-1})^{p^n} = (a^{p^n})^{-1} = a^{-1}$, значит $a^{-1}\in K$.
+    	\end{itemize}
+    	Итак, $K$ замкнуто относительно всех операций поля и содержит $0,1$, то есть $K$ --- подполе $L$ (определение~\ref{def:extension}), а значит само является полем. Так как $|K|=p^n$, это и есть искомое поле из $p^n$ элементов.
+    \end{proof}
+    
+    \begin{theorem}
+    	$\mathbb{F_q}$~--- поле ($q = p^k$) $\Rightarrow$ $\exists \ a \in \mathbb{F_q}$: $\ord(a) = \min \{ n | a^n = 1 \} = q - 1$.
+		
+		Переформулировано: гурппа $(\mathbb{F_q} \ \{ 0 \}; \cdot)$~--- циклична.
+    \end{theorem}
+    
+	\subsection{Нормальные расширения полей}
+
+	\begin{definition}[Нормальное расширение поля]\label{def:normal-extension}
+		Пусть $L/K$~--- конечное расширение полей (определения~\ref{def:extension}, \ref{def:degree}). Расширение $L/K$ называется \emph{нормальным}, если для любого $\alpha \in L$ его минимальный многочлен $f \in K[x]$ над $K$ (определение~\ref{def:min-poly}) раскладывается над $L$ в произведение линейных множителей.
+	\end{definition}
+
+	\begin{note}
+		Понятие поля разложения многочлена уже было введено ранее (определение~\ref{def:splitting-field}): это минимальное поле, содержащее $K$ и все корни данного многочлена.
+	\end{note}
+
+	\begin{lemma}[об изоморфизме простых расширений]\label{lem:iso-simple-ext}
+		Пусть $\sigma: K \to K'$~--- изоморфизм полей, $f = a_n x^n + \ldots + a_1 x + a_0 \in K[x]$~--- неприводимый многочлен, и $f^\sigma := \sigma(a_n)x^n + \ldots + \sigma(a_1)x + \sigma(a_0) \in K'[x]$. Пусть $\alpha$~--- корень $f$ (в некотором расширении $K$), а $\alpha'$~--- корень $f^\sigma$ (в некотором расширении $K'$). Тогда
+		\[
+			K(\alpha) \cong K[x]/(f) \cong K'[x]/(f^\sigma) \cong K'(\alpha'),
+		\]
+		причём получающийся изоморфизм $\sigma_1: K(\alpha) \to K'(\alpha')$ удовлетворяет $\sigma_1|_K = \sigma$ и $\sigma_1(\alpha) = \alpha'$.
+	\end{lemma}
+	\begin{proof}
+		Отображение $g \mapsto g^\sigma$ является изоморфизмом колец $K[x] \to K'[x]$ (оно биективно, так как $\sigma$ биективно, и сохраняет сумму и произведение многочленов). Поэтому оно сохраняет неприводимость, и $f^\sigma$ неприводим над $K'$.
+
+		Минимальный многочлен $\alpha$ над $K$ (определение~\ref{def:min-poly}) делит $f$, а $f$ неприводим, поэтому $f$ отличается от него на константу, и $(f)$~--- идеал всех многочленов, обнуляющихся в $\alpha$. Как в доказательстве теоремы~\ref{thm:Kalpha}, получаем изоморфизм $K(\alpha) = K[\alpha] \cong K[x]/(f)$, $g(\alpha) \leftrightarrow \bar g$. Аналогично $K'(\alpha') \cong K'[x]/(f^\sigma)$, $g(\alpha') \leftrightarrow \bar g$.
+
+		Рассмотрим сюръективный гомоморфизм колец $K[x] \to K'[x]/(f^\sigma)$, $g \mapsto \overline{g^\sigma}$. Его ядро состоит из тех $g$, для которых $f^\sigma \mid g^\sigma$ в $K'[x]$, то есть (так как $g \mapsto g^\sigma$~--- изоморфизм) из тех $g$, для которых $f \mid g$ в $K[x]$. Значит, ядро равно $(f)$, и $K[x]/(f) \cong K'[x]/(f^\sigma)$.
+
+		Композиция этих изоморфизмов переводит $g(\alpha) \mapsto \bar g \mapsto \overline{g^\sigma} \mapsto g^\sigma(\alpha')$. В частности, константы $c \in K$ переходят в $\sigma(c)$, а $\alpha$~--- в $\alpha'$.
+	\end{proof}
+
+	\begin{lemma}[о продолжении изоморфизма]\label{lem:extend-iso}
+		Пусть $\sigma: K \to K'$~--- изоморфизм полей, $f \in K[x]$, а $f^\sigma \in K'[x]$~--- многочлен, полученный из $f$ применением $\sigma$ к коэффициентам. Пусть $L$~--- поле разложения $f$ над $K$, $L'$~--- поле разложения $f^\sigma$ над $K'$ (определение~\ref{def:splitting-field}). Тогда $\sigma$ продолжается до изоморфизма $\tau: L \to L'$.
+	\end{lemma}
+	\begin{proof}
+		Индукция по $[L:K]$ (определение~\ref{def:degree}).
+
+		\emph{База.} Если $[L:K]=1$, то $L=K$, и $f$ уже раскладывается над $K$ на линейные множители. Применяя $\sigma$ к этому разложению, получаем, что $f^\sigma$ раскладывается над $K'$, значит $L'=K'$, и в качестве $\tau$ можно взять сам $\sigma$.
+
+		\emph{Шаг.} Пусть $[L:K]>1$. Тогда у $f$ есть неприводимый над $K$ множитель $p$ степени $>1$; пусть $\alpha \in L$~--- его корень. Отображение $K[x]\to K'[x]$, индуцированное $\sigma$, переводит неприводимые многочлены в неприводимые, поэтому $p^\sigma$~--- неприводимый над $K'$ множитель $f^\sigma$; пусть $\alpha' \in L'$~--- какой-нибудь его корень (он существует, так как $p^\sigma \mid f^\sigma$, а $f^\sigma$ раскладывается на линейные множители в $L'$). По теореме~\ref{thm:root-field} $K(\alpha) \cong K[x]/(p)$ и $K'(\alpha') \cong K'[x]/(p^\sigma)$, а $\sigma$ индуцирует изоморфизм $K[x]/(p) \to K'[x]/(p^\sigma)$; тем самым получаем изоморфизм
+		\[
+			\sigma_1: K(\alpha) \to K'(\alpha'), \qquad \sigma_1|_K = \sigma, \qquad \sigma_1(\alpha)=\alpha'.
+		\]
+
+		Поле $L$ является полем разложения $f$ над $K(\alpha)$ (то же поле $L$, только база расширена), а $L'$~--- полем разложения $f^\sigma$ над $K'(\alpha')$. По теореме о мультипликативности степени~\ref{thm:tower},
+		\[
+			[L:K(\alpha)] = \frac{[L:K]}{[K(\alpha):K]} < [L:K],
+		\]
+		так как $[K(\alpha):K]>1$. По предположению индукции, применённому к $\sigma_1$, отображение $\sigma_1$ продолжается до изоморфизма $\tau: L \to L'$. Так как $\tau|_{K(\alpha)}=\sigma_1$, а $\sigma_1|_K=\sigma$, получаем $\tau|_K=\sigma$, то есть $\tau$ продолжает $\sigma$.
+	\end{proof}
+
+	\begin{theorem}\label{thm:splitting-normal}
+		Поле разложения произвольного многочлена $f \in K[x]$ над $K$ (определение~\ref{def:splitting-field}) является нормальным расширением $K$ (определение~\ref{def:normal-extension}).
+	\end{theorem}
+	\begin{proof}
+		Пусть $L$~--- поле разложения $f$ над $K$, $\beta \in L$, а $g \in K[x]$~--- минимальный многочлен $\beta$ над $K$ (определение~\ref{def:min-poly}). Пусть $\gamma$~--- произвольный корень $g$ в некотором расширении $M \supset L$ (такое расширение существует по теореме~\ref{thm:root-field}). Достаточно показать, что $\gamma \in L$: поскольку это будет верно для \emph{любого} корня $g$, а других корней у $g$ нет, отсюда следует, что $g$ раскладывается над $L$ на линейные множители.
+
+		Так как $g$~--- минимальный многочлен и для $\beta$, и (рассматриваемого над $K$) для $\gamma$, поля $K(\beta)$ и $K(\gamma)$ оба изоморфны $K[x]/(g)$ (теорема~\ref{thm:root-field}), а значит существует изоморфизм
+		\[
+			\sigma: K(\beta) \to K(\gamma), \qquad \sigma|_K = \mathrm{id}, \qquad \sigma(\beta)=\gamma.
+		\]
+
+		Многочлен $f$ лежит в $K[x]$, поэтому $\sigma$ переводит $f$ в себя: $f^\sigma = f$. Поле $L$~--- поле разложения $f$ над $K(\beta)$ (то же $L$, с расширенной базой), а $L(\gamma)$~--- поле разложения $f$ над $K(\gamma)$ (над $K(\gamma) \supset K$ многочлен $f$ уже раскладывается на линейные множители, так как раскладывается над $L \subset L(\gamma)$, а его корни порождают $L(\gamma)$ над $K(\gamma)$, поскольку порождают $L$ над $K$). По лемме~\ref{lem:extend-iso} изоморфизм $\sigma$ продолжается до изоморфизма
+		\[
+			\tau: L \to L(\gamma).
+		\]
+
+		Так как $\tau|_K = \mathrm{id}$, отображение $\tau$ является $K$-линейным инъективным отображением между $K$-векторными пространствами $L$ и $L(\gamma)$ (сравните с рассуждением в доказательстве теоремы о продолжении мономорфизма ниже), причём $L \subset L(\gamma)$. Из инъективности $\tau$ и $L \subset L(\gamma)$ следует $[L(\gamma):K] \geqslant [L:K]$, а из сюръективности изоморфизма $\tau$ на $L(\gamma)$ и того, что $\tau(L) = L$ (так как $\tau$ продолжает изоморфизм $K(\beta)\to K(\gamma)$ и переводит порождающие $L$ над $K(\beta)$ корни $f$ в корни $f$, то есть в элементы $L(\gamma)$, лежащие в $L$, поскольку $f$ раскладывается уже над $L$), получаем $\tau(L)=L(\gamma)$, откуда $[L(\gamma):K]=[L:K]$. Значит, $L(\gamma)=L$, то есть $\gamma \in L$.
+	\end{proof}
+
+	\begin{statement}\label{stat:normal-is-splitting}
+		Если $L/K$~--- нормальное конечное расширение (определение~\ref{def:normal-extension}), то $L$ является полем разложения некоторого многочлена $f \in K[x]$ над $K$.
+	\end{statement}
+	\begin{proof}[Набросок]
+		Пусть $e_1, \ldots, e_n$~--- базис $L$ над $K$, а $f_i \in K[x]$~--- минимальный многочлен $e_i$ над $K$. Положим $f := f_1 f_2 \cdots f_n$. Так как $L/K$ нормально, каждый $f_i$ раскладывается над $L$ на линейные множители, значит раскладывается и их произведение $f$. При этом $L = K(e_1,\ldots,e_n)$ порождается некоторыми из корней $f$, поэтому $L$~--- наименьшее поле, содержащее $K$ и все корни $f$, то есть поле разложения $f$ над $K$.
+	\end{proof}
+
+	\begin{theorem}\label{thm:normal-equivalent}
+		Пусть $L/K$~--- конечное расширение полей. Тогда равносильны:
+		\begin{enumerate}
+			\item[(1)] $L/K$ нормально (определение~\ref{def:normal-extension}), то есть если неприводимый многочлен $f \in K[x]$ имеет корень в $L$, то все корни $f$ лежат в $L$ (и $f$ раскладывается над $L$ на линейные множители);
+			\item[(2)] для любого расширения $E \supset L$ и любого мономорфизма $\sigma: L \to E$ с $\sigma|_K = \operatorname{id}$ выполнено $\sigma(L) = L$;
+			\item[(3)] $L$~--- поле разложения некоторого многочлена $f \in K[x]$ над $K$ (определение~\ref{def:splitting-field}).
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		(1)~$\Leftrightarrow$~(3) уже доказано: (3)~$\Rightarrow$~(1)~--- это теорема~\ref{thm:splitting-normal}, (1)~$\Rightarrow$~(3)~--- утверждение~\ref{stat:normal-is-splitting}. Докажем (1)~$\Leftrightarrow$~(2).
+
+		\emph{(1) $\Rightarrow$ (2).} Пусть $\alpha \in L$, а $f \in K[x]$~--- её минимальный многочлен. Так как $\sigma|_K = \operatorname{id}$, имеем $f(\sigma(\alpha)) = \sigma(f(\alpha)) = 0$ (вычисление то же, что в теореме~\ref{thm:aut-root}). По (1) $f(x) = \prod_i (x - \alpha_i)$ с $\alpha_i \in L$; так как $E$~--- поле, из $f(\sigma(\alpha)) = 0$ следует $\sigma(\alpha) = \alpha_i$ для некоторого $i$, то есть $\sigma(\alpha) \in L$. Значит, $\sigma(L) \subset L$, и $\sigma: L \to L$~--- мономорфизм, тождественный на $K$. По теореме~\ref{thm:endo-iso} он является изоморфизмом, то есть $\sigma(L) = L$.
+
+		\emph{(2) $\Rightarrow$ (1).} Пусть $\alpha \in L$, $f \in K[x]$~--- её минимальный многочлен (он неприводим по теореме~\ref{thm:irreducible}), $e_1, \ldots, e_m$~--- базис $L$ над $K$, $f_i$~--- минимальный многочлен $e_i$. Положим $g := f f_1 \cdots f_m \in K[x]$. Многократным применением конструкции теоремы~\ref{thm:splitting-field} (к неприводимым над текущим полем множителям) получаем конечное расширение $N \supset L$, в котором $g$ раскладывается на линейные множители. Заменив $N$ на подполе, порождённое над $K$ корнями $g$, можно считать, что $N$~--- поле разложения $g$ над $K$: оно содержит $L$, так как все $e_i$~--- корни $g$.
+
+		Пусть $\beta \in N$~--- произвольный корень $f$. По лемме~\ref{lem:iso-simple-ext} (при $\sigma = \operatorname{id}_K$) существует изоморфизм $\sigma_1: K(\alpha) \to K(\beta)$, $\sigma_1|_K = \operatorname{id}$, $\sigma_1(\alpha) = \beta$. Так как $g \in K[x]$, имеем $g^{\sigma_1} = g$. Поле $N$ порождается над $K$ корнями $g$, а значит и над любым промежуточным полем $K(\alpha)$, $K(\beta)$; поэтому $N$~--- поле разложения $g$ и над $K(\alpha)$, и над $K(\beta)$. По лемме~\ref{lem:extend-iso} $\sigma_1$ продолжается до изоморфизма $\tau: N \to N$.
+
+		Отображение $\tau|_L: L \to N$~--- мономорфизм, тождественный на $K$. По (2) (при $E = N$) $\tau(L) = L$, поэтому $\beta = \tau(\alpha) \in L$. Итак, все корни $f$ в $N$ лежат в $L$; так как $f$ раскладывается на линейные множители в $N$, он раскладывается на них и в $L$. Так как $\alpha \in L$ была произвольной, $L/K$ нормально.
+	\end{proof}
+
+	\begin{theorem}\label{thm:normal-tower}
+		Пусть $K \subset L \subset E$~--- башня полей, и $E/K$ нормально и конечно. Тогда $E/L$ нормально.
+	\end{theorem}
+	\begin{proof}
+		Расширение $E/L$ конечно по теореме~\ref{thm:tower}. Пусть $\alpha \in E$, $f \in K[x]$~--- минимальный многочлен $\alpha$ над $K$, $g \in L[x]$~--- минимальный многочлен $\alpha$ над $L$. Так как $f \in L[x]$ и $f(\alpha) = 0$, то $g \mid f$ в $L[x]$ (поделив $f$ на $g$ с остатком, получаем остаток, обнуляющийся в $\alpha$ и имеющий степень $< \deg g$, то есть нулевой). По нормальности $E/K$ многочлен $f$ раскладывается в $E[x]$ на линейные множители, значит, и его делитель $g$ раскладывается на линейные множители в $E[x]$. Так как $\alpha$ была произвольной, $E/L$ нормально.
+	\end{proof}
+
+	\begin{note}
+		Теорема~\ref{thm:normal-tower} даёт ответ <<да>> на второй пункт задачи про башню полей выше.
+	\end{note}
+
+	\subsection{Гомоморфизмы полей}
+
+	\begin{definition}[Гомоморфизм полей]\label{def:field-hom}
+		Отображение $f: K \to L$ между полями называется \emph{гомоморфизмом}, если
+		\[
+			f(a+b) = f(a)+f(b), \qquad f(ab) = f(a)f(b), \qquad f(1) = 1
+		\]
+		для всех $a, b \in K$. Гомоморфизм, тождественно равный $0$, называется \emph{нулевым}.
+	\end{definition}
+
+	\begin{statement}\label{stat:q-hom-id}
+		Пусть $\operatorname{char} K = 0$ и $f: \mathbb{Q} \to \mathbb{Q}$~--- гомоморфизм полей (определение~\ref{def:field-hom}). Тогда $f = \operatorname{id}$.
+	\end{statement}
+	\begin{proof}
+		По определению гомоморфизма $f(1)=1$ и $f(0)=0$. Тогда $f(1+1)=f(1)+f(1)=1+1$, и по индукции $f(n)=n$ для всех $n \in \mathbb{N}$. Из $f(n)+f(-n) = f(n+(-n)) = f(0) = 0$ получаем $f(-n)=-n$ для всех $n \in \mathbb{N}$.
+
+		Пусть $\dfrac{m}{n} \in \mathbb{Q}$, $n \ne 0$. Тогда
+		\[
+			m = f(m) = f\!\left(n \cdot \frac{m}{n}\right) = f(n) \cdot f\!\left(\frac{m}{n}\right) = n \cdot f\!\left(\frac{m}{n}\right),
+		\]
+		откуда $f\!\left(\dfrac{m}{n}\right) = \dfrac{m}{n}$. Значит, $f(x)=x$ для всех $x \in \mathbb{Q}$.
+	\end{proof}
+
+	\begin{theorem}\label{thm:hom-mono}
+		Пусть $K, L$~--- поля, $f: K \to L$~--- ненулевой гомоморфизм. Тогда $f$~--- мономорфизм.
+	\end{theorem}
+
+	\begin{theorem}\label{thm:hom-char}
+		Пусть $f: K \to L$~--- ненулевой гомоморфизм полей. Тогда $\operatorname{char} K = \operatorname{char} L$.
+	\end{theorem}
+
+	\begin{theorem}\label{thm:endo-iso}
+		Пусть $L/K$~--- конечное расширение полей (определение~\ref{def:degree}), $f: L \to L$~--- мономорфизм, тождественный на $K$ ($f(k)=k$ $\forall k \in K$). Тогда $f$~--- изоморфизм.
+	\end{theorem}
+	\begin{proof}
+		Так как $L/K$~--- конечное расширение, $L$~--- конечномерное векторное пространство над $K$; пусть $n = [L:K] = \dim_K L$ (определение~\ref{def:degree}).
+
+		Покажем, что $f$~--- $K$-линейное отображение. Так как $f$~--- гомоморфизм колец,
+		\[
+			f(k_1 l_1 + k_2 l_2) = f(k_1 l_1) + f(k_2 l_2) = f(k_1)f(l_1) + f(k_2)f(l_2),
+		\]
+		а так как $f(k)=k$ для всех $k \in K$, получаем
+		\[
+			f(k_1 l_1 + k_2 l_2) = k_1 f(l_1) + k_2 f(l_2), \qquad \forall k_1, k_2 \in K,\ l_1, l_2 \in L.
+		\]
+		Значит, $f: L \to L$~--- линейное отображение $K$-векторных пространств.
+
+		По условию $f$~--- мономорфизм, то есть инъективное линейное отображение $L \to L$ между пространствами одинаковой конечной размерности $n$. Для линейного отображения между конечномерными пространствами одной размерности инъективность равносильна сюръективности, поэтому $f$ сюръективен. Значит, $f$~--- биективный гомоморфизм, то есть изоморфизм.
+	\end{proof}
+
+	\subsection{Автоморфизмы поля}
+
+	\begin{definition}[Автоморфизм]\label{def:automorphism}
+		Изоморфизм $f: L \to L$ называется \emph{автоморфизмом} поля $L$.
+	\end{definition}
+
+	\begin{example}
+		У поля $\mathbb{Q}(\sqrt{2})$ ровно два автоморфизма: тождественный и $f(a+b\sqrt{2}) = a - b\sqrt{2}$, $a, b \in \mathbb{Q}$.
+
+		Действительно, пусть $f(\sqrt2) = a+b\sqrt2$. Так как $\mathbb{Q}$~--- простое подполе $\mathbb{Q}(\sqrt2)$ (определение~\ref{def:prime-field}), любой автоморфизм $\mathbb{Q}(\sqrt2)$ тождествен на $\mathbb{Q}$ (по существу, утверждение~\ref{stat:q-hom-id}), поэтому
+		\[
+			\bigl(f(\sqrt2)\bigr)^2 = f\bigl((\sqrt2)^2\bigr) = f(2) = 2,
+		\]
+		то есть $(a+b\sqrt2)^2 = 2$, откуда $a+b\sqrt2 = \pm\sqrt2$. Значит, либо $f(\sqrt2)=\sqrt2$ (и тогда $f = \operatorname{id}$), либо $f(\sqrt2)=-\sqrt2$ (и тогда $f(a+b\sqrt2) = a-b\sqrt2$).
+	\end{example}
+
+	\begin{theorem}\label{thm:aut-root}
+		Пусть $\sigma$~--- автоморфизм поля $K$, $\alpha \in K$, а $f \in \mathbb{Q}[x]$~--- многочлен, для которого $\alpha$~--- корень. Тогда $\sigma(\alpha)$~--- тоже корень $f$.
+	\end{theorem}
+	\begin{proof}
+		Пусть $f(x) = a_nx^n + a_{n-1}x^{n-1} + \dots + a_1x + a_0$, $f(\alpha)=0$. Так как $a_i \in \mathbb{Q}$, а $\sigma$ (как и любой автоморфизм поля) тождествен на простом подполе $\mathbb{Q}$ (утверждение~\ref{stat:q-hom-id}), и $\sigma$~--- гомоморфизм, получаем
+		\[
+			f(\sigma(\alpha)) = a_n\sigma(\alpha)^n + \dots + a_1\sigma(\alpha) + a_0 = \sigma\bigl(a_n\alpha^n + \dots + a_1\alpha + a_0\bigr) = \sigma\bigl(f(\alpha)\bigr) = \sigma(0) = 0.
+		\]
+	\end{proof}
+
+	\begin{corollary}\label{cor:aut-root-relative}
+		Пусть $L/K$~--- расширение полей, $\sigma$~--- автоморфизм $L$, оставляющий неподвижным $K$ (то есть $\sigma(k)=k$ $\forall k \in K$), а $\alpha$~--- корень многочлена $f \in K[x]$. Тогда $\sigma(\alpha)$~--- тоже корень $f$.
+	\end{corollary}
+
+	\begin{definition}[Группа Галуа]\label{def:galois-group}
+		\emph{Группой Галуа} расширения $L/K$ называется группа всех автоморфизмов $L \to L$, оставляющих неподвижным $K$ (то есть таких $\sigma$, что $\sigma(k)=k$ для всех $k \in K$).
+
+		Групповая операция~--- композиция. Обозначение: $\operatorname{Gal}(L/K)$.
+	\end{definition}
+	
+	\begin{problem}
+		$K \subset L \subset M$~--- башня полей.
+		\begin{enumerate}
+			\item $L/K$ и $M/L$ нормальное. Обязательно ли $M/K$ нормальное?
+			\item $M/K$ и $L/K$ нормальное. Обязательно ли $M/L$ нормальное?
+			\item $M/L$ и $M/K$ нормальное. Обязательно ли $L/K$ нормальное?
+		\end{enumerate}
+	\end{problem}
+	
+	\begin{solution}
+		\begin{enumerate}
+			\item Нет. $\mathbb{Q} \subset \mathbb{Q}(\sqrt{2}) \subset \mathbb{Q}(\sqrt[4]{2})$.
+			\item Да.
+			\item Нет.
+		\end{enumerate}
+	\end{solution}
+
+	\begin{theorem}[о линейной независимости автоморфизмов]\label{thm:dedekind}
+		Пусть $\sigma_1, \ldots, \sigma_n$~--- попарно различные автоморфизмы поля $L$. Тогда они линейно независимы над $L$: если $\alpha_1, \ldots, \alpha_n \in L$ и
+		\[
+			\alpha_1\sigma_1(x) + \ldots + \alpha_n\sigma_n(x) = 0 \qquad \forall x \in L,
+		\]
+		то $\alpha_1 = \ldots = \alpha_n = 0$.
+	\end{theorem}
+	\begin{proof}
+		Допустим противное. Среди нетривиальных соотношений $\alpha_1\sigma_1 + \ldots + \alpha_n\sigma_n = 0$ выберем такое, у которого число ненулевых коэффициентов $m$ минимально; перенумеровав, считаем, что $\alpha_1, \ldots, \alpha_m \ne 0$, а остальные равны нулю:
+		\[
+			\alpha_1\sigma_1(x) + \ldots + \alpha_m\sigma_m(x) = 0 \qquad \forall x \in L.
+		\]
+		Если $m = 1$, то при $x = 1$ получаем $\alpha_1 = 0$~--- противоречие. Пусть $m \geqslant 2$. Так как $\sigma_1 \ne \sigma_2$, найдётся $y \in L$ с $\sigma_1(y) \ne \sigma_2(y)$. Подставив в соотношение $yx$ вместо $x$, получаем $\sum_{i=1}^m \alpha_i\sigma_i(y)\sigma_i(x) = 0$; умножив исходное соотношение на $\sigma_1(y)$, получаем $\sum_{i=1}^m \alpha_i\sigma_1(y)\sigma_i(x) = 0$. Вычитая,
+		\[
+			\sum_{i=2}^m \alpha_i\bigl(\sigma_i(y) - \sigma_1(y)\bigr)\sigma_i(x) = 0 \qquad \forall x \in L.
+		\]
+		Это соотношение содержит не более $m-1$ ненулевых коэффициентов, и при этом коэффициент при $\sigma_2$ ненулевой: $\alpha_2\bigl(\sigma_2(y) - \sigma_1(y)\bigr) \ne 0$. Значит, оно нетривиально, что противоречит минимальности $m$.
+	\end{proof}
+
+	\begin{corollary}\label{cor:aut-count-bound}
+		Пусть $L/K$~--- расширение полей, $\sigma_1, \ldots, \sigma_n$~--- попарно различные автоморфизмы $L$ с $\sigma_i|_K = \operatorname{id}$. Тогда $[L:K] \geqslant n$.
+	\end{corollary}
+	\begin{proof}
+		Если $[L:K] = \infty$, доказывать нечего. Пусть $m := [L:K] < n$ и $w_1, \ldots, w_m$~--- базис $L$ над $K$. Однородная система линейных уравнений над $L$
+		\[
+			\sum_{i=1}^n \sigma_i(w_j)\,c_i = 0, \qquad j = 1, \ldots, m,
+		\]
+		содержит $m$ уравнений и $n > m$ неизвестных, поэтому имеет ненулевое решение $(c_1, \ldots, c_n) \in L^n$. Любой $x \in L$ записывается как $x = \sum_{j=1}^m a_jw_j$ с $a_j \in K$, и так как $\sigma_i(a_j) = a_j$,
+		\[
+			\sum_{i=1}^n c_i\sigma_i(x) = \sum_{j=1}^m a_j \sum_{i=1}^n c_i\sigma_i(w_j) = 0.
+		\]
+		Это нетривиальное соотношение между $\sigma_1, \ldots, \sigma_n$, что противоречит теореме~\ref{thm:dedekind}.
+	\end{proof}
+
+	\begin{definition}[Поле инвариантов]\label{def:fixed-field}
+		Пусть $H$~--- подгруппа группы $\operatorname{Aut}(L)$ автоморфизмов поля $L$. Положим
+		\[
+			L^H := \left\{ x \in L \mid \sigma(x) = x \ \ \forall \sigma \in H \right\}.
+		\]
+		Это подполе $L$ (проверка та же, что в утверждении~\ref{stat:galois-correspondence-well-defined}; там же то же множество обозначено $F(H)$).
+	\end{definition}
+
+	\begin{theorem}[Артина]\label{thm:artin}
+		Пусть $G$~--- конечная подгруппа $\operatorname{Aut}(L)$ и $F = L^G$. Тогда $[L:F] \leqslant |G|$.
+	\end{theorem}
+	\begin{proof}
+		Пусть $G = \{\sigma_1, \ldots, \sigma_n\}$, $\sigma_1 = \operatorname{id}$. Допустим, что $[L:F] \geqslant n+1$, и пусть $w_1, \ldots, w_{n+1} \in L$~--- линейно независимые над $F$ элементы. Рассмотрим систему
+		\[
+			\sum_{l=1}^{n+1} \sigma_i(w_l)\,x_l = 0, \qquad i = 1, \ldots, n.
+		\]
+		В ней $n$ уравнений и $n+1$ неизвестных, поэтому у неё есть ненулевое решение в $L^{n+1}$. Это почти то, что нужно (первое уравнение~--- линейная зависимость $w_l$), но коэффициенты лежат лишь в $L$, а не в $F$. Покажем, что можно добиться коэффициентов из $F$.
+
+		Выберем ненулевое решение с минимальным числом ненулевых координат. Перенумеровав $w_l$ (линейная независимость от этого не страдает), считаем, что ненулевые координаты~--- первые $k$. Разделив на $c_k$, получаем решение $d = (d_1, \ldots, d_{k-1}, 1, 0, \ldots, 0)$.
+
+		Зафиксируем $j$ и применим $\sigma_j$ к $i$-му уравнению для $d$:
+		\[
+			\sum_{l=1}^{k} \sigma_j\sigma_i(w_l)\,\sigma_j(d_l) = 0, \qquad \sigma_j(d_k) = \sigma_j(1) = 1.
+		\]
+		Когда $i$ пробегает $1, \ldots, n$, элемент $\sigma_j\sigma_i$ пробегает всю группу $G$ (умножение на $\sigma_j$~--- биекция $G$), то есть это те же самые уравнения системы. Значит, $\bigl(\sigma_j(d_1), \ldots, \sigma_j(d_{k-1}), 1, 0, \ldots, 0\bigr)$~--- тоже решение. Разность двух решений~--- решение; у него $k$-я и все следующие координаты нулевые, то есть ненулевых координат меньше, чем $k$. По минимальности $k$ оно нулевое: $\sigma_j(d_l) = d_l$ для всех $j, l$. Значит, $d_l \in L^G = F$.
+
+		Теперь первое уравнение ($\sigma_1 = \operatorname{id}$) даёт $d_1w_1 + \ldots + d_{k-1}w_{k-1} + w_k = 0$ с коэффициентами из $F$, причём коэффициент при $w_k$ равен $1$. Это противоречит линейной независимости $w_l$ над $F$.
+	\end{proof}
+
+	\begin{theorem}\label{thm:fixed-field-galois}
+		Пусть $H$~--- конечная подгруппа $\operatorname{Aut}(L)$ и $K = L^H$. Тогда $\operatorname{Gal}(L/K) = H$ и $[L:K] = |H|$.
+	\end{theorem}
+	\begin{proof}
+		Каждый $\sigma \in H$ тождествен на $K = L^H$ по определению, поэтому $H \subset \operatorname{Gal}(L/K)$ (определение~\ref{def:galois-group}). По теореме~\ref{thm:artin} $[L:K] \leqslant |H|$. По следствию~\ref{cor:aut-count-bound} любые $n$ различных элементов $\operatorname{Gal}(L/K)$ дают $n \leqslant [L:K]$, то есть $|\operatorname{Gal}(L/K)| \leqslant [L:K]$. Итак,
+		\[
+			|H| \leqslant |\operatorname{Gal}(L/K)| \leqslant [L:K] \leqslant |H|,
+		\]
+		откуда все неравенства~--- равенства. Конечное множество $H \subset \operatorname{Gal}(L/K)$ той же мощности совпадает с $\operatorname{Gal}(L/K)$, и $[L:K] = |H|$.
+	\end{proof}
+	
+	\begin{theorem}\label{thm:galois-order}
+		Пусть $L/K$~--- конечное нормальное сепарабельное расширение (расширение Галуа). Тогда $L = K(\theta)$ для некоторого $\theta \in L$, и если $f \in K[x]$~--- минимальный многочлен $\theta$ (определение~\ref{def:min-poly}), то совпадают:
+		\begin{enumerate}
+			\item[(a)] $[L : K]$;
+			\item[(b)] $\deg f$;
+			\item[(c)] $\left| \operatorname{Gal}(L/K) \right|$.
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		Существование $\theta$ следует из теоремы о примитивном элементе (теорема~\ref{thm:primitive-element}; для сепарабельных расширений произвольного поля $K$ она верна так же, как и для расширений $\mathbb{Q}$). Положим $n := \deg f$.
+
+		\emph{(a) $=$ (b).} Так как $L = K(\theta)$, по теореме~\ref{thm:Kalpha} имеем $[L:K] = [K(\theta):K] = \deg f = n$. При этом $1, \theta, \theta^2, \ldots, \theta^{n-1}$~--- базис $L$ над $K$ (теорема~\ref{thm:basis}), то есть
+		\[
+			L = K(\theta) = \left\{ a_0 + a_1\theta + \ldots + a_{n-1}\theta^{n-1} \mid a_i \in K \right\},
+		\]
+		причём такая запись любого элемента $L$ единственна.
+
+		\emph{(b) $=$ (c).} Так как $L/K$ нормально (определение~\ref{def:normal-extension}), $f$ раскладывается над $L$ на линейные множители, а так как $L/K$ сепарабельно (определение~\ref{def:separable}), корни $f$ попарно различны. Значит, $f$ имеет ровно $n$ различных корней $\theta = \theta_1, \theta_2, \ldots, \theta_n \in L$. Покажем, что отображение
+		\[
+			\operatorname{Gal}(L/K) \to \{ \theta_1, \ldots, \theta_n \}, \qquad \sigma \mapsto \sigma(\theta),
+		\]
+		корректно определено и биективно; отсюда $|\operatorname{Gal}(L/K)| = n$.
+
+		\emph{1) Корректность.} Пусть $\sigma \in \operatorname{Gal}(L/K)$. Так как $f \in K[x]$ и $f(\theta)=0$, по следствию~\ref{cor:aut-root-relative} $\sigma(\theta)$~--- тоже корень $f$, лежащий в $L$, то есть $\sigma(\theta) = \theta_k$ для некоторого $k$.
+
+		\emph{2) Сюръективность.} Зафиксируем $k$ и построим $\sigma \in \operatorname{Gal}(L/K)$ с $\sigma(\theta) = \theta_k$. Положим
+		\[
+			\sigma\bigl( a_0 + a_1\theta + \ldots + a_{n-1}\theta^{n-1} \bigr) := a_0 + a_1\theta_k + \ldots + a_{n-1}\theta_k^{n-1} \in L.
+		\]
+		Отображение определено корректно, так как запись элемента $L$ в виде $a_0 + a_1\theta + \ldots + a_{n-1}\theta^{n-1}$ единственна, а $\theta_k \in L$. Очевидно, $\sigma$ аддитивно, $\sigma(a)=a$ для всех $a \in K$ (в частности, $\sigma(1)=1$) и $\sigma(\theta)=\theta_k$.
+
+		Проверим мультипликативность. Пусть $x = g(\theta)$ и $y = h(\theta)$, где $g, h \in K[x]$, $\deg g, \deg h < n$. По определению $\sigma(x) = g(\theta_k)$, $\sigma(y) = h(\theta_k)$, поэтому
+		\[
+			\sigma(x)\,\sigma(y) = g(\theta_k)\,h(\theta_k) = (gh)(\theta_k).
+		\]
+		Поделим с остатком: $gh = qf + r$, где $r = 0$ или $\deg r < n$. Так как $f(\theta) = 0$ и $f(\theta_k) = 0$, получаем $xy = (gh)(\theta) = r(\theta)$ и $(gh)(\theta_k) = r(\theta_k)$. Следовательно, по определению $\sigma$,
+		\[
+			\sigma(xy) = \sigma\bigl(r(\theta)\bigr) = r(\theta_k) = (gh)(\theta_k) = \sigma(x)\,\sigma(y).
+		\]
+
+		Итак, $\sigma: L \to L$~--- ненулевой гомоморфизм (определение~\ref{def:field-hom}), тождественный на $K$. По теореме~\ref{thm:hom-mono} он является мономорфизмом, а по теореме~\ref{thm:endo-iso}~--- изоморфизмом, так как $L/K$ конечно. Значит, $\sigma \in \operatorname{Gal}(L/K)$ (определение~\ref{def:galois-group}).
+
+		\emph{3) Инъективность.} Пусть $\sigma \in \operatorname{Gal}(L/K)$. Так как $\sigma$~--- гомоморфизм, тождественный на $K$,
+		\[
+			\sigma\bigl( a_0 + a_1\theta + \ldots + a_{n-1}\theta^{n-1} \bigr) = a_0 + a_1\sigma(\theta) + \ldots + a_{n-1}\sigma(\theta)^{n-1}.
+		\]
+		Значит, $\sigma$ однозначно определяется значением $\sigma(\theta)$: если $\sigma(\theta) = \sigma'(\theta)$, то $\sigma = \sigma'$.
+	\end{proof}
+
+	\subsection{Основная теорема теории Галуа}
+
+	\begin{definition}[Соответствие Галуа]\label{def:galois-correspondence}
+		Пусть $L/K$~--- расширение Галуа, $G := \operatorname{Gal}(L/K)$ (определение~\ref{def:galois-group}), $F$~--- промежуточное поле: $L \supset F \supset K$. Положим
+		\[
+			G(F) := \left\{ \sigma \in G \mid \sigma(x) = x \ \ \forall x \in F \right\}.
+		\]
+		Обратно, для подгруппы $H < G$ положим
+		\[
+			F(H) := \left\{ x \in L \mid \sigma(x) = x \ \ \forall \sigma \in H \right\}.
+		\]
+	\end{definition}
+
+	\begin{statement}\label{stat:galois-correspondence-well-defined}
+		В обозначениях определения~\ref{def:galois-correspondence} $G(F) < G$, а $F(H)$~--- подполе $L$, содержащее $K$.
+	\end{statement}
+	\begin{proof}
+		$\operatorname{id} \in G(F)$. Если $\sigma, \tau \in G(F)$, то $\sigma\tau(x) = x$ и $\sigma^{-1}(x) = x$ для всех $x \in F$, так что $G(F)$ замкнуто относительно композиции и взятия обратного, то есть является подгруппой.
+
+		Пусть $x, y \in F(H)$ и $\sigma \in H$. Тогда $\sigma(x \pm y) = x \pm y$, $\sigma(xy) = xy$, а при $x \ne 0$ также $\sigma(x^{-1}) = \sigma(x)^{-1} = x^{-1}$; кроме того, $\sigma(0)=0$, $\sigma(1)=1$. Значит, $F(H)$~--- подполе $L$. Так как $H \subset G$, каждый $\sigma \in H$ тождествен на $K$, поэтому $K \subset F(H)$.
+	\end{proof}
+
+	\begin{theorem}[основная теорема теории Галуа]\label{thm:galois-fundamental}
+		Пусть $L/K$~--- расширение Галуа, $G = \operatorname{Gal}(L/K)$. Тогда:
+		\begin{enumerate}
+			\item отображения $F \mapsto G(F)$ и $H \mapsto F(H)$ (определение~\ref{def:galois-correspondence}) взаимно обратны и задают биекцию между подгруппами $G$ и промежуточными полями $L \supset F \supset K$;
+			\item это соответствие обращает включения: $F_1 \subset F_2 \Rightarrow G(F_1) \supset G(F_2)$, и наоборот;
+			\item $H \vartriangleleft G$ $\Leftrightarrow$ соответствующее расширение $F(H)/K$ нормально.
+		\end{enumerate}
+	\end{theorem}
+
+	\begin{definition}[Сопряженные подполя]
+		$L \supset F \supset K$, $\sigma \in \operatorname{Gal} (L/K)$, $\sigma (F)$~--- сопряженное к $F$. $F'$ и $F$ сопряженные, если существует $\sigma \in \operatorname{Gal} (L/K)$, $F' = \sigma (F)$.
+	\end{definition}
+
+	\begin{theorem}
+		Нормальные $H$ превращаются в нормальные $L^H/K$.
+	\end{theorem}
+
+	\begin{theorem}[Абеля-Руфини]
+		Существуют многочлены степени $5$ и выше, корни которых не выражаются в радикалах.
+	\end{theorem}
+
+	\subsection{Круговые многочлены (многочлены деления круга)}
+
+	\begin{definition}[Корни $n$-й степени из единицы]\label{def:roots-of-unity}
+		Пусть $n \in \mathbb{N}$, $\xi = \cos\dfrac{2\pi}{n} + i\sin\dfrac{2\pi}{n}$. Числа
+		\[
+			\xi, \ \xi^2, \ \xi^3, \ \ldots, \ \xi^n = 1
+		\]
+		попарно различны и являются всеми корнями многочлена $x^n - 1$, то есть всеми корнями $n$-й степени из $1$.
+
+		Корень $\xi^k$ называется \emph{первообразным}, если его порядок равен $n$, то есть $(\xi^k)^m \ne 1$ при $0 < m < n$. Это равносильно тому, что $\gcd(k, n) = 1$, поэтому первообразных корней ровно $\varphi(n)$ штук ($\varphi$~--- функция Эйлера).
+	\end{definition}
+
+	\begin{definition}[Круговой многочлен]\label{def:cyclotomic}
+		$n$-м \emph{круговым многочленом} называется
+		\[
+			\Phi_n(x) = \prod_{\substack{1 \leqslant k \leqslant n \\ \xi^k\text{~--- первообразный}}} (x - \xi^k) = \prod_{\substack{1 \leqslant k \leqslant n \\ \gcd(k, n) = 1}} (x - \xi^k).
+		\]
+	\end{definition}
+
+	\begin{example}
+		\begin{itemize}
+			\item $p$~--- простое. Все корни $p$-й степени из $1$, кроме самой $1$, первообразные, поэтому
+			\[
+				\Phi_p(x) = \dfrac{x^p - 1}{x - 1} = x^{p-1} + x^{p-2} + \ldots + x + 1.
+			\]
+			\item $n = 4$: первообразные корни~--- $\pm i$, поэтому $\Phi_4(x) = (x - i)(x + i) = x^2 + 1$.
+			\item $n = 6$: первообразные корни~--- $\xi$ и $\xi^5 = \overline{\xi}$, где $\xi = \dfrac{1}{2} + \dfrac{\sqrt{3}}{2}i$. Так как $\xi + \overline{\xi} = 1$ и $\xi\overline{\xi} = 1$, имеем $\Phi_6(x) = x^2 - x + 1$.
+		\end{itemize}
+	\end{example}
+
+	\begin{properties}\label{prop:cyclotomic}
+		\begin{enumerate}
+			\item $\deg \Phi_n = \varphi(n)$.
+			\item $\prod\limits_{k \mid n} \Phi_k(x) = x^n - 1$.
+			\item Старший коэффициент $\Phi_n$ равен $1$.
+		\end{enumerate}
+	\end{properties}
+	\begin{proof}
+		\emph{1.} Корни $\Phi_n$~--- в точности первообразные корни $n$-й степени из $1$, а их $\varphi(n)$ штук (определение~\ref{def:roots-of-unity}).
+
+		\emph{3.} $\Phi_n$~--- произведение многочленов $x - \xi^k$, у каждого из которых старший коэффициент равен $1$.
+
+		\emph{2.} Порядок каждого корня $n$-й степени из $1$ делит $n$. Корень порядка $k$~--- это первообразный корень $k$-й степени из $1$, то есть корень $\Phi_k$. Значит, корни $x^n - 1$ разбиваются на корни многочленов $\Phi_k$, $k \mid n$. Все эти корни попарно различны, а у обоих многочленов старший коэффициент равен $1$ (свойство~3), поэтому они совпадают.
+	\end{proof}
+
+	\begin{corollary}\label{cor:cyclotomic-integer}
+		Коэффициенты $\Phi_n$ рациональны и даже целы: $\Phi_n \in \mathbb{Z}[x]$.
+	\end{corollary}
+	\begin{proof}
+		Индукция по $n$. База: $\Phi_1(x) = x - 1 \in \mathbb{Z}[x]$.
+
+		Переход. По свойству~2
+		\[
+			x^n - 1 = \Phi_n(x) \cdot g(x), \qquad g(x) = \prod_{\substack{k \mid n \\ k < n}} \Phi_k(x).
+		\]
+		По предположению индукции $g \in \mathbb{Z}[x]$, а по свойству~3 старший коэффициент $g$ равен $1$. Поделим $x^n - 1$ на $g$ уголком. На каждом шаге делим только на старший коэффициент $g$, то есть на $1$, поэтому частное $q$ и остаток $r$ лежат в $\mathbb{Z}[x]$. Деление с остатком в $\mathbb{C}[x]$ единственно, а $x^n - 1 = \Phi_n \cdot g + 0$, значит, $\Phi_n = q \in \mathbb{Z}[x]$.
+	\end{proof}
+
+	\begin{lemma}[Гаусса, для приведённых многочленов]\label{lem:gauss-monic}
+		Пусть $f \in \mathbb{Z}[x]$, $f = g h$, где $g, h \in \mathbb{Q}[x]$ и старшие коэффициенты $f, g, h$ равны $1$. Тогда $g, h \in \mathbb{Z}[x]$.
+	\end{lemma}
+	\begin{proof}
+		Пусть $a, b$~--- наименьшие натуральные числа, для которых $ag, bh \in \mathbb{Z}[x]$. Тогда $ab f = (ag)(bh)$. Допустим, $ab > 1$, и пусть $p$~--- простой делитель $ab$. Обозначим через $\overline{u} \in \mathbb{F}_p[x]$ многочлен $u \in \mathbb{Z}[x]$ с коэффициентами, взятыми по модулю $p$. Тогда $\overline{ag} \cdot \overline{bh} = \overline{abf} = 0$. В $\mathbb{F}_p[x]$ нет делителей нуля (старший коэффициент произведения равен произведению старших коэффициентов, а $\mathbb{F}_p$~--- поле), поэтому, скажем, $\overline{ag} = 0$, то есть все коэффициенты $ag$ делятся на $p$. В частности, на $p$ делится её старший коэффициент, равный $a$. Тогда $\dfrac{a}{p} \in \mathbb{N}$ и $\dfrac{a}{p}\,g \in \mathbb{Z}[x]$, что противоречит минимальности $a$. Значит, $a = b = 1$.
+	\end{proof}
+
+	\begin{theorem}\label{thm:cyclotomic-irreducible}
+		Многочлен $\Phi_n$ неприводим над $\mathbb{Z}$ (и над $\mathbb{Q}$).
+	\end{theorem}
+
+	\begin{lemma}\label{lem:cyclotomic-p-power}
+		Пусть $\gcd(n, k) = 1$, $f$~--- минимальный многочлен $\xi^k$ над $\mathbb{Q}$ (определение~\ref{def:min-poly}) и $p$~--- простое, $p \nmid n$. Тогда $(\xi^k)^p$~--- тоже корень $f$.
+	\end{lemma}
+	\begin{proof}
+		Положим $\theta = \xi^k$. Так как $\Phi_n(\theta) = 0$, имеем $f \mid \Phi_n$: $\Phi_n = f g$, где $g \in \mathbb{Q}[x]$ и старшие коэффициенты $f, g$ равны $1$. По следствию~\ref{cor:cyclotomic-integer} и лемме~\ref{lem:gauss-monic} $f, g \in \mathbb{Z}[x]$.
+
+		Так как $\gcd(kp, n) = 1$, корень $\theta^p = \xi^{kp}$ первообразный, то есть $\Phi_n(\theta^p) = 0$. Допустим, $f(\theta^p) \ne 0$. Тогда $g(\theta^p) = 0$, то есть $\theta$~--- корень многочлена $g(x^p)$. Поэтому $f \mid g(x^p)$ в $\mathbb{Q}[x]$: $g(x^p) = f(x)\,h(x)$. Старшие коэффициенты всех трёх многочленов равны $1$, поэтому по лемме~\ref{lem:gauss-monic} $h \in \mathbb{Z}[x]$.
+
+		Перейдём к коэффициентам по модулю $p$ (обозначения из доказательства леммы~\ref{lem:gauss-monic}). Если $\overline{g}(x) = \sum c_i x^i$, то в $\mathbb{F}_p[x]$
+		\[
+			\bigl(\overline{g}(x)\bigr)^p = \sum c_i^p x^{ip} = \sum c_i x^{ip} = \overline{g}(x^p),
+		\]
+		так как $(u + v)^p = u^p + v^p$ в характеристике $p$, а $c^p = c$ для $c \in \mathbb{F}_p$ (малая теорема Ферма). Значит, $\overline{f} \cdot \overline{h} = \overline{g}^{\,p}$. Пусть $u$~--- неприводимый множитель $\overline{f}$ в $\mathbb{F}_p[x]$. Тогда $u \mid \overline{g}^{\,p}$, а значит, $u \mid \overline{g}$. Отсюда
+		\[
+			u^2 \mid \overline{f} \cdot \overline{g} = \overline{\Phi_n} \mid x^n - 1 \quad \text{в } \mathbb{F}_p[x]
+		\]
+		(последнее~--- по свойству~2). Пусть $x^n - 1 = u^2 w$. Тогда $(x^n - 1)' = n x^{n-1} = 2uu'w + u^2 w'$ делится на $u$. Но $n \ne 0$ в $\mathbb{F}_p$ (так как $p \nmid n$), и
+		\[
+			(x^n - 1) - \dfrac{x}{n} \cdot n x^{n-1} = -1,
+		\]
+		поэтому $u \mid -1$, что невозможно, так как $\deg u \geqslant 1$. Противоречие, значит, $f(\theta^p) = 0$.
+	\end{proof}
+
+	\begin{proof}[Доказательство теоремы~\ref{thm:cyclotomic-irreducible}]
+		Пусть $f$~--- минимальный многочлен $\xi$ над $\mathbb{Q}$. Он неприводим (теорема~\ref{thm:irreducible}). Покажем, что каждый первообразный корень $\xi^k$, $\gcd(n, k) = 1$, является корнем $f$. Разложим $k$ на простые множители (возможно, совпадающие):
+		\[
+			k = p_1 p_2 \cdots p_l, \qquad p_i \nmid n.
+		\]
+		Применяем лемму~\ref{lem:cyclotomic-p-power} по цепочке:
+		\[
+			\xi \longrightarrow \xi^{p_1} \longrightarrow \xi^{p_1 p_2} \longrightarrow \ldots \longrightarrow \xi^{p_1 p_2 \cdots p_l} = \xi^k.
+		\]
+		Здесь $\xi$~--- корень $f$. Если $\xi^{p_1 \cdots p_i}$~--- корень $f$, то $f$~--- его минимальный многочлен: $f$ неприводим, а старший коэффициент $f$ равен $1$. Кроме того, $\gcd(p_1 \cdots p_i, n) = 1$, поэтому по лемме $\xi^{p_1 \cdots p_{i+1}}$~--- тоже корень $f$. При $k = 1$ доказывать нечего.
+
+		Итак, все корни $\Phi_n$, а они попарно различны, являются корнями $f$, поэтому $f \,\vdots\, \Phi_n$. Так как $f$ неприводим, $f = c\,\Phi_n$, а так как старшие коэффициенты $f$ и $\Phi_n$ равны $1$, получаем $f = \Phi_n$. Значит, $\Phi_n$ неприводим над $\mathbb{Q}$.
+
+		Наконец, если $\Phi_n = g_1 g_2$, где $g_1, g_2 \in \mathbb{Z}[x]$, то произведение старших коэффициентов равно $1$, поэтому множитель нулевой степени может быть только $\pm 1$. Множителей положительной степени два быть не может по неприводимости над $\mathbb{Q}$. Значит, $\Phi_n$ неприводим и над $\mathbb{Z}$.
+	\end{proof}
+
+\end{document}
